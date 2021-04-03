@@ -1,11 +1,71 @@
 <script lang="ts">
+  const toasts = ['toast1', 'toast2'];
 </script>
 
 <main>
-  <!-- <div class="toast" *ngFor="let toast of getToasts()"> -->
-  <div class="toast">toast</div>
-  <!-- {{ toast.getText() }} -->
+  {#each toasts as toast}
+    <div class="toast">{toast}</div>
+  {/each}
 </main>
 
 <style lang="scss">
+  .toast {
+    min-width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s forwards;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s forwards;
+  }
+
+  @-webkit-keyframes fadein {
+    from {
+      -webkit-transform: translate(0, 100px);
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadein {
+    from {
+      -webkit-transform: translate(0, 100px);
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @-webkit-keyframes fadeout {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      -webkit-transform: translate(0, -30px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeout {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      -webkit-transform: translate(0, -30px);
+      opacity: 0;
+    }
+  }
 </style>

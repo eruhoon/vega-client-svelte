@@ -24,7 +24,7 @@
 <style lang="scss">
   $icon-size: 40px;
 
-  div.main {
+  main {
     display: flex;
     width: 100%;
     height: 100%;

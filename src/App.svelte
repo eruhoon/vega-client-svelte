@@ -17,10 +17,10 @@
 
 <style>
   main {
-    text-align: center;
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
   }
 
   h1 {
@@ -28,11 +28,5 @@
     text-transform: uppercase;
     font-size: 4em;
     font-weight: 100;
-  }
-
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
   }
 </style>

@@ -21,6 +21,10 @@
 </main>
 
 <style lang="scss">
+  main {
+    width: 100%;
+    height: 100%;
+  }
   @media all and (max-width: 768px) {
     div.page {
       position: absolute;
@@ -140,7 +144,7 @@
   @media all and (min-width: 768px) {
     div.page {
       height: 100%;
-      background: url('/../assets/image/login/main_bg_04.png');
+      background: url('/assets/image/login/main_bg_04.png');
       background-size: auto 100%;
       background-position: center top;
     }

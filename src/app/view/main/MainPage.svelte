@@ -10,9 +10,9 @@
   };
 </script>
 
-<nav class="top-bar">
+<div class="top-bar">
   <TopBar on:menuclick={onMenuClick} />
-</nav>
+</div>
 <div class="main-section">
   <div class="chat-list-view"><ChatPage /></div>
   <div class="side-bar">
@@ -25,7 +25,7 @@
   $side-bar-width: 250px;
   $default-chat-width: 300px;
 
-  nav.top-bar {
+  .top-bar {
     position: absolute;
     left: 0;
     top: 0;

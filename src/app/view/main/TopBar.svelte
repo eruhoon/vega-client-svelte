@@ -5,28 +5,30 @@
   const dispatchMenuClick = () => dispatch('menuclick');
 </script>
 
-<div class="part">
-  <button on:click={dispatchMenuClick}>
-    <i class="material-icons">menu</i>
-  </button>
-  <img class="logo" src="/assets/image/main/main-logo-30.png" alt="logo" />
-</div>
-<div class="part right">
-  <button>
-    <i class="material-icons">notifications</i>
-    <div>
-      <!-- {{ this.getUnreadNotificationCount() }} -->
-    </div>
-  </button>
-  <button>
-    <img class="profile" alt="profile" />
-  </button>
-</div>
+<nav>
+  <div class="part">
+    <button on:click={dispatchMenuClick}>
+      <i class="material-icons">menu</i>
+    </button>
+    <img class="logo" src="/assets/image/main/main-logo-30.png" alt="logo" />
+  </div>
+  <div class="part right">
+    <button>
+      <i class="material-icons">notifications</i>
+      <div>
+        <!-- {{ this.getUnreadNotificationCount() }} -->
+      </div>
+    </button>
+    <button>
+      <img class="profile" alt="profile" />
+    </button>
+  </div>
+</nav>
 
 <style lang="scss">
   $icon-size: 40px;
 
-  main {
+  nav {
     display: flex;
     width: 100%;
     height: 100%;

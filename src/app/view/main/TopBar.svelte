@@ -1,0 +1,163 @@
+<script lang="ts">
+</script>
+
+<main>
+  <div class="part">
+    <button>
+      <i class="material-icons">menu</i>
+    </button>
+    <img class="logo" src="/assets/image/main/main-logo-30.png" alt="logo" />
+  </div>
+  <div class="part right">
+    <button>
+      <i class="material-icons">notifications</i>
+      <div>
+        <!-- {{ this.getUnreadNotificationCount() }} -->
+      </div>
+    </button>
+    <button>
+      <img class="profile" alt="profile" />
+    </button>
+  </div>
+</main>
+
+<style lang="scss">
+  $icon-size: 40px;
+
+  div.main {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  div.part {
+    display: flex;
+    width: 50%;
+    padding: 5px;
+    align-items: center;
+
+    button {
+      width: $icon-size;
+      height: $icon-size;
+      border-radius: 50%;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      margin: 5px;
+      padding: 0;
+      color: #616161;
+      background-color: #212121;
+
+      &:hover {
+        background-color: #313131;
+      }
+
+      &:active {
+        background-color: #313131;
+      }
+    }
+
+    button.alert-btn {
+      position: relative;
+      width: $icon-size;
+      height: $icon-size;
+      margin: 5px;
+      color: #757575;
+
+      // 드래그 방지
+      user-select: none;
+
+      i {
+        font-size: 24px;
+        padding: 8px;
+        margin-right: 10px;
+      }
+
+      div {
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        font-size: 12px;
+        width: 18px;
+        height: 18px;
+        border-radius: 15px;
+        text-align: center;
+        line-height: 18px;
+        background: #ec407a;
+        color: white;
+      }
+
+      &:hover {
+        color: #ec407a;
+      }
+
+      &.active {
+        color: #c2185b;
+      }
+    }
+  }
+
+  div.part.right {
+    justify-content: flex-end;
+  }
+
+  img.logo {
+    width: 114px;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  img.profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+  }
+
+  .setting-view {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 220px;
+    height: auto;
+    overflow: hidden;
+    // z-index: 85; // 알림보다 상위 노출
+    border-radius: 5px;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    transform: translateX(100%);
+    transition: transform 0.25s ease-in-out;
+
+    z-index: 9;
+
+    &.active {
+      transform: translateX(0);
+    }
+  }
+
+  notification-list {
+    position: fixed;
+    right: 50px;
+    z-index: 80;
+    overflow-y: hidden;
+
+    -webkit-transition: max-height 0.5s ease-in-out;
+    -moz-transition: max-height 0.5s ease-in-out;
+    -o-transition: max-height 0.5s ease-in-out;
+    transition: max-height 0.5s ease-in-out;
+
+    &.active {
+      max-height: 500px;
+    }
+
+    &.deactive {
+      max-height: 0px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    notification-list {
+      width: 100%;
+      right: 0px;
+    }
+  }
+</style>

@@ -1,19 +1,19 @@
 <script lang="ts">
+  import ChatPage from '../chat/ChatPage.svelte';
+
   import ToastList from '../common/ToastList.svelte';
   import TopBar from './TopBar.svelte';
 </script>
 
-<main>
-  <nav class="top-bar-section">
-    <TopBar />
-  </nav>
-  <div class="main-section">
-    <div class="chat-list-view">
-      <chat-page />
-    </div>
+<nav class="top-bar-section">
+  <TopBar />
+</nav>
+<div class="main-section">
+  <div class="chat-list-view">
+    <ChatPage />
   </div>
-  <ToastList />
-</main>
+</div>
+<ToastList />
 
 <style lang="scss">
   $top-bar-height: 50px;

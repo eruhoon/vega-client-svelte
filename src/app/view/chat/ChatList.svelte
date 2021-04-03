@@ -1,0 +1,58 @@
+<script>
+  const chats = [];
+</script>
+
+<div class="chat-list">
+  {#each chats as chat}
+    <chat-entry />
+  {/each}
+</div>
+
+<style lang="scss">
+  .chat-list {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 80px);
+    overflow-y: scroll;
+    background-color: #424242;
+
+    scrollbar-color: #616161 #424242;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+      border: 3px solid;
+      border-color: #424242;
+    }
+    &::-webkit-scrollbar-button:start:decrement,
+    &::-webkit-scrollbar-button:end:increment {
+      display: block;
+      height: 5px;
+      background: #424242;
+    }
+    &::-webkit-scrollbar-track {
+      background: #424242;
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      height: 50px;
+      width: 50px;
+      background: #616161;
+      -webkit-border-radius: 8px;
+      border-radius: 8px;
+    }
+  }
+
+  chat-entry {
+    display: block;
+    width: 100%;
+    min-height: 50px;
+
+    border-bottom: 1px solid #464646;
+    &:last-child {
+      border-bottom-color: #424242;
+    }
+  }
+</style>

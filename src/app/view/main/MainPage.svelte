@@ -10,7 +10,9 @@
   };
 </script>
 
-<nav class="top-bar"><TopBar on:menuclick={onMenuClick} /></nav>
+<nav class="top-bar">
+  <TopBar on:menuclick={onMenuClick} />
+</nav>
 <div class="main-section">
   <div class="chat-list-view"><ChatPage /></div>
   <div class="side-bar">

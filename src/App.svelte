@@ -1,11 +1,11 @@
 <script lang="ts">
-  import LoginPage from './app/view/login/LoginPage.svelte';
+  import ToastList from './app/view/common/ToastList.svelte';
   import MainPage from './app/view/main/MainPage.svelte';
 </script>
 
 <main>
-  <!-- <LoginPage /> -->
   <MainPage />
+  <!-- <ToastList /> -->
 </main>
 
 <style>

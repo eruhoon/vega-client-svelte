@@ -1,25 +1,29 @@
 <script lang="ts">
   import ChatPage from '../chat/ChatPage.svelte';
-  import ToastList from '../common/ToastList.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './TopBar.svelte';
+
+  let sideBarVisible = false;
+
+  const onMenuClick = () => {
+    sideBarVisible = !sideBarVisible;
+  };
 </script>
 
-<nav class="top-bar-section">
-  <TopBar />
-</nav>
+<nav class="top-bar"><TopBar on:menuclick={onMenuClick} /></nav>
 <div class="main-section">
-  <div class="chat-list-view">
-    <ChatPage />
+  <div class="chat-list-view"><ChatPage /></div>
+  <div class="side-bar">
+    <SideBar visible={sideBarVisible} />
   </div>
-  <SideBar visible={false} />
 </div>
-<ToastList />
 
 <style lang="scss">
   $top-bar-height: 50px;
+  $side-bar-width: 250px;
+  $default-chat-width: 300px;
 
-  nav.top-bar-section {
+  nav.top-bar {
     position: absolute;
     left: 0;
     top: 0;
@@ -38,7 +42,6 @@
     width: 100%;
     height: calc(100% - #{$top-bar-height});
 
-    $default-chat-width: 300px;
     .chat-list-view {
       position: absolute;
       top: 0;
@@ -48,14 +51,15 @@
       background: #424242;
       border-right: 1px solid #616161;
       border-left: 1px solid #616161;
+    }
 
-      chat-page {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-      }
+    .side-bar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transition: 0.2s ease-in-out;
+      width: $side-bar-width;
+      height: 100%;
     }
   }
 </style>

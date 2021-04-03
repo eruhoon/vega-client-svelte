@@ -1,25 +1,27 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
+
+  const dispatch = createEventDispatcher();
+  const dispatchMenuClick = () => dispatch('menuclick');
 </script>
 
-<main>
-  <div class="part">
-    <button>
-      <i class="material-icons">menu</i>
-    </button>
-    <img class="logo" src="/assets/image/main/main-logo-30.png" alt="logo" />
-  </div>
-  <div class="part right">
-    <button>
-      <i class="material-icons">notifications</i>
-      <div>
-        <!-- {{ this.getUnreadNotificationCount() }} -->
-      </div>
-    </button>
-    <button>
-      <img class="profile" alt="profile" />
-    </button>
-  </div>
-</main>
+<div class="part">
+  <button on:click={dispatchMenuClick}>
+    <i class="material-icons">menu</i>
+  </button>
+  <img class="logo" src="/assets/image/main/main-logo-30.png" alt="logo" />
+</div>
+<div class="part right">
+  <button>
+    <i class="material-icons">notifications</i>
+    <div>
+      <!-- {{ this.getUnreadNotificationCount() }} -->
+    </div>
+  </button>
+  <button>
+    <img class="profile" alt="profile" />
+  </button>
+</div>
 
 <style lang="scss">
   $icon-size: 40px;

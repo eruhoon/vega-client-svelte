@@ -1,8 +1,9 @@
 <script>
   export let visible = false;
+  $: visibleClass = visible ? 'show' : 'hide';
 </script>
 
-<div class="side-bar">
+<div class={'side-bar ' + visibleClass}>
   <ul class="main">
     <li class="main">
       <i class="material-icons">message</i>
@@ -42,6 +43,16 @@
   .side-bar {
     overflow-y: auto;
     max-height: 100%;
+
+    &.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    &.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
   }
 
   h3 {

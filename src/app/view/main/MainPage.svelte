@@ -1,7 +1,7 @@
 <script lang="ts">
   import ChatPage from '../chat/ChatPage.svelte';
-
   import ToastList from '../common/ToastList.svelte';
+  import SideBar from './side/SideBar.svelte';
   import TopBar from './TopBar.svelte';
 </script>
 
@@ -12,6 +12,7 @@
   <div class="chat-list-view">
     <ChatPage />
   </div>
+  <SideBar visible={false} />
 </div>
 <ToastList />
 

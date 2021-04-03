@@ -1,0 +1,288 @@
+<script>
+  export let visible = false;
+</script>
+
+<div class="side-bar">
+  <ul class="main">
+    <li class="main">
+      <i class="material-icons">message</i>
+      <span>채팅</span>
+    </li>
+    <li class="main">
+      <i class="material-icons">event_note</i>
+      <span>메모</span>
+    </li>
+    <li class="main">
+      <i class="material-icons">image</i>
+      <span>이미지 갤러리</span>
+    </li>
+    <li class="main">
+      <i class="material-icons">tv</i>
+      <span>방송추가</span>
+    </li>
+  </ul>
+
+  <div>
+    <hr />
+    <side-bar-stream-list-view title="마이캐스트" />
+    <hr />
+    <side-bar-stream-list-view title="즐겨찾기" />
+    <hr />
+    <side-bar-stream-list-view title="트위치" />
+    <hr />
+    <side-bar-stream-list-view title="아프리카" />
+    <hr />
+    <side-bar-stream-list-view title="유튜브" />
+    <hr />
+    <side-bar-stream-list-view title="카카오TV" />
+  </div>
+</div>
+
+<style lang="scss">
+  .side-bar {
+    overflow-y: auto;
+    max-height: 100%;
+  }
+
+  h3 {
+    font-size: 12px; // 폰트 세부 조정 필요
+    padding: 7.5px 10px;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  hr {
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: flex;
+    height: 30px;
+    list-style-type: none;
+    padding: 5px 10px;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+
+    span {
+      padding-left: 10px;
+      width: calc(100% - 40px);
+      max-width: calc(100% - 40px);
+    }
+  }
+
+  ul.main {
+    padding: 10px 0px;
+
+    li {
+      i {
+        font-size: 20px;
+      }
+
+      span {
+        font-size: 12px;
+        line-height: 14px;
+        padding-top: 0px;
+      }
+    }
+  }
+
+  .pc {
+    width: 100%;
+    ul.stream {
+      overflow: hidden;
+      width: 100%;
+      height: 0;
+      opacity: 0;
+      transition: none;
+      -webkit-transition: none;
+
+      li {
+        position: relative;
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 15px;
+        }
+
+        span {
+          font-size: 12px;
+          line-height: 12px;
+          padding-top: 4px;
+        }
+
+        .live-btn {
+          width: 81px;
+          height: 24px;
+
+          position: absolute;
+          right: 5px;
+          top: 8px;
+
+          .button {
+            width: 24px;
+            height: 24px;
+            float: left;
+            margin-left: 3px;
+
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+
+            i {
+              font-size: 15px;
+              line-height: 27px;
+
+              &.enabled {
+                color: #cc0;
+              }
+            }
+          }
+        }
+      }
+
+      &.selected {
+        height: auto;
+        opacity: 1;
+        transition: opacity 0.2s, height 0.2s 0.2s;
+        -webkit-transition: opacity 0.2s, height 0.2s 0.2s;
+      }
+    }
+  }
+  .mobile {
+    width: 100%;
+    ul.stream {
+      overflow: hidden;
+      width: 100%;
+      height: 0;
+      opacity: 0;
+      transition: none;
+      -webkit-transition: none;
+
+      li {
+        position: relative;
+        width: calc(100% - 20px);
+        height: 25vw;
+        overflow: hidden;
+
+        .live-tum-img {
+          width: 40vw;
+          height: 23vw;
+          overflow: hidden;
+          padding: 1vw;
+          float: left;
+
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 2px;
+          }
+        }
+        .live-info {
+          width: 48vw;
+          height: 23vw;
+          padding: 1vw;
+          padding-right: 3vw;
+          float: left;
+
+          .stream-info {
+            width: 100%;
+            height: auto;
+            display: inline-block;
+            img {
+              width: 8vw;
+              height: 8vw;
+              border-radius: 4vw;
+              float: left;
+            }
+            span {
+              width: calc(48vw - 12vw);
+              padding: 2vw 2vw;
+              float: left;
+
+              font-size: 4vw;
+              font-family: 'Jeju Gothic', sans-serif !important;
+              font-weight: bolder;
+              line-height: 4vw;
+
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+          p {
+            width: calc(46vw);
+            margin: 0%;
+            font-size: 14px;
+            line-height: 14px;
+            padding: 4px;
+            padding-bottom: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          span {
+            font-size: 14px;
+            line-height: 14px;
+            padding-top: 4px;
+          }
+        }
+
+        .live-btn {
+          width: 100%;
+          height: 24px;
+
+          position: relative;
+
+          .button {
+            width: 24px;
+            height: 24px;
+            float: left;
+            margin-left: 3px;
+
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+
+            i {
+              font-size: 15px;
+              line-height: 27px;
+
+              &.enabled {
+                color: #cc0;
+              }
+            }
+          }
+        }
+      }
+
+      &.selected {
+        height: auto;
+        opacity: 1;
+        transition: opacity 0.2s, height 0.2s 0.2s;
+        -webkit-transition: opacity 0.2s, height 0.2s 0.2s;
+      }
+    }
+  }
+
+  @keyframes open-list {
+    0% {
+      transform: scaleY(0%);
+    }
+
+    50% {
+      transform: scaleY(0%);
+    }
+
+    100% {
+      transform: none;
+    }
+  }
+</style>

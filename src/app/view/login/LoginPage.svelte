@@ -1,4 +1,17 @@
 <script lang="ts">
+  import { LoginCommand } from '../../model/login/LoginCommand';
+
+  let id = '';
+  let pw = '';
+
+  const onLoginButtonClick = () => {
+    requestLogin();
+  };
+
+  const requestLogin = async () => {
+    const result = await new LoginCommand().execute(id, pw);
+    console.log(result);
+  };
 </script>
 
 <main>
@@ -8,9 +21,9 @@
         <img src="/assets/image/login/logo-300.png" width="300" alt="logo" />
       </div>
       <div class="in-box">
-        <input type="text" placeholder="아이디" id="id" />
-        <input type="password" placeholder="비밀번호" id="pw" />
-        <button type="submit">LOGIN</button>
+        <input type="text" bind:value={id} placeholder="아이디" id="id" />
+        <input type="password" bind:value={pw} placeholder="비밀번호" id="pw" />
+        <button type="submit" on:click={onLoginButtonClick}>LOGIN</button>
       </div>
       <div class="bottom">
         <button type="button">E-Mail Join</button>

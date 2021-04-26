@@ -1,8 +1,15 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
+  import SettingMenu from './SettingMenu.svelte';
 
   const dispatch = createEventDispatcher();
   const dispatchMenuClick = () => dispatch('menuclick');
+  const onSettingMenuClick = () => {
+    settingMenuActivated = !settingMenuActivated;
+  };
+
+  let settingMenuActivated = false;
+  $: settingMenuActiveClass = settingMenuActivated ? 'active' : 'deactive';
 </script>
 
 <nav>
@@ -19,11 +26,17 @@
         <!-- {{ this.getUnreadNotificationCount() }} -->
       </div>
     </button>
-    <button>
-      <img class="profile" alt="profile" />
+    <button on:click={onSettingMenuClick}>
+      <img
+        class="profile"
+        src="https://i.imgur.com/tXiHAIc.gif"
+        alt="profile"
+      />
     </button>
   </div>
 </nav>
+
+<div class={'setting-menu ' + settingMenuActiveClass}><SettingMenu /></div>
 
 <style lang="scss">
   $icon-size: 40px;
@@ -117,44 +130,23 @@
     border-radius: 20px;
   }
 
-  .setting-view {
+  .setting-menu {
     position: absolute;
     top: 50px;
     right: 0;
     width: 220px;
     height: auto;
     overflow: hidden;
-    // z-index: 85; // 알림보다 상위 노출
-    border-radius: 5px;
     box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
       0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-    transform: translateX(100%);
     transition: transform 0.25s ease-in-out;
-
-    z-index: 9;
 
     &.active {
       transform: translateX(0);
     }
-  }
-
-  notification-list {
-    position: fixed;
-    right: 50px;
-    z-index: 80;
-    overflow-y: hidden;
-
-    -webkit-transition: max-height 0.5s ease-in-out;
-    -moz-transition: max-height 0.5s ease-in-out;
-    -o-transition: max-height 0.5s ease-in-out;
-    transition: max-height 0.5s ease-in-out;
-
-    &.active {
-      max-height: 500px;
-    }
 
     &.deactive {
-      max-height: 0px;
+      transform: translateX(100%);
     }
   }
 

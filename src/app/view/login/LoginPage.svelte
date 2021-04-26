@@ -261,7 +261,6 @@
 
   toast-list {
     position: fixed;
-    z-index: 100;
     left: 50%;
     bottom: 30px;
     -webkit-transform: translateX(-50%);

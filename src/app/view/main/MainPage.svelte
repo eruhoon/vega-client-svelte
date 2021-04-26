@@ -1,7 +1,7 @@
 <script lang="ts">
   import ChatPage from '../chat/ChatPage.svelte';
   import SideBar from './side/SideBar.svelte';
-  import TopBar from './TopBar.svelte';
+  import TopBar from './top/TopBar.svelte';
 
   let sideBarVisible = false;
 
@@ -10,14 +10,14 @@
   };
 </script>
 
-<div class="top-bar">
-  <TopBar on:menuclick={onMenuClick} />
-</div>
 <div class="main-section">
   <div class="chat-list-view"><ChatPage /></div>
   <div class="side-bar">
     <SideBar visible={sideBarVisible} />
   </div>
+</div>
+<div class="top-bar">
+  <TopBar on:menuclick={onMenuClick} />
 </div>
 
 <style lang="scss">

@@ -1,12 +1,21 @@
 <script lang="ts">
-  import ToastList from './app/view/common/ToastList.svelte';
   import LoginPage from './app/view/login/LoginPage.svelte';
   import MainPage from './app/view/main/MainPage.svelte';
+
+  let userHash: string | null = null;
+
+  const onLogin = (e: CustomEvent<string>) => {
+    const hash = e.detail;
+    userHash = hash;
+  };
 </script>
 
 <main>
-  <LoginPage />
-  <!-- <ToastList /> -->
+  {#if userHash !== null}
+    <MainPage />
+  {:else}
+    <LoginPage on:login={onLogin} />
+  {/if}
 </main>
 
 <style>

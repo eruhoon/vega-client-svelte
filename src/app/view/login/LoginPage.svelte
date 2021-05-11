@@ -1,16 +1,23 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
   import { LoginCommand } from '../../model/login/LoginCommand';
+
+  const EVENT_LOGIN = 'login';
 
   let id = '';
   let pw = '';
 
+  const dispatch = createEventDispatcher();
+
   const onLoginButtonClick = () => {
-    requestLogin();
+    requestLogin().then((result) => {
+      dispatch(EVENT_LOGIN, result.result ? result.hash : null);
+    });
   };
 
   const requestLogin = async () => {
     const result = await new LoginCommand().execute(id, pw);
-    console.log(result);
+    return result;
   };
 </script>
 

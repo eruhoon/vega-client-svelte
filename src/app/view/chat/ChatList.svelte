@@ -1,10 +1,12 @@
 <script>
-  const chats = [];
+  import ChatEntry from './entry/ChatEntry.svelte';
+
+  const chats = [1];
 </script>
 
 <div class="chat-list">
   {#each chats as chat}
-    <chat-entry />
+    <ChatEntry />
   {/each}
 </div>
 

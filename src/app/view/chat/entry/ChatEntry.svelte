@@ -1,0 +1,125 @@
+<script lang="ts">
+  import { ChatEntryProp } from './ChatEntryProp';
+
+  const prop: ChatEntryProp = new ChatEntryProp();
+</script>
+
+<div class="chat-entry">
+  <div class="icon-section">
+    <div class="icon">
+      <img src={prop.icon} />
+    </div>
+  </div>
+  <div class="message-section">
+    <div class="header">
+      <div class="nickname">
+        <span>{prop.nickname}</span>
+        <span class="type">
+          {#if prop.senderType === 'MOBILE'}
+            <i class="material-icons">smartphone</i>
+          {:else if prop.senderType === 'BOT'}
+            <i class="material-icons">bug_report</i>
+          {:else}{/if}
+        </span>
+      </div>
+    </div>
+    <!-- <chat-message-entry
+      *ngFor="let message of chat.getMessages()"
+      [message]="message"
+    >
+    </chat-message-entry> -->
+  </div>
+</div>
+
+<style lang="scss">
+  .chat-entry {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+  }
+
+  .icon-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    padding: 5px 0px;
+
+    .icon {
+      width: 44px;
+      height: 44px;
+
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: solid 2px #393939;
+      }
+    }
+  }
+
+  .message-section {
+    display: block;
+    width: calc(100% - 60px);
+    min-height: 50px;
+    padding: 5px;
+    padding-top: 8px;
+
+    .header {
+      width: 100%;
+      height: 20px;
+      padding-bottom: 5px;
+      display: flex;
+
+      // 공통 구문
+      & > div {
+        flex: 0;
+      }
+
+      .level {
+        width: auto;
+        height: 18px;
+        font-size: 10px;
+        line-height: 20px;
+        font-weight: bolder;
+        padding: 0px 7px;
+        border-radius: 8px;
+        background-color: #9e9e9e;
+        color: #424242;
+      }
+
+      .nickname {
+        width: calc(100% - 100px);
+        font-size: 14px;
+        line-height: 20px;
+        padding-left: 4px;
+        font-weight: 300;
+        color: #eeeeee;
+        padding-top: 0px;
+        flex: 1;
+
+        span {
+          padding-top: 2px;
+          color: #ffffff;
+        }
+
+        span.type {
+          margin-left: 2px;
+
+          i {
+            font-size: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .chat-entry.data-save {
+    .message-section {
+      width: 100%;
+    }
+  }
+</style>

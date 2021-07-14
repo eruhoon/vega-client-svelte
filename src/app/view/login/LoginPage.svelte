@@ -11,7 +11,11 @@
 
   const onLoginButtonClick = () => {
     requestLogin().then((result) => {
-      dispatch(EVENT_LOGIN, result.result ? result.hash : null);
+      if (result.result) {
+        dispatch(EVENT_LOGIN, result.hash);
+      } else {
+        console.log('failed');
+      }
     });
   };
 

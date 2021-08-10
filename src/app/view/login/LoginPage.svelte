@@ -1,6 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
   import { LoginCommand } from '../../model/login/LoginCommand';
+  import { MyStatus } from '../../model/status/MyStatus';
 
   const EVENT_LOGIN = 'login';
 
@@ -21,6 +22,7 @@
 
   const requestLogin = async () => {
     const result = await new LoginCommand().execute(id, pw);
+    MyStatus.privateKey = result.hash;
     return result;
   };
 </script>

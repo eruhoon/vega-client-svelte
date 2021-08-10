@@ -1,9 +1,24 @@
 <script lang="ts">
+  import { WebSocketModel } from '../../model/socket/websocket/WebSocketModel';
+  import { MyStatus } from '../../model/status/MyStatus';
   import ChatPage from '../chat/ChatPage.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
 
   let sideBarVisible = false;
+
+  const socket = new WebSocketModel();
+  socket.setOnOpen(() => {
+    console.log('open');
+    console.log('login');
+    socket.send({
+      commandType: 'user-login',
+      resource: {
+        channel: 'chat',
+        privateKey: MyStatus.privateKey,
+      },
+    });
+  });
 
   const onMenuClick = () => {
     sideBarVisible = !sideBarVisible;

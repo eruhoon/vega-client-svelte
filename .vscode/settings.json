@@ -1,5 +1,8 @@
 {
   "[svelte]": {
     "editor.defaultFormatter": "svelte.svelte-vscode"
-  }
+  },
+  "editor.defaultFormatter": "svelte.svelte-vscode",
+  "editor.formatOnSave": true,
+  "svelte.plugin.svelte.format.config.singleQuote": true
 }

@@ -4,5 +4,6 @@
   },
   "editor.defaultFormatter": "svelte.svelte-vscode",
   "editor.formatOnSave": true,
-  "svelte.plugin.svelte.format.config.singleQuote": true
+  "svelte.plugin.svelte.format.config.singleQuote": true,
+  "svelte.enable-ts-plugin": true
 }

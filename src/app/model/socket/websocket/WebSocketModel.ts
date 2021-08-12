@@ -1,4 +1,6 @@
-export class WebSocketModel {
+import type { SocketModel } from '../common/SocketModel';
+
+export class WebSocketModel implements SocketModel {
   static readonly #HTTPS_URL = 'wss://mycast.xyz:8002';
 
   #webSocket: WebSocket;

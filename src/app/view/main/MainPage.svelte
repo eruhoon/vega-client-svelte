@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { SocketLoginCommand } from '../../model/socket/command/SocketLoginCommand';
+
   import { WebSocketModel } from '../../model/socket/websocket/WebSocketModel';
   import { MyStatus } from '../../model/status/MyStatus';
   import ChatPage from '../chat/ChatPage.svelte';
@@ -8,16 +10,9 @@
   let sideBarVisible = false;
 
   const socket = new WebSocketModel();
+  const loginCommand = new SocketLoginCommand(socket);
   socket.setOnOpen(() => {
-    console.log('open');
-    console.log('login');
-    socket.send({
-      commandType: 'user-login',
-      resource: {
-        channel: 'chat',
-        privateKey: MyStatus.privateKey,
-      },
-    });
+    loginCommand.execute(MyStatus.privateKey);
   });
 
   const onMenuClick = () => {

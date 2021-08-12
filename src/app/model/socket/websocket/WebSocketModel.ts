@@ -1,4 +1,4 @@
-import type { SocketModel } from '../common/SocketModel';
+import type { SocketModel, SocketRequest } from '../common/SocketModel';
 
 export class WebSocketModel implements SocketModel {
   static readonly #HTTPS_URL = 'wss://mycast.xyz:8002';
@@ -15,8 +15,7 @@ export class WebSocketModel implements SocketModel {
     this.#onOpen = onOpen;
   }
 
-  // TODO: remove any
-  send(request: any): void {
+  send(request: SocketRequest): void {
     console.log('send', request);
     this.#webSocket.send(JSON.stringify(request));
   }

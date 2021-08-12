@@ -1,6 +1,6 @@
 <script lang="ts">
+  import { SocketChatCommand } from '../../model/socket/command/SocketChatCommand';
   import { SocketLoginCommand } from '../../model/socket/command/SocketLoginCommand';
-
   import { WebSocketModel } from '../../model/socket/websocket/WebSocketModel';
   import { MyStatus } from '../../model/status/MyStatus';
   import ChatPage from '../chat/ChatPage.svelte';
@@ -11,6 +11,7 @@
 
   const socket = new WebSocketModel();
   const loginCommand = new SocketLoginCommand(socket);
+  const chatCommand = new SocketChatCommand(socket);
   socket.setOnOpen(() => {
     loginCommand.execute(MyStatus.privateKey);
   });

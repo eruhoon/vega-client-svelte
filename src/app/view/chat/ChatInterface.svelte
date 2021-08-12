@@ -1,3 +1,17 @@
+<script lang="ts">
+  import { createEventDispatcher } from 'svelte';
+  import { SocketService } from '../../model/socket/SocketService';
+  import { MyStatus } from '../../model/status/MyStatus';
+  let message: string = '';
+
+  const onKeyDown = ({ key }: KeyboardEvent) => {
+    if (key === 'Enter' && message.trim().length !== 0) {
+      SocketService.chat?.execute(MyStatus.privateKey, 'chat', message);
+      message = '';
+    }
+  };
+</script>
+
 <div class="chat-interface">
   <div class="input-sticker">
     <!-- left section -->
@@ -17,7 +31,12 @@
       <div><i class="material-icons">photo</i></div>
     </div>
   </div>
-  <input type="text" class="input-box" />
+  <input
+    type="text"
+    class="input-box"
+    bind:value={message}
+    on:keydown={(event) => onKeyDown(event)}
+  />
   <input type="file" accept="image/*" style="display: none" />
 </div>
 

@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
   import { SocketService } from '../../model/socket/SocketService';
   import { MyStatus } from '../../model/status/MyStatus';
+
   let message: string = '';
 
   const onKeyDown = ({ key }: KeyboardEvent) => {

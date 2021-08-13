@@ -1,27 +1,21 @@
 <script lang="ts">
-  import type { ChatUserEntryProp } from './ChatUserEntryProp';
-
-  export let prop: ChatUserEntryProp = {
-    nickname: '',
-    icon: '',
-    flag: {
-      mobile: false,
-      computer: false,
-    },
-  };
+  export let nickname: string = '';
+  export let icon: string = '';
+  export let isMobile: boolean = false;
+  export let isComputer: boolean = false;
 
   const getFlagClass = (flag: boolean) => (flag ? 'active' : '');
-  $: mobileClass = getFlagClass(prop.flag.mobile);
-  $: computerClass = getFlagClass(prop.flag.computer);
+  $: mobileClass = getFlagClass(isMobile);
+  $: computerClass = getFlagClass(isComputer);
 </script>
 
 <div>
   <div class="user-icon">
-    <img src={prop.icon} alt="" />
+    <img src={icon} alt="" />
   </div>
   <div class="info">
     <div class="nickname">
-      <span>{prop.nickname} /</span>
+      <span>{nickname} /</span>
     </div>
   </div>
   <div class="icon">

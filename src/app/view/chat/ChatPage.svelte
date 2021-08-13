@@ -1,11 +1,13 @@
 <script>
   import ChatInterface from './ChatInterface.svelte';
   import ChatList from './ChatList.svelte';
+  import ChatUserList from './user/ChatUserList.svelte';
 </script>
 
 <div class="chat-page">
+  <ChatUserList props={[]} />
   <ChatList />
-  <!-- <chat-user-list *ngIf="isChatUserListShow()" />
+  <!-- 
     <emoji-attach-view *ngIf="isEmojiAttachViewShow()" />-->
   <div class="chat-interface"><ChatInterface /></div>
 </div>

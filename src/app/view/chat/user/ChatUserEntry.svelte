@@ -1,17 +1,19 @@
 <script lang="ts">
-  export let prop = {
+  import type { ChatUserEntryProp } from './ChatUserEntryProp';
+
+  export let prop: ChatUserEntryProp = {
     nickname: '',
     icon: '',
-    level: '',
-    env: {
+    level: 0,
+    flag: {
       mobile: false,
       computer: false,
     },
   };
 
   const getFlagClass = (flag: boolean) => (flag ? 'active' : '');
-  $: mobileClass = getFlagClass(prop.env.mobile);
-  $: computerClass = getFlagClass(prop.env.computer);
+  $: mobileClass = getFlagClass(prop.flag.mobile);
+  $: computerClass = getFlagClass(prop.flag.computer);
 </script>
 
 <div>

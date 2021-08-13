@@ -1,5 +1,7 @@
 <script lang="ts">
-  export let props: any[]; //remove any
+  import type { ChatUserEntryProp } from './ChatUserEntryProp';
+
+  export let props: ChatUserEntryProp[];
 </script>
 
 <div class="chat-user-list">

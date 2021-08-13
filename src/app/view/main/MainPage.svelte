@@ -5,6 +5,7 @@
   import { WebSocketModel } from '../../model/socket/websocket/WebSocketModel';
   import { MyStatus } from '../../model/status/MyStatus';
   import { ProfileService } from '../../service/ProfileService';
+  import { UserListService } from '../../service/UserListService';
   import ChatPage from '../chat/ChatPage.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
@@ -26,7 +27,7 @@
         ProfileService.nickname.set(command.response.nickname);
         break;
       case 'applyCurrentUserList':
-        console.log(command.response);
+        UserListService.users.set(command.response);
         break;
     }
   });

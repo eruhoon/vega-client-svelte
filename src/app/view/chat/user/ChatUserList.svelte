@@ -1,7 +1,27 @@
 <script lang="ts">
+  import type { User } from '../../../model/user/User';
+
+  import { UserListService } from '../../../service/UserListService';
+  import ChatUserEntry from './ChatUserEntry.svelte';
+
   import type { ChatUserEntryProp } from './ChatUserEntryProp';
 
-  export let props: ChatUserEntryProp[];
+  let users: User[] = [];
+  UserListService.users.subscribe((u) => {
+    users = u;
+    console.log(u);
+  });
+
+  $: props = users.map<ChatUserEntryProp>((user) => {
+    return {
+      icon: user.icon,
+      nickname: user.nickname,
+      flag: {
+        computer: user.computer,
+        mobile: user.mobile,
+      },
+    };
+  });
 </script>
 
 <div class="chat-user-list">
@@ -14,7 +34,7 @@
   </div>
   <div class="cu-entry">
     {#each props as userProp}
-      <chat-user-entry prop={userProp} />
+      <ChatUserEntry prop={userProp} />
     {/each}
   </div>
 </div>

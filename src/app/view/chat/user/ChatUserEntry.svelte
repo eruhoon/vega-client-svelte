@@ -11,11 +11,11 @@
 
 <div>
   <div class="user-icon">
-    <img src={icon} alt="" />
+    <img src={icon} alt={nickname} />
   </div>
   <div class="info">
     <div class="nickname">
-      <span>{nickname} /</span>
+      <span>{nickname}</span>
     </div>
   </div>
   <div class="icon">

@@ -24,7 +24,11 @@ type SocketChatRequest = {
 
 export type SocketCallback = (response: SocketCommand) => void;
 
-export type SocketCommand = SocketChatCommand | SocketApplyMyStatusCommand;
+export type SocketCommand =
+  | SocketChatCommand
+  | SocketApplyMyStatusCommand
+  | SocketCurrentChatsCommand
+  | SocketCurrentUsersCommand;
 
 type BaseSocketCommand<T, Request, Response> = {
   hash: string;
@@ -35,7 +39,7 @@ type BaseSocketCommand<T, Request, Response> = {
 
 type SocketChatCommand = BaseSocketCommand<'chat', any, any>;
 
-type SocketApplyMyStatusResponse = {
+type SocketMyStatus = {
   coin: number;
   exp: number;
   icon: string;
@@ -48,5 +52,43 @@ type SocketApplyMyStatusResponse = {
 type SocketApplyMyStatusCommand = BaseSocketCommand<
   'applyMyStatus',
   null,
-  SocketApplyMyStatusResponse
+  SocketMyStatus
+>;
+
+type SocketCurrentChat = {
+  hash: string;
+  icon: string;
+  iconBorderColor: string;
+  isMobile: boolean;
+  isSystemChat: boolean;
+  level: number;
+  msg: {
+    request: any; // TODO: remove any
+    response: any; // TODO: remove any
+  };
+  nickname: string;
+  reactions: any[]; // TODO: remove any
+  timestamp: string;
+  type: string; // TODO: make type
+};
+
+type SocketCurrentChatsCommand = BaseSocketCommand<
+  'applyCurrentChatList',
+  null,
+  SocketCurrentChat[]
+>;
+
+type SocketCurrentUser = {
+  computer: boolean;
+  hash: string;
+  icon: string;
+  level: number;
+  mobile: boolean;
+  nickname: string;
+};
+
+type SocketCurrentUsersCommand = BaseSocketCommand<
+  'applyCurrentUserList',
+  null,
+  SocketCurrentUser[]
 >;

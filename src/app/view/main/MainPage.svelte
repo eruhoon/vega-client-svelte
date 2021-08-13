@@ -21,9 +21,14 @@
   });
 
   socket.onReceived((command) => {
+    console.log(command);
     switch (command.commandType) {
       case 'applyMyStatus':
         topBarProp.profileIcon = command.response.icon;
+        break;
+      case 'applyCurrentUserList':
+        console.log(command.response);
+        break;
     }
   });
 

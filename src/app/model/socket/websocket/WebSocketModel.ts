@@ -1,14 +1,21 @@
-import type { SocketModel, SocketRequest } from '../common/SocketModel';
+import type {
+  SocketModel,
+  SocketRequest,
+  SocketCommand,
+  SocketCallback,
+} from '../common/SocketModel';
 
 export class WebSocketModel implements SocketModel {
   static readonly #HTTPS_URL = 'wss://mycast.xyz:8002';
 
   #webSocket: WebSocket;
+  #callback: SocketCallback;
   #onOpen: () => void;
 
   constructor() {
     this.#webSocket = this.connect();
     this.#onOpen = () => {};
+    this.#callback = (_) => {};
   }
 
   setOnOpen(onOpen: () => void): void {
@@ -20,8 +27,13 @@ export class WebSocketModel implements SocketModel {
     this.#webSocket.send(JSON.stringify(request));
   }
 
+  onReceived(callback: SocketCallback): void {
+    this.#callback = callback;
+  }
+
   #onRawMessage(messageEvent: MessageEvent): void {
-    console.log('message', messageEvent);
+    const data: SocketCommand = JSON.parse(messageEvent.data);
+    this.#callback(data);
   }
 
   #onClose(): void {

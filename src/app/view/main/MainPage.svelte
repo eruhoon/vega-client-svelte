@@ -9,12 +9,22 @@
   import TopBar from './top/TopBar.svelte';
 
   let sideBarVisible = false;
+  let topBarProp = {
+    profileIcon: '',
+  };
 
   const socket = new WebSocketModel();
   SocketService.chat = new SocketChatCommand(socket);
   SocketService.login = new SocketLoginCommand(socket);
   socket.setOnOpen(() => {
     SocketService.login?.execute(MyStatus.privateKey);
+  });
+
+  socket.onReceived((command) => {
+    switch (command.commandType) {
+      case 'applyMyStatus':
+        topBarProp.profileIcon = command.response.icon;
+    }
   });
 
   const onMenuClick = () => {
@@ -29,7 +39,7 @@
   </div>
 </div>
 <div class="top-bar">
-  <TopBar on:menuclick={onMenuClick} />
+  <TopBar on:menuclick={onMenuClick} prop={topBarProp} />
 </div>
 
 <style lang="scss">

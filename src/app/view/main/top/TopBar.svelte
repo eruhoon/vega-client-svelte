@@ -2,6 +2,10 @@
   import { createEventDispatcher } from 'svelte';
   import SettingMenu from './SettingMenu.svelte';
 
+  export let prop = {
+    profileIcon: '',
+  };
+
   const dispatch = createEventDispatcher();
   const dispatchMenuClick = () => dispatch('menuclick');
   const onSettingMenuClick = () => {
@@ -27,11 +31,7 @@
       </div>
     </button>
     <button on:click={onSettingMenuClick}>
-      <img
-        class="profile"
-        src="https://i.imgur.com/tXiHAIc.gif"
-        alt="profile"
-      />
+      <img class="profile" src={prop.profileIcon} alt="profile" />
     </button>
   </div>
 </nav>

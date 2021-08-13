@@ -12,9 +12,9 @@
 
   const socket = new WebSocketModel();
   SocketService.chat = new SocketChatCommand(socket);
-  const loginCommand = new SocketLoginCommand(socket);
+  SocketService.login = new SocketLoginCommand(socket);
   socket.setOnOpen(() => {
-    loginCommand.execute(MyStatus.privateKey);
+    SocketService.login?.execute(MyStatus.privateKey);
   });
 
   const onMenuClick = () => {

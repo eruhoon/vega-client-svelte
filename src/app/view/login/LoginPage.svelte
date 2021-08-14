@@ -1,12 +1,13 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
-  import { LoginCommand } from '../../model/login/LoginCommand';
-  import { MyStatus } from '../../model/status/MyStatus';
+  import { createEventDispatcher } from "svelte";
+  import { fade } from "svelte/transition";
+  import { LoginCommand } from "../../model/login/LoginCommand";
+  import { MyStatus } from "../../model/status/MyStatus";
 
-  const EVENT_LOGIN = 'login';
+  const EVENT_LOGIN = "login";
 
-  let id = '';
-  let pw = '';
+  let id = "";
+  let pw = "";
 
   const dispatch = createEventDispatcher();
 
@@ -15,7 +16,7 @@
       if (result.result) {
         dispatch(EVENT_LOGIN, result.hash);
       } else {
-        console.log('failed');
+        console.log("failed");
       }
     });
   };
@@ -25,271 +26,225 @@
     MyStatus.privateKey = result.hash;
     return result;
   };
+
+  // 이미지 슬라이더 처리
+  let images = [
+    "./assets/image/login/bg/1.png",
+    "./assets/image/login/bg/2.png",
+    "./assets/image/login/bg/3.png",
+    "./assets/image/login/bg/4.png",
+    "./assets/image/login/bg/5.png",
+    "./assets/image/login/bg/6.png",
+    "./assets/image/login/bg/7.png",
+    "./assets/image/login/bg/8.png",
+    "./assets/image/login/bg/9.png",
+    "./assets/image/login/bg/10.png",
+    "./assets/image/login/bg/11.png",
+    "./assets/image/login/bg/12.png",
+    "./assets/image/login/bg/13.png",
+    "./assets/image/login/bg/14.png",
+    "./assets/image/login/bg/15.png",
+    "./assets/image/login/bg/16.png",
+    "./assets/image/login/bg/17.png",
+    "./assets/image/login/bg/18.png",
+    "./assets/image/login/bg/19.png",
+    "./assets/image/login/bg/20.png",
+  ];
+
+  let index = 0;
+  let interval;
+
+  const nextImg = () => {
+    const preIndex = index;
+    let tmp_index = Math.floor(Math.random() * images.length);
+    if (preIndex == tmp_index) {
+      tmp_index = Math.floor(Math.random() * images.length);
+    }
+    index = tmp_index;
+    console.log(index);
+  };
+
+  const autoPlay = () => {
+    interval = setInterval(nextImg, 4000);
+  };
+  const stopPlay = () => {
+    clearInterval(interval);
+  };
 </script>
 
 <main>
-  <div class="page">
+  <div class="form-box">
+    <!-- 로그인 / 회원가입 / 비밀번호 찾기 분기 시작 지점 -->
     <div class="login">
       <div class="logo">
-        <img src="/assets/image/login/logo-300.png" width="300" alt="logo" />
+        <img src="/assets/image/login/logo-600.png" width="330" alt="logo" />
       </div>
-      <div class="in-box">
-        <input type="text" bind:value={id} placeholder="아이디" id="id" />
-        <input type="password" bind:value={pw} placeholder="비밀번호" id="pw" />
-        <button type="submit" on:click={onLoginButtonClick}>LOGIN</button>
+      <div class="form">
+        <input
+          type="text"
+          bind:value={id}
+          placeholder="아이디"
+          id="id"
+          class="login-input"
+        />
+        <input
+          type="password"
+          bind:value={pw}
+          placeholder="비밀번호"
+          id="pw"
+          class="login-input"
+        />
+        <button
+          type="submit"
+          on:click={onLoginButtonClick}
+          class="login-sub-btn">LOGIN</button
+        >
       </div>
-      <div class="bottom">
-        <button type="button">E-Mail Join</button>
+      <hr />
+      <div class="add-btn">
+        <a>
+          <p>회원가입</p>
+        </a>
+        <a href="#">
+          <p>비밀번호찾기</p>
+        </a>
       </div>
+    </div>
+    <!-- 로그인 / 회원가입 / 비밀번호 찾기 분기 종료 지점 -->
+  </div>
+  <!-- svelte-ignore a11y-mouse-events-have-key-events -->
+  <div class="bg" on:mouseover={stopPlay} on:mouseleave={autoPlay}>
+    <div class="slider">
+      {#each [images[index]] as src (index)}
+        <img transition:fade {src} alt="" />
+      {/each}
     </div>
   </div>
   <!-- <toast-list></toast-list>       -->
 </main>
 
 <style lang="scss">
+  * {
+    //font-family: "Spoqa Han Sans Neo", "sans-serif";
+    color: #fff;
+    user-select: none;
+    margin: 0%;
+    &:focus {
+      outline: none;
+    }
+  }
   main {
+    background-color: #2a2f38;
     width: 100%;
     height: 100%;
-  }
-  @media all and (max-width: 768px) {
-    div.page {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
+    display: flex;
+    .form-box {
+      width: 440px;
       height: 100%;
-      text-align: center;
-      background: #ffffff;
-      overflow: auto;
-    }
-
-    .login {
-      width: 75%;
-      height: 766px;
-
+      padding: 0px 30px;
+      padding-top: 10%;
+      background-color: #1c2027;
       display: inline-block;
-      vertical-align: middle;
-      background-color: white;
 
-      .logo {
-        width: 75%;
-        padding: 12.5%;
-        padding-bottom: 0%;
-        height: auto;
-        text-align: center;
-        margin-top: 25%;
+      // 그림자 영역
+      box-shadow: 2px 0px 1px -1px rgb(0 0 0 / 40%),
+        1px 0px 1px 0px rgb(0 0 0 / 30%), 1px 0px 3px 0px rgb(0 0 0 / 30%);
 
+      // 로그인, 회원가입, 비밀번호 찾기 css 분기 시작지점
+      .login {
+        width: 100%;
+        height: 100%;
+        .logo {
+          width: calc(100% - 15px);
+          height: auto;
+          text-align: center;
+        }
+        .form {
+          width: 100%;
+          height: auto;
+          display: flex;
+          flex-direction: column;
+          .login-input {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            color: #fff;
+            background-color: #2a2f38;
+            border-radius: 5px;
+            border: 0px;
+            padding: 10px;
+            font-size: 18px;
+            margin-bottom: 30px;
+          }
+          .login-sub-btn {
+            width: calc(100% - 0px);
+            height: 70px;
+            color: #fff;
+            border-radius: 5px;
+            border: 0px;
+            font-size: 32px;
+            font-weight: bolder;
+            margin-bottom: 15px;
+            background-color: #ff4081;
+            padding: 10px;
+            text-align: center;
+          }
+        }
+        hr {
+          border-color: #36393f;
+          margin: 30px 0px;
+        }
+        .add-btn {
+          width: 100%;
+          height: auto;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-end;
+
+          a {
+            margin-left: 15px;
+            text-decoration: none;
+            p {
+              color: #484e58;
+            }
+            &:hover {
+              p {
+                color: #ff4081;
+              }
+            }
+          }
+        }
+      }
+      // 로그인, 회원가입, 비밀번호 찾기 css 분기 종료지점
+    }
+    .bg {
+      width: calc(100% - 500px);
+      height: 100%;
+      .slider {
+        width: 100%;
+        height: 100%;
+        opacity: 0.35;
         img {
           width: 100%;
-        }
-      }
-
-      .in-box {
-        width: 100%;
-        height: auto;
-        text-align: center;
-        margin: 20px 0px;
-        padding-bottom: 40px;
-        border-bottom: 1px solid #e0e0e0;
-
-        input {
-          width: calc(100% - 30px);
-          height: 30px;
-          padding: 10px 15px;
-          margin-bottom: 20px;
-          border-radius: 5px;
-          border: 1px solid #eeeeee;
-
-          -webkit-appearance: none;
-          /* 브라우저별 기본 스타일링 제거 */
-          -moz-appearance: none;
-          appearance: none;
-
-          //내부 텍스트 설정
-          color: #636363;
-          font-size: 15px;
-          font-weight: lighter;
-
-          &:hover {
-            border-color: #e0e0e0;
-          }
-
-          &:active {
-            border-color: #cecece;
-          }
-        }
-
-        button {
-          width: 100%;
-          height: 50px;
-          background-color: #ff4081;
-          border: 1px solid #e91e63;
-          border-radius: 5px;
-          font-size: 20px;
-          font-weight: bolder;
-          color: #fff;
-          letter-spacing: 3px;
-        }
-      }
-
-      .bottom {
-        width: 100%;
-        height: auto;
-        text-align: center;
-        margin: 20px 0px;
-        padding-top: 20px;
-
-        button {
-          width: 100%;
-          height: 50px;
-          background-color: #ffffff;
-          border: 1px solid #ec407a;
-          border-radius: 5px;
-          font-size: 16px;
-          font-weight: lighter;
-          color: #ec407a;
-          letter-spacing: 3px;
-
-          &:hover {
-            background-color: #fce4ec;
-            border-color: #e91e63;
-            color: #e91e63;
-          }
-
-          &:active {
-            background-color: #f06292;
-            border-color: #d81b60;
-            color: #ffffff;
-          }
+          height: 100%;
+          object-fit: cover;
         }
       }
     }
+  }
+  @media all and (max-width: 768px) {
   }
 
   // 일반적 환경 (PC환경 접속시 처리 되는 SCSS)
   @media all and (min-width: 768px) {
-    div.page {
-      height: 100%;
-      background: url('/assets/image/login/main_bg_04.png');
-      background-size: auto 100%;
-      background-position: center top;
-    }
-
-    .login {
-      width: 300px;
-      min-height: 500px;
-      position: fixed;
-      top: calc(50% - 370px);
-      right: calc(50% - 200px);
-      background-color: white;
-      padding: 50px;
-      padding-top: 20px;
-      border: 1px soild #e0e0e0;
-      border-radius: 5px;
-
-      box-shadow: 0 1px 1px 0 rgba(60, 64, 67, 0.08),
-        0 1px 3px 1px rgba(60, 64, 67, 0.16);
-
-      .logo {
-        width: 75%;
-        padding: 12.5%;
-        padding-bottom: 0%;
-        height: auto;
-        text-align: center;
-        margin-top: 25%;
-
-        img {
-          width: 100%;
-        }
-      }
-
-      .in-box {
-        width: 100%;
-        height: auto;
-        text-align: center;
-        margin: 20px 0px;
-        padding-bottom: 40px;
-        border-bottom: 1px solid #e0e0e0;
-
-        input {
-          width: calc(100% - 30px);
-          height: 30px;
-          padding: 10px 15px;
-          margin-bottom: 20px;
-          border-radius: 5px;
-          border: 1px solid #eeeeee;
-
-          -webkit-appearance: none;
-          /* 브라우저별 기본 스타일링 제거 */
-          -moz-appearance: none;
-          appearance: none;
-
-          //내부 텍스트 설정
-          color: #636363;
-          font-size: 15px;
-          font-weight: lighter;
-
-          &:hover {
-            border-color: #e0e0e0;
-          }
-
-          &:active {
-            border-color: #cecece;
-          }
-        }
-
-        button {
-          width: 100%;
-          height: 50px;
-          background-color: #ff4081;
-          border: 1px solid #e91e63;
-          border-radius: 5px;
-          font-size: 20px;
-          font-weight: bolder;
-          color: #fff;
-          letter-spacing: 3px;
-        }
-      }
-
-      .bottom {
-        width: 100%;
-        height: auto;
-        text-align: center;
-        margin: 20px 0px;
-        padding-top: 20px;
-
-        button {
-          width: 100%;
-          height: 50px;
-          background-color: #ffffff;
-          border: 1px solid #ec407a;
-          border-radius: 5px;
-          font-size: 16px;
-          font-weight: lighter;
-          color: #ec407a;
-          letter-spacing: 3px;
-
-          &:hover {
-            background-color: #fce4ec;
-            border-color: #e91e63;
-            color: #e91e63;
-          }
-
-          &:active {
-            background-color: #f06292;
-            border-color: #d81b60;
-            color: #ffffff;
-          }
-        }
-      }
-    }
   }
 
+  /*
   toast-list {
     position: fixed;
     left: 50%;
     bottom: 30px;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
-  }
+  }*/
 </style>

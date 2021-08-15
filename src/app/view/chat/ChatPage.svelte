@@ -1,7 +1,7 @@
 <script>
-  import ChatInterface from './ChatInterface.svelte';
-  import ChatList from './ChatList.svelte';
-  import ChatUserList from './user/ChatUserList.svelte';
+  import ChatInterface from "./ChatInterface.svelte";
+  import ChatList from "./ChatList.svelte";
+  import ChatUserList from "./user/ChatUserList.svelte";
 </script>
 
 <div class="chat-page">
@@ -27,6 +27,7 @@
     bottom: 0;
     width: 100%;
     height: 300px;
+    display: none;
   }
 
   emoji-attach-view {
@@ -39,9 +40,9 @@
 
   .chat-interface {
     position: absolute;
-    left: 0;
+    left: 1px;
     bottom: 0;
-    width: 100%;
+    width: calc(100% - 2px);
     height: 80px;
   }
 </style>

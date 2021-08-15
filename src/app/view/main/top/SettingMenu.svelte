@@ -1,10 +1,10 @@
 <div class="setting-list">
   <div class="item button-attached">
     <div class="u-info">
-      <img class="profile" src="https://i.imgur.com/tXiHAIc.gif" alt="프로필" />
+      <img class="profile" src="https://i.imgur.com/eEthgvJ.png" alt="프로필" />
       <span class="u-name">
         <p class="lv">Lv. 10</p>
-        <p class="name">시구르나</p>
+        <h4 class="name">시구르나</h4>
       </span>
       <button>
         <i class="material-icons">settings</i>
@@ -12,26 +12,32 @@
     </div>
   </div>
   <div class="item hover image-attached">
-    <h5>방송설정</h5>
+    <h4>방송 설정</h4>
     <img
       src="https://mycast.xyz/assets/image/stream/mycast.png"
       alt="방송배경"
     />
   </div>
   <div class="item hover">
-    <h5>옵션</h5>
-  </div>
-  <div class="item theme">
-    <h5>테마</h5>
-    <ul>
-      <li>테마명</li>
-    </ul>
+    <h4>사이트 설정</h4>
   </div>
   <div class="item hover">
-    <h5>모바일 모드</h5>
+    <h4>채팅위젯 설정</h4>
+  </div>
+  <div class="item hover">
+    <h4>후원 설정</h4>
+  </div>
+  <div class="item hover">
+    <h4>테마</h4>
+  </div>
+  <div class="item hover">
+    <h4>모바일 모드</h4>
+  </div>
+  <div class="item hover">
+    <h4>팝업처리</h4>
   </div>
   <div class="logout">
-    <h5>로그아웃</h5>
+    <h4>로그아웃</h4>
   </div>
 </div>
 
@@ -42,7 +48,7 @@
     position: relative;
 
     border-radius: 0 0 5px 5px;
-    background: #212121;
+    background: #2a2f38;
   }
 
   .setting-list > .item {
@@ -50,24 +56,25 @@
     justify-items: center;
     position: relative;
     width: 100%;
-    border-bottom: 1px solid #616161;
+    border-bottom: 1px solid #1f2226;
     min-height: 45px;
     // padding: 15px 10px;
 
-    h5 {
+    h4 {
       margin: 0%;
       padding: 0%;
-      color: #eeeeee;
-      font-weight: 800;
+      color: #ffffff;
+      padding: 14px 10px;
+      padding-right: 0px;
     }
 
     i {
-      font-family: 'Material Icons';
+      font-family: "Material Icons";
       position: absolute;
       top: 12px;
       right: 15px;
-      color: #eeeeee;
-      font-size: 18px;
+      color: #ffffff;
+      font-size: 24px;
       line-height: 20px;
     }
 
@@ -85,11 +92,12 @@
         position: absolute;
         top: 0;
         right: 0;
-        width: 45px;
-        height: 45px;
+        width: 50px;
+        height: 50px;
         background: transparent;
         border: none;
         cursor: pointer;
+        margin: 10px 0px;
       }
     }
 
@@ -100,12 +108,12 @@
         right: 0;
         width: 45px;
         height: 45px;
-        border-left: 1px solid #424242;
+        border-left: 1px solid #1f2226;
       }
     }
 
     &.hover:hover {
-      background-color: #616161;
+      background-color: #1f2226;
     }
 
     &.hover {
@@ -115,50 +123,45 @@
 
   // 유저 안내 및 레벨 안내
   .u-info {
-    padding: 0px;
-    height: 40px;
+    padding: 10px;
+    height: 50px;
     position: relative;
 
     img {
-      width: 40px;
-      height: 40px;
-      border-radius: 22px;
+      width: 50px;
+      height: 50px;
+      border-radius: 25px;
       margin-right: 10px;
       float: left;
+      object-fit: cover;
     }
 
     .u-name {
-      width: 150px;
+      width: 170px;
       float: left;
       height: 32px;
-      padding-top: 4px;
+      padding-top: 9px;
 
       .lv {
         font-size: 10px;
       }
+      .name {
+        font-family: "ChosunBg";
+        color: #ffffff;
+        font-size: 18px;
+        padding: 0%;
+        padding-top: 3px;
+        font-weight: 800;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
 
-    p {
-      width: 90%;
-      color: #eeeeee;
-    }
-
-    a {
-      border-radius: 50%;
-
-      i {
-        position: absolute;
-        top: 11px;
-        right: 0px;
-        color: #eeeeee;
-        font-size: 24px;
-      }
-
-      &:hover {
-        i {
-          color: #ec407a;
-        }
-      }
+    p,
+    h4 {
+      width: 75%;
+      color: #ffffff;
     }
   }
 
@@ -245,25 +248,17 @@
   }
 
   // 로그아웃 부분
-  .user-setting > .logout {
-    h5 {
-      color: #f50057;
-    }
+  .logout {
+    min-height: 45px;
+    color: #ffffff;
+    background-color: #ff4081;
+    text-align: center;
+    border-radius: 0px 0px 3px 3px;
 
-    &:hover {
-      background-color: #ec407a;
-
-      h5 {
-        color: #ffffff;
-      }
-    }
-
-    &:active {
-      background-color: #c2185b;
-
-      h5 {
-        color: #ffffff;
-      }
+    h4 {
+      font-size: 18px;
+      padding: 14px;
+      font-weight: bolder;
     }
   }
 </style>

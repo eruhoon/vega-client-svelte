@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { SocketChatCommand } from '../../model/socket/command/SocketChatCommand';
-  import { SocketLoginCommand } from '../../model/socket/command/SocketLoginCommand';
-  import { SocketService } from '../../model/socket/SocketService';
-  import { WebSocketModel } from '../../model/socket/websocket/WebSocketModel';
-  import { MyStatus } from '../../model/status/MyStatus';
-  import ChatPage from '../chat/ChatPage.svelte';
-  import SideBar from './side/SideBar.svelte';
-  import TopBar from './top/TopBar.svelte';
+  import { SocketChatCommand } from "../../model/socket/command/SocketChatCommand";
+  import { SocketLoginCommand } from "../../model/socket/command/SocketLoginCommand";
+  import { SocketService } from "../../model/socket/SocketService";
+  import { WebSocketModel } from "../../model/socket/websocket/WebSocketModel";
+  import { MyStatus } from "../../model/status/MyStatus";
+  import ChatPage from "../chat/ChatPage.svelte";
+  import SideBar from "./side/SideBar.svelte";
+  import TopBar from "./top/TopBar.svelte";
 
   let sideBarVisible = false;
   let topBarProp = {
-    profileIcon: '',
+    profileIcon: "",
   };
 
   const socket = new WebSocketModel();
@@ -23,10 +23,10 @@
   socket.onReceived((command) => {
     console.log(command);
     switch (command.commandType) {
-      case 'applyMyStatus':
+      case "applyMyStatus":
         topBarProp.profileIcon = command.response.icon;
         break;
-      case 'applyCurrentUserList':
+      case "applyCurrentUserList":
         console.log(command.response);
         break;
     }
@@ -38,7 +38,9 @@
 </script>
 
 <div class="main-section">
-  <div class="chat-list-view"><ChatPage /></div>
+  <div class="chat-list-view">
+    <ChatPage />
+  </div>
   <div class="side-bar">
     <SideBar visible={sideBarVisible} />
   </div>
@@ -51,6 +53,9 @@
   $top-bar-height: 50px;
   $side-bar-width: 250px;
   $default-chat-width: 300px;
+  $dark-mode-bg-color: #2a2f38;
+  $dark-mode-font-color: #ffffff;
+  $dark-mode-active-color: #1f2226;
 
   .top-bar {
     position: absolute;
@@ -59,8 +64,9 @@
     width: 100%;
     height: $top-bar-height;
     margin: 0;
-    background: #212121;
-    border-bottom: 1px solid #424242;
+    background: #2a2f38;
+    box-shadow: 2px 0px 5px 1px rgb(0 0 0 / 40%),
+      1px 0px 5px 0px rgb(0 0 0 / 30%), 1px 0px 5px 0px rgb(0 0 0 / 30%);
   }
 
   .main-section {
@@ -70,6 +76,7 @@
     display: block;
     width: 100%;
     height: calc(100% - #{$top-bar-height});
+    background-color: #2a2f38;
 
     .chat-list-view {
       position: absolute;
@@ -77,9 +84,9 @@
       right: 0;
       width: $default-chat-width;
       height: 100%;
-      background: #424242;
-      border-right: 1px solid #616161;
-      border-left: 1px solid #616161;
+      background: #2a2f38;
+      box-shadow: 2px 0px 6px 3px rgb(0 0 0 / 20%),
+        2px 0px 6px 3px rgb(0 0 0 / 20%), 2px 0px 6px 3px rgb(0 0 0 / 20%);
     }
 
     .side-bar {

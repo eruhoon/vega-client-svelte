@@ -49,6 +49,9 @@
     "./assets/image/login/bg/18.png",
     "./assets/image/login/bg/19.png",
     "./assets/image/login/bg/20.png",
+    "./assets/image/login/bg/21.png",
+    "./assets/image/login/bg/22.png",
+    "./assets/image/login/bg/23.png",
   ];
 
   let index = 0;
@@ -124,6 +127,14 @@
 </main>
 
 <style lang="scss">
+  @font-face {
+    font-family: "BMJUA";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff")
+      format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+
   * {
     //font-family: "Spoqa Han Sans Neo", "sans-serif";
     color: #fff;
@@ -183,11 +194,12 @@
             border-radius: 5px;
             border: 0px;
             font-size: 32px;
-            font-weight: bolder;
             margin-bottom: 15px;
             background-color: #ff4081;
             padding: 10px;
+            font-family: "BMJUA", "NEXON Lv2 Gothic Bold", sans-serif;
             text-align: center;
+            letter-spacing: 2px;
           }
         }
         hr {

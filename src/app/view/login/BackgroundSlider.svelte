@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { onDestroy, onMount } from 'svelte';
+
   import { fade } from 'svelte/transition';
 
   const images = [
@@ -27,18 +29,15 @@
   let index = 0;
   let interval: number = -1;
 
-  const nextImg = () => {
-    index = getRandomNumber(images.length, index);
-    console.log(index);
-  };
-
   const getRandomNumber = (max: number, except: number): number => {
     const next = Math.floor(Math.random() * max);
     return next == except ? (except + 1) % max : next;
   };
 
   const startPlay = () => {
-    interval = setInterval(nextImg, 4000);
+    interval = setInterval(() => {
+      index = getRandomNumber(images.length, index);
+    }, 4000);
   };
 
   const stopPlay = () => {
@@ -46,7 +45,8 @@
     interval = -1;
   };
 
-  startPlay();
+  onMount(() => startPlay());
+  onDestroy(() => stopPlay());
 </script>
 
 <div

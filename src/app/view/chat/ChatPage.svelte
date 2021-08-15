@@ -7,7 +7,7 @@
 <div class="chat-page">
   <ChatList />
   <div class="chat-user-list">
-    <ChatUserList props={[]} />
+    <ChatUserList />
   </div>
   <!-- 
     <emoji-attach-view *ngIf="isEmojiAttachViewShow()" />-->

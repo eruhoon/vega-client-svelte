@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { SocketService } from '../../model/socket/SocketService';
-  import { MyStatus } from '../../model/status/MyStatus';
+  import { SocketService } from "../../model/socket/SocketService";
+  import { MyStatus } from "../../model/status/MyStatus";
 
-  let message: string = '';
+  let message: string = "";
 
   const onKeyDown = ({ key }: KeyboardEvent) => {
-    if (key === 'Enter' && message.trim().length !== 0) {
-      SocketService.chat?.execute(MyStatus.privateKey, 'chat', message);
-      message = '';
+    if (key === "Enter" && message.trim().length !== 0) {
+      SocketService.chat?.execute(MyStatus.privateKey, "chat", message);
+      message = "";
     }
   };
 </script>
@@ -47,7 +47,7 @@
     height: 100%;
     // 좌우측 채팅 부분에 대한 border의 1px 처리로
     margin-left: -1px;
-    background-color: #424242;
+    background-color: #2a2f38;
   }
 
   // 스티커 & 채팅 클리어 & 채팅 인원 안내
@@ -55,15 +55,15 @@
     display: block;
     width: 100%;
     height: 30px;
-    background-color: #424242;
-    border-top: 1px solid #616161;
-    border-bottom: 1px solid #616161;
+    background-color: #1f2226;
+    border-top: 1px solid #1d1f21;
+    border-bottom: 1px solid #1d1f21;
 
     div {
       width: auto;
       height: auto;
       display: inline-block;
-      color: #eeeeee;
+      color: #ffffff;
       user-select: none;
 
       i {
@@ -72,7 +72,7 @@
       }
 
       &.active {
-        color: #c2185b;
+        color: #ff4081;
       }
 
       &.hidden {
@@ -80,7 +80,7 @@
       }
 
       &:hover {
-        color: #ec407a;
+        color: #ff4081;
       }
     }
 
@@ -101,7 +101,7 @@
     height: 30px;
     padding: 10px;
 
-    background: #424242;
+    background: #2a2f38;
     font-size: 14px;
     color: #ffffff;
     border: none;

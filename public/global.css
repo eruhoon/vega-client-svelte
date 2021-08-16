@@ -1,4 +1,15 @@
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@font-face {
+  font-family: 'NEXON Lv2 Gothic';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NEXON Lv2 Gothic Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 html,
 body {
@@ -8,12 +19,57 @@ body {
   overflow: hidden;
 }
 
+*{
+  margin: 0 auto;
+  padding: 0px;
+  font-family: 'NEXON Lv2 Gothic', sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height:100%; 
+  margin:0; 
+  padding:0px; 
+  font-family: 'NEXON Lv2 Gothic Bold', sans-serif;
+}
+h1 > *, 
+h2 > *, 
+h3 > *, 
+h4 > *, 
+h5 > *, 
+h6 > * {
+  line-height:100%;
+  margin:0;
+  padding:0px;
+  font-family: 'NEXON Lv2 Gothic Bold', sans-serif;
+}
+h1 > small, 
+h2 > small, 
+h3 > small, 
+h4 > small, 
+h5 > small, 
+h6 > small {
+  line-height:100%;
+  margin:0;
+  padding:0px;
+  font-family: 'NEXON Lv2 Gothic', sans-serif
+}
+p {
+  line-height:100%; 
+  margin:0; 
+  padding:0px; 
+  font-family: 'NEXON Lv2 Gothic', sans-serif;
+}
+
 body {
   color: #333;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+  font-family: -apple-system, BlinkMacSystemFont, 'NEXON Lv2 Gothic', 'Segoe UI', Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 }
 
@@ -23,7 +79,7 @@ main {
 }
 
 a {
-  color: rgb(0, 100, 200);
+  color: #FF4081;
   text-decoration: none;
 }
 

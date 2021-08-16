@@ -1,9 +1,9 @@
 <script>
   export let visible = false;
-  $: visibleClass = visible ? 'show' : 'hide';
+  $: visibleClass = visible ? "show" : "hide";
 </script>
 
-<div class={'side-bar ' + visibleClass}>
+<div class={"side-bar " + visibleClass}>
   <ul class="main">
     <li class="main">
       <i class="material-icons">message</i>
@@ -43,6 +43,13 @@
   .side-bar {
     overflow-y: auto;
     max-height: 100%;
+    background-color: #2a2f38;
+    color: #ffffff;
+    z-index: 10;
+    height: 100%;
+
+    box-shadow: 2px 0px 2px 1px rgb(0 0 0 / 20%),
+      2px 0px 3px 1px rgb(0 0 0 / 20%), 2px 0px 3px 0px rgb(0 0 0 / 20%);
 
     &.show {
       opacity: 1;
@@ -63,6 +70,9 @@
   }
 
   hr {
+    //color: #1f2226;
+    border-color: #36393f;
+    margin: 10px 0px;
     &:last-child {
       margin-bottom: 0px;
     }
@@ -219,7 +229,6 @@
               float: left;
 
               font-size: 4vw;
-              font-family: 'Jeju Gothic', sans-serif !important;
               font-weight: bolder;
               line-height: 4vw;
 

@@ -4,7 +4,7 @@
   import SettingMenu from './SettingMenu.svelte';
 
   const dispatch = createEventDispatcher();
-  const dispatchMenuClick = () => dispatch('menuclick');
+  const dispatchMenuClick = () => dispatch("menuclick");
   const onSettingMenuClick = () => {
     settingMenuActivated = !settingMenuActivated;
   };
@@ -20,10 +20,12 @@
 
 <nav>
   <div class="part">
-    <button on:click={dispatchMenuClick}>
+    <a on:click={dispatchMenuClick}>
+      <img class="logo" src="/assets/image/main/main-logo-60.png" alt="logo" />
+    </a>
+    <!--<button on:click={dispatchMenuClick}>
       <i class="material-icons">menu</i>
-    </button>
-    <img class="logo" src="/assets/image/main/main-logo-30.png" alt="logo" />
+    </button>-->
   </div>
   <div class="part right">
     <button>
@@ -38,7 +40,7 @@
   </div>
 </nav>
 
-<div class={'setting-menu ' + settingMenuActiveClass}><SettingMenu /></div>
+<div class={"setting-menu " + settingMenuActiveClass}><SettingMenu /></div>
 
 <style lang="scss">
   $icon-size: 40px;
@@ -55,6 +57,10 @@
     padding: 5px;
     align-items: center;
 
+    a {
+      margin: 0%;
+    }
+
     button {
       width: $icon-size;
       height: $icon-size;
@@ -64,15 +70,15 @@
       cursor: pointer;
       margin: 5px;
       padding: 0;
-      color: #616161;
-      background-color: #212121;
+      color: #ffffff;
+      background-color: #2a2f38;
 
       &:hover {
-        background-color: #313131;
+        background-color: #1f2226;
       }
 
       &:active {
-        background-color: #313131;
+        background-color: #1f2226;
       }
     }
 
@@ -81,7 +87,7 @@
       width: $icon-size;
       height: $icon-size;
       margin: 5px;
-      color: #757575;
+      color: #ffffff;
 
       // 드래그 방지
       user-select: none;
@@ -121,9 +127,14 @@
   }
 
   img.logo {
-    width: 114px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
+    border-radius: 20px;
+    margin-left: 10px;
+
+    // 로고 레이어 80
+    z-index: 80;
   }
 
   img.profile {
@@ -136,11 +147,11 @@
     position: absolute;
     top: 50px;
     right: 0;
-    width: 220px;
+    width: 250px;
     height: auto;
     overflow: hidden;
-    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
-      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 2px 10px 6px rgb(0 0 0 / 20%),
+      0px 2px 0px 0px rgb(0 0 0 / 14%), 0px 0px 2px 0px rgb(0 0 0 / 12%);
     transition: transform 0.25s ease-in-out;
 
     &.active {

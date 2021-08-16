@@ -4,7 +4,7 @@
   import SettingMenu from './SettingMenu.svelte';
 
   const dispatch = createEventDispatcher();
-  const dispatchMenuClick = () => dispatch("menuclick");
+  const dispatchMenuClick = () => dispatch('menuclick');
   const onSettingMenuClick = () => {
     settingMenuActivated = !settingMenuActivated;
   };
@@ -40,7 +40,7 @@
   </div>
 </nav>
 
-<div class={"setting-menu " + settingMenuActiveClass}><SettingMenu /></div>
+<div class={'setting-menu ' + settingMenuActiveClass}><SettingMenu /></div>
 
 <style lang="scss">
   $icon-size: 40px;

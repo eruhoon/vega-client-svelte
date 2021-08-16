@@ -1,7 +1,7 @@
 <script>
-  import ChatInterface from "./ChatInterface.svelte";
-  import ChatList from "./ChatList.svelte";
-  import ChatUserList from "./user/ChatUserList.svelte";
+  import ChatInterface from './ChatInterface.svelte';
+  import ChatList from './ChatList.svelte';
+  import ChatUserList from './user/ChatUserList.svelte';
 </script>
 
 <div class="chat-page">

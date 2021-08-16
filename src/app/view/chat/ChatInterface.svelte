@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { SocketService } from "../../model/socket/SocketService";
-  import { MyStatus } from "../../model/status/MyStatus";
+  import { SocketService } from '../../model/socket/SocketService';
+  import { MyStatus } from '../../model/status/MyStatus';
 
-  let message: string = "";
+  let message: string = '';
 
   const onKeyDown = ({ key }: KeyboardEvent) => {
-    if (key === "Enter" && message.trim().length !== 0) {
-      SocketService.chat?.execute(MyStatus.privateKey, "chat", message);
-      message = "";
+    if (key === 'Enter' && message.trim().length !== 0) {
+      SocketService.chat?.execute(MyStatus.privateKey, 'chat', message);
+      message = '';
     }
   };
 </script>

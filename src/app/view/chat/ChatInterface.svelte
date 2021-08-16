@@ -1,14 +1,22 @@
 <script lang="ts">
   import { SocketService } from '../../model/socket/SocketService';
   import { MyStatus } from '../../model/status/MyStatus';
+  import { WindowService } from '../../model/window/WindowService';
 
   let message: string = '';
+  let userListShow = false;
 
   const onKeyDown = ({ key }: KeyboardEvent) => {
     if (key === 'Enter' && message.trim().length !== 0) {
       SocketService.chat?.execute(MyStatus.privateKey, 'chat', message);
       message = '';
     }
+  };
+
+  const toggleUserList = () => {
+    const next = !userListShow;
+    userListShow = next;
+    WindowService.userListShow.set(next);
   };
 </script>
 
@@ -17,7 +25,9 @@
     <!-- left section -->
     <!-- user list -->
     <div class="sticker-section">
-      <div><i class="material-icons">assignment_ind</i></div>
+      <div on:click={(_) => toggleUserList()}>
+        <i class="material-icons">assignment_ind</i>
+      </div>
       <!-- clear chat -->
       <div><i class="material-icons">format_clear</i></div>
       <div><i class="material-icons">vertical_align_bottom</i></div>

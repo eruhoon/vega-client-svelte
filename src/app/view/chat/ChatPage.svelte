@@ -1,12 +1,20 @@
 <script>
+  import { WindowService } from '../../model/window/WindowService';
+
   import ChatInterface from './ChatInterface.svelte';
   import ChatList from './ChatList.svelte';
   import ChatUserList from './user/ChatUserList.svelte';
+
+  let userListShow = false;
+
+  WindowService.userListShow.subscribe((show) => (userListShow = show));
 </script>
 
 <div class="chat-page">
   <ChatList />
-  <div class="chat-user-list"><ChatUserList /></div>
+  <div class="chat-user-list" class:hide={!userListShow}>
+    <ChatUserList />
+  </div>
   <!-- 
     <emoji-attach-view *ngIf="isEmojiAttachViewShow()" />-->
   <div class="chat-interface"><ChatInterface /></div>
@@ -24,11 +32,16 @@
   }
 
   .chat-user-list {
+    display: block;
     position: absolute;
     left: 0;
     bottom: $chat-interface-height;
     width: 100%;
     height: 300px;
+
+    &.hide {
+      display: none;
+    }
   }
 
   .chat-interface {

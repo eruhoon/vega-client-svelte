@@ -21,29 +21,29 @@
     </div>
   </div>
   <div class="item hover image-attached">
-    <h4>방송 설정</h4>
+    <p>방송 설정</p>
     <img
       src="https://mycast.xyz/assets/image/stream/mycast.png"
       alt="방송배경"
     />
   </div>
   <div class="item hover">
-    <h4>사이트 설정</h4>
+    <p>사이트 설정</p>
   </div>
   <div class="item hover">
-    <h4>채팅위젯 설정</h4>
+    <p>채팅위젯 설정</p>
   </div>
   <div class="item hover">
-    <h4>후원 설정</h4>
+    <p>후원 설정</p>
   </div>
   <div class="item hover">
-    <h4>테마</h4>
+    <p>테마</p>
   </div>
   <div class="item hover">
-    <h4>모바일 모드</h4>
+    <p>모바일 모드</p>
   </div>
   <div class="item hover">
-    <h4>팝업처리</h4>
+    <p>팝업처리</p>
   </div>
   <div class="logout">
     <h4>로그아웃</h4>
@@ -69,6 +69,7 @@
     min-height: 45px;
     // padding: 15px 10px;
 
+    p,
     h4 {
       margin: 0%;
       padding: 0%;
@@ -85,11 +86,6 @@
       color: #ffffff;
       font-size: 24px;
       line-height: 20px;
-    }
-
-    p {
-      margin: 0%;
-      padding: 0%;
     }
 
     &:last-child {

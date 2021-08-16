@@ -5,8 +5,10 @@
 </script>
 
 <div class="chat-page">
-  <ChatUserList props={[]} />
   <ChatList />
+  <div class="chat-user-list">
+    <ChatUserList />
+  </div>
   <!-- 
     <emoji-attach-view *ngIf="isEmojiAttachViewShow()" />-->
   <div class="chat-interface"><ChatInterface /></div>
@@ -21,7 +23,7 @@
     height: 100%;
   }
 
-  chat-user-list {
+  .chat-user-list {
     position: absolute;
     left: 0;
     bottom: 0;

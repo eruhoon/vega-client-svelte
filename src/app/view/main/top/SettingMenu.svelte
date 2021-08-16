@@ -1,10 +1,19 @@
+<script lang="ts">
+  import { ProfileService } from "../../../service/ProfileService";
+
+  let profileIcon = "";
+  let nickname = "";
+
+  ProfileService.profileIcon.subscribe((icon) => (profileIcon = icon));
+  ProfileService.nickname.subscribe((n) => (nickname = n));
+</script>
+
 <div class="setting-list">
   <div class="item button-attached">
     <div class="u-info">
-      <img class="profile" src="https://i.imgur.com/eEthgvJ.png" alt="프로필" />
+      <img class="profile" src={profileIcon} alt="프로필" />
       <span class="u-name">
-        <p class="lv">Lv. 10</p>
-        <h4 class="name">시구르나</h4>
+        <p class="name">{nickname}</p>
       </span>
       <button>
         <i class="material-icons">settings</i>

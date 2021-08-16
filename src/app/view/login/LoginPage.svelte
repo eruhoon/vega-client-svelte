@@ -1,8 +1,8 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  import { fade } from "svelte/transition";
   import { LoginCommand } from "../../model/login/LoginCommand";
   import { MyStatus } from "../../model/status/MyStatus";
+  import BackgroundSlider from "./BackgroundSlider.svelte";
 
   const EVENT_LOGIN = "login";
 
@@ -25,53 +25,6 @@
     const result = await new LoginCommand().execute(id, pw);
     MyStatus.privateKey = result.hash;
     return result;
-  };
-
-  // 이미지 슬라이더 처리
-  let images = [
-    "./assets/image/login/bg/1.png",
-    "./assets/image/login/bg/2.png",
-    "./assets/image/login/bg/3.png",
-    "./assets/image/login/bg/4.png",
-    "./assets/image/login/bg/5.png",
-    "./assets/image/login/bg/6.png",
-    "./assets/image/login/bg/7.png",
-    "./assets/image/login/bg/8.png",
-    "./assets/image/login/bg/9.png",
-    "./assets/image/login/bg/10.png",
-    "./assets/image/login/bg/11.png",
-    "./assets/image/login/bg/12.png",
-    "./assets/image/login/bg/13.png",
-    "./assets/image/login/bg/14.png",
-    "./assets/image/login/bg/15.png",
-    "./assets/image/login/bg/16.png",
-    "./assets/image/login/bg/17.png",
-    "./assets/image/login/bg/18.png",
-    "./assets/image/login/bg/19.png",
-    "./assets/image/login/bg/20.png",
-    "./assets/image/login/bg/21.png",
-    "./assets/image/login/bg/22.png",
-    "./assets/image/login/bg/23.png",
-  ];
-
-  let index = 0;
-  let interval;
-
-  const nextImg = () => {
-    const preIndex = index;
-    let tmp_index = Math.floor(Math.random() * images.length);
-    if (preIndex == tmp_index) {
-      tmp_index = Math.floor(Math.random() * images.length);
-    }
-    index = tmp_index;
-    console.log(index);
-  };
-
-  const autoPlay = () => {
-    interval = setInterval(nextImg, 4000);
-  };
-  const stopPlay = () => {
-    clearInterval(interval);
   };
 </script>
 
@@ -115,14 +68,10 @@
     </div>
     <!-- 로그인 / 회원가입 / 비밀번호 찾기 분기 종료 지점 -->
   </div>
-  <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-  <div class="bg" on:mouseover={stopPlay} on:mouseleave={autoPlay}>
-    <div class="slider">
-      {#each [images[index]] as src (index)}
-        <img transition:fade {src} alt="" />
-      {/each}
-    </div>
+  <div class="background-slider">
+    <BackgroundSlider />
   </div>
+
   <!-- <toast-list></toast-list>       -->
 </main>
 
@@ -229,19 +178,9 @@
       }
       // 로그인, 회원가입, 비밀번호 찾기 css 분기 종료지점
     }
-    .bg {
+    .background-slider {
       width: calc(100% - 500px);
       height: 100%;
-      .slider {
-        width: 100%;
-        height: 100%;
-        opacity: 0.35;
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
     }
   }
   @media all and (max-width: 768px) {

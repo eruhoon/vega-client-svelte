@@ -4,14 +4,13 @@
   import { SocketService } from "../../model/socket/SocketService";
   import { WebSocketModel } from "../../model/socket/websocket/WebSocketModel";
   import { MyStatus } from "../../model/status/MyStatus";
+  import { ProfileService } from "../../service/ProfileService";
+  import { UserListService } from "../../service/UserListService";
   import ChatPage from "../chat/ChatPage.svelte";
   import SideBar from "./side/SideBar.svelte";
   import TopBar from "./top/TopBar.svelte";
 
   let sideBarVisible = false;
-  let topBarProp = {
-    profileIcon: "",
-  };
 
   const socket = new WebSocketModel();
   SocketService.chat = new SocketChatCommand(socket);
@@ -24,10 +23,11 @@
     console.log(command);
     switch (command.commandType) {
       case "applyMyStatus":
-        topBarProp.profileIcon = command.response.icon;
+        ProfileService.profileIcon.set(command.response.icon);
+        ProfileService.nickname.set(command.response.nickname);
         break;
       case "applyCurrentUserList":
-        console.log(command.response);
+        UserListService.users.set(command.response);
         break;
     }
   });
@@ -46,7 +46,7 @@
   </div>
 </div>
 <div class="top-bar">
-  <TopBar on:menuclick={onMenuClick} prop={topBarProp} />
+  <TopBar on:menuclick={onMenuClick} />
 </div>
 
 <style lang="scss">

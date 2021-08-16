@@ -1,10 +1,7 @@
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
-  import SettingMenu from "./SettingMenu.svelte";
-
-  export let prop = {
-    profileIcon: "",
-  };
+  import { createEventDispatcher } from 'svelte';
+  import { ProfileService } from '../../../service/ProfileService';
+  import SettingMenu from './SettingMenu.svelte';
 
   const dispatch = createEventDispatcher();
   const dispatchMenuClick = () => dispatch("menuclick");
@@ -13,7 +10,12 @@
   };
 
   let settingMenuActivated = false;
-  $: settingMenuActiveClass = settingMenuActivated ? "active" : "deactive";
+  let profileIcon = '';
+  $: settingMenuActiveClass = settingMenuActivated ? 'active' : 'deactive';
+
+  ProfileService.profileIcon.subscribe((icon) => {
+    profileIcon = icon;
+  });
 </script>
 
 <nav>
@@ -33,7 +35,7 @@
       </div>
     </button>
     <button on:click={onSettingMenuClick}>
-      <img class="profile" src={prop.profileIcon} alt="profile" />
+      <img class="profile" src={profileIcon} alt="profile" />
     </button>
   </div>
 </nav>

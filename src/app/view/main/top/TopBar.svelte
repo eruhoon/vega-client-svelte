@@ -20,9 +20,9 @@
 
 <nav>
   <div class="part">
-    <a on:click={dispatchMenuClick}>
+    <button on:click={dispatchMenuClick}>
       <img class="logo" src="/assets/image/main/main-logo-60.png" alt="logo" />
-    </a>
+    </button>
     <!--<button on:click={dispatchMenuClick}>
       <i class="material-icons">menu</i>
     </button>-->
@@ -57,10 +57,6 @@
     padding: 5px;
     align-items: center;
 
-    a {
-      margin: 0%;
-    }
-
     button {
       width: $icon-size;
       height: $icon-size;
@@ -68,7 +64,7 @@
       border: none;
       outline: none;
       cursor: pointer;
-      margin: 5px;
+      margin: 0;
       padding: 0;
       color: #ffffff;
       background-color: #2a2f38;
@@ -79,45 +75,6 @@
 
       &:active {
         background-color: #1f2226;
-      }
-    }
-
-    button.alert-btn {
-      position: relative;
-      width: $icon-size;
-      height: $icon-size;
-      margin: 5px;
-      color: #ffffff;
-
-      // 드래그 방지
-      user-select: none;
-
-      i {
-        font-size: 24px;
-        padding: 8px;
-        margin-right: 10px;
-      }
-
-      div {
-        position: absolute;
-        right: 0px;
-        bottom: 0px;
-        font-size: 12px;
-        width: 18px;
-        height: 18px;
-        border-radius: 15px;
-        text-align: center;
-        line-height: 18px;
-        background: #ec407a;
-        color: white;
-      }
-
-      &:hover {
-        color: #ec407a;
-      }
-
-      &.active {
-        color: #c2185b;
       }
     }
   }
@@ -164,9 +121,5 @@
   }
 
   @media screen and (max-width: 768px) {
-    notification-list {
-      width: 100%;
-      right: 0px;
-    }
   }
 </style>

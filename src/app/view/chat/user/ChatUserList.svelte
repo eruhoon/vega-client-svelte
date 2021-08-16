@@ -67,7 +67,6 @@
     span > * {
       width: auto;
       height: auto;
-      float: right;
       display: inline-block;
     }
     span > p {

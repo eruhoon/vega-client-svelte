@@ -32,14 +32,6 @@
     display: none;
   }
 
-  emoji-attach-view {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 200px;
-  }
-
   .chat-interface {
     position: absolute;
     left: 1px;

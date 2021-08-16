@@ -71,21 +71,9 @@
         padding: 6px;
       }
 
-      &.active {
-        color: #ff4081;
-      }
-
-      &.hidden {
-        opacity: 0;
-      }
-
       &:hover {
         color: #ff4081;
       }
-    }
-
-    a:first-child {
-      margin-left: 5px;
     }
 
     & > .sticker-section {

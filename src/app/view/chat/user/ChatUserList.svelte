@@ -31,10 +31,12 @@
 </div>
 
 <style lang="scss">
+  $title-container-height: 35px;
+
   .chat-user-list {
-    position: absolute;
+    position: relative;
     width: 100%;
-    height: 220px;
+    height: 100%;
     overflow-y: scroll;
     background: white;
     overflow: hidden;
@@ -44,7 +46,7 @@
 
   .cu-list-title {
     width: 100%;
-    height: 35px;
+    height: $title-container-height;
 
     * {
       margin: 0%;
@@ -79,7 +81,7 @@
 
   .cu-entry {
     width: 100%;
-    height: 185px;
+    height: calc(100% - #{$title-container-height});
     overflow-y: scroll;
     overflow-x: hidden;
 

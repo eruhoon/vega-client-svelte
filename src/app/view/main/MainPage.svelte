@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { SocketChatCommand } from "../../model/socket/command/SocketChatCommand";
-  import { SocketLoginCommand } from "../../model/socket/command/SocketLoginCommand";
-  import { SocketService } from "../../model/socket/SocketService";
-  import { WebSocketModel } from "../../model/socket/websocket/WebSocketModel";
-  import { MyStatus } from "../../model/status/MyStatus";
-  import { ProfileService } from "../../service/ProfileService";
-  import { UserListService } from "../../service/UserListService";
-  import ChatPage from "../chat/ChatPage.svelte";
-  import SideBar from "./side/SideBar.svelte";
-  import TopBar from "./top/TopBar.svelte";
+  import { SocketChatCommand } from '../../model/socket/command/SocketChatCommand';
+  import { SocketLoginCommand } from '../../model/socket/command/SocketLoginCommand';
+  import { SocketService } from '../../model/socket/SocketService';
+  import { WebSocketModel } from '../../model/socket/websocket/WebSocketModel';
+  import { MyStatus } from '../../model/status/MyStatus';
+  import { ProfileService } from '../../service/ProfileService';
+  import { UserListService } from '../../service/UserListService';
+  import ChatPage from '../chat/ChatPage.svelte';
+  import SideBar from './side/SideBar.svelte';
+  import TopBar from './top/TopBar.svelte';
 
   let sideBarVisible = false;
 
@@ -16,17 +16,18 @@
   SocketService.chat = new SocketChatCommand(socket);
   SocketService.login = new SocketLoginCommand(socket);
   socket.setOnOpen(() => {
+    SocketService.isConnected.set(true);
     SocketService.login?.execute(MyStatus.privateKey);
   });
 
   socket.onReceived((command) => {
     console.log(command);
     switch (command.commandType) {
-      case "applyMyStatus":
+      case 'applyMyStatus':
         ProfileService.profileIcon.set(command.response.icon);
         ProfileService.nickname.set(command.response.nickname);
         break;
-      case "applyCurrentUserList":
+      case 'applyCurrentUserList':
         UserListService.users.set(command.response);
         break;
     }

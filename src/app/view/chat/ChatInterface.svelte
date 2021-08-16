@@ -5,6 +5,7 @@
 
   let message: string = '';
   let userListShow = false;
+  let isConnected = false;
 
   const onKeyDown = ({ key }: KeyboardEvent) => {
     if (key === 'Enter' && message.trim().length !== 0) {
@@ -18,6 +19,8 @@
     userListShow = next;
     WindowService.userListShow.set(next);
   };
+
+  SocketService.isConnected.subscribe((v) => (isConnected = v));
 </script>
 
 <div class="chat-interface">
@@ -36,7 +39,7 @@
     <!-- right section -->
     <!-- imoticon -->
     <div class="sticker-section right">
-      <div><i class="material-icons">warning</i></div>
+      <div class:hide={isConnected}><i class="material-icons">warning</i></div>
       <div><i class="material-icons">insert_emoticon</i></div>
       <div><i class="material-icons">photo</i></div>
     </div>
@@ -79,6 +82,10 @@
       i {
         font-size: 20px;
         padding: 6px;
+      }
+
+      &.hide {
+        display: none;
       }
 
       &:hover {

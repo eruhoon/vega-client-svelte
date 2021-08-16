@@ -6,15 +6,15 @@
 
 <div class="chat-page">
   <ChatList />
-  <div class="chat-user-list">
-    <ChatUserList />
-  </div>
+  <div class="chat-user-list"><ChatUserList /></div>
   <!-- 
     <emoji-attach-view *ngIf="isEmojiAttachViewShow()" />-->
   <div class="chat-interface"><ChatInterface /></div>
 </div>
 
 <style lang="scss">
+  $chat-interface-height: 80px;
+
   .chat-page {
     position: relative;
     left: 0;
@@ -26,10 +26,9 @@
   .chat-user-list {
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: $chat-interface-height;
     width: 100%;
     height: 300px;
-    display: none;
   }
 
   .chat-interface {
@@ -37,6 +36,6 @@
     left: 1px;
     bottom: 0;
     width: calc(100% - 2px);
-    height: 80px;
+    height: $chat-interface-height;
   }
 </style>

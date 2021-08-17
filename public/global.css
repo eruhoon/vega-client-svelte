@@ -1,3 +1,4 @@
+/*
 @font-face {
   font-family: 'NEXON Lv2 Gothic';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff') format('woff');
@@ -7,6 +8,20 @@
 @font-face {
   font-family: 'NEXON Lv2 Gothic Bold';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+*/
+
+@font-face {
+  font-family: 'ChosunKg';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunKg.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ChosunSg';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunSg.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -22,7 +37,7 @@ body {
 *{
   margin: 0 auto;
   padding: 0px;
-  font-family: 'NEXON Lv2 Gothic', sans-serif;
+  font-family: 'ChosunSg', sans-serif;
 }
 h1,
 h2,
@@ -33,7 +48,7 @@ h6 {
   line-height:100%; 
   margin:0; 
   padding:0px; 
-  font-family: 'NEXON Lv2 Gothic Bold', sans-serif;
+  font-family: 'ChosunKg', sans-serif;
 }
 h1 > *, 
 h2 > *, 
@@ -44,7 +59,7 @@ h6 > * {
   line-height:100%;
   margin:0;
   padding:0px;
-  font-family: 'NEXON Lv2 Gothic Bold', sans-serif;
+  font-family: 'ChosunKg', sans-serif;
 }
 h1 > small, 
 h2 > small, 
@@ -55,13 +70,13 @@ h6 > small {
   line-height:100%;
   margin:0;
   padding:0px;
-  font-family: 'NEXON Lv2 Gothic', sans-serif
+  font-family: 'ChosunSg', sans-serif
 }
 p {
   line-height:100%; 
   margin:0; 
   padding:0px; 
-  font-family: 'NEXON Lv2 Gothic', sans-serif;
+  font-family: 'ChosunSg', sans-serif;
 }
 
 body {
@@ -69,7 +84,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'NEXON Lv2 Gothic', 'Segoe UI', Roboto,
+  font-family: -apple-system, BlinkMacSystemFont, 'ChosunSg', 'Segoe UI', Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 }
 

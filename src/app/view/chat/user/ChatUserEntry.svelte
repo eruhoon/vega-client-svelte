@@ -1,21 +1,21 @@
 <script lang="ts">
-  export let nickname: string = '';
-  export let icon: string = '';
+  export let nickname: string = "";
+  export let icon: string = "";
   export let isMobile: boolean = false;
   export let isComputer: boolean = false;
 
-  const getFlagClass = (flag: boolean) => (flag ? 'active' : '');
+  const getFlagClass = (flag: boolean) => (flag ? "active" : "");
   $: mobileClass = getFlagClass(isMobile);
   $: computerClass = getFlagClass(isComputer);
 </script>
 
-<div>
+<div class="chat-user-entry">
   <div class="user-icon">
     <img src={icon} alt={nickname} />
   </div>
   <div class="info">
     <div class="nickname">
-      <span>{nickname}</span>
+      <p>{nickname}</p>
     </div>
   </div>
   <div class="icon">
@@ -25,41 +25,68 @@
 </div>
 
 <style lang="scss">
-  .user-icon {
-    width: 30px;
+  .chat-user-entry {
+    display: block;
+    width: calc(100% - 10px);
     height: 30px;
-    overflow: hidden;
-    float: left;
-    border-radius: 30px;
+    padding: 5px;
+    font-size: 14px;
+    line-height: 20px;
+    border-bottom: 1px solid #1f2226;
 
-    img {
+    &:last-child {
+      border-bottom: 0px;
+    }
+
+    .user-icon {
       width: 30px;
       height: 30px;
-    }
-  }
-
-  .info {
-    width: calc(100%- 70px);
-    height: 30px;
-    float: left;
-    padding-left: 5px;
-
-    div {
-      width: auto;
+      overflow: hidden;
       float: left;
-      padding-top: 8px;
+      border-radius: 30px;
+
+      img {
+        width: 30px;
+        height: 30px;
+        object-fit: cover;
+      }
     }
-  }
 
-  .icon {
-    width: 20%;
-    height: 30px;
-    float: right;
+    .info {
+      width: calc(100% - 90px);
+      height: 30px;
+      float: left;
+      padding-left: 8px;
 
-    i {
-      font-size: 16px;
-      padding-top: 7px;
+      div {
+        width: 100%;
+        float: left;
+        padding-top: 8px;
+
+        p {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+
+    .icon {
+      width: 45px;
+      height: 30px;
       float: right;
+
+      i {
+        font-size: 16px;
+        padding-top: 7px;
+        padding-left: 5px;
+        float: right;
+        color: #1f2226;
+      }
+
+      & > i.active {
+        color: #ffffff;
+      }
     }
   }
 </style>

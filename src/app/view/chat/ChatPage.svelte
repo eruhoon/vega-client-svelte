@@ -1,9 +1,9 @@
 <script>
-  import { WindowService } from '../../model/window/WindowService';
+  import { WindowService } from "../../model/window/WindowService";
 
-  import ChatInterface from './ChatInterface.svelte';
-  import ChatList from './ChatList.svelte';
-  import ChatUserList from './user/ChatUserList.svelte';
+  import ChatInterface from "./ChatInterface.svelte";
+  import ChatList from "./ChatList.svelte";
+  import ChatUserList from "./user/ChatUserList.svelte";
 
   let userListShow = false;
 
@@ -48,7 +48,7 @@
     position: absolute;
     left: 1px;
     bottom: 0;
-    width: calc(100% - 2px);
+    width: 100%;
     height: $chat-interface-height;
   }
 </style>

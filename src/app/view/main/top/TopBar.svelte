@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
-  import { ProfileService } from '../../../service/ProfileService';
-  import SettingMenu from './SettingMenu.svelte';
+  import { createEventDispatcher } from "svelte";
+  import { ProfileService } from "../../../service/ProfileService";
+  import SettingMenu from "./SettingMenu.svelte";
 
   const dispatch = createEventDispatcher();
-  const dispatchMenuClick = () => dispatch('menuclick');
+  const dispatchMenuClick = () => dispatch("menuclick");
   const onSettingMenuClick = () => {
     settingMenuActivated = !settingMenuActivated;
   };
 
   let settingMenuActivated = false;
-  let profileIcon = '';
-  $: settingMenuActiveClass = settingMenuActivated ? 'active' : 'deactive';
+  let profileIcon = "";
+  $: settingMenuActiveClass = settingMenuActivated ? "active" : "deactive";
 
   ProfileService.profileIcon.subscribe((icon) => {
     profileIcon = icon;
@@ -20,7 +20,7 @@
 
 <nav>
   <div class="part">
-    <button on:click={dispatchMenuClick}>
+    <button class="menu-btn" on:click={dispatchMenuClick}>
       <img class="logo" src="/assets/image/main/main-logo-60.png" alt="logo" />
     </button>
     <!--<button on:click={dispatchMenuClick}>
@@ -28,7 +28,7 @@
     </button>-->
   </div>
   <div class="part right">
-    <button>
+    <button class="alert-btn">
       <i class="material-icons">notifications</i>
       <div>
         <!-- {{ this.getUnreadNotificationCount() }} -->
@@ -40,7 +40,7 @@
   </div>
 </nav>
 
-<div class={'setting-menu ' + settingMenuActiveClass}><SettingMenu /></div>
+<div class={"setting-menu " + settingMenuActiveClass}><SettingMenu /></div>
 
 <style lang="scss">
   $icon-size: 40px;
@@ -76,6 +76,12 @@
       &:active {
         background-color: #1f2226;
       }
+      &.alert-btn {
+        margin-right: 10px;
+      }
+      &.menu-btn {
+        margin-left: 10px;
+      }
     }
   }
 
@@ -88,7 +94,6 @@
     height: 40px;
     cursor: pointer;
     border-radius: 20px;
-    margin-left: 10px;
 
     // 로고 레이어 80
     z-index: 80;

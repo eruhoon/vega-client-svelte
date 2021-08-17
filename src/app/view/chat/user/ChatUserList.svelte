@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { User } from '../../../model/user/User';
-  import { UserListService } from '../../../service/UserListService';
-  import ChatUserEntry from './ChatUserEntry.svelte';
+  import type { User } from "../../../model/user/User";
+  import { UserListService } from "../../../service/UserListService";
+  import ChatUserEntry from "./ChatUserEntry.svelte";
 
   let users: User[] = [];
 
@@ -18,14 +18,12 @@
   </div>
   <div class="cu-entry">
     {#each users as { icon, nickname, computer, mobile }}
-      <div class="chat-user-entry">
-        <ChatUserEntry
-          {icon}
-          {nickname}
-          isComputer={computer}
-          isMobile={mobile}
-        />
-      </div>
+      <ChatUserEntry
+        {icon}
+        {nickname}
+        isComputer={computer}
+        isMobile={mobile}
+      />
     {/each}
   </div>
 </div>
@@ -38,15 +36,17 @@
     width: 100%;
     height: 100%;
     overflow-y: scroll;
-    background: white;
+    background: #2a2f38;
     overflow: hidden;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    color: #ffffff;
   }
 
   .cu-list-title {
     width: 100%;
     height: $title-container-height;
+    background-color: #1f2226;
 
     * {
       margin: 0%;
@@ -57,6 +57,7 @@
       height: auto;
       padding: 6px;
       float: left;
+      font-weight: normal;
       line-height: 23px;
     }
     span {
@@ -65,17 +66,20 @@
       padding: 6px;
       display: block;
       float: right;
-    }
-    span > * {
-      width: auto;
-      height: auto;
-      display: inline-block;
-    }
-    span > p {
-      float: right;
-      padding: 2px 5px;
-      font-size: 12px;
-      line-height: 20px;
+      & > * {
+        width: auto;
+        height: auto;
+        display: inline-block;
+      }
+      & > p {
+        float: right;
+        padding: 2px 5px;
+        font-size: 12px;
+        line-height: 20px;
+      }
+      & > i {
+        float: right;
+      }
     }
   }
 

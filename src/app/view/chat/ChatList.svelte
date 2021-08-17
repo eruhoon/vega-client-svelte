@@ -1,5 +1,5 @@
 <script>
-  import ChatEntry from "./entry/ChatEntry.svelte";
+  import ChatEntry from './entry/ChatEntry.svelte';
 
   const chats = [1];
 </script>

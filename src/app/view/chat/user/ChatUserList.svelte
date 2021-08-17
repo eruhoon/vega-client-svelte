@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { User } from "../../../model/user/User";
-  import { UserListService } from "../../../service/UserListService";
-  import ChatUserEntry from "./ChatUserEntry.svelte";
+  import type { User } from '../../../model/user/User';
+  import { UserListService } from '../../../service/UserListService';
+  import ChatUserEntry from './ChatUserEntry.svelte';
 
   let users: User[] = [];
 
@@ -12,7 +12,7 @@
   <div class="cu-list-title">
     <h4>채팅 접속자</h4>
     <span>
-      <i class="material-icons"> person_pin </i>
+      <i class="fas fa-user-circle" />
       <p>{users.length}명</p>
     </span>
   </div>
@@ -79,6 +79,8 @@
       }
       & > i {
         float: right;
+        font-size: 20px;
+        padding: 2px;
       }
     }
   }
@@ -110,14 +112,5 @@
       -webkit-border-radius: 8px;
       border-radius: 8px;
     }
-  }
-
-  .chat-user-entry {
-    display: block;
-    width: calc(100% - 10px);
-    height: 30px;
-    padding: 5px;
-    font-size: 14px;
-    line-height: 20px;
   }
 </style>

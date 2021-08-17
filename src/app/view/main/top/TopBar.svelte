@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
-  import { ProfileService } from "../../../service/ProfileService";
-  import SettingMenu from "./SettingMenu.svelte";
+  import { createEventDispatcher } from 'svelte';
+  import { ProfileService } from '../../../service/ProfileService';
+  import SettingMenu from './SettingMenu.svelte';
 
   const dispatch = createEventDispatcher();
-  const dispatchMenuClick = () => dispatch("menuclick");
+  const dispatchMenuClick = () => dispatch('menuclick');
   const onSettingMenuClick = () => {
     settingMenuActivated = !settingMenuActivated;
   };
 
   let settingMenuActivated = false;
-  let profileIcon = "";
-  $: settingMenuActiveClass = settingMenuActivated ? "active" : "deactive";
+  let profileIcon = '';
+  $: settingMenuActiveClass = settingMenuActivated ? 'active' : 'deactive';
 
   ProfileService.profileIcon.subscribe((icon) => {
     profileIcon = icon;
@@ -29,7 +29,7 @@
   </div>
   <div class="part right">
     <button class="alert-btn">
-      <i class="material-icons">notifications</i>
+      <i class="fas fa-bell" />
       <div>
         <!-- {{ this.getUnreadNotificationCount() }} -->
       </div>
@@ -40,7 +40,7 @@
   </div>
 </nav>
 
-<div class={"setting-menu " + settingMenuActiveClass}><SettingMenu /></div>
+<div class={'setting-menu ' + settingMenuActiveClass}><SettingMenu /></div>
 
 <style lang="scss">
   $icon-size: 40px;
@@ -78,6 +78,10 @@
       }
       &.alert-btn {
         margin-right: 10px;
+
+        i {
+          font-size: 20px;
+        }
       }
       &.menu-btn {
         margin-left: 10px;

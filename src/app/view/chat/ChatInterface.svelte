@@ -29,19 +29,21 @@
     <!-- user list -->
     <div class="sticker-section">
       <div on:click={(_) => toggleUserList()}>
-        <i class="material-icons">assignment_ind</i>
+        <i class="fas fa-address-book" />
       </div>
       <!-- clear chat -->
-      <div><i class="material-icons">format_clear</i></div>
-      <div><i class="material-icons">vertical_align_bottom</i></div>
+      <div><i class="fas fa-remove-format" /></div>
+      <div><i class="fas fa-arrow-down" /></div>
     </div>
 
     <!-- right section -->
     <!-- imoticon -->
     <div class="sticker-section right">
-      <div class:hide={isConnected}><i class="material-icons">warning</i></div>
-      <div><i class="material-icons">insert_emoticon</i></div>
-      <div><i class="material-icons">photo</i></div>
+      <div class:hide={isConnected}>
+        <i class="fas fa-exclamation-triangle" />
+      </div>
+      <div><i class="far fa-smile" /></div>
+      <div><i class="fas fa-file-image" /></div>
     </div>
   </div>
   <input
@@ -80,8 +82,12 @@
       user-select: none;
 
       i {
-        font-size: 20px;
-        padding: 6px;
+        padding: 8px 6px;
+        font-size: 14px;
+        /* margin: -3px; */
+        display: inline-block;
+        /* position: relative; */
+        overflow: hidden;
       }
 
       &.hide {

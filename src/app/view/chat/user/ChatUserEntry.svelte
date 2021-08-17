@@ -1,10 +1,10 @@
 <script lang="ts">
-  export let nickname: string = "";
-  export let icon: string = "";
+  export let nickname: string = '';
+  export let icon: string = '';
   export let isMobile: boolean = false;
   export let isComputer: boolean = false;
 
-  const getFlagClass = (flag: boolean) => (flag ? "active" : "");
+  const getFlagClass = (flag: boolean) => (flag ? 'active' : '');
   $: mobileClass = getFlagClass(isMobile);
   $: computerClass = getFlagClass(isComputer);
 </script>
@@ -19,8 +19,8 @@
     </div>
   </div>
   <div class="icon">
-    <i class="material-icons {mobileClass}">phone_iphone</i>
-    <i class="material-icons {computerClass}">computer</i>
+    <i class="fas fa-mobile {mobileClass}" />
+    <i class="fas fa-desktop {computerClass}" />
   </div>
 </div>
 
@@ -72,14 +72,15 @@
     }
 
     .icon {
-      width: 45px;
+      width: 50px;
       height: 30px;
       float: right;
 
       i {
+        width: 20px;
+        text-align: center;
         font-size: 16px;
-        padding-top: 7px;
-        padding-left: 5px;
+        padding: 7px 0px 7px 5px;
         float: right;
         color: #1f2226;
       }

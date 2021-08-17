@@ -1,9 +1,9 @@
 <script>
-  import { WindowService } from "../../model/window/WindowService";
+  import { WindowService } from '../../model/window/WindowService';
 
-  import ChatInterface from "./ChatInterface.svelte";
-  import ChatList from "./ChatList.svelte";
-  import ChatUserList from "./user/ChatUserList.svelte";
+  import ChatInterface from './ChatInterface.svelte';
+  import ChatList from './ChatList.svelte';
+  import ChatUserList from './user/ChatUserList.svelte';
 
   let userListShow = false;
 

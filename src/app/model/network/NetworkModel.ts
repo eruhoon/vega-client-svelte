@@ -39,6 +39,9 @@ export class NetworkModel {
   }
 
   #toChatProperty(socketCurrentChat: SocketCurrentChat): ChatProperty {
-    return socketCurrentChat;
+    return {
+      icon: socketCurrentChat.icon,
+      nickname: socketCurrentChat.nickname,
+    };
   }
 }

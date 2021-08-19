@@ -23,7 +23,7 @@
             <i class="material-icons">smartphone</i>
           {:else if prop.senderType === 'BOT'}
             <i class="material-icons">bug_report</i>
-          {:else}{/if}
+          {/if}
         </span>
       </div>
     </div>

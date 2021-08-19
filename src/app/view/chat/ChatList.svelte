@@ -1,7 +1,11 @@
-<script>
+<script lang="ts">
+  import type { ChatProperty } from '../../model/chat/ChatProperty';
+  import { ChatService } from '../../model/chat/ChatService';
   import ChatEntry from './entry/ChatEntry.svelte';
 
-  const chats = [1];
+  let chats: ChatProperty[] = [];
+
+  ChatService.chats.subscribe((c) => (chats = c));
 </script>
 
 <div class="chat-list">

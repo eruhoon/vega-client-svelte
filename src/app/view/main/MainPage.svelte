@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { ChatService } from '../../model/chat/ChatService';
+
   import { SocketChatCommand } from '../../model/socket/command/SocketChatCommand';
   import { SocketLoginCommand } from '../../model/socket/command/SocketLoginCommand';
   import { SocketService } from '../../model/socket/SocketService';
@@ -21,7 +23,6 @@
   });
 
   socket.onReceived((command) => {
-    console.log(command);
     switch (command.commandType) {
       case 'applyMyStatus':
         ProfileService.profileIcon.set(command.response.icon);
@@ -29,6 +30,9 @@
         break;
       case 'applyCurrentUserList':
         UserListService.users.set(command.response);
+        break;
+      case 'applyCurrentChatList':
+        ChatService.chats.set(command.response);
         break;
     }
   });

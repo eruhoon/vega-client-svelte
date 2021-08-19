@@ -16,7 +16,9 @@
 </script>
 
 <div class="chat-page">
-  <ChatList />
+  <div class="chat-list">
+    <ChatList />
+  </div>
   <div class="chat-user-list" class:hide={!userListShow}>
     <ChatUserList />
   </div>

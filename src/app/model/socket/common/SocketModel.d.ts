@@ -37,7 +37,7 @@ type BaseSocketCommand<T, Request, Response> = {
   response: Response;
 };
 
-type SocketChatCommand = BaseSocketCommand<'chat', any, any>;
+type SocketChatCommand = BaseSocketCommand<'chat', null, SocketCurrentChat>;
 
 type SocketMyStatus = {
   coin: number;

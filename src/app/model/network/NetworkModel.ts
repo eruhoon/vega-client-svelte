@@ -34,6 +34,11 @@ export class NetworkModel {
             command.response.map((e) => this.#toChatProperty(e))
           );
           break;
+        case 'chat':
+          ChatService.chats.update((prev) => [
+            ...prev,
+            this.#toChatProperty(command.response),
+          ]);
       }
     });
   }

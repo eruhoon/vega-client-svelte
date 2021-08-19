@@ -3,11 +3,16 @@
 
   import ChatInterface from './ChatInterface.svelte';
   import ChatList from './ChatList.svelte';
+  import EmojiAttachView from './emoji/EmojiAttachView.svelte';
   import ChatUserList from './user/ChatUserList.svelte';
 
   let userListShow = false;
+  let emojiAttachViewShow = false;
 
   WindowService.userListShow.subscribe((show) => (userListShow = show));
+  WindowService.emojiAttachViewShow.subscribe(
+    (show) => (emojiAttachViewShow = show)
+  );
 </script>
 
 <div class="chat-page">
@@ -15,8 +20,9 @@
   <div class="chat-user-list" class:hide={!userListShow}>
     <ChatUserList />
   </div>
-  <!-- 
-    <emoji-attach-view *ngIf="isEmojiAttachViewShow()" />-->
+  <div class="emoji-attach" class:hide={!emojiAttachViewShow}>
+    <EmojiAttachView />
+  </div>
   <div class="chat-interface"><ChatInterface /></div>
 </div>
 
@@ -32,6 +38,19 @@
   }
 
   .chat-user-list {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: $chat-interface-height;
+    width: 100%;
+    height: 300px;
+
+    &.hide {
+      display: none;
+    }
+  }
+
+  .emoji-attach {
     display: block;
     position: absolute;
     left: 0;

@@ -5,6 +5,7 @@
 
   let message: string = '';
   let userListShow = false;
+  let emojiAttachViewShow = false;
   let isConnected = false;
 
   const onKeyDown = ({ key }: KeyboardEvent) => {
@@ -18,6 +19,12 @@
     const next = !userListShow;
     userListShow = next;
     WindowService.userListShow.set(next);
+  };
+
+  const toggleEmojiAttachView = () => {
+    const next = !emojiAttachViewShow;
+    emojiAttachViewShow = next;
+    WindowService.emojiAttachViewShow.set(next);
   };
 
   SocketService.isConnected.subscribe((v) => (isConnected = v));
@@ -42,7 +49,9 @@
       <div class:hide={isConnected}>
         <i class="fas fa-exclamation-triangle" />
       </div>
-      <div><i class="far fa-smile" /></div>
+      <div on:click={(_) => toggleEmojiAttachView()}>
+        <i class="far fa-smile" />
+      </div>
       <div><i class="fas fa-file-image" /></div>
     </div>
   </div>

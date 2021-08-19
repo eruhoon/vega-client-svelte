@@ -20,7 +20,7 @@
 
 <nav>
   <div class="part">
-    <button on:click={dispatchMenuClick}>
+    <button class="menu-btn" on:click={dispatchMenuClick}>
       <img class="logo" src="/assets/image/main/main-logo-60.png" alt="logo" />
     </button>
     <!--<button on:click={dispatchMenuClick}>
@@ -28,8 +28,8 @@
     </button>-->
   </div>
   <div class="part right">
-    <button>
-      <i class="material-icons">notifications</i>
+    <button class="alert-btn">
+      <i class="fas fa-bell" />
       <div>
         <!-- {{ this.getUnreadNotificationCount() }} -->
       </div>
@@ -76,6 +76,16 @@
       &:active {
         background-color: #1f2226;
       }
+      &.alert-btn {
+        margin-right: 10px;
+
+        i {
+          font-size: 20px;
+        }
+      }
+      &.menu-btn {
+        margin-left: 10px;
+      }
     }
   }
 
@@ -88,7 +98,6 @@
     height: 40px;
     cursor: pointer;
     border-radius: 20px;
-    margin-left: 10px;
 
     // 로고 레이어 80
     z-index: 80;

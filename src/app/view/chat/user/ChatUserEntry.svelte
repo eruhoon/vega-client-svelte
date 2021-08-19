@@ -9,57 +9,85 @@
   $: computerClass = getFlagClass(isComputer);
 </script>
 
-<div>
+<div class="chat-user-entry">
   <div class="user-icon">
     <img src={icon} alt={nickname} />
   </div>
   <div class="info">
     <div class="nickname">
-      <span>{nickname}</span>
+      <p>{nickname}</p>
     </div>
   </div>
   <div class="icon">
-    <i class="material-icons {mobileClass}">phone_iphone</i>
-    <i class="material-icons {computerClass}">computer</i>
+    <i class="fas fa-mobile {mobileClass}" />
+    <i class="fas fa-desktop {computerClass}" />
   </div>
 </div>
 
 <style lang="scss">
-  .user-icon {
-    width: 30px;
+  .chat-user-entry {
+    display: block;
+    width: calc(100% - 10px);
     height: 30px;
-    overflow: hidden;
-    float: left;
-    border-radius: 30px;
+    padding: 5px;
+    font-size: 14px;
+    line-height: 20px;
+    border-bottom: 1px solid #1f2226;
 
-    img {
+    &:last-child {
+      border-bottom: 0px;
+    }
+
+    .user-icon {
       width: 30px;
       height: 30px;
-    }
-  }
-
-  .info {
-    width: calc(100%- 70px);
-    height: 30px;
-    float: left;
-    padding-left: 5px;
-
-    div {
-      width: auto;
+      overflow: hidden;
       float: left;
-      padding-top: 8px;
+      border-radius: 30px;
+
+      img {
+        width: 30px;
+        height: 30px;
+        object-fit: cover;
+      }
     }
-  }
 
-  .icon {
-    width: 20%;
-    height: 30px;
-    float: right;
+    .info {
+      width: calc(100% - 90px);
+      height: 30px;
+      float: left;
+      padding-left: 8px;
 
-    i {
-      font-size: 16px;
-      padding-top: 7px;
+      div {
+        width: 100%;
+        float: left;
+        padding-top: 8px;
+
+        p {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+
+    .icon {
+      width: 50px;
+      height: 30px;
       float: right;
+
+      i {
+        width: 20px;
+        text-align: center;
+        font-size: 16px;
+        padding: 7px 0px 7px 5px;
+        float: right;
+        color: #1f2226;
+      }
+
+      & > i.active {
+        color: #ffffff;
+      }
     }
   }
 </style>

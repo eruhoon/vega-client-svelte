@@ -12,20 +12,18 @@
   <div class="cu-list-title">
     <h4>채팅 접속자</h4>
     <span>
-      <i class="material-icons"> person_pin </i>
+      <i class="fas fa-user-circle" />
       <p>{users.length}명</p>
     </span>
   </div>
   <div class="cu-entry">
     {#each users as { icon, nickname, computer, mobile }}
-      <div class="chat-user-entry">
-        <ChatUserEntry
-          {icon}
-          {nickname}
-          isComputer={computer}
-          isMobile={mobile}
-        />
-      </div>
+      <ChatUserEntry
+        {icon}
+        {nickname}
+        isComputer={computer}
+        isMobile={mobile}
+      />
     {/each}
   </div>
 </div>
@@ -38,15 +36,17 @@
     width: 100%;
     height: 100%;
     overflow-y: scroll;
-    background: white;
+    background: #2a2f38;
     overflow: hidden;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    color: #ffffff;
   }
 
   .cu-list-title {
     width: 100%;
     height: $title-container-height;
+    background-color: #1f2226;
 
     * {
       margin: 0%;
@@ -57,6 +57,7 @@
       height: auto;
       padding: 6px;
       float: left;
+      font-weight: normal;
       line-height: 23px;
     }
     span {
@@ -65,17 +66,22 @@
       padding: 6px;
       display: block;
       float: right;
-    }
-    span > * {
-      width: auto;
-      height: auto;
-      display: inline-block;
-    }
-    span > p {
-      float: right;
-      padding: 2px 5px;
-      font-size: 12px;
-      line-height: 20px;
+      & > * {
+        width: auto;
+        height: auto;
+        display: inline-block;
+      }
+      & > p {
+        float: right;
+        padding: 2px 5px;
+        font-size: 12px;
+        line-height: 20px;
+      }
+      & > i {
+        float: right;
+        font-size: 20px;
+        padding: 2px;
+      }
     }
   }
 
@@ -106,14 +112,5 @@
       -webkit-border-radius: 8px;
       border-radius: 8px;
     }
-  }
-
-  .chat-user-entry {
-    display: block;
-    width: calc(100% - 10px);
-    height: 30px;
-    padding: 5px;
-    font-size: 14px;
-    line-height: 20px;
   }
 </style>

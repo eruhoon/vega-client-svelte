@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
-  import { LoginCommand } from "../../model/login/LoginCommand";
-  import { MyStatus } from "../../model/status/MyStatus";
-  import BackgroundSlider from "./BackgroundSlider.svelte";
+  import { createEventDispatcher } from 'svelte';
+  import { LoginCommand } from '../../model/login/LoginCommand';
+  import { MyStatus } from '../../model/status/MyStatus';
+  import BackgroundSlider from './BackgroundSlider.svelte';
 
-  const EVENT_LOGIN = "login";
+  const EVENT_LOGIN = 'login';
 
-  let id = "";
-  let pw = "";
+  let id = '';
+  let pw = '';
 
   const dispatch = createEventDispatcher();
 
@@ -16,7 +16,7 @@
       if (result.result) {
         dispatch(EVENT_LOGIN, result.hash);
       } else {
-        console.log("failed");
+        console.log('failed');
       }
     });
   };
@@ -77,9 +77,9 @@
 
 <style lang="scss">
   @font-face {
-    font-family: "BMJUA";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff")
-      format("woff");
+    font-family: 'BMJUA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff')
+      format('woff');
     font-weight: normal;
     font-style: normal;
   }
@@ -146,7 +146,7 @@
             margin-bottom: 15px;
             background-color: #ff4081;
             padding: 10px;
-            font-family: "BMJUA", "NEXON Lv2 Gothic Bold", sans-serif;
+            font-family: 'BMJUA', 'NEXON Lv2 Gothic Bold', sans-serif;
             text-align: center;
             letter-spacing: 2px;
           }

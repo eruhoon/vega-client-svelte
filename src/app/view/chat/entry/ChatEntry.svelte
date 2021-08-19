@@ -7,7 +7,7 @@
 <div class="chat-entry">
   <div class="icon-section">
     <div class="icon">
-      <img src={prop.icon} />
+      <img src={prop.icon} alt="프로필" />
     </div>
   </div>
   <div class="message-section">
@@ -79,6 +79,7 @@
         flex: 0;
       }
 
+      /*
       .level {
         width: auto;
         height: 18px;
@@ -88,16 +89,16 @@
         padding: 0px 7px;
         border-radius: 8px;
         background-color: #9e9e9e;
-        color: #424242;
+        color: #ffffff;
       }
-
+      */
       .nickname {
         width: calc(100% - 100px);
         font-size: 14px;
         line-height: 20px;
         padding-left: 4px;
         font-weight: 300;
-        color: #eeeeee;
+        color: #ffffff;
         padding-top: 0px;
         flex: 1;
 
@@ -117,9 +118,11 @@
     }
   }
 
+  /*
   .chat-entry.data-save {
     .message-section {
       width: 100%;
     }
   }
+  */
 </style>

@@ -48,7 +48,7 @@
     position: absolute;
     left: 1px;
     bottom: 0;
-    width: calc(100% - 2px);
+    width: 100%;
     height: $chat-interface-height;
   }
 </style>

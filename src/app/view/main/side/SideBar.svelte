@@ -1,24 +1,24 @@
 <script>
   export let visible = false;
-  $: visibleClass = visible ? "show" : "hide";
+  $: visibleClass = visible ? 'show' : 'hide';
 </script>
 
-<div class={"side-bar " + visibleClass}>
+<div class={'side-bar ' + visibleClass}>
   <ul class="main">
     <li class="main">
-      <i class="material-icons">message</i>
+      <i class="far fa-comments" />
       <span>채팅</span>
     </li>
     <li class="main">
-      <i class="material-icons">event_note</i>
+      <i class="fas fa-book" />
       <span>메모</span>
     </li>
     <li class="main">
-      <i class="material-icons">image</i>
+      <i class="fas fa-images" />
       <span>이미지 갤러리</span>
     </li>
     <li class="main">
-      <i class="material-icons">tv</i>
+      <i class="fas fa-broadcast-tower" />
       <span>방송추가</span>
     </li>
   </ul>
@@ -108,7 +108,7 @@
       }
 
       span {
-        font-size: 12px;
+        font-size: 14px;
         line-height: 14px;
         padding-top: 0px;
       }

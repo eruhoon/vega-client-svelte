@@ -1,1 +1,4 @@
-export type ChatProperty = {};
+export type ChatProperty = {
+  icon: string;
+  nickname: string;
+};

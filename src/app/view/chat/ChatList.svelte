@@ -2,15 +2,24 @@
   import type { ChatProperty } from '../../model/chat/ChatProperty';
   import { ChatService } from '../../model/chat/ChatService';
   import ChatEntry from './entry/ChatEntry.svelte';
+  import type { ChatEntryProp } from './entry/ChatEntryProp';
 
   let chats: ChatProperty[] = [];
+
+  $: props = chats.map<ChatEntryProp>((c) => {
+    return {
+      icon: c.icon,
+      nickname: c.nickname,
+      senderType: 'PC',
+    };
+  });
 
   ChatService.chats.subscribe((c) => (chats = c));
 </script>
 
 <div class="chat-list">
-  {#each chats as chat}
-    <ChatEntry />
+  {#each props as prop}
+    <ChatEntry {prop} />
   {/each}
 </div>
 

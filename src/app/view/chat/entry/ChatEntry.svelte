@@ -1,7 +1,11 @@
 <script lang="ts">
-  import { ChatEntryProp } from './ChatEntryProp';
+  import type { ChatEntryProp } from './ChatEntryProp';
 
-  const prop: ChatEntryProp = new ChatEntryProp();
+  export let prop: ChatEntryProp = {
+    icon: '',
+    nickname: 'untitled',
+    senderType: 'PC',
+  };
 </script>
 
 <div class="chat-entry">

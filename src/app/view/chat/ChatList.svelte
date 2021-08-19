@@ -1,10 +1,13 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+
   import type { ChatProperty } from '../../model/chat/ChatProperty';
   import { ChatService } from '../../model/chat/ChatService';
   import ChatEntry from './entry/ChatEntry.svelte';
   import type { ChatEntryProp } from './entry/ChatEntryProp';
 
   let chats: ChatProperty[] = [];
+  let rootView: Element;
 
   $: props = chats.map<ChatEntryProp>((c) => {
     return {
@@ -14,10 +17,21 @@
     };
   });
 
-  ChatService.chats.subscribe((c) => (chats = c));
+  const scrollDown = () => {
+    setTimeout(() => {
+      rootView.scrollTop = rootView.scrollHeight;
+    });
+  };
+
+  onMount(() => {
+    ChatService.chats.subscribe((c) => {
+      chats = c;
+      scrollDown();
+    });
+  });
 </script>
 
-<div class="chat-list">
+<div class="chat-list" bind:this={rootView}>
   {#each props as prop}
     <div class="chat-entry">
       <ChatEntry {prop} />

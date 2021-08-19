@@ -1,41 +1,13 @@
 <script lang="ts">
-  import { ChatService } from '../../model/chat/ChatService';
-
-  import { SocketChatCommand } from '../../model/socket/command/SocketChatCommand';
-  import { SocketLoginCommand } from '../../model/socket/command/SocketLoginCommand';
-  import { SocketService } from '../../model/socket/SocketService';
-  import { WebSocketModel } from '../../model/socket/websocket/WebSocketModel';
-  import { MyStatus } from '../../model/status/MyStatus';
-  import { ProfileService } from '../../service/ProfileService';
-  import { UserListService } from '../../service/UserListService';
+  import { NetworkModel } from '../../model/network/NetworkModel';
   import ChatPage from '../chat/ChatPage.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
 
   let sideBarVisible = false;
 
-  const socket = new WebSocketModel();
-  SocketService.chat = new SocketChatCommand(socket);
-  SocketService.login = new SocketLoginCommand(socket);
-  socket.setOnOpen(() => {
-    SocketService.isConnected.set(true);
-    SocketService.login?.execute(MyStatus.privateKey);
-  });
-
-  socket.onReceived((command) => {
-    switch (command.commandType) {
-      case 'applyMyStatus':
-        ProfileService.profileIcon.set(command.response.icon);
-        ProfileService.nickname.set(command.response.nickname);
-        break;
-      case 'applyCurrentUserList':
-        UserListService.users.set(command.response);
-        break;
-      case 'applyCurrentChatList':
-        ChatService.chats.set(command.response);
-        break;
-    }
-  });
+  const network = new NetworkModel();
+  network.init();
 
   const onMenuClick = () => {
     sideBarVisible = !sideBarVisible;

@@ -19,7 +19,9 @@
 
 <div class="chat-list">
   {#each props as prop}
-    <ChatEntry {prop} />
+    <div class="chat-entry">
+      <ChatEntry {prop} />
+    </div>
   {/each}
 </div>
 
@@ -27,7 +29,7 @@
   .chat-list {
     position: relative;
     width: 100%;
-    height: calc(100% - 80px);
+    height: 100%;
     overflow-y: scroll;
     background-color: #2a2f38;
 
@@ -58,5 +60,10 @@
       -webkit-border-radius: 8px;
       border-radius: 8px;
     }
+  }
+
+  .chat-entry {
+    width: 100%;
+    max-height: 300px;
   }
 </style>

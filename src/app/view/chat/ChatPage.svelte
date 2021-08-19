@@ -39,6 +39,14 @@
     height: 100%;
   }
 
+  .chat-list {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: calc(100% - #{$chat-interface-height});
+  }
+
   .chat-user-list {
     display: block;
     position: absolute;

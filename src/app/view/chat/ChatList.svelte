@@ -50,15 +50,4 @@
       border-radius: 8px;
     }
   }
-
-  chat-entry {
-    display: block;
-    width: 100%;
-    min-height: 50px;
-
-    border-bottom: 1px solid #1f2226;
-    &:last-child {
-      border-bottom-color: #1f2226;
-    }
-  }
 </style>

@@ -6,6 +6,7 @@
   import ChatEntry from './entry/ChatEntry.svelte';
   import type { ChatEntryProp } from './entry/ChatEntryProp';
 
+  let scrollLock: boolean = false;
   let chats: ChatProperty[] = [];
   let rootView: Element;
 
@@ -17,7 +18,17 @@
     };
   });
 
+  const onScroll = (e: any) => {
+    const threashold = 500;
+    const { scrollTop, scrollHeight } = rootView;
+    const diff = scrollHeight - scrollTop;
+    ChatService.scrollLock.set(diff > threashold);
+  };
+
   const scrollDown = () => {
+    if (scrollLock) {
+      return;
+    }
     setTimeout(() => {
       rootView.scrollTop = rootView.scrollHeight;
     });
@@ -31,7 +42,7 @@
   });
 </script>
 
-<div class="chat-list" bind:this={rootView}>
+<div class="chat-list" bind:this={rootView} on:scroll={(e) => onScroll(e)}>
   {#each props as prop}
     <div class="chat-entry">
       <ChatEntry {prop} />

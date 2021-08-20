@@ -1,1 +1,5 @@
-export type ChatMessage = {};
+export type ChatMessage = {
+  type: string;
+  hash: string;
+  timestamp: string;
+};

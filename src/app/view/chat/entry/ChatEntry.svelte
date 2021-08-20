@@ -1,11 +1,16 @@
 <script lang="ts">
+  import type { ChatMessage } from '../../../model/chat/ChatMessage';
+
   import type { ChatEntryProp } from './ChatEntryProp';
+  import ChatMessageEntry from './ChatMessageEntry.svelte';
 
   export let prop: ChatEntryProp = {
     icon: '',
     nickname: 'untitled',
     senderType: 'PC',
+    messages: [],
   };
+  export let messages: ChatMessage[] = [];
 </script>
 
 <div class="chat-entry">
@@ -27,11 +32,11 @@
         </span>
       </div>
     </div>
-    <!-- <chat-message-entry
-      *ngFor="let message of chat.getMessages()"
-      [message]="message"
-    >
-    </chat-message-entry> -->
+    {#each messages as message}
+      <div class="chat-message-entry">
+        <ChatMessageEntry {message} />
+      </div>
+    {/each}
   </div>
 </div>
 

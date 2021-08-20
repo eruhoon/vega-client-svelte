@@ -42,7 +42,9 @@ export class ChatAdapter {
 
   #createChatMessage(socketChat: SocketCurrentChat): ChatMessage {
     return {
-      message: socketChat.msg,
+      type: socketChat.type,
+      hash: socketChat.hash,
+      timestamp: socketChat.timestamp,
     };
   }
 

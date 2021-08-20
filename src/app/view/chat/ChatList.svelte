@@ -15,6 +15,7 @@
       icon: c.sender.icon,
       nickname: c.sender.nickname,
       senderType: c.sender.type,
+      messages: c.messages,
     };
   });
 
@@ -46,7 +47,7 @@
 <div class="chat-list" bind:this={rootView} on:scroll={(e) => onScroll(e)}>
   {#each props as prop}
     <div class="chat-entry">
-      <ChatEntry {prop} />
+      <ChatEntry {prop} messages={prop.messages} />
     </div>
   {/each}
 </div>

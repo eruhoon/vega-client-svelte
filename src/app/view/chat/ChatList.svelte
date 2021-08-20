@@ -12,9 +12,9 @@
 
   $: props = chats.map<ChatEntryProp>((c) => {
     return {
-      icon: c.icon,
-      nickname: c.nickname,
-      senderType: c.senderType,
+      icon: c.sender.icon,
+      nickname: c.sender.nickname,
+      senderType: c.sender.type,
     };
   });
 

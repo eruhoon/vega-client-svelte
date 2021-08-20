@@ -1,16 +1,16 @@
 import { ProfileService } from '../../service/ProfileService';
 import { UserListService } from '../../service/UserListService';
-import type { ChatProperty } from '../chat/ChatProperty';
 import { ChatService } from '../chat/ChatService';
 import { SocketChatCommand } from '../socket/command/SocketChatCommand';
 import { SocketLoginCommand } from '../socket/command/SocketLoginCommand';
-import type { SocketCurrentChat } from '../socket/common/SocketModel';
 import { SocketService } from '../socket/SocketService';
 import { WebSocketModel } from '../socket/websocket/WebSocketModel';
 import { MyStatus } from '../status/MyStatus';
+import { ChatAdapter } from './chat/ChatAdapter';
 
 export class NetworkModel {
   #socket = new WebSocketModel();
+  #chatAdapter = new ChatAdapter();
 
   init(): void {
     SocketService.chat = new SocketChatCommand(this.#socket);
@@ -30,29 +30,13 @@ export class NetworkModel {
           UserListService.users.set(command.response);
           break;
         case 'applyCurrentChatList':
-          ChatService.chats.set(
-            command.response.map((e) => this.#toChatProperty(e))
-          );
+          ChatService.chats.set(this.#chatAdapter.toChats(command.response));
           break;
         case 'chat':
-          ChatService.chats.update((prev) => [
-            ...prev,
-            this.#toChatProperty(command.response),
-          ]);
+          ChatService.chats.update((prev) =>
+            this.#chatAdapter.addChat(prev, command.response)
+          );
       }
     });
-  }
-
-  #toChatProperty(socketCurrentChat: SocketCurrentChat): ChatProperty {
-    const senderType = socketCurrentChat.isMobile
-      ? 'MOBILE'
-      : socketCurrentChat.level === 100
-      ? 'BOT'
-      : 'PC';
-    return {
-      icon: socketCurrentChat.icon,
-      nickname: socketCurrentChat.nickname,
-      senderType,
-    };
   }
 }

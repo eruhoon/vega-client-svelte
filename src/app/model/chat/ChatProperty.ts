@@ -1,5 +1,7 @@
+import type { ChatMessage } from './ChatMessage';
+import type { ChatSender } from './ChatSender';
+
 export type ChatProperty = {
-  icon: string;
-  nickname: string;
-  senderType: 'PC' | 'BOT' | 'MOBILE';
+  sender: ChatSender;
+  messages: ChatMessage[];
 };

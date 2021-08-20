@@ -14,7 +14,7 @@
     return {
       icon: c.icon,
       nickname: c.nickname,
-      senderType: 'PC',
+      senderType: c.senderType,
     };
   });
 

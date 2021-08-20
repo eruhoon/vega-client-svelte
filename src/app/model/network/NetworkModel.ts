@@ -44,9 +44,15 @@ export class NetworkModel {
   }
 
   #toChatProperty(socketCurrentChat: SocketCurrentChat): ChatProperty {
+    const senderType = socketCurrentChat.isMobile
+      ? 'MOBILE'
+      : socketCurrentChat.level === 100
+      ? 'BOT'
+      : 'PC';
     return {
       icon: socketCurrentChat.icon,
       nickname: socketCurrentChat.nickname,
+      senderType,
     };
   }
 }

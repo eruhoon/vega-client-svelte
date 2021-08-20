@@ -125,15 +125,15 @@
   }
 
   .input-box {
-    width: calc(100% - 20px);
-    height: 30px;
+    width: calc(100% - 0px);
+    height: 47px;
     padding: 10px;
+    margin: 0%;
 
     background: #2a2f38;
-    font-size: 14px;
+    font-size: 16px;
     color: #ffffff;
     border: none;
-    border-radius: 5px;
     outline: none;
   }
 </style>

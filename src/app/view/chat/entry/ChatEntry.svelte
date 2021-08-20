@@ -25,9 +25,9 @@
         <span>{prop.nickname}</span>
         <span class="type">
           {#if prop.senderType === 'MOBILE'}
-            <i class="material-icons">smartphone</i>
+            <i class="fas fa-mobile" />
           {:else if prop.senderType === 'BOT'}
-            <i class="material-icons">bug_report</i>
+            <i class="fas fa-bug" />
           {/if}
         </span>
       </div>
@@ -45,8 +45,13 @@
     position: relative;
     display: flex;
     width: 100%;
-    height: 100%;
-    overflow-x: hidden;
+    height: auto;
+    border-bottom: 1px solid #1c2027;
+    padding-bottom: 2px;
+    &:last-child {
+      padding-bottom: 0px;
+      border-bottom: 0px;
+    }
   }
 
   .icon-section {
@@ -60,12 +65,13 @@
     .icon {
       width: 44px;
       height: 44px;
+      object-fit: cover;
 
       img {
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        border: solid 2px #393939;
+        border: 2px solid #333943;
       }
     }
   }
@@ -92,7 +98,6 @@
         width: calc(100% - 100px);
         font-size: 14px;
         line-height: 20px;
-        padding-left: 4px;
         font-weight: 300;
         color: #ffffff;
         padding-top: 0px;

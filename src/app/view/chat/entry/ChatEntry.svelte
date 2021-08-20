@@ -88,19 +88,6 @@
         flex: 0;
       }
 
-      /*
-      .level {
-        width: auto;
-        height: 18px;
-        font-size: 10px;
-        line-height: 20px;
-        font-weight: bolder;
-        padding: 0px 7px;
-        border-radius: 8px;
-        background-color: #9e9e9e;
-        color: #ffffff;
-      }
-      */
       .nickname {
         width: calc(100% - 100px);
         font-size: 14px;
@@ -126,12 +113,4 @@
       }
     }
   }
-
-  /*
-  .chat-entry.data-save {
-    .message-section {
-      width: 100%;
-    }
-  }
-  */
 </style>

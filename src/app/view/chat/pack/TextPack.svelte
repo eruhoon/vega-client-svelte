@@ -2,4 +2,18 @@
   export let body = '';
 </script>
 
-<div>{body}</div>
+<div>
+  <p>{body}</p>
+</div>
+
+<style lang="scss">
+  div {
+    width: 100%;
+    position: relative;
+    p {
+      width: 100%;
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+</style>

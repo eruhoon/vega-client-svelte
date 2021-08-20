@@ -23,18 +23,15 @@
 
   .container {
     position: relative;
-    background: #2a2f38;
     width: 100%;
     height: 100%;
     overflow: hidden;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    color: #ffffff;
 
     .title {
       width: 100%;
       height: $title-container-height;
-      background-color: #1f2226;
 
       * {
         margin: 0%;
@@ -92,6 +89,44 @@
           text-align: center;
           border-radius: 3px;
           overflow: hidden;
+        }
+      }
+    }
+  }
+
+  // 컬러 스크롤링 컬러셋
+  .container {
+    background: #2a2f38;
+    color: #ffffff;
+
+    .title {
+      background-color: #1f2226;
+    }
+    .emoji-list {
+      scrollbar-color: #ff4081 #2a2f38;
+      scrollbar-width: thin;
+      &::-webkit-scrollbar {
+        border-color: #2a2f38;
+      }
+      &::-webkit-scrollbar-button:start:decrement,
+      &::-webkit-scrollbar-button:end:increment {
+        background: #2a2f38;
+      }
+      &::-webkit-scrollbar-track {
+        background: #2a2f38;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #ff4081;
+      }
+      .def-emoji-list {
+        background-color: #2a2f38;
+        span {
+          &:hover {
+            background: #ff4081;
+          }
+          &:active {
+            background: #ff4081;
+          }
         }
       }
     }

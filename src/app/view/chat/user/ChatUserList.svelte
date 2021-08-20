@@ -113,4 +113,34 @@
       border-radius: 8px;
     }
   }
+
+  // 스크롤
+  .cu-entry {
+    scrollbar-color: #ff4081 #2a2f38;
+    scrollbar-width: thin;
+    &::-webkit-scrollbar {
+      border-color: #2a2f38;
+    }
+    &::-webkit-scrollbar-button:start:decrement,
+    &::-webkit-scrollbar-button:end:increment {
+      background: #2a2f38;
+    }
+    &::-webkit-scrollbar-track {
+      background: #2a2f38;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #ff4081;
+    }
+    .def-emoji-list {
+      background-color: #2a2f38;
+      span {
+        &:hover {
+          background: #ff4081;
+        }
+        &:active {
+          background: #ff4081;
+        }
+      }
+    }
+  }
 </style>

@@ -45,6 +45,7 @@ export class ChatAdapter {
       type: socketChat.type,
       hash: socketChat.hash,
       timestamp: socketChat.timestamp,
+      body: socketChat.msg.response,
     };
   }
 

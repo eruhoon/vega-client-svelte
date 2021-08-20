@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
+  import TextPack from '../pack/TextPack.svelte';
 
   export let message: ChatMessage;
 
@@ -20,7 +21,13 @@
 </script>
 
 <div class="container">
-  <div class="body">{message.hash}</div>
+  <div class="body">
+    {#if message.type === 'chat'}
+      <TextPack body={message.body} />
+    {:else}
+      {message.type}
+    {/if}
+  </div>
   <div class="footer">{timestamp}</div>
 </div>
 
@@ -30,6 +37,7 @@
   .body {
     position: relative;
     word-wrap: break-word;
+    color: $foreground-color;
   }
   .footer {
     font-size: 8px;

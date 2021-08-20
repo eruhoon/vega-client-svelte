@@ -33,6 +33,7 @@
       rootView.scrollTop = rootView.scrollHeight;
     });
   };
+  ChatService.scrollDown.set(scrollDown);
 
   onMount(() => {
     ChatService.chats.subscribe((c) => {

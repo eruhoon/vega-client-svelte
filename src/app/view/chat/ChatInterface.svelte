@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { ChatService } from '../../model/chat/ChatService';
   import { SocketService } from '../../model/socket/SocketService';
   import { MyStatus } from '../../model/status/MyStatus';
   import { WindowService } from '../../model/window/WindowService';
@@ -7,6 +8,7 @@
   let userListShow = false;
   let emojiAttachViewShow = false;
   let isConnected = false;
+  let isScrollLock = false;
 
   const onKeyDown = ({ key }: KeyboardEvent) => {
     if (key === 'Enter' && message.trim().length !== 0) {
@@ -27,7 +29,11 @@
     WindowService.emojiAttachViewShow.set(next);
   };
 
+  let scrollDown = () => {};
+
   SocketService.isConnected.subscribe((v) => (isConnected = v));
+  ChatService.scrollLock.subscribe((v) => (isScrollLock = v));
+  ChatService.scrollDown.subscribe((v) => (scrollDown = v));
 </script>
 
 <div class="chat-interface">
@@ -40,7 +46,9 @@
       </div>
       <!-- clear chat -->
       <div><i class="fas fa-remove-format" /></div>
-      <div><i class="fas fa-arrow-down" /></div>
+      <div class:hide={!isScrollLock} on:click={(_) => scrollDown()}>
+        <i class="fas fa-arrow-down" />
+      </div>
     </div>
 
     <!-- right section -->

@@ -1,6 +1,7 @@
 import { ProfileService } from '../../service/ProfileService';
 import { UserListService } from '../../service/UserListService';
 import { ChatService } from '../chat/ChatService';
+import { SessionService } from '../session/SessionService';
 import { SocketChatCommand } from '../socket/command/SocketChatCommand';
 import { SocketLoginCommand } from '../socket/command/SocketLoginCommand';
 import { SocketService } from '../socket/SocketService';
@@ -16,7 +17,7 @@ export class NetworkModel {
     SocketService.login = new SocketLoginCommand(this.#socket);
     this.#socket.setOnOpen(() => {
       SocketService.isConnected.set(true);
-      const privateKey = sessionStorage.getItem('privateKey') || null;
+      const privateKey = SessionService.model.privateKey;
       SocketService.login?.execute(privateKey);
     });
 

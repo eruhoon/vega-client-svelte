@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { SessionService } from './app/model/session/SessionService';
   import { MyStatus } from './app/model/status/MyStatus';
 
   import LoginPage from './app/view/login/LoginPage.svelte';
@@ -8,17 +9,13 @@
   let userHash: string | null = null;
 
   onMount(() => {
-    // console.log(userHash);
-    // console.log(userHash !== null && userHash.length > 0);
-
-    userHash = sessionStorage.getItem('privateKey') || null;
+    userHash = SessionService.model.privateKey;
   });
 
   const onLogin = (e: CustomEvent<string>) => {
     const hash = e.detail;
     userHash = hash;
-    MyStatus.privateKey = hash;
-    sessionStorage.setItem('privateKey', hash);
+    SessionService.model.privateKey = hash;
   };
 </script>
 

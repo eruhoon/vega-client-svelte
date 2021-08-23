@@ -1,7 +1,7 @@
 <script lang="ts">
   import { ChatService } from '../../model/chat/ChatService';
+  import { SessionService } from '../../model/session/SessionService';
   import { SocketService } from '../../model/socket/SocketService';
-  import { MyStatus } from '../../model/status/MyStatus';
   import { WindowService } from '../../model/window/WindowService';
 
   let message: string = '';
@@ -12,7 +12,8 @@
 
   const onKeyDown = ({ key }: KeyboardEvent) => {
     if (key === 'Enter' && message.trim().length !== 0) {
-      SocketService.chat?.execute(MyStatus.privateKey, 'chat', message);
+      const privateKey = SessionService.model.privateKey;
+      SocketService.chat?.execute(privateKey, 'chat', message);
       message = '';
     }
   };

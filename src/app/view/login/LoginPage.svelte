@@ -1,7 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
   import { LoginCommand } from '../../model/login/LoginCommand';
-  import { MyStatus } from '../../model/status/MyStatus';
+  import { SessionService } from '../../model/session/SessionService';
   import BackgroundSlider from './BackgroundSlider.svelte';
 
   const EVENT_LOGIN = 'login';
@@ -23,8 +23,7 @@
 
   const requestLogin = async () => {
     const result = await new LoginCommand().execute(id, pw);
-    MyStatus.privateKey = result.hash;
-    sessionStorage.setItem('privateKey', result.hash);
+    SessionService.model.privateKey = result.hash;
     return result;
   };
 </script>

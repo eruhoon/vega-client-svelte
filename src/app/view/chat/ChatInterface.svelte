@@ -12,7 +12,10 @@
 
   const onKeyDown = ({ key }: KeyboardEvent) => {
     if (key === 'Enter' && message.trim().length !== 0) {
-      const privateKey = SessionService.model.privateKey;
+      const privateKey = SessionService.storage.privateKey;
+      if (!privateKey) {
+        return;
+      }
       SocketService.chat?.execute(privateKey, 'chat', message);
       message = '';
     }

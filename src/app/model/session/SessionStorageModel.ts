@@ -1,4 +1,4 @@
-export class SessionModel {
+export class SessionStorageModel {
   set privateKey(privateKey: string | null) {
     sessionStorage.setItem('privateKey', privateKey);
   }

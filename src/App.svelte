@@ -7,13 +7,13 @@
   let userHash: string | null = null;
 
   onMount(() => {
-    userHash = SessionService.model.privateKey;
+    userHash = SessionService.storage.privateKey;
   });
 
   const onLogin = (e: CustomEvent<string>) => {
     const hash = e.detail;
     userHash = hash;
-    SessionService.model.privateKey = hash;
+    SessionService.storage.privateKey = hash;
   };
 </script>
 

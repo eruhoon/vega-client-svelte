@@ -1,5 +1,5 @@
-import { SessionModel } from './SessionModel';
+import { SessionStorageModel } from './SessionStorageModel';
 
 export const SessionService = {
-  model: new SessionModel(),
+  storage: new SessionStorageModel(),
 };

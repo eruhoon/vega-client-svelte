@@ -17,7 +17,7 @@ export class NetworkModel {
     SocketService.login = new SocketLoginCommand(this.#socket);
     this.#socket.setOnOpen(() => {
       SocketService.isConnected.set(true);
-      const privateKey = SessionService.model.privateKey;
+      const privateKey = SessionService.storage.privateKey;
       SocketService.login?.execute(privateKey);
     });
 

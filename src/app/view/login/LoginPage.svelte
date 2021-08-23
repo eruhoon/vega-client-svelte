@@ -23,7 +23,7 @@
 
   const requestLogin = async () => {
     const result = await new LoginCommand().execute(id, pw);
-    SessionService.storage.privateKey = result.hash;
+    SessionService.setPrivateKey(result.hash);
     return result;
   };
 </script>

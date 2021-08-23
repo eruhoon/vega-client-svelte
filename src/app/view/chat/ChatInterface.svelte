@@ -12,7 +12,7 @@
 
   const onKeyDown = ({ key }: KeyboardEvent) => {
     if (key === 'Enter' && message.trim().length !== 0) {
-      const privateKey = SessionService.storage.privateKey;
+      const privateKey = SessionService.getPrivateKey();
       if (!privateKey) {
         return;
       }

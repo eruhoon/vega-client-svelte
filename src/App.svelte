@@ -1,8 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { SessionService } from './app/model/session/SessionService';
-  import { MyStatus } from './app/model/status/MyStatus';
-
   import LoginPage from './app/view/login/LoginPage.svelte';
   import MainPage from './app/view/main/MainPage.svelte';
 

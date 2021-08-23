@@ -24,6 +24,7 @@
   const requestLogin = async () => {
     const result = await new LoginCommand().execute(id, pw);
     MyStatus.privateKey = result.hash;
+    sessionStorage.setItem('privateKey', result.hash);
     return result;
   };
 </script>

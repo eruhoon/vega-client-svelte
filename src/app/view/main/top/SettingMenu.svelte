@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { SessionService } from '../../../model/session/SessionService';
+
   import { ProfileService } from '../../../service/ProfileService';
 
   let profileIcon = '';
@@ -6,6 +8,10 @@
 
   ProfileService.profileIcon.subscribe((icon) => (profileIcon = icon));
   ProfileService.nickname.subscribe((n) => (nickname = n));
+
+  const logout = () => {
+    SessionService.setPrivateKey(null);
+  };
 </script>
 
 <div class="setting-list">
@@ -70,7 +76,7 @@
     </div>
     <p>후원리스트</p>
   </div>
-  <div class="logout">
+  <div class="logout" on:click={logout}>
     <h4>로그아웃</h4>
   </div>
 </div>

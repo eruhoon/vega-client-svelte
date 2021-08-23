@@ -1,6 +1,5 @@
 <script lang="ts">
   import { SessionService } from '../../../model/session/SessionService';
-
   import { ProfileService } from '../../../service/ProfileService';
 
   let profileIcon = '';
@@ -10,7 +9,7 @@
   ProfileService.nickname.subscribe((n) => (nickname = n));
 
   const logout = () => {
-    SessionService.setPrivateKey(null);
+    SessionService.setPrivateKey('');
   };
 </script>
 

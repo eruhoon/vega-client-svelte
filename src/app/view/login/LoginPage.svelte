@@ -9,7 +9,7 @@
   const requestLogin = async () => {
     try {
       const result = await new LoginCommand().execute(id, pw);
-      SessionService.setPrivateKey(result.hash);
+      SessionService.setPrivateKey(result.hash || '');
     } catch {
       console.log('failed');
     }

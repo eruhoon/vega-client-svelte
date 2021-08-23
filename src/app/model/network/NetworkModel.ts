@@ -5,7 +5,6 @@ import { SocketChatCommand } from '../socket/command/SocketChatCommand';
 import { SocketLoginCommand } from '../socket/command/SocketLoginCommand';
 import { SocketService } from '../socket/SocketService';
 import { WebSocketModel } from '../socket/websocket/WebSocketModel';
-import { MyStatus } from '../status/MyStatus';
 import { ChatAdapter } from './chat/ChatAdapter';
 
 export class NetworkModel {
@@ -17,7 +16,8 @@ export class NetworkModel {
     SocketService.login = new SocketLoginCommand(this.#socket);
     this.#socket.setOnOpen(() => {
       SocketService.isConnected.set(true);
-      SocketService.login?.execute(MyStatus.privateKey);
+      const privateKey = sessionStorage.getItem('privateKey') || null;
+      SocketService.login?.execute(privateKey);
     });
 
     this.#socket.onReceived((command) => {

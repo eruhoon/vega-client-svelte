@@ -8,6 +8,10 @@ export class SocketLoginCommand {
   }
 
   execute(privateKey: string): void {
+    if (!privateKey) {
+      console.log('invalid value');
+      return;
+    }
     this.#socket.send({
       commandType: 'user-login',
       resource: {

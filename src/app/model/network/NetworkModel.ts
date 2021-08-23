@@ -1,7 +1,6 @@
 import { ProfileService } from '../../service/ProfileService';
 import { UserListService } from '../../service/UserListService';
 import { ChatService } from '../chat/ChatService';
-import { SessionService } from '../session/SessionService';
 import { SocketChatCommand } from '../socket/command/SocketChatCommand';
 import { SocketLoginCommand } from '../socket/command/SocketLoginCommand';
 import { SocketService } from '../socket/SocketService';
@@ -12,12 +11,11 @@ export class NetworkModel {
   #socket = new WebSocketModel();
   #chatAdapter = new ChatAdapter();
 
-  init(): void {
+  init(privateKey: string): void {
     SocketService.chat = new SocketChatCommand(this.#socket);
     SocketService.login = new SocketLoginCommand(this.#socket);
     this.#socket.setOnOpen(() => {
       SocketService.isConnected.set(true);
-      const privateKey = SessionService.storage.privateKey;
       SocketService.login?.execute(privateKey);
     });
 

@@ -19,7 +19,7 @@
 
 <main>
   {#if userHash !== null && userHash.length > 0}
-    <MainPage />
+    <MainPage privateKey={userHash} />
   {:else}
     <LoginPage on:login={onLogin} />
   {/if}

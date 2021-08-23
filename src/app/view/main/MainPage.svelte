@@ -4,10 +4,12 @@
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
 
+  export let privateKey: string;
+
   let sideBarVisible = false;
 
   const network = new NetworkModel();
-  network.init();
+  network.init(privateKey);
 
   const onMenuClick = () => {
     sideBarVisible = !sideBarVisible;

@@ -1,5 +1,3 @@
-import { SessionStorageModel } from './SessionStorageModel';
+import { SessionManager } from './SessionManager';
 
-export const SessionService = {
-  storage: new SessionStorageModel(),
-};
+export const SessionService = new SessionManager();

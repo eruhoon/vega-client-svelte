@@ -1,30 +1,18 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
   import { LoginCommand } from '../../model/login/LoginCommand';
   import { SessionService } from '../../model/session/SessionService';
   import BackgroundSlider from './BackgroundSlider.svelte';
 
-  const EVENT_LOGIN = 'login';
-
   let id = '';
   let pw = '';
 
-  const dispatch = createEventDispatcher();
-
-  const onLoginButtonClick = () => {
-    requestLogin().then((result) => {
-      if (result.result) {
-        dispatch(EVENT_LOGIN, result.hash);
-      } else {
-        console.log('failed');
-      }
-    });
-  };
-
   const requestLogin = async () => {
-    const result = await new LoginCommand().execute(id, pw);
-    SessionService.setPrivateKey(result.hash);
-    return result;
+    try {
+      const result = await new LoginCommand().execute(id, pw);
+      SessionService.setPrivateKey(result.hash);
+    } catch {
+      console.log('failed');
+    }
   };
 </script>
 
@@ -50,10 +38,8 @@
           id="pw"
           class="login-input"
         />
-        <button
-          type="submit"
-          on:click={onLoginButtonClick}
-          class="login-sub-btn">LOGIN</button
+        <button type="submit" on:click={requestLogin} class="login-sub-btn"
+          >LOGIN</button
         >
       </div>
       <hr />

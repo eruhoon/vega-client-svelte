@@ -6,17 +6,13 @@
   let userHash: string | null = null;
 
   SessionService.subscribePrivateKey((v) => (userHash = v));
-
-  const onLogin = (e: CustomEvent<string>) => {
-    SessionService.setPrivateKey(e.detail);
-  };
 </script>
 
 <main>
   {#if userHash !== null && userHash.length > 0}
     <MainPage privateKey={userHash} />
   {:else}
-    <LoginPage on:login={onLogin} />
+    <LoginPage />
   {/if}
 </main>
 

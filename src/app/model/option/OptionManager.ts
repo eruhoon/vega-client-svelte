@@ -7,5 +7,7 @@ export class OptionManager {
     return get(this.#enableTimestamp);
   }
 
+  updateEnableTimestamp = this.#enableTimestamp.update;
+
   subscribeEnableTimestamp = this.#enableTimestamp.subscribe;
 }

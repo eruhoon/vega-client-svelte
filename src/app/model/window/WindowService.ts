@@ -5,6 +5,7 @@ export const WindowService: WindowServiceInit = {
   emojiAttachViewShow: writable(false),
   sideBarShow: writable(false),
   settingMenuShow: writable(false),
+  siteSettingModalShow: writable(false),
 };
 
 type WindowServiceInit = {
@@ -12,4 +13,5 @@ type WindowServiceInit = {
   readonly emojiAttachViewShow: Writable<boolean>;
   readonly sideBarShow: Writable<boolean>;
   readonly settingMenuShow: Writable<boolean>;
+  readonly siteSettingModalShow: Writable<boolean>;
 };

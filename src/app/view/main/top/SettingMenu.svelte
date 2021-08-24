@@ -1,5 +1,6 @@
 <script lang="ts">
   import { SessionService } from '../../../model/session/SessionService';
+  import { WindowService } from '../../../model/window/WindowService';
   import { ProfileService } from '../../../service/ProfileService';
 
   let profileIcon = '';
@@ -35,7 +36,10 @@
       alt="방송배경"
     />
   </div>
-  <div class="item hover">
+  <div
+    class="item hover"
+    on:click={(_) => WindowService.siteSettingModalShow.set(true)}
+  >
     <div class="icon">
       <i class="fas fa-tools" />
     </div>

@@ -4,6 +4,7 @@
   import { ChatNetworkService } from '../../model/network/ChatNetworkService';
   import { WindowService } from '../../model/window/WindowService';
   import ChatPage from '../chat/ChatPage.svelte';
+  import SiteSettingModal from '../setting/SiteSettingModal.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
 
@@ -13,9 +14,13 @@
   let dividerPos = 300;
   let isMoveMode = false;
   let windowInnerWidth: number;
+  let siteSettingModalShow = get(WindowService.siteSettingModalShow);
 
   ChatNetworkService.init(privateKey);
   WindowService.sideBarShow.subscribe((v) => (sideBarVisible = v));
+  WindowService.siteSettingModalShow.subscribe(
+    (v) => (siteSettingModalShow = v)
+  );
 
   $: isLeftDivider = dividerPos < windowInnerWidth / 2;
   $: chatWidth = isLeftDivider ? dividerPos : windowInnerWidth - dividerPos;
@@ -31,9 +36,6 @@
     return min(max(position));
   };
 
-  const onMenuClick = () => {
-    WindowService.sideBarShow.set(!sideBarVisible);
-  };
   const onDividerMove = (e: MouseEvent) => {
     if (isMoveMode) {
       dividerPos = parsePosition(e.clientX);
@@ -61,6 +63,10 @@
   />
 </div>
 <div class="top-bar"><TopBar /></div>
+
+{#if siteSettingModalShow}
+  <SiteSettingModal />
+{/if}
 
 <svelte:window bind:innerWidth={windowInnerWidth} />
 

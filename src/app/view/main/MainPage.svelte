@@ -60,9 +60,7 @@
     class:active={isMoveMode}
   />
 </div>
-<div class="top-bar">
-  <TopBar on:menuclick={onMenuClick} />
-</div>
+<div class="top-bar"><TopBar /></div>
 
 <svelte:window bind:innerWidth={windowInnerWidth} />
 

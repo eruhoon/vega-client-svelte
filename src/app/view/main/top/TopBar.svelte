@@ -1,10 +1,9 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
+  import { WindowService } from '../../../model/window/WindowService';
   import { ProfileService } from '../../../service/ProfileService';
   import SettingMenu from './SettingMenu.svelte';
 
-  const dispatch = createEventDispatcher();
-  const dispatchMenuClick = () => dispatch('menuclick');
   const onSettingMenuClick = () => {
     settingMenuActivated = !settingMenuActivated;
   };
@@ -16,16 +15,17 @@
   ProfileService.profileIcon.subscribe((icon) => {
     profileIcon = icon;
   });
+
+  const toggleSideBarShow = () => {
+    WindowService.sideBarShow.update((v) => !v);
+  };
 </script>
 
 <nav>
   <div class="part">
-    <button class="menu-btn" on:click={dispatchMenuClick}>
+    <button class="menu-btn" on:click={toggleSideBarShow}>
       <img class="logo" src="/assets/image/main/main-logo-60.png" alt="logo" />
     </button>
-    <!--<button on:click={dispatchMenuClick}>
-      <i class="material-icons">menu</i>
-    </button>-->
   </div>
   <div class="part right">
     <button class="alert-btn">

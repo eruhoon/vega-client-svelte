@@ -7,7 +7,7 @@ import { SocketService } from '../socket/SocketService';
 import { WebSocketModel } from '../socket/websocket/WebSocketModel';
 import { ChatAdapter } from './chat/ChatAdapter';
 
-export class NetworkModel {
+export class ChatNetworkModel {
   #socket = new WebSocketModel();
   #chatAdapter = new ChatAdapter();
 

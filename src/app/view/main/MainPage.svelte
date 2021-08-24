@@ -1,17 +1,21 @@
 <script lang="ts">
+  import { get } from 'svelte/store';
+
   import { ChatNetworkService } from '../../model/network/ChatNetworkService';
+  import { WindowService } from '../../model/window/WindowService';
   import ChatPage from '../chat/ChatPage.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
 
   export let privateKey: string;
 
-  let sideBarVisible = false;
+  let sideBarVisible = get(WindowService.sideBarShow);
 
   ChatNetworkService.init(privateKey);
+  WindowService.sideBarShow.subscribe((v) => (sideBarVisible = v));
 
   const onMenuClick = () => {
-    sideBarVisible = !sideBarVisible;
+    WindowService.sideBarShow.set(!sideBarVisible);
   };
 </script>
 

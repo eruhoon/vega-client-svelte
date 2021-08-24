@@ -1,8 +1,10 @@
 <script lang="ts">
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
+  import { OptionService } from '../../../model/option/OptionService';
   import TextPack from '../pack/TextPack.svelte';
 
   export let message: ChatMessage;
+  let enableTimestamp = OptionService.enableTimestamp;
 
   $: timestamp = convertTimeToString(new Date(message.timestamp).getTime());
 
@@ -18,6 +20,8 @@
     const s = padZero(time.getSeconds());
     return `${y}-${mm}-${d} ${h}:${m}:${s}`;
   };
+
+  OptionService.subscribeEnableTimestamp((v) => (enableTimestamp = v));
 </script>
 
 <div class="container">
@@ -37,7 +41,7 @@
     </div>
     <!-- 테스트 구문 끝 -->
   </div>
-  <div class="footer">{timestamp}</div>
+  <div class="footer" class:hide={!enableTimestamp}>{timestamp}</div>
 </div>
 
 <style lang="scss">
@@ -92,11 +96,16 @@
       }
     }
     .footer {
+      display: block;
       font-size: 8px;
       line-height: 10px;
       text-align: end;
       padding-bottom: 6px;
       color: #6c6f75;
+
+      &.hide {
+        display: none;
+      }
     }
   }
 </style>

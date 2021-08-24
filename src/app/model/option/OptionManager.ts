@@ -1,0 +1,11 @@
+import { get, writable } from 'svelte/store';
+
+export class OptionManager {
+  readonly #enableTimestamp = writable(false);
+
+  get enableTimestamp() {
+    return get(this.#enableTimestamp);
+  }
+
+  subscribeEnableTimestamp = this.#enableTimestamp.subscribe;
+}

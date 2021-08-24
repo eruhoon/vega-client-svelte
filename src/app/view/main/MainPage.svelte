@@ -10,9 +10,17 @@
   export let privateKey: string;
 
   let sideBarVisible = get(WindowService.sideBarShow);
+  let dividerPos = 300;
+  let isMoveMode = false;
+  let windowInnerWidth: number;
 
   ChatNetworkService.init(privateKey);
   WindowService.sideBarShow.subscribe((v) => (sideBarVisible = v));
+
+  $: isLeftDivider = dividerPos < windowInnerWidth / 2;
+  $: chatWidth = isLeftDivider ? dividerPos : windowInnerWidth - dividerPos;
+  $: chatLeft = isLeftDivider ? '0' : 'auto';
+  $: chatRight = isLeftDivider ? 'auto' : '0';
 
   const onMenuClick = () => {
     WindowService.sideBarShow.set(!sideBarVisible);
@@ -20,16 +28,31 @@
 </script>
 
 <div class="main-section">
-  <div class="chat-list-view">
+  <div
+    class="chat-section"
+    style="left: {chatLeft}; right: {chatRight}; width: {chatWidth}px;"
+  >
     <ChatPage />
   </div>
   <div class="side-bar">
     <SideBar visible={sideBarVisible} />
   </div>
+  <div
+    class="divider"
+    style="left: {dividerPos}px"
+    on:mousedown={(_) => (isMoveMode = true)}
+    on:mousemove={(e) => {
+      if (isMoveMode) dividerPos = e.clientX;
+    }}
+    on:mouseup={(_) => (isMoveMode = false)}
+    class:active={isMoveMode}
+  />
 </div>
 <div class="top-bar">
   <TopBar on:menuclick={onMenuClick} />
 </div>
+
+<svelte:window bind:innerWidth={windowInnerWidth} />
 
 <style lang="scss">
   $top-bar-height: 50px;
@@ -60,7 +83,7 @@
     height: calc(100% - #{$top-bar-height});
     background-color: #2a2f38;
 
-    .chat-list-view {
+    .chat-section {
       position: absolute;
       top: 0;
       right: 0;
@@ -78,6 +101,24 @@
       transition: 0.2s ease-in-out;
       width: $side-bar-width;
       height: 100%;
+    }
+  }
+
+  .divider {
+    position: absolute;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    cursor: col-resize;
+
+    &.active {
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      transform: none;
+      -webkit-transform: none;
     }
   }
 </style>

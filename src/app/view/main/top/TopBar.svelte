@@ -3,26 +3,28 @@
   import { ProfileService } from '../../../service/ProfileService';
   import SettingMenu from './SettingMenu.svelte';
 
-  const onSettingMenuClick = () => {
-    settingMenuActivated = !settingMenuActivated;
-  };
-
-  let settingMenuActivated = false;
+  let settingMenuShow = false;
   let profileIcon = '';
-  $: settingMenuActiveClass = settingMenuActivated ? 'active' : 'deactive';
+  $: settingMenuActiveClass = settingMenuShow ? 'active' : 'deactive';
 
   ProfileService.profileIcon.subscribe((icon) => {
     profileIcon = icon;
   });
 
-  const toggleSideBarShow = () => {
+  WindowService.settingMenuShow.subscribe((v) => (settingMenuShow = v));
+
+  const toggleSideBar = () => {
     WindowService.sideBarShow.update((v) => !v);
+  };
+
+  const toggleSettingMenu = () => {
+    WindowService.settingMenuShow.update((v) => !v);
   };
 </script>
 
 <nav>
   <div class="part">
-    <button class="menu-btn" on:click={toggleSideBarShow}>
+    <button class="menu-btn" on:click={toggleSideBar}>
       <img class="logo" src="/assets/image/main/main-logo-60.png" alt="logo" />
     </button>
   </div>
@@ -33,7 +35,7 @@
         <!-- {{ this.getUnreadNotificationCount() }} -->
       </div>
     </button>
-    <button on:click={onSettingMenuClick}>
+    <button on:click={toggleSettingMenu}>
       <img class="profile" src={profileIcon} alt="profile" />
     </button>
   </div>

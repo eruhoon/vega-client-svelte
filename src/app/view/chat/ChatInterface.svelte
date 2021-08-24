@@ -33,6 +33,10 @@
     WindowService.emojiAttachViewShow.set(next);
   };
 
+  const clearChats = () => {
+    ChatService.chats.set([]);
+  };
+
   let scrollDown = () => {};
 
   SocketService.isConnected.subscribe((v) => (isConnected = v));
@@ -49,7 +53,7 @@
         <i class="fas fa-address-book" />
       </div>
       <!-- clear chat -->
-      <div><i class="fas fa-remove-format" /></div>
+      <div on:click={clearChats}><i class="fas fa-remove-format" /></div>
       <div class:hide={!isScrollLock} on:click={(_) => scrollDown()}>
         <i class="fas fa-arrow-down" />
       </div>

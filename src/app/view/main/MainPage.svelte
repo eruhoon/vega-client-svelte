@@ -22,8 +22,22 @@
   $: chatLeft = isLeftDivider ? '0' : 'auto';
   $: chatRight = isLeftDivider ? 'auto' : '0';
 
+  const parsePosition = (position: number): number => {
+    const minSize = 300;
+    const minX = minSize;
+    const maxX = windowInnerWidth - minSize;
+    const max = (pos: number) => (pos > minX ? pos : minX);
+    const min = (pos: number) => (pos < maxX ? pos : maxX);
+    return min(max(position));
+  };
+
   const onMenuClick = () => {
     WindowService.sideBarShow.set(!sideBarVisible);
+  };
+  const onDividerMove = (e: MouseEvent) => {
+    if (isMoveMode) {
+      dividerPos = parsePosition(e.clientX);
+    }
   };
 </script>
 
@@ -41,9 +55,7 @@
     class="divider"
     style="left: {dividerPos}px"
     on:mousedown={(_) => (isMoveMode = true)}
-    on:mousemove={(e) => {
-      if (isMoveMode) dividerPos = e.clientX;
-    }}
+    on:mousemove={onDividerMove}
     on:mouseup={(_) => (isMoveMode = false)}
     class:active={isMoveMode}
   />

@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
   import { WindowService } from '../../../model/window/WindowService';
   import { ProfileService } from '../../../service/ProfileService';
   import SettingMenu from './SettingMenu.svelte';

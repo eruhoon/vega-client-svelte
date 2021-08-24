@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { ChatNetworkModel } from '../../model/network/ChatNetworkModel';
+  import { ChatNetworkService } from '../../model/network/ChatNetworkService';
   import ChatPage from '../chat/ChatPage.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
@@ -8,8 +8,7 @@
 
   let sideBarVisible = false;
 
-  const network = new ChatNetworkModel();
-  network.init(privateKey);
+  ChatNetworkService.init(privateKey);
 
   const onMenuClick = () => {
     sideBarVisible = !sideBarVisible;

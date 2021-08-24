@@ -34,8 +34,8 @@
   >
     <ChatPage />
   </div>
-  <div class="side-bar">
-    <SideBar visible={sideBarVisible} />
+  <div class="side-bar" class:show={sideBarVisible}>
+    <SideBar />
   </div>
   <div
     class="divider"
@@ -101,6 +101,11 @@
       transition: 0.2s ease-in-out;
       width: $side-bar-width;
       height: 100%;
+      transform: translateX(-$side-bar-width);
+
+      &.show {
+        transform: none;
+      }
     }
   }
 

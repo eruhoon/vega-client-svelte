@@ -46,21 +46,18 @@
 
 <div class="chat-interface">
   <div class="input-sticker">
-    <!-- left section -->
-    <!-- user list -->
     <div class="sticker-section">
-      <div on:click={(_) => toggleUserList()}>
+      <div on:click={toggleUserList}>
         <i class="fas fa-address-book" />
       </div>
-      <!-- clear chat -->
-      <div on:click={clearChats}><i class="fas fa-remove-format" /></div>
-      <div class:hide={!isScrollLock} on:click={(_) => scrollDown()}>
+      <div on:click={clearChats}>
+        <i class="fas fa-remove-format" />
+      </div>
+      <div class:hide={!isScrollLock} on:click={scrollDown}>
         <i class="fas fa-arrow-down" />
       </div>
     </div>
 
-    <!-- right section -->
-    <!-- imoticon -->
     <div class="sticker-section right">
       <div class:hide={isConnected}>
         <i class="fas fa-exclamation-triangle" />

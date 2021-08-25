@@ -26,7 +26,10 @@
       </button>
     </div>
   </div>
-  <div class="item hover image-attached">
+  <div
+    class="item hover image-attached"
+    on:click={(_) => WindowService.streamSettingModalShow.set(true)}
+  >
     <div class="icon">
       <i class="fas fa-podcast" />
     </div>

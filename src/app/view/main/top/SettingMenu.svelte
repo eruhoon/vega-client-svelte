@@ -21,7 +21,7 @@
       <span class="u-name">
         <p class="name">{nickname}</p>
       </span>
-      <button>
+      <button on:click={(_) => WindowService.profileSettingModalShow.set(true)}>
         <i class="fas fa-cog" />
       </button>
     </div>

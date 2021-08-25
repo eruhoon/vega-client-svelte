@@ -5,6 +5,7 @@
   import { WindowService } from '../../model/window/WindowService';
   import { ProfileService } from '../../service/ProfileService';
   import ChatPage from '../chat/ChatPage.svelte';
+  import ProfileSettingModal from '../setting/ProfileSettingModal.svelte';
   import SiteSettingModal from '../setting/SiteSettingModal.svelte';
   import StreamSettingModal from '../setting/StreamSettingModal.svelte';
   import SideBar from './side/SideBar.svelte';
@@ -18,6 +19,7 @@
   let windowInnerWidth: number;
   let siteSettingModalShow = get(WindowService.siteSettingModalShow);
   let streamSettingModalShow = get(WindowService.streamSettingModalShow);
+  let profileSettingModalShow = get(WindowService.profileSettingModalShow);
 
   ChatNetworkService.init(privateKey);
   WindowService.sideBarShow.subscribe((v) => (sideBarVisible = v));
@@ -26,6 +28,9 @@
   );
   WindowService.streamSettingModalShow.subscribe(
     (v) => (streamSettingModalShow = v)
+  );
+  WindowService.profileSettingModalShow.subscribe(
+    (v) => (profileSettingModalShow = v)
   );
 
   new VegaStreamProfileLoader(privateKey).load().then((streamProfile) => {
@@ -79,6 +84,9 @@
 {/if}
 {#if streamSettingModalShow}
   <StreamSettingModal />
+{/if}
+{#if profileSettingModalShow}
+  <ProfileSettingModal />
 {/if}
 
 <svelte:window bind:innerWidth={windowInnerWidth} />

@@ -7,6 +7,7 @@ export const WindowService: WindowServiceInit = {
   settingMenuShow: writable(false),
   siteSettingModalShow: writable(false),
   streamSettingModalShow: writable(false),
+  profileSettingModalShow: writable(false),
 };
 
 type WindowServiceInit = {
@@ -16,4 +17,5 @@ type WindowServiceInit = {
   readonly settingMenuShow: Writable<boolean>;
   readonly siteSettingModalShow: Writable<boolean>;
   readonly streamSettingModalShow: Writable<boolean>;
+  readonly profileSettingModalShow: Writable<boolean>;
 };

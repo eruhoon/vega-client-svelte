@@ -20,6 +20,9 @@
 <div class="modal-wrapper">
   <div class="modal">
     <div class="title">
+      <div class="icon">
+        <i class="fas fa-tools" />
+      </div>
       <h3>사이트 설정</h3>
     </div>
     <div class="body">
@@ -40,148 +43,239 @@
       </div>
     </div>
     <button class="modal-close" on:click={close}>
-      <i class="material-icons"> close </i>
+      <i class="fas fa-times" />
     </button>
   </div>
 </div>
 
 <style lang="scss">
+  /* 모달 배경 처리 */
+  .click-blocker {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.8;
+    z-index: 90;
+  }
+  /* 모달 기본 박스 구성 */
   .modal-wrapper {
-    position: fixed;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 100;
-  }
-  .modal {
     position: relative;
-    width: 480px;
-    height: 725px;
-    max-width: 90%;
-    max-height: 90%;
-    background: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08), 0 0 15px 0 rgba(0, 0, 0, 0.02),
-      0 0 20px 4px rgba(0, 0, 0, 0.06);
+    // 최상위 속성값
+    z-index: 100;
 
-    * {
-      padding: 0%;
-      margin: 0%;
-    }
+    // 모달 박스 시작
+    .modal {
+      position: relative;
+      width: 500px;
+      //height: auto;
+      height: 725px;
+      max-width: 100%;
+      max-height: calc(100% - 50px);
+      background: #2a2f38;
+      color: #ffffff;
+      border-radius: 2px;
+      box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08), 0 0 15px 0 rgba(0, 0, 0, 0.02),
+        0 0 20px 4px rgba(0, 0, 0, 0.06);
 
-    .title {
-      width: calc(100% - 20px);
-      font-size: 24px;
-      color: #616161;
-      text-align: left;
-      padding: 10px;
-      padding-top: 15px;
-      border-bottom: 1px solid #e3e3e3;
-    }
+      z-index: 100;
 
-    .body {
-      overflow-y: auto;
+      .title {
+        width: calc(100% - 30px);
+        height: auto;
+        padding: 5px 15px;
+        display: flex;
+        margin-bottom: 15px;
+        .icon {
+          width: 46px;
+          height: 46px;
+          color: #ffffff;
+          margin: 0%;
+          text-align: center;
+          i {
+            font-size: 24px;
+            padding: 11px 11px;
+          }
+        }
+        h3 {
+          margin: 0%;
+          width: auto;
+          color: #ffffff;
+          padding: 14px 10px;
+          padding-right: 0px;
+          font-size: 20px;
+          height: auto;
+        }
+      }
+      .body {
+        overflow-y: auto;
+        * {
+          padding: 0%;
+          margin: 0%;
+        }
+        // 모달 기본 박스 구성
+        .site-set-box {
+          width: calc(100% - 20px);
+          height: 40px;
+          padding: 5px 10px;
+          border-bottom: 1px solid #1f2226;
 
-      .site-set-box {
-        width: calc(100% - 20px);
-        height: 40px;
-        padding: 5px 10px;
-        border-bottom: 1px solid #eeeeee;
-
-        &.max-w {
-          height: 150px;
-
+          /* 잠시 꺼둠
+          &:last-child{
+            border-bottom: 0px;
+          }
+          &.max-w {
+            height: 150px;
+          }
+          */
           .set-title {
-            width: calc(100% + 10px) !important;
-            height: 26px;
-            border-bottom: 1px solid #f7f7f7;
-            margin-left: -10px;
-            padding: 0px 5px;
+            width: 80%;
+            height: 42px;
+            float: left;
 
             p {
-              font-size: 12px;
-              padding: 6px;
+              font-size: 18px;
+              padding: 12px;
+              color: #ffffff;
+            }
+          }
+
+          .set-switch {
+            width: calc(20% - 30px);
+            height: 42px;
+            float: right;
+            margin-right: 12px;
+            // padding-left: 30px;
+
+            .switch {
+              position: relative;
+              display: inline-block;
+              width: 60px;
+              height: 33px;
+              margin-top: 3px;
+            }
+
+            .switch input {
+              opacity: 0;
+              width: 0;
+              height: 0;
+            }
+
+            .slider {
+              position: absolute;
+              cursor: pointer;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-color: #1f2226;
+
+              -webkit-transition: 0.4s;
+              transition: 0.4s;
+              border-radius: 33px;
+            }
+
+            .slider:before {
+              position: absolute;
+              content: '';
+              height: 28px;
+              width: 28px;
+              left: 5px;
+              bottom: 3px;
+              background-color: #ffffff;
+              -webkit-transition: 0.4s;
+              transition: 0.4s;
+              border-radius: 50%;
+            }
+
+            .active .slider {
+              background-color: #ff4081;
+            }
+
+            input:focus + .slider {
+              box-shadow: 0 0 1px #ff4081;
+            }
+
+            .active .slider:before {
+              -webkit-transform: translateX(24px);
+              -ms-transform: translateX(24px);
+              transform: translateX(24px);
             }
           }
         }
+      }
+    }
+    .modal-close {
+      width: 58px;
+      height: 58px;
+      position: absolute;
+      top: 0%;
+      right: 0%;
 
-        .set-title {
-          width: 80%;
-          height: 40px;
-          float: left;
+      background-color: #1f2226;
+      border: 1px solid #1f2226;
+      border-radius: 0%;
+      text-align: center;
 
-          p {
-            font-size: 16px;
-            padding: 12px;
-            padding-left: 5px;
-            color: #757575;
+      i {
+        font-size: 24px;
+        line-height: 42px;
+        padding-left: 2px;
+        color: #ffffff;
+      }
+
+      &:hover {
+        background-color: #ff4081;
+        border: 1px solid #ff4081;
+
+        i {
+          color: #ffffff;
+        }
+      }
+
+      &:active {
+        background-color: #e91e63;
+        border-color: #e91e63;
+
+        i {
+          color: #ffffff;
+        }
+      }
+    }
+    // 모달 박스 끝
+  }
+  // 모바일 처리
+  @media (min-width: 320px) and (max-width: 500px) {
+    .click-blocker {
+      display: none;
+    }
+    .modal-wrapper {
+      .modal {
+        width: 100%;
+        height: calc(100% - 50px);
+        position: fixed;
+        top: 50px;
+        .body {
+          .site-set-box {
+            .set-switch {
+              margin-left: 0px !important;
+            }
           }
         }
+      }
+    }
+  }
+  /*
+  .modal-wrapper {
 
-        .set-switch {
-          width: calc(20% - 30px);
-          height: 40px;
-          float: left;
-          margin-left: 22px;
-          // padding-left: 30px;
+    .body {
 
-          /* The switch - the box around the slider */
-          .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 28px;
-            margin-top: 7px;
-          }
-
-          .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-          }
-
-          .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #e1e1e1;
-            -webkit-transition: 0.4s;
-            transition: 0.4s;
-            border-radius: 28px;
-          }
-
-          .slider:before {
-            position: absolute;
-            content: '';
-            height: 20px;
-            width: 20px;
-            left: 4px;
-            bottom: 4px;
-            background-color: #ffffff;
-            -webkit-transition: 0.4s;
-            transition: 0.4s;
-            border-radius: 50%;
-          }
-
-          .active .slider {
-            background-color: #ff4081;
-          }
-
-          input:focus + .slider {
-            box-shadow: 0 0 1px #ff4081;
-          }
-
-          .active .slider:before {
-            -webkit-transform: translateX(30px);
-            -ms-transform: translateX(30px);
-            transform: translateX(30px);
-          }
-        }
+      .site-set-box {
 
         .raido-switch {
           width: 100%;
@@ -283,68 +377,6 @@
         border-color: #757575;
       }
     }
-
-    .modal-close {
-      width: 40px;
-      height: 40px;
-      position: absolute;
-      top: calc(0% - 15px);
-      right: calc(0% - 15px);
-
-      background-color: #fafafa;
-      border: 1px solid #f5f5f5;
-      border-radius: 50%;
-      box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
-        0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-
-      text-align: center;
-
-      i {
-        font-size: 24px;
-        line-height: 42px;
-        padding-left: 2px;
-        color: #424242;
-      }
-
-      &:hover {
-        background-color: #ff4081;
-        border: 1px solid #ff4081;
-
-        i {
-          color: #ffffff;
-        }
-      }
-
-      &:active {
-        background-color: #e91e63;
-        border-color: #e91e63;
-
-        i {
-          color: #ffffff;
-        }
-      }
-    }
   }
-
-  .click-blocker {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: black;
-    opacity: 0.8;
-    z-index: 100;
-  }
-
-  // 모바일 영역 설정 세팅값
-  @media (min-width: 320px) and (max-width: 480px) {
-    .modal {
-      .body {
-        .site-set-box {
-          .set-switch {
-            margin-left: 0px !important;
-          }
-        }
-      }
-    }
-  }
+  */
 </style>

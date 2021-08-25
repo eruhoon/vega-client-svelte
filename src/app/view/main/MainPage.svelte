@@ -1,10 +1,9 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-
   import { get } from 'svelte/store';
-
   import { ChatNetworkService } from '../../model/network/ChatNetworkService';
+  import { VegaStreamProfileLoader } from '../../model/profile/VegaStreamProfileLoader';
   import { WindowService } from '../../model/window/WindowService';
+  import { ProfileService } from '../../service/ProfileService';
   import ChatPage from '../chat/ChatPage.svelte';
   import SiteSettingModal from '../setting/SiteSettingModal.svelte';
   import SideBar from './side/SideBar.svelte';
@@ -23,6 +22,10 @@
   WindowService.siteSettingModalShow.subscribe(
     (v) => (siteSettingModalShow = v)
   );
+
+  new VegaStreamProfileLoader(privateKey).load().then((streamProfile) => {
+    ProfileService.platform.set(streamProfile.platform);
+  });
 
   $: isLeftDivider = dividerPos < windowInnerWidth / 2;
   $: chatWidth = isLeftDivider ? dividerPos : windowInnerWidth - dividerPos;

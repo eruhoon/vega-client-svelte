@@ -21,14 +21,14 @@
       <span class="u-name">
         <p class="name">{nickname}</p>
       </span>
-      <button on:click={(_) => WindowService.profileSettingModalShow.set(true)}>
+      <button on:click={(_) => WindowService.modal.set('profile')}>
         <i class="fas fa-cog" />
       </button>
     </div>
   </div>
   <div
     class="item hover image-attached"
-    on:click={(_) => WindowService.streamSettingModalShow.set(true)}
+    on:click={(_) => WindowService.modal.set('stream')}
   >
     <div class="icon">
       <i class="fas fa-podcast" />
@@ -39,10 +39,7 @@
       alt="방송배경"
     />
   </div>
-  <div
-    class="item hover"
-    on:click={(_) => WindowService.siteSettingModalShow.set(true)}
-  >
+  <div class="item hover" on:click={(_) => WindowService.modal.set('site')}>
     <div class="icon">
       <i class="fas fa-tools" />
     </div>

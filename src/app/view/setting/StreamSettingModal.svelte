@@ -2,7 +2,7 @@
   import { WindowService } from '../../model/window/WindowService';
 
   const close = () => {
-    WindowService.streamSettingModalShow.set(false);
+    WindowService.modal.set(null);
   };
 </script>
 

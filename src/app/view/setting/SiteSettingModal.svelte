@@ -6,7 +6,7 @@
   let enableTimestamp = OptionService.enableTimestamp;
 
   const close = () => {
-    WindowService.siteSettingModalShow.set(false);
+    WindowService.modal.set(null);
   };
 
   OptionService.subscribeEnableTimestamp((v) => (enableTimestamp = v));

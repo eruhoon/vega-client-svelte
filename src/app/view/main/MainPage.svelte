@@ -17,21 +17,25 @@
   let dividerPos = 300;
   let isMoveMode = false;
   let windowInnerWidth: number;
-  let siteSettingModalShow = get(WindowService.siteSettingModalShow);
-  let streamSettingModalShow = get(WindowService.streamSettingModalShow);
-  let profileSettingModalShow = get(WindowService.profileSettingModalShow);
+  let modal;
 
   ChatNetworkService.init(privateKey);
   WindowService.sideBarShow.subscribe((v) => (sideBarVisible = v));
-  WindowService.siteSettingModalShow.subscribe(
-    (v) => (siteSettingModalShow = v)
-  );
-  WindowService.streamSettingModalShow.subscribe(
-    (v) => (streamSettingModalShow = v)
-  );
-  WindowService.profileSettingModalShow.subscribe(
-    (v) => (profileSettingModalShow = v)
-  );
+  WindowService.modal.subscribe((m) => {
+    switch (m) {
+      case 'profile':
+        modal = ProfileSettingModal;
+        break;
+      case 'site':
+        modal = SiteSettingModal;
+        break;
+      case 'stream':
+        modal = StreamSettingModal;
+        break;
+      default:
+        modal = null;
+    }
+  });
 
   new VegaStreamProfileLoader(privateKey).load().then((streamProfile) => {
     ProfileService.platform.set(streamProfile.platform);
@@ -79,15 +83,7 @@
 </div>
 <div class="top-bar"><TopBar /></div>
 
-{#if siteSettingModalShow}
-  <SiteSettingModal />
-{/if}
-{#if streamSettingModalShow}
-  <StreamSettingModal />
-{/if}
-{#if profileSettingModalShow}
-  <ProfileSettingModal />
-{/if}
+<svelte:component this={modal} />
 
 <svelte:window bind:innerWidth={windowInnerWidth} />
 

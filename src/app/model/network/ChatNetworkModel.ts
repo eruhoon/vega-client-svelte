@@ -3,21 +3,23 @@ import { UserListService } from '../../service/UserListService';
 import { ChatService } from '../chat/ChatService';
 import { SocketChatCommand } from '../socket/command/SocketChatCommand';
 import { SocketLoginCommand } from '../socket/command/SocketLoginCommand';
+import type { SocketModel } from '../socket/common/SocketModel';
 import { SocketService } from '../socket/SocketService';
 import { WebSocketModel } from '../socket/websocket/WebSocketModel';
 import { ChatAdapter } from './chat/ChatAdapter';
 
 export class ChatNetworkModel {
-  #socket = new WebSocketModel();
+  #socket: SocketModel | null = null;
   #chatAdapter = new ChatAdapter();
 
   init(privateKey: string): void {
+    if (this.#socket) {
+      this.#socket.disconnect();
+    }
+
+    this.#socket = this.#createWebSocketModel(privateKey);
     SocketService.chat = new SocketChatCommand(this.#socket);
     SocketService.login = new SocketLoginCommand(this.#socket);
-    this.#socket.setOnOpen(() => {
-      SocketService.isConnected.set(true);
-      SocketService.login?.execute(privateKey);
-    });
 
     this.#socket.onReceived((command) => {
       switch (command.commandType) {
@@ -37,5 +39,17 @@ export class ChatNetworkModel {
           );
       }
     });
+
+    this.#socket.connect();
+  }
+
+  #createWebSocketModel(privateKey: string): SocketModel {
+    const socket = new WebSocketModel();
+    console.log(privateKey);
+    socket.setOnOpen(() => {
+      SocketService.isConnected.set(true);
+      SocketService.login?.execute(privateKey);
+    });
+    return socket;
   }
 }

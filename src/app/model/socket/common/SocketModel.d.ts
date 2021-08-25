@@ -1,6 +1,8 @@
 export interface SocketModel {
   send(request: SocketRequest): void;
   onReceived(callback: SocketCallback): void;
+  connect(): void;
+  disconnect(): void;
 }
 
 export type SocketRequest = SocketLoginRequest | SocketChatRequest;

@@ -8,12 +8,12 @@ import type {
 export class WebSocketModel implements SocketModel {
   static readonly #HTTPS_URL = 'wss://mycast.xyz:8002';
 
-  #webSocket: WebSocket;
+  #socket: WebSocket | null = null;
   #callback: SocketCallback;
   #onOpen: () => void;
 
   constructor() {
-    this.#webSocket = this.connect();
+    this.#socket = null;
     this.#onOpen = () => {};
     this.#callback = (_) => {};
   }
@@ -23,8 +23,7 @@ export class WebSocketModel implements SocketModel {
   }
 
   send(request: SocketRequest): void {
-    console.log('send', request);
-    this.#webSocket.send(JSON.stringify(request));
+    this.#socket?.send(JSON.stringify(request));
   }
 
   onReceived(callback: SocketCallback): void {
@@ -40,11 +39,16 @@ export class WebSocketModel implements SocketModel {
     console.log('close');
   }
 
-  connect(): WebSocket {
+  connect(): void {
     const socket = new WebSocket(WebSocketModel.#HTTPS_URL);
     socket.onopen = () => this.#onOpen();
     socket.onmessage = (message) => this.#onRawMessage(message);
     socket.onclose = () => this.#onClose();
-    return socket;
+    this.#socket = socket;
+  }
+
+  disconnect(): void {
+    this.#socket.close();
+    this.#socket = null;
   }
 }

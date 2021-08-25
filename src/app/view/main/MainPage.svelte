@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+
   import { get } from 'svelte/store';
 
   import { ChatNetworkService } from '../../model/network/ChatNetworkService';

@@ -106,8 +106,8 @@
       width: $default-chat-width;
       height: 100%;
       background: #2a2f38;
-      box-shadow: 2px 0px 6px 3px rgb(0 0 0 / 20%),
-        2px 0px 6px 3px rgb(0 0 0 / 20%), 2px 0px 6px 3px rgb(0 0 0 / 20%);
+      box-shadow: 0 0 8px 0 rgb(0 0 0 / 40%), 0 0 15px 0 rgb(0 0 0 / 30%),
+        0 0 20px 4px rgb(0 0 0 / 30%);
     }
 
     .side-bar {

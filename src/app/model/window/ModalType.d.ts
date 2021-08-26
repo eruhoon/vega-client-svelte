@@ -1,1 +1,6 @@
-export type ModalType = 'profile' | 'stream' | 'site';
+export type ModalType =
+  | 'profile'
+  | 'stream'
+  | 'site'
+  | 'chat-widget'
+  | 'donation';

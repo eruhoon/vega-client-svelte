@@ -45,13 +45,16 @@
     </div>
     <p>사이트 설정</p>
   </div>
-  <div class="item hover">
+  <div
+    class="item hover"
+    on:click={(_) => WindowService.modal.set('chat-widget')}
+  >
     <div class="icon">
       <i class="far fa-comment" />
     </div>
     <p>채팅위젯 설정</p>
   </div>
-  <div class="item hover">
+  <div class="item hover" on:click={(_) => WindowService.modal.set('donation')}>
     <div class="icon">
       <i class="fas fa-donate" />
     </div>

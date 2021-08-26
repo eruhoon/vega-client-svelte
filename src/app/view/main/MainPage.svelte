@@ -5,6 +5,7 @@
   import { WindowService } from '../../model/window/WindowService';
   import { ProfileService } from '../../service/ProfileService';
   import ChatPage from '../chat/ChatPage.svelte';
+  import ChatWidgetSettingModal from '../setting/ChatWidgetSettingModal.svelte';
   import ProfileSettingModal from '../setting/ProfileSettingModal.svelte';
   import SiteSettingModal from '../setting/SiteSettingModal.svelte';
   import StreamSettingModal from '../setting/StreamSettingModal.svelte';
@@ -31,6 +32,9 @@
         break;
       case 'stream':
         modal = StreamSettingModal;
+        break;
+      case 'chat-widget':
+        modal = ChatWidgetSettingModal;
         break;
       default:
         modal = null;

@@ -94,7 +94,11 @@
 </div>
 <div class="top-bar"><TopBar /></div>
 
-<svelte:component this={modal} />
+{#if modal}
+  <div class="modal-layer">
+    <svelte:component this={modal} />
+  </div>
+{/if}
 
 {#if currentImage}
   <div class="popup-layer">
@@ -175,6 +179,12 @@
       transform: none;
       -webkit-transform: none;
     }
+  }
+
+  .modal-layer {
+    position: fixed;
+    width: 100%;
+    height: 100%;
   }
 
   .popup-layer {

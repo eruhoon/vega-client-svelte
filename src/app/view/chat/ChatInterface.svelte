@@ -6,7 +6,6 @@
 
   let message: string = '';
   let userListShow = false;
-  let emojiAttachViewShow = false;
   let isConnected = false;
   let isScrollLock = false;
 
@@ -28,9 +27,7 @@
   };
 
   const toggleEmojiAttachView = () => {
-    const next = !emojiAttachViewShow;
-    emojiAttachViewShow = next;
-    WindowService.emojiAttachViewShow.set(next);
+    WindowService.toggleEmojiAttachView();
   };
 
   const clearChats = () => {

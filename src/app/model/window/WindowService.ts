@@ -3,7 +3,7 @@ import type { ModalType } from './ModalType';
 
 class WindowServiceInit {
   userListShow = writable(false);
-  emojiAttachViewShow = writable(false);
+  #isEmojiAttachViewShow = writable(false);
   sideBarShow = writable(false);
   settingMenuShow = writable(false);
   modal: Writable<ModalType | null> = writable(null);
@@ -19,6 +19,14 @@ class WindowServiceInit {
 
   closeImageViewerPopup() {
     this.#currentImage.set(null);
+  }
+
+  get emojiAttachViewShow(): Readable<boolean> {
+    return this.#isEmojiAttachViewShow;
+  }
+
+  toggleEmojiAttachView() {
+    this.#isEmojiAttachViewShow.update((show) => !show);
   }
 }
 

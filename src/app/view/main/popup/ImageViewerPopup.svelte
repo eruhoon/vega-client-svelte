@@ -9,7 +9,7 @@
 <div class="container" on:click={close}>
   <div class="background" />
   <div class="image-wrapper">
-    <img class="image" {src} alt="image" />
+    <img {src} alt="current" />
   </div>
 </div>
 

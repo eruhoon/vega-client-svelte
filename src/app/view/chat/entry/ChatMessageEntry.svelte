@@ -7,6 +7,18 @@
   export let message: ChatMessage;
   let enableTimestamp = OptionService.enableTimestamp;
 
+  const getPack = (type: string) => {
+    switch (type) {
+      case 'chat':
+        return TextPack;
+      case 'image':
+        return ImagePack;
+      default:
+        return null;
+    }
+  };
+  let pack = getPack(message.type);
+
   $: timestamp = convertTimeToString(new Date(message.timestamp).getTime());
 
   const convertTimeToString = (timestamp: number): string => {
@@ -27,13 +39,12 @@
 
 <div class="container">
   <div class="body">
-    {#if message.type === 'chat'}
-      <TextPack body={message.body} />
-    {:else if message.type === 'image'}
-      <ImagePack body={message.body} />
+    {#if pack}
+      <svelte:component this={pack} body={message.body} />
     {:else}
       {message.type}
     {/if}
+
     <!-- 테스트 구문 시작 -->
     <div class="menu">
       <button><i class="far fa-angry" /></button>
@@ -52,6 +63,7 @@
   .container {
     .body {
       position: relative;
+      width: 100%;
       word-wrap: break-word;
       color: $foreground-color;
       padding-bottom: 4px;

@@ -6,6 +6,7 @@
   import { ProfileService } from '../../service/ProfileService';
   import ChatPage from '../chat/ChatPage.svelte';
   import ChatWidgetSettingModal from '../setting/ChatWidgetSettingModal.svelte';
+  import DonationSettingModal from '../setting/DonationSettingModal.svelte';
   import ProfileSettingModal from '../setting/ProfileSettingModal.svelte';
   import SiteSettingModal from '../setting/SiteSettingModal.svelte';
   import StreamSettingModal from '../setting/StreamSettingModal.svelte';
@@ -37,6 +38,9 @@
         break;
       case 'chat-widget':
         modal = ChatWidgetSettingModal;
+        break;
+      case 'donation':
+        modal = DonationSettingModal;
         break;
       default:
         modal = null;

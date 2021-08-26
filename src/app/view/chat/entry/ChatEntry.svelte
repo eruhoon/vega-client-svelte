@@ -1,5 +1,8 @@
 <script lang="ts">
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
+  import { ChatService } from '../../../model/chat/ChatService';
+  import { SessionService } from '../../../model/session/SessionService';
+  import { SocketService } from '../../../model/socket/SocketService';
 
   import type { ChatEntryProp } from './ChatEntryProp';
   import ChatMessageEntry from './ChatMessageEntry.svelte';
@@ -11,12 +14,17 @@
     messages: [],
   };
   export let messages: ChatMessage[] = [];
+
+  const sendIcon = () => {
+    const privateKey = SessionService.getPrivateKey();
+    SocketService.chat?.execute(privateKey, 'chat', prop.icon);
+  };
 </script>
 
 <div class="chat-entry">
   <div class="icon-section">
     <div class="icon">
-      <img src={prop.icon} alt="프로필" />
+      <img src={prop.icon} alt="프로필" on:contextmenu={sendIcon} />
     </div>
   </div>
   <div class="message-section">

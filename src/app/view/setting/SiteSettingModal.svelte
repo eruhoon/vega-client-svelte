@@ -8,7 +8,7 @@
   OptionService.timestamp.subscribe((v) => (enableTimestamp = v));
 
   const toggleTimestamp = () => {
-    OptionService.timestamp.update((v) => !v);
+    OptionService.setTimestamp(!enableTimestamp);
   };
 </script>
 

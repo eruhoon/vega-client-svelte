@@ -6,6 +6,7 @@
   import { ProfileService } from '../../service/ProfileService';
   import ChatPage from '../chat/ChatPage.svelte';
   import ChatWidgetSettingModal from '../setting/ChatWidgetSettingModal.svelte';
+  import DonationSettingModal from '../setting/DonationSettingModal.svelte';
   import ProfileSettingModal from '../setting/ProfileSettingModal.svelte';
   import SiteSettingModal from '../setting/SiteSettingModal.svelte';
   import StreamSettingModal from '../setting/StreamSettingModal.svelte';
@@ -19,7 +20,7 @@
   let dividerPos = 300;
   let isMoveMode = false;
   let windowInnerWidth: number;
-  let modal;
+  let modal = null;
   let currentImage: string;
 
   ChatNetworkService.init(privateKey);
@@ -37,6 +38,9 @@
         break;
       case 'chat-widget':
         modal = ChatWidgetSettingModal;
+        break;
+      case 'donation':
+        modal = DonationSettingModal;
         break;
       default:
         modal = null;
@@ -90,7 +94,11 @@
 </div>
 <div class="top-bar"><TopBar /></div>
 
-<svelte:component this={modal} />
+{#if modal}
+  <div class="modal-layer">
+    <svelte:component this={modal} />
+  </div>
+{/if}
 
 {#if currentImage}
   <div class="popup-layer">
@@ -171,6 +179,12 @@
       transform: none;
       -webkit-transform: none;
     }
+  }
+
+  .modal-layer {
+    position: fixed;
+    width: 100%;
+    height: 100%;
   }
 
   .popup-layer {

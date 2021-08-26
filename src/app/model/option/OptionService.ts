@@ -7,7 +7,6 @@ class OptionManager {
   #localStorage = new LocalStorageManager();
 
   constructor() {
-    console.log(this.#localStorage.timestamp);
     this.#timestamp.set(this.#localStorage.timestamp);
   }
 

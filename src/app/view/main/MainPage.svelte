@@ -20,7 +20,7 @@
   let dividerPos = 300;
   let isMoveMode = false;
   let windowInnerWidth: number;
-  let modal;
+  let modal = null;
   let currentImage: string;
 
   ChatNetworkService.init(privateKey);

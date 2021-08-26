@@ -6,9 +6,6 @@ class WindowServiceInit {
   emojiAttachViewShow = writable(false);
   sideBarShow = writable(false);
   settingMenuShow = writable(false);
-  siteSettingModalShow = writable(false);
-  streamSettingModalShow = writable(false);
-  profileSettingModalShow = writable(false);
   modal: Writable<ModalType | null> = writable(null);
 }
 

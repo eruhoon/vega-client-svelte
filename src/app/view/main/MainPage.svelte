@@ -9,6 +9,7 @@
   import ProfileSettingModal from '../setting/ProfileSettingModal.svelte';
   import SiteSettingModal from '../setting/SiteSettingModal.svelte';
   import StreamSettingModal from '../setting/StreamSettingModal.svelte';
+  import ImageViewerPopup from './popup/ImageViewerPopup.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
 
@@ -19,6 +20,7 @@
   let isMoveMode = false;
   let windowInnerWidth: number;
   let modal;
+  let currentImage: string;
 
   ChatNetworkService.init(privateKey);
   WindowService.sideBarShow.subscribe((v) => (sideBarVisible = v));
@@ -40,6 +42,7 @@
         modal = null;
     }
   });
+  WindowService.currentImage.subscribe((v) => (currentImage = v));
 
   new VegaStreamProfileLoader(privateKey).load().then((streamProfile) => {
     ProfileService.platform.set(streamProfile.platform);
@@ -88,6 +91,12 @@
 <div class="top-bar"><TopBar /></div>
 
 <svelte:component this={modal} />
+
+{#if currentImage}
+  <div class="popup-layer">
+    <ImageViewerPopup src={currentImage} />
+  </div>
+{/if}
 
 <svelte:window bind:innerWidth={windowInnerWidth} />
 
@@ -162,5 +171,11 @@
       transform: none;
       -webkit-transform: none;
     }
+  }
+
+  .popup-layer {
+    position: fixed;
+    width: 100%;
+    height: 100%;
   }
 </style>

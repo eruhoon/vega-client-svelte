@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
   import { OptionService } from '../../../model/option/OptionService';
+  import ImagePack from '../pack/ImagePack.svelte';
   import TextPack from '../pack/TextPack.svelte';
 
   export let message: ChatMessage;
@@ -28,6 +29,8 @@
   <div class="body">
     {#if message.type === 'chat'}
       <TextPack body={message.body} />
+    {:else if message.type === 'image'}
+      <ImagePack body={message.body} />
     {:else}
       {message.type}
     {/if}

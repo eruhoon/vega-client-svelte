@@ -1,13 +1,14 @@
 <script lang="ts">
+  import { get } from 'svelte/store';
   import { OptionService } from '../../model/option/OptionService';
   import SettingModal from './SettingModal.svelte';
 
-  let enableTimestamp = OptionService.enableTimestamp;
+  let enableTimestamp = get(OptionService.timestamp);
 
-  OptionService.subscribeEnableTimestamp((v) => (enableTimestamp = v));
+  OptionService.timestamp.subscribe((v) => (enableTimestamp = v));
 
   const toggleTimestamp = () => {
-    OptionService.updateEnableTimestamp((v) => !v);
+    OptionService.timestamp.update((v) => !v);
   };
 </script>
 

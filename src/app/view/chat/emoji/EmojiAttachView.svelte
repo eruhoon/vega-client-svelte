@@ -1,8 +1,14 @@
 <script lang="ts">
+  import { SessionService } from '../../../model/session/SessionService';
+  import { SocketService } from '../../../model/socket/SocketService';
+
   const emojiStream: string =
     '😒 😊 😂 🤣 ❤ 😍 👌 😘 🤷‍♂️ 🤷‍♀️ 🤦‍♂️ 🤦‍♀️ 🙌 👍 😁 💕 ✌ 🤞 😉 😎 🎶 😢 💖 😜 🤳 🎂 🎉 🌹 💋 👏 ✔ 👀 😃 ✨ 😆 🤔 🤢 🎁';
   const emojies: string[] = emojiStream.split(' ');
-  const sendEmoji = (emoji: string): void => {};
+  const sendEmoji = (emoji: string): void => {
+    const privateKey = SessionService.getPrivateKey();
+    SocketService.chat?.execute(privateKey, 'chat', emoji);
+  };
 </script>
 
 <div class="container">

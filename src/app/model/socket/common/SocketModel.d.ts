@@ -5,7 +5,10 @@ export interface SocketModel {
   disconnect(): void;
 }
 
-export type SocketRequest = SocketLoginRequest | SocketChatRequest;
+export type SocketRequest =
+  | SocketLoginRequest
+  | SocketChatRequest
+  | SocketModifyProfileRequest;
 
 type SocketLoginRequest = {
   commandType: 'user-login';
@@ -21,6 +24,18 @@ type SocketChatRequest = {
     userKey: string;
     msg: string;
     type: string;
+  };
+};
+
+type SocketModifyProfileRequest = {
+  commandType: 'modify-profile';
+  resource: {
+    privateKey: string;
+    userInfo: {
+      icon: string;
+      nickname: string;
+      statusMessage: string;
+    };
   };
 };
 

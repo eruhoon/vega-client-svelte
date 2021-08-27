@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { ProfileService } from '../../service/ProfileService';
+
   import SettingModal from './SettingModal.svelte';
   import ExternalStreamSettingForm from './stream/ExternalStreamSettingForm.svelte';
   import LocalStreamSettingForm from './stream/LocalStreamSettingForm.svelte';
@@ -26,6 +28,8 @@
     },
   ];
   let currentPlatformId = 'local';
+
+  ProfileService.platform.subscribe((v) => (currentPlatformId = v));
 </script>
 
 <SettingModal title="방송 설정" icon="fas fa-podcast">

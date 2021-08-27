@@ -5,6 +5,9 @@
   import ExternalStreamSettingForm from './stream/ExternalStreamSettingForm.svelte';
   import LocalStreamSettingForm from './stream/LocalStreamSettingForm.svelte';
 
+  // SVG 클래스
+  import InlineSVG from 'svelte-inline-svg';
+
   const platforms = [
     {
       id: 'local',
@@ -43,7 +46,9 @@
           on:click={(_) => (currentPlatformId = p.id)}
         >
           <!-- SVG 변경 필수 -->
-          <img alt={p.title} src="/assets/image/stream/{p.icon}.png" />
+          <div class="icon">
+            <InlineSVG src="/assets/image/stream/{p.icon}.svg" />
+          </div>
           <h3>{p.title}</h3>
         </button>
       {/each}
@@ -70,6 +75,9 @@
 
 <style lang="scss">
   .stream-setup {
+    height: 778px;
+    position: relative;
+
     .stream-btn {
       width: 100%;
       height: 140px;
@@ -96,11 +104,12 @@
           background-color: #ff4081;
         }
 
-        img {
+        .icon {
           width: 60px;
           height: 60px;
-          margin: 5px;
+          margin: 12px 22px;
           margin-bottom: 15px;
+          fill: #ffffff;
         }
         h3 {
           font-size: 18px;
@@ -110,11 +119,11 @@
     }
     .stream-form {
       width: calc(100% - 30px);
-      height: auto;
+      height: calc(100% - 156px);
       padding: 0px 15px;
     }
     .stream-sub {
-      width: calc(100% + 30px);
+      width: 100%;
       height: auto;
       margin: 0px -15px;
       border: 0px;
@@ -123,24 +132,33 @@
       padding: 20px 15px;
       background-color: #ff4081;
       color: #ffffff;
+
+      position: absolute;
+      bottom: 0px;
     }
   }
   // 모바일 처리
   @media (min-width: 320px) and (max-width: 500px) {
     .stream-setup {
+      height: auto;
       .stream-btn {
+        height: 107px;
         .live-select {
-          img {
-            width: 50px;
-            height: 50px;
-            margin: 5px;
-            margin-bottom: 15px;
+          height: 107px;
+          .icon {
+            width: calc(100% - 24px);
+            height: auto;
+            margin: 0px 12px;
+            margin-bottom: 5px;
           }
           h3 {
             font-size: 14px;
             letter-spacing: 1px;
           }
         }
+      }
+      .stream-sub {
+        position: fixed;
       }
     }
   }

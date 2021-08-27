@@ -24,6 +24,7 @@ export class ChatNetworkModel {
     this.#socket.onReceived((command) => {
       switch (command.commandType) {
         case 'applyMyStatus':
+          ProfileService.statusMessage.set(command.response.statusMessage);
           ProfileService.profileIcon.set(command.response.icon);
           ProfileService.nickname.set(command.response.nickname);
           break;

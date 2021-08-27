@@ -4,10 +4,11 @@
   import TextSettingInput from './stream/TextSettingInput.svelte';
 
   let nickname: string = '';
-  let statusMessage: string = 'https://drive.google.com/file/d/1lsXDgsN1aeg';
+  let statusMessage: string = '';
   let icon: string = '';
   ProfileService.nickname.subscribe((v) => (nickname = v));
   ProfileService.profileIcon.subscribe((v) => (icon = v));
+  ProfileService.statusMessage.subscribe((v) => (statusMessage = v));
 </script>
 
 <SettingModal title="프로필 설정" icon="fas fa-user">

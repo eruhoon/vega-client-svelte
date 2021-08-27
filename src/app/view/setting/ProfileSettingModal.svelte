@@ -1,39 +1,37 @@
 <script lang="ts">
+  import { ProfileService } from '../../service/ProfileService';
   import SettingModal from './SettingModal.svelte';
+  import TextSettingInput from './stream/TextSettingInput.svelte';
+
+  let nickname: string = '';
+  let statusMessage: string = 'https://drive.google.com/file/d/1lsXDgsN1aeg';
+  let icon: string = '';
+  ProfileService.nickname.subscribe((v) => (nickname = v));
+  ProfileService.profileIcon.subscribe((v) => (icon = v));
 </script>
 
 <SettingModal title="프로필 설정" icon="fas fa-user">
   <div slot="body">
     <div class="profile-img">
-      <img alt="유저이미지" src="https://i.imgur.com/XjsUghQ.gif" />
+      <img alt="유저이미지" src={icon} />
       <h2>이야기 정보 수정</h2>
     </div>
     <div class="profile-form">
-      <div class="input-group">
-        <p>닉네임</p>
-        <input
-          type="text"
-          placeholder="닉네임"
-          value="이야기"
-          name="profile-nickname"
-        />
-      </div>
-      <div class="input-group">
-        <p>상태 메시지</p>
-        <input
-          type="text"
-          value="https://drive.google.com/file/d/1lsXDgsN1aeg"
-          name="profile-memo"
-        />
-      </div>
-      <div class="input-group">
-        <p>사용자 이미지</p>
-        <input
-          type="text"
-          value="https://i.imgur.com/XjsUghQ.gif"
-          name="profile-image"
-        />
-      </div>
+      <TextSettingInput
+        title="닉네임"
+        name="profile-nickname"
+        value={nickname}
+      />
+      <TextSettingInput
+        title="상태 메시지"
+        name="profile-memo"
+        value={statusMessage}
+      />
+      <TextSettingInput
+        title="사용자 이미지"
+        name="profile-image"
+        value={icon}
+      />
       <button class="stream-sub">
         <h2>방송 설정 저장</h2>
       </button>

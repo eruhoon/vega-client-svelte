@@ -3,6 +3,7 @@
   export let subtitle = '';
   export let value = '';
   export let name = '';
+  export let placeholder = '';
 </script>
 
 <div class="input-group">
@@ -10,7 +11,7 @@
     {title}
     {#if subtitle}<small>({subtitle})</small>{/if}
   </p>
-  <input type="text" bind:value {name} />
+  <input type="text" bind:value {name} {placeholder} />
 </div>
 
 <style lang="scss">

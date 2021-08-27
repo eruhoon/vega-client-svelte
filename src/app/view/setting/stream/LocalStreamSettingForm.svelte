@@ -8,10 +8,11 @@
     src="https://cphoto.asiae.co.kr/listimglink/6/2020060911301484295_1591669814.jpg"
   />
 </div>
-<div class="input-group">
-  <p>방송 배경 설정</p>
-  <input type="text" placeholder="이미지 주소" name="stream-image-url" />
-</div>
+<TextSettingInput
+  title="방송 배경 설정"
+  placeholder="이미지 주소"
+  name="stream-image-url"
+/>
 <TextSettingInput
   title="스트림 링크"
   subtitle="OBS FMS URL"

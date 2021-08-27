@@ -4,7 +4,7 @@
   export let title: string;
   export let icon: string;
 
-  const close = () => {
+  export const close = () => {
     WindowService.modal.set(null);
   };
 </script>

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { SessionService } from '../../model/session/SessionService';
   import { SocketService } from '../../model/socket/SocketService';
+  import { WindowService } from '../../model/window/WindowService';
   import { ProfileService } from '../../service/ProfileService';
   import SettingModal from './SettingModal.svelte';
   import TextSettingInput from './stream/TextSettingInput.svelte';
@@ -11,6 +12,11 @@
   ProfileService.nickname.subscribe((v) => (nickname = v));
   ProfileService.profileIcon.subscribe((v) => (icon = v));
   ProfileService.statusMessage.subscribe((v) => (statusMessage = v));
+
+  const onSubmitClick = () => {
+    modifyProfile();
+    WindowService.modal.set(null);
+  };
 
   const modifyProfile = () => {
     const privateKey = SessionService.getPrivateKey();
@@ -44,7 +50,7 @@
         name="profile-image"
         bind:value={icon}
       />
-      <button class="stream-sub" on:click={modifyProfile}>
+      <button class="stream-sub" on:click={onSubmitClick}>
         <h2>방송 설정 저장</h2>
       </button>
     </div>

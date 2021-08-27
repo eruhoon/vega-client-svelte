@@ -30,7 +30,7 @@
       <SettingMenuImage />
     </svelte:fragment>
   </SettingMenuItem>
-  <SettingMenuItem menuClick={() => openModal('donation')}>
+  <SettingMenuItem menuClick={() => openModal('site')}>
     <svelte:fragment slot="body">
       <div class="icon">
         <i class="fas fa-tools" />
@@ -38,7 +38,7 @@
       <p>사이트 설정</p>
     </svelte:fragment>
   </SettingMenuItem>
-  <SettingMenuItem menuClick={() => openModal('donation')}>
+  <SettingMenuItem menuClick={() => openModal('chat-widget')}>
     <svelte:fragment slot="body">
       <div class="icon">
         <i class="far fa-comment" />

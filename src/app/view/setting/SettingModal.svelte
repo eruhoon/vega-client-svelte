@@ -55,7 +55,7 @@
       height: auto;
       //height: 725px;
       max-width: 100%;
-      max-height: calc(100% - 50px);
+      max-height: calc(100% - 100px);
       background: #2a2f38;
       color: #ffffff;
       border-radius: 2px;
@@ -93,6 +93,7 @@
       }
       .body {
         overflow-y: auto;
+
         * {
           padding: 0%;
           margin: 0%;
@@ -146,11 +147,12 @@
     .modal-wrapper {
       .modal {
         width: 100%;
-        height: calc(100% - 50px);
+        height: calc(100% - 50px) !important;
+        max-height: calc(100% - 50px) !important;
         position: fixed;
         top: 50px;
         .body {
-          height: calc(100% - 73px);
+          height: calc(100vh - 73px);
         }
       }
     }

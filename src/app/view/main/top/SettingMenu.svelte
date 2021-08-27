@@ -2,6 +2,7 @@
   import { SessionService } from '../../../model/session/SessionService';
   import type { ModalType } from '../../../model/window/ModalType';
   import { WindowService } from '../../../model/window/WindowService';
+  import SettingMenuBody from './SettingMenuBody.svelte';
   import SettingMenuImage from './SettingMenuImage.svelte';
   import SettingMenuItem from './SettingMenuItem.svelte';
   import SettingSwitch from './SettingSwitch.svelte';
@@ -20,64 +21,36 @@
   <SettingMenuItem hoverable={false}>
     <SettingUserInfo slot="body" />
   </SettingMenuItem>
-
   <SettingMenuItem menuClick={() => openModal('stream')}>
     <svelte:fragment slot="body">
-      <div class="icon">
-        <i class="fas fa-podcast" />
-      </div>
-      <p>방송 설정</p>
+      <SettingMenuBody name="방송 설정" icon="fas fa-podcast" />
       <SettingMenuImage />
     </svelte:fragment>
   </SettingMenuItem>
   <SettingMenuItem menuClick={() => openModal('site')}>
-    <svelte:fragment slot="body">
-      <div class="icon">
-        <i class="fas fa-tools" />
-      </div>
-      <p>사이트 설정</p>
-    </svelte:fragment>
+    <SettingMenuBody slot="body" name="사이트 설정" icon="fas fa-tools" />
   </SettingMenuItem>
   <SettingMenuItem menuClick={() => openModal('chat-widget')}>
-    <svelte:fragment slot="body">
-      <div class="icon">
-        <i class="far fa-comment" />
-      </div>
-      <p>채팅위젯 설정</p>
-    </svelte:fragment>
+    <SettingMenuBody slot="body" name="채팅위젯 설정" icon="fas fa-comment" />
   </SettingMenuItem>
   <SettingMenuItem menuClick={() => openModal('donation')}>
-    <svelte:fragment slot="body">
-      <div class="icon">
-        <i class="fas fa-donate" />
-      </div>
-      <p>후원 설정</p>
-    </svelte:fragment>
+    <SettingMenuBody slot="body" name="후원 설정" icon="fas fa-donate" />
   </SettingMenuItem>
   <SettingMenuItem>
     <svelte:fragment slot="body">
-      <div class="icon">
-        <i class="fas fa-adjust" />
-      </div>
-      <p>테마</p>
+      <SettingMenuBody name="테마" icon="fas fa-adjust" />
       <SettingSwitch />
     </svelte:fragment>
   </SettingMenuItem>
   <SettingMenuItem>
-    <svelte:fragment slot="body">
-      <div class="icon">
-        <i class="fas fa-mobile" />
-      </div>
-      <p>모바일 모드</p>
-    </svelte:fragment>
+    <SettingMenuBody slot="body" name="모바일 모드" icon="fas fa-mobile" />
   </SettingMenuItem>
   <SettingMenuItem>
-    <svelte:fragment slot="body">
-      <div class="icon">
-        <i class="fas fa-clipboard-list" />
-      </div>
-      <p>후원리스트</p>
-    </svelte:fragment>
+    <SettingMenuBody
+      slot="body"
+      name="후원리스트"
+      icon="fas fa-clipboard-list"
+    />
   </SettingMenuItem>
   <div class="logout" on:click={logout}>
     <h4>로그아웃</h4>
@@ -92,28 +65,6 @@
 
     border-radius: 0 0 5px 5px;
     background: #2a2f38;
-  }
-
-  .setting-list > .item {
-    p {
-      margin: 0%;
-      padding: 0%;
-      color: #ffffff;
-      padding: 14px 10px;
-      padding-right: 0px;
-    }
-
-    .icon {
-      width: 32px;
-      height: 46px;
-      color: #ffffff;
-      margin: 0%;
-      text-align: center;
-      i {
-        font-size: 20px;
-        padding: 13px 7px;
-      }
-    }
   }
 
   // 로그아웃 부분

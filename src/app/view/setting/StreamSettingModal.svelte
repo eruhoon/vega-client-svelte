@@ -1,10 +1,11 @@
 <script lang="ts">
   import SettingModal from './SettingModal.svelte';
+  import ExternalStreamSettingForm from './stream/ExternalStreamSettingForm.svelte';
   import LocalStreamSettingForm from './stream/LocalStreamSettingForm.svelte';
 
   const platforms = [
     {
-      id: 'mycast',
+      id: 'local',
       icon: 'mycast',
       title: '로컬서버',
     },
@@ -19,12 +20,12 @@
       title: '트위치',
     },
     {
-      id: 'afreecatv',
+      id: 'afreeca',
       icon: 'afreecatv',
       title: '아프리카TV',
     },
   ];
-  const currentPlatformId = 'totoro';
+  let currentPlatformId = 'local';
 </script>
 
 <SettingModal title="방송 설정" icon="fas fa-podcast">
@@ -35,6 +36,7 @@
           name="stream-live-select"
           class="live-select"
           class:active={p.id === currentPlatformId}
+          on:click={(_) => (currentPlatformId = p.id)}
         >
           <!-- SVG 변경 필수 -->
           <img alt={p.title} src="/assets/image/stream/{p.icon}.png" />
@@ -42,8 +44,19 @@
         </button>
       {/each}
     </div>
+
     <div class="stream-form">
-      <LocalStreamSettingForm />
+      {#if currentPlatformId === 'local'}
+        <LocalStreamSettingForm />
+      {:else if currentPlatformId === 'totoro'}
+        <LocalStreamSettingForm />
+      {:else if currentPlatformId === 'afreeca'}
+        <ExternalStreamSettingForm streamKey="test-for-afreeca" />
+      {:else if currentPlatformId === 'twitch'}
+        <ExternalStreamSettingForm streamKey="test-for-twitch" />
+      {:else}
+        <div />
+      {/if}
     </div>
   </div>
 </SettingModal>

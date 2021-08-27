@@ -52,8 +52,8 @@
     .modal {
       position: relative;
       width: 500px;
-      //height: auto;
-      height: 725px;
+      height: auto;
+      //height: 725px;
       max-width: 100%;
       max-height: calc(100% - 50px);
       background: #2a2f38;
@@ -149,6 +149,9 @@
         height: calc(100% - 50px);
         position: fixed;
         top: 50px;
+        .body {
+          height: calc(100% - 73px);
+        }
       }
     }
   }

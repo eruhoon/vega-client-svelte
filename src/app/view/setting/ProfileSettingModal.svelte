@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { SessionService } from '../../model/session/SessionService';
+  import { SocketService } from '../../model/socket/SocketService';
   import { ProfileService } from '../../service/ProfileService';
   import SettingModal from './SettingModal.svelte';
   import TextSettingInput from './stream/TextSettingInput.svelte';
@@ -9,6 +11,15 @@
   ProfileService.nickname.subscribe((v) => (nickname = v));
   ProfileService.profileIcon.subscribe((v) => (icon = v));
   ProfileService.statusMessage.subscribe((v) => (statusMessage = v));
+
+  const modifyProfile = () => {
+    const privateKey = SessionService.getPrivateKey();
+    SocketService.modifyProfile?.execute(privateKey, {
+      icon,
+      nickname,
+      statusMessage,
+    });
+  };
 </script>
 
 <SettingModal title="프로필 설정" icon="fas fa-user">
@@ -21,19 +32,19 @@
       <TextSettingInput
         title="닉네임"
         name="profile-nickname"
-        value={nickname}
+        bind:value={nickname}
       />
       <TextSettingInput
         title="상태 메시지"
         name="profile-memo"
-        value={statusMessage}
+        bind:value={statusMessage}
       />
       <TextSettingInput
         title="사용자 이미지"
         name="profile-image"
-        value={icon}
+        bind:value={icon}
       />
-      <button class="stream-sub">
+      <button class="stream-sub" on:click={modifyProfile}>
         <h2>방송 설정 저장</h2>
       </button>
     </div>

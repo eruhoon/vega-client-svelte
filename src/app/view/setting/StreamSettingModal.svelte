@@ -1,5 +1,6 @@
 <script lang="ts">
   import SettingModal from './SettingModal.svelte';
+  import LocalStreamSettingForm from './stream/LocalStreamSettingForm.svelte';
 
   const platforms = [
     {
@@ -42,31 +43,7 @@
       {/each}
     </div>
     <div class="stream-form">
-      <div class="preview-img">
-        <img
-          alt="이미지보기"
-          src="https://cphoto.asiae.co.kr/listimglink/6/2020060911301484295_1591669814.jpg"
-        />
-      </div>
-      <div class="input-group">
-        <p>방송 배경 설정</p>
-        <input type="text" placeholder="이미지 주소" name="stream-image-url" />
-      </div>
-      <div class="input-group">
-        <p>스트림 링크 <small>(OBS FMS URL)</small></p>
-        <input
-          type="text"
-          value="rtmp://totoro.mycast.xyz/live"
-          name="stream-fms-url"
-        />
-      </div>
-      <div class="input-group">
-        <p>스트림 키 <small>(STREAM KEY)</small></p>
-        <input type="text" value="asdguioqwberh8hu3o21j4" name="stream-key" />
-      </div>
-      <button class="stream-sub">
-        <h2>방송 설정 저장</h2>
-      </button>
+      <LocalStreamSettingForm />
     </div>
   </div>
 </SettingModal>
@@ -115,48 +92,6 @@
       width: calc(100% - 30px);
       height: auto;
       padding: 0px 15px;
-
-      .preview-img {
-        width: 100%;
-        max-height: 265px;
-        overflow: hidden;
-
-        margin-bottom: 15px;
-
-        img {
-          width: 100%;
-        }
-      }
-      .input-group {
-        width: 100%;
-        margin-bottom: 15px;
-
-        p {
-          font-size: 14px;
-          line-height: 18px;
-          margin-bottom: 5px;
-        }
-
-        input {
-          width: 100%;
-          background: #1f2226;
-          border: 0px;
-          border-radius: 0%;
-          color: #ffffff;
-          padding: 15px 10px;
-        }
-      }
-      .stream-sub {
-        width: calc(100% + 30px);
-        height: auto;
-        margin: 0px -15px;
-        border: 0px;
-        border-top-left-radius: 0px;
-        border-top-right-radius: 0px;
-        padding: 20px 15px;
-        background-color: #ff4081;
-        color: #ffffff;
-      }
     }
   }
   // 모바일 처리

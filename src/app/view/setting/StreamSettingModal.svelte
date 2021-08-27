@@ -57,6 +57,9 @@
       {:else}
         <div />
       {/if}
+      <button class="stream-sub">
+        <h2>방송 설정 저장</h2>
+      </button>
     </div>
   </div>
 </SettingModal>
@@ -105,6 +108,17 @@
       width: calc(100% - 30px);
       height: auto;
       padding: 0px 15px;
+    }
+    .stream-sub {
+      width: calc(100% + 30px);
+      height: auto;
+      margin: 0px -15px;
+      border: 0px;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      padding: 20px 15px;
+      background-color: #ff4081;
+      color: #ffffff;
     }
   }
   // 모바일 처리

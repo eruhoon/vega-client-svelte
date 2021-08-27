@@ -24,9 +24,6 @@
   value="asdguioqwberh8hu3o21j4"
   name="stream-key"
 />
-<button class="stream-sub">
-  <h2>방송 설정 저장</h2>
-</button>
 
 <style lang="scss">
   .preview-img {
@@ -58,16 +55,5 @@
       color: #ffffff;
       padding: 15px 10px;
     }
-  }
-  .stream-sub {
-    width: calc(100% + 30px);
-    height: auto;
-    margin: 0px -15px;
-    border: 0px;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    padding: 20px 15px;
-    background-color: #ff4081;
-    color: #ffffff;
   }
 </style>

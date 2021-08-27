@@ -66,25 +66,6 @@
     width: calc(100% - 30px);
     height: auto;
     padding: 0px 15px;
-    .input-group {
-      width: 100%;
-      margin-bottom: 15px;
-
-      p {
-        font-size: 14px;
-        line-height: 18px;
-        margin-bottom: 5px;
-      }
-
-      input {
-        width: 100%;
-        background: #1f2226;
-        border: 0px;
-        border-radius: 0%;
-        color: #ffffff;
-        padding: 15px 10px;
-      }
-    }
     .stream-sub {
       width: calc(100% + 30px);
       height: auto;

@@ -1,15 +1,10 @@
-import { Writable, writable } from 'svelte/store';
+import { Readable, Writable, writable } from 'svelte/store';
 
-export const ProfileService: ProfileServiceInit = {
-  statusMessage: writable(''),
-  profileIcon: writable(''),
-  nickname: writable(''),
-  platform: writable('local'),
-};
+class ProfileServiceInit {
+  readonly profileIcon = writable('');
+  readonly nickname = writable('');
+  readonly statusMessage = writable('');
+  readonly platform = writable('local');
+}
 
-type ProfileServiceInit = {
-  readonly profileIcon: Writable<string>;
-  readonly nickname: Writable<string>;
-  readonly platform: Writable<string>;
-  readonly statusMessage: Writable<string>;
-};
+export const ProfileService: ProfileServiceInit = new ProfileServiceInit();

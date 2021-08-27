@@ -5,7 +5,7 @@
   export let icon: string;
 
   export const close = () => {
-    WindowService.modal.set(null);
+    WindowService.closeModal();
   };
 </script>
 

@@ -15,7 +15,7 @@
 
   const onSubmitClick = () => {
     modifyProfile();
-    WindowService.modal.set(null);
+    WindowService.closeModal();
   };
 
   const modifyProfile = () => {

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { SessionService } from '../../../model/session/SessionService';
+  import type { ModalType } from '../../../model/window/ModalType';
   import { WindowService } from '../../../model/window/WindowService';
   import { ProfileService } from '../../../service/ProfileService';
 
@@ -12,6 +13,10 @@
   const logout = () => {
     SessionService.setPrivateKey('');
   };
+
+  const openModal = (modal: ModalType) => {
+    WindowService.openModal(modal);
+  };
 </script>
 
 <div class="setting-list">
@@ -21,15 +26,12 @@
       <span class="u-name">
         <p class="name">{nickname}</p>
       </span>
-      <button on:click={(_) => WindowService.modal.set('profile')}>
+      <button on:click={(_) => openModal('profile')}>
         <i class="fas fa-cog" />
       </button>
     </div>
   </div>
-  <div
-    class="item hover image-attached"
-    on:click={(_) => WindowService.modal.set('stream')}
-  >
+  <div class="item hover image-attached" on:click={(_) => openModal('stream')}>
     <div class="icon">
       <i class="fas fa-podcast" />
     </div>
@@ -39,22 +41,19 @@
       alt="방송배경"
     />
   </div>
-  <div class="item hover" on:click={(_) => WindowService.modal.set('site')}>
+  <div class="item hover" on:click={(_) => openModal('site')}>
     <div class="icon">
       <i class="fas fa-tools" />
     </div>
     <p>사이트 설정</p>
   </div>
-  <div
-    class="item hover"
-    on:click={(_) => WindowService.modal.set('chat-widget')}
-  >
+  <div class="item hover" on:click={(_) => openModal('chat-widget')}>
     <div class="icon">
       <i class="far fa-comment" />
     </div>
     <p>채팅위젯 설정</p>
   </div>
-  <div class="item hover" on:click={(_) => WindowService.modal.set('donation')}>
+  <div class="item hover" on:click={(_) => openModal('donation')}>
     <div class="icon">
       <i class="fas fa-donate" />
     </div>

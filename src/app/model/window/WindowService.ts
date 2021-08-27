@@ -17,6 +17,14 @@ class WindowServiceInit {
     return this.#currentImage;
   }
 
+  openModal(modal: ModalType) {
+    this.#modal.set(modal);
+  }
+
+  closeModal() {
+    this.#modal.set(null);
+  }
+
   openImageViewerPopup(image: string) {
     this.#currentImage.set(image);
   }

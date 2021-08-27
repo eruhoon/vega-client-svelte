@@ -20,15 +20,3 @@ export class ModifyProfileCommand {
     });
   }
 }
-
-export type ModifyProfileRequest = {
-  name: string;
-  icon: string;
-  statusMessage: string;
-};
-
-export type ModifyProfileResponse = {
-  name: string;
-  icon: string;
-  statusMessage: string;
-};

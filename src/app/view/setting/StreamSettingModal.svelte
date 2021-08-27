@@ -1,30 +1,45 @@
 <script lang="ts">
   import SettingModal from './SettingModal.svelte';
+
+  const platforms = [
+    {
+      id: 'mycast',
+      icon: 'mycast',
+      title: '로컬서버',
+    },
+    {
+      id: 'totoro',
+      icon: 'totoro',
+      title: '이웃서버',
+    },
+    {
+      id: 'twitch',
+      icon: 'twitch',
+      title: '트위치',
+    },
+    {
+      id: 'afreecatv',
+      icon: 'afreecatv',
+      title: '아프리카TV',
+    },
+  ];
+  const currentPlatformId = 'totoro';
 </script>
 
 <SettingModal title="방송 설정" icon="fas fa-podcast">
   <div slot="body" class="stream-setup">
     <div class="stream-btn">
-      <button name="stream-live-select" class="live-select" value="lo">
-        <!-- SVG 변경 필수 -->
-        <img alt="로컬서버" src="/assets/image/stream/mycast.png" />
-        <h3>로컬서버</h3>
-      </button>
-      <button name="stream-live-select" class="live-select active" value="lo">
-        <!-- SVG 변경 필수 -->
-        <img alt="이웃서버" src="/assets/image/stream/totoro.png" />
-        <h3>이웃서버</h3>
-      </button>
-      <button name="stream-live-select" class="live-select" value="lo">
-        <!-- SVG 변경 필수 -->
-        <img alt="트위치" src="/assets/image/stream/twitch.png" />
-        <h3>트위치</h3>
-      </button>
-      <button name="stream-live-select" class="live-select" value="lo">
-        <!-- SVG 변경 필수 -->
-        <img alt="아프리카TV" src="/assets/image/stream/afreecatv.png" />
-        <h3>아프리카TV</h3>
-      </button>
+      {#each platforms as p}
+        <button
+          name="stream-live-select"
+          class="live-select"
+          class:active={p.id === currentPlatformId}
+        >
+          <!-- SVG 변경 필수 -->
+          <img alt={p.title} src="/assets/image/stream/{p.icon}.png" />
+          <h3>{p.title}</h3>
+        </button>
+      {/each}
     </div>
     <div class="stream-form">
       <div class="preview-img">

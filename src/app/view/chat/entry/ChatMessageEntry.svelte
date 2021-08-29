@@ -3,6 +3,7 @@
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
   import { OptionService } from '../../../model/option/OptionService';
   import ImagePack from '../pack/ImagePack.svelte';
+  import LinkPack from '../pack/LinkPack.svelte';
   import TextPack from '../pack/TextPack.svelte';
 
   export let message: ChatMessage;
@@ -14,6 +15,8 @@
         return TextPack;
       case 'image':
         return ImagePack;
+      case 'link':
+        return LinkPack;
       default:
         return null;
     }

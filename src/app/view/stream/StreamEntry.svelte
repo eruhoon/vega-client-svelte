@@ -159,38 +159,6 @@
           padding: 0%;
           margin-left: 10px;
         }
-
-        .btn-box {
-          position: absolute;
-          top: -70px;
-          right: 5px;
-
-          .button {
-            width: 30px;
-            height: 30px;
-            float: left;
-            margin-left: 5px;
-
-            border-radius: 15px;
-            background: $background-color;
-            text-align: center;
-            cursor: pointer;
-
-            i {
-              color: #eee;
-              font-size: 15px;
-              line-height: 33px;
-
-              &.enabled {
-                color: #cc0;
-              }
-            }
-
-            &:hover {
-              background: lighten($background-color, 10%);
-            }
-          }
-        }
       }
     }
 

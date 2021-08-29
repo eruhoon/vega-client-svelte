@@ -1,6 +1,7 @@
 <script lang="ts">
   import { get } from 'svelte/store';
   import { ChatNetworkService } from '../../model/network/ChatNetworkService';
+  import { OptionService } from '../../model/option/OptionService';
   import { VegaStreamProfileLoader } from '../../model/profile/VegaStreamProfileLoader';
   import { WindowService } from '../../model/window/WindowService';
   import { ProfileService } from '../../service/ProfileService';
@@ -20,6 +21,7 @@
   let sideBarVisible = get(WindowService.sideBarShow);
   let dividerPos = 300;
   let isMoveMode = false;
+  let isCheckerBarEnable = get(OptionService.enableCheckerBar);
   let windowInnerWidth: number;
   let modal = null;
   let currentImage: string;
@@ -48,6 +50,7 @@
     }
   });
   WindowService.currentImage.subscribe((v) => (currentImage = v));
+  OptionService.enableCheckerBar.subscribe((v) => (isCheckerBarEnable = v));
 
   new VegaStreamProfileLoader(privateKey).load().then((streamProfile) => {
     ProfileService.platform.set(streamProfile.platform);
@@ -80,9 +83,11 @@
 <div class="main-section">
   <div
     class="content-section"
+    class:checker-attached={isCheckerBarEnable}
     style="left: {chatRight}; right: {chatLeft}; width: calc(100% - {chatWidth}px);"
   >
-    <div class="stream-box">
+    <div class="content" />
+    <div class="stream-list">
       <StreamList />
     </div>
   </div>
@@ -161,17 +166,39 @@
     }
 
     .content-section {
+      $stream-list-height: 80px;
       position: absolute;
       height: 100%;
       width: calc(100% - #{$default-chat-width});
       background: #2a2f38;
 
-      /*.stream-box {
+      .content {
+        background: blue;
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        width: 100%;
+        height: 100%;
+      }
+
+      .stream-list {
+        background: red;
+
         position: absolute;
         bottom: 0;
-        height: 80px;
+        height: 0;
         width: 100%;
-      }*/
+      }
+
+      &.checker-attached {
+        .content {
+          height: calc(100% - #{$stream-list-height});
+        }
+        .stream-list {
+          height: $stream-list-height;
+        }
+      }
     }
 
     .side-bar {

@@ -6,9 +6,11 @@
 
   let enableTimestamp = get(OptionService.timestamp);
   let enableBot = get(OptionService.enableBot);
+  let enableCheckerBot = get(OptionService.enableCheckerBar);
 
   OptionService.timestamp.subscribe((v) => (enableTimestamp = v));
   OptionService.enableBot.subscribe((v) => (enableBot = v));
+  OptionService.enableCheckerBar.subscribe((v) => (enableCheckerBot = v));
 </script>
 
 <SettingModal title="사이트 설정" icon="fas fa-tools">
@@ -22,6 +24,11 @@
       title="챗봇 표기"
       enable={enableBot}
       onClick={() => OptionService.setEnableBot(!enableBot)}
+    />
+    <PreferenceView
+      title="체커바 표시"
+      enable={enableCheckerBot}
+      onClick={() => OptionService.setEnableCheckerBar(!enableCheckerBot)}
     />
   </div>
 </SettingModal>

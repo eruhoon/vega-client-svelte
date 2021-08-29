@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { ModalType } from '../../../model/window/ModalType';
-  import { WindowService } from '../../../model/window/WindowService';
-  import { ProfileService } from '../../../service/ProfileService';
+  import type { ModalType } from '../../../../model/window/ModalType';
+  import { WindowService } from '../../../../model/window/WindowService';
+  import { ProfileService } from '../../../../service/ProfileService';
   import SettingMenuItem from './SettingMenuItem.svelte';
 
   let profileIcon = '';

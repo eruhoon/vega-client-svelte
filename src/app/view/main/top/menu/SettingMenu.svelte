@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { SessionService } from '../../../model/session/SessionService';
-  import type { ModalType } from '../../../model/window/ModalType';
-  import { WindowService } from '../../../model/window/WindowService';
+  import { SessionService } from '../../../../model/session/SessionService';
+  import type { ModalType } from '../../../../model/window/ModalType';
+  import { WindowService } from '../../../../model/window/WindowService';
   import DefaultMenuItem from './DefaultSettingMenuItem.svelte';
   import SettingMenuImage from './SettingMenuImage.svelte';
   import SettingSwitch from './SettingSwitch.svelte';

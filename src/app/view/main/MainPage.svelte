@@ -173,7 +173,6 @@
       background: #2a2f38;
 
       .content {
-        background: blue;
         position: absolute;
         left: 0;
         top: 0;
@@ -183,8 +182,7 @@
       }
 
       .stream-list {
-        background: red;
-
+        display: none;
         position: absolute;
         bottom: 0;
         height: 0;
@@ -196,6 +194,7 @@
           height: calc(100% - #{$stream-list-height});
         }
         .stream-list {
+          display: block;
           height: $stream-list-height;
         }
       }

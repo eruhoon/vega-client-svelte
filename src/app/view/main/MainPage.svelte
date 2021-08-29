@@ -79,18 +79,18 @@
 
 <div class="main-section">
   <div
+    class="content-section"
+    style="left: {chatRight}; right: {chatLeft}; width: calc(100% - {chatWidth}px);"
+  >
+    <div class="stream-box">
+      <StreamList />
+    </div>
+  </div>
+  <div
     class="chat-section"
     style="left: {chatLeft}; right: {chatRight}; width: {chatWidth}px;"
   >
     <ChatPage />
-  </div>
-  <div
-    class="content-section"
-    style="left: {chatRight}; right: {chatLeft}; width: calc(100% - {chatWidth}px);"
-  >
-    <div class="stream-list">
-      <StreamList />
-    </div>
   </div>
   <div class="side-bar" class:show={sideBarVisible}>
     <SideBar />
@@ -165,15 +165,13 @@
       height: 100%;
       width: calc(100% - #{$default-chat-width});
       background: #2a2f38;
-      box-shadow: 0 0 8px 0 rgb(0 0 0 / 40%), 0 0 15px 0 rgb(0 0 0 / 30%),
-        0 0 20px 4px rgb(0 0 0 / 30%);
 
-      .stream-list {
+      /*.stream-box {
         position: absolute;
         bottom: 0;
         height: 80px;
         width: 100%;
-      }
+      }*/
     }
 
     .side-bar {

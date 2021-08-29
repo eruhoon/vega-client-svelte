@@ -1,14 +1,10 @@
 <script lang="ts">
+  import InlineSVG from 'svelte-inline-svg';
+  import { get } from 'svelte/store';
   import { ProfileService } from '../../service/ProfileService';
-
   import SettingModal from './SettingModal.svelte';
   import ExternalStreamSettingForm from './stream/ExternalStreamSettingForm.svelte';
   import LocalStreamSettingForm from './stream/LocalStreamSettingForm.svelte';
-
-  // SVG 클래스
-  import InlineSVG from 'svelte-inline-svg';
-  import ProfileSettingModal from './ProfileSettingModal.svelte';
-  import { get } from 'svelte/store';
 
   const platforms = [
     {

@@ -2,11 +2,10 @@
   import { SessionService } from '../../../model/session/SessionService';
   import type { ModalType } from '../../../model/window/ModalType';
   import { WindowService } from '../../../model/window/WindowService';
-  import SettingMenuImage from './SettingMenuImage.svelte';
-  import SettingMenuItem from './SettingMenuItem.svelte';
-  import SettingSwitch from './SettingSwitch.svelte';
-  import SettingUserInfo from './SettingUserInfo.svelte';
   import DefaultMenuItem from './DefaultSettingMenuItem.svelte';
+  import SettingMenuImage from './SettingMenuImage.svelte';
+  import SettingSwitch from './SettingSwitch.svelte';
+  import UserSettingMenuItem from './UserSettingMenuItem.svelte';
 
   const logout = () => {
     SessionService.setPrivateKey('');
@@ -18,9 +17,7 @@
 </script>
 
 <div class="setting-list">
-  <SettingMenuItem hoverable={false}>
-    <SettingUserInfo slot="body" />
-  </SettingMenuItem>
+  <UserSettingMenuItem />
   <DefaultMenuItem
     menuClick={() => openModal('stream')}
     name="방송 설정"

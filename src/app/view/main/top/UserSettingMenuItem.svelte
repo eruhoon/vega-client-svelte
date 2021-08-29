@@ -2,6 +2,7 @@
   import type { ModalType } from '../../../model/window/ModalType';
   import { WindowService } from '../../../model/window/WindowService';
   import { ProfileService } from '../../../service/ProfileService';
+  import SettingMenuItem from './SettingMenuItem.svelte';
 
   let profileIcon = '';
   let nickname = '';
@@ -14,15 +15,19 @@
   };
 </script>
 
-<div class="u-info">
-  <img class="profile" src={profileIcon} alt="프로필" />
-  <span class="u-name">
-    <p class="name">{nickname}</p>
-  </span>
-  <button on:click={(_) => openModal('profile')}>
-    <i class="fas fa-cog" />
-  </button>
-</div>
+<SettingMenuItem hoverable={false}>
+  <svelte:fragment slot="body">
+    <div class="u-info">
+      <img class="profile" src={profileIcon} alt="프로필" />
+      <span class="u-name">
+        <p class="name">{nickname}</p>
+      </span>
+      <button on:click={(_) => openModal('profile')}>
+        <i class="fas fa-cog" />
+      </button>
+    </div>
+  </svelte:fragment>
+</SettingMenuItem>
 
 <style lang="scss">
   .u-info {

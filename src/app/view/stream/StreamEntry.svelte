@@ -7,7 +7,7 @@
   export let onIconClick = () => {};
 </script>
 
-<div class="icon-wrapper">
+<div class="root">
   <img alt={title} class="icon" src={icon} on:click={onIconClick} />
   <div class="bridge" />
   <div class="detail thumbnail">
@@ -38,7 +38,7 @@
   $menu-icon-size-5px: 65px;
   $background-color: #2a2f38;
 
-  .icon-wrapper {
+  .root {
     position: relative;
     display: inline-block;
     width: $menu-icon-size - 5px;

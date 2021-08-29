@@ -5,6 +5,9 @@ class ProfileServiceInit {
   readonly nickname = writable('');
   readonly statusMessage = writable('');
   readonly platform = writable('local');
+  readonly localId = writable('');
+  readonly twitchId = writable('');
+  readonly afreecaId = writable('');
 }
 
 export const ProfileService: ProfileServiceInit = new ProfileServiceInit();

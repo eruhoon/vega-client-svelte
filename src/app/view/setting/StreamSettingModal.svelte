@@ -7,6 +7,8 @@
 
   // SVG 클래스
   import InlineSVG from 'svelte-inline-svg';
+  import ProfileSettingModal from './ProfileSettingModal.svelte';
+  import { get } from 'svelte/store';
 
   const platforms = [
     {
@@ -31,8 +33,14 @@
     },
   ];
   let currentPlatformId = 'local';
+  let localId = get(ProfileService.localId);
+  let afreecaId = get(ProfileService.afreecaId);
+  let twitchId = get(ProfileService.twitchId);
 
   ProfileService.platform.subscribe((v) => (currentPlatformId = v));
+  ProfileService.localId.subscribe((v) => (localId = v));
+  ProfileService.afreecaId.subscribe((v) => (afreecaId = v));
+  ProfileService.twitchId.subscribe((v) => (twitchId = v));
 </script>
 
 <SettingModal title="방송 설정" icon="fas fa-podcast">
@@ -56,13 +64,19 @@
 
     <div class="stream-form">
       {#if currentPlatformId === 'local'}
-        <LocalStreamSettingForm />
+        <LocalStreamSettingForm
+          streamLink="rtmp://mycast.xyz/live"
+          streamKey={localId}
+        />
       {:else if currentPlatformId === 'totoro'}
-        <LocalStreamSettingForm />
+        <LocalStreamSettingForm
+          streamLink="rtmp://totoro.mycast.xyz/live"
+          streamKey={localId}
+        />
       {:else if currentPlatformId === 'afreeca'}
-        <ExternalStreamSettingForm streamKey="test-for-afreeca" />
+        <ExternalStreamSettingForm streamKey={afreecaId} />
       {:else if currentPlatformId === 'twitch'}
-        <ExternalStreamSettingForm streamKey="test-for-twitch" />
+        <ExternalStreamSettingForm streamKey={twitchId} />
       {:else}
         <div />
       {/if}

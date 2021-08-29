@@ -1,5 +1,8 @@
-<script>
+<script lang="ts">
   import TextSettingInput from './TextSettingInput.svelte';
+
+  export let streamKey: string;
+  export let streamLink: string;
 </script>
 
 <div class="preview-img">
@@ -16,13 +19,13 @@
 <TextSettingInput
   title="스트림 링크"
   subtitle="OBS FMS URL"
-  value="rtmp://totoro.mycast.xyz/live"
+  value={streamLink}
   name="stream-fms-url"
 />
 <TextSettingInput
   title="스트림 키"
   subtitle="STREAM KEY"
-  value="asdguioqwberh8hu3o21j4"
+  value={streamKey}
   name="stream-key"
 />
 

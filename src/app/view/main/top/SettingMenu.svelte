@@ -7,6 +7,7 @@
   import SettingMenuItem from './SettingMenuItem.svelte';
   import SettingSwitch from './SettingSwitch.svelte';
   import SettingUserInfo from './SettingUserInfo.svelte';
+  import SimpleSettingMenuItem from './SimpleSettingMenuItem.svelte';
 
   const logout = () => {
     SessionService.setPrivateKey('');
@@ -27,31 +28,29 @@
       <SettingMenuImage />
     </svelte:fragment>
   </SettingMenuItem>
-  <SettingMenuItem menuClick={() => openModal('site')}>
-    <SettingMenuBody slot="body" name="사이트 설정" icon="fas fa-tools" />
-  </SettingMenuItem>
-  <SettingMenuItem menuClick={() => openModal('chat-widget')}>
-    <SettingMenuBody slot="body" name="채팅위젯 설정" icon="fas fa-comment" />
-  </SettingMenuItem>
-  <SettingMenuItem menuClick={() => openModal('donation')}>
-    <SettingMenuBody slot="body" name="후원 설정" icon="fas fa-donate" />
-  </SettingMenuItem>
+  <SimpleSettingMenuItem
+    menuClick={() => openModal('site')}
+    name="사이트 설정"
+    icon="fas fa-tools"
+  />
+  <SimpleSettingMenuItem
+    menuClick={() => openModal('chat-widget')}
+    name="채팅위젯 설정"
+    icon="fas fa-comment"
+  />
+  <SimpleSettingMenuItem
+    menuClick={() => openModal('donation')}
+    name="후원 설정"
+    icon="fas fa-donate"
+  />
   <SettingMenuItem>
     <svelte:fragment slot="body">
       <SettingMenuBody name="테마" icon="fas fa-adjust" />
       <SettingSwitch />
     </svelte:fragment>
   </SettingMenuItem>
-  <SettingMenuItem>
-    <SettingMenuBody slot="body" name="모바일 모드" icon="fas fa-mobile" />
-  </SettingMenuItem>
-  <SettingMenuItem>
-    <SettingMenuBody
-      slot="body"
-      name="후원리스트"
-      icon="fas fa-clipboard-list"
-    />
-  </SettingMenuItem>
+  <SimpleSettingMenuItem name="모바일 모드" icon="fas fa-mobile" />
+  <SimpleSettingMenuItem name="후원리스트" icon="fas fa-clipboard-list" />
   <div class="logout" on:click={logout}>
     <h4>로그아웃</h4>
   </div>

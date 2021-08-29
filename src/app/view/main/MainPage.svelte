@@ -49,7 +49,6 @@
   WindowService.currentImage.subscribe((v) => (currentImage = v));
 
   new VegaStreamProfileLoader(privateKey).load().then((streamProfile) => {
-    console.log(streamProfile);
     ProfileService.platform.set(streamProfile.platform);
     ProfileService.localId.set(streamProfile.localId);
     ProfileService.afreecaId.set(streamProfile.afreecaId);

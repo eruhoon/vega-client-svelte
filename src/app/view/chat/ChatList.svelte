@@ -1,14 +1,18 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-
+  import { get } from 'svelte/store';
   import type { ChatProperty } from '../../model/chat/ChatProperty';
   import { ChatService } from '../../model/chat/ChatService';
+  import { OptionService } from '../../model/option/OptionService';
   import ChatEntry from './entry/ChatEntry.svelte';
   import type { ChatEntryProp } from './entry/ChatEntryProp';
 
+  let enableBot: boolean = get(OptionService.enableBot);
   let scrollLock: boolean = false;
   let chats: ChatProperty[] = [];
   let rootView: Element;
+
+  OptionService.enableBot.subscribe((v) => (enableBot = v));
 
   $: props = chats.map<ChatEntryProp>((c) => {
     return {
@@ -46,7 +50,9 @@
 
 <div class="chat-list" bind:this={rootView} on:scroll={(e) => onScroll(e)}>
   {#each props as prop}
-    <ChatEntry {prop} messages={prop.messages} />
+    {#if !(!enableBot && prop.senderType === 'BOT')}
+      <ChatEntry {prop} messages={prop.messages} />
+    {/if}
   {/each}
 </div>
 

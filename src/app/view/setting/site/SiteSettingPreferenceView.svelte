@@ -1,11 +1,12 @@
 <script lang="ts">
+  export let title: string;
   export let enable: boolean = false;
   export let onClick = () => {};
 </script>
 
 <div on:click={onClick}>
   <div class="set-title">
-    <p>채팅 시각 표기</p>
+    <p>{title}</p>
   </div>
   <div class="set-switch">
     <label for="enable" class="switch" class:active={enable}>

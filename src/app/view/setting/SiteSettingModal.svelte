@@ -2,7 +2,7 @@
   import { get } from 'svelte/store';
   import { OptionService } from '../../model/option/OptionService';
   import SettingModal from './SettingModal.svelte';
-  import SiteSettingPreferenceView from './site/SiteSettingPreferenceView.svelte';
+  import PreferenceView from './site/SiteSettingPreferenceView.svelte';
 
   let enableTimestamp = get(OptionService.timestamp);
 
@@ -15,7 +15,8 @@
 
 <SettingModal title="사이트 설정" icon="fas fa-tools">
   <div slot="body" class="site-set-box">
-    <SiteSettingPreferenceView
+    <PreferenceView
+      title="채팅 시각 표기"
       enable={enableTimestamp}
       onClick={toggleTimestamp}
     />

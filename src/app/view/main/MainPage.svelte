@@ -10,6 +10,8 @@
   import ProfileSettingModal from '../setting/ProfileSettingModal.svelte';
   import SiteSettingModal from '../setting/SiteSettingModal.svelte';
   import StreamSettingModal from '../setting/StreamSettingModal.svelte';
+  import StreamEntry from '../stream/StreamEntry.svelte';
+  import StreamList from '../stream/StreamList.svelte';
   import ImageViewerPopup from './popup/ImageViewerPopup.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
@@ -83,6 +85,12 @@
   >
     <ChatPage />
   </div>
+  <div
+    class="content-section"
+    style="left: {chatRight}; right: {chatLeft}; width: calc(100% - {chatWidth}px);"
+  >
+    <StreamList />
+  </div>
   <div class="side-bar" class:show={sideBarVisible}>
     <SideBar />
   </div>
@@ -146,6 +154,15 @@
       right: 0;
       width: $default-chat-width;
       height: 100%;
+      background: #2a2f38;
+      box-shadow: 0 0 8px 0 rgb(0 0 0 / 40%), 0 0 15px 0 rgb(0 0 0 / 30%),
+        0 0 20px 4px rgb(0 0 0 / 30%);
+    }
+
+    .content-section {
+      position: absolute;
+      height: 100%;
+      width: calc(100% - #{$default-chat-width});
       background: #2a2f38;
       box-shadow: 0 0 8px 0 rgb(0 0 0 / 40%), 0 0 15px 0 rgb(0 0 0 / 30%),
         0 0 20px 4px rgb(0 0 0 / 30%);

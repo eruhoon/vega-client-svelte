@@ -1,7 +1,7 @@
 <script lang="ts">
   import { WindowService } from '../../../model/window/WindowService';
   import { ProfileService } from '../../../service/ProfileService';
-  import SettingMenu from './SettingMenu.svelte';
+  import SettingMenu from './menu/SettingMenu.svelte';
 
   let settingMenuShow = false;
   let profileIcon = '';

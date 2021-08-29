@@ -15,12 +15,11 @@
   import ImageViewerPopup from './popup/ImageViewerPopup.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
+  import VerticalSplitView from './VerticalSplitView.svelte';
 
   export let privateKey: string;
 
   let sideBarVisible = get(WindowService.sideBarShow);
-  let dividerPos = 300;
-  let isMoveMode = false;
   let isCheckerBarEnable = get(OptionService.enableCheckerBar);
   let windowInnerWidth: number;
   let modal = null;
@@ -58,56 +57,27 @@
     ProfileService.afreecaId.set(streamProfile.afreecaId);
     ProfileService.twitchId.set(streamProfile.twitchId);
   });
-
-  $: isLeftDivider = dividerPos < windowInnerWidth / 2;
-  $: chatWidth = isLeftDivider ? dividerPos : windowInnerWidth - dividerPos;
-  $: chatLeft = isLeftDivider ? '0' : 'auto';
-  $: chatRight = isLeftDivider ? 'auto' : '0';
-
-  const parsePosition = (position: number): number => {
-    const minSize = 300;
-    const minX = minSize;
-    const maxX = windowInnerWidth - minSize;
-    const max = (pos: number) => (pos > minX ? pos : minX);
-    const min = (pos: number) => (pos < maxX ? pos : maxX);
-    return min(max(position));
-  };
-
-  const onDividerMove = (e: MouseEvent) => {
-    if (isMoveMode) {
-      dividerPos = parsePosition(e.clientX);
-    }
-  };
 </script>
 
 <div class="main-section">
-  <div
-    class="content-section"
-    class:checker-attached={isCheckerBarEnable}
-    style="left: {chatRight}; right: {chatLeft}; width: calc(100% - {chatWidth}px);"
-  >
-    <div class="content" />
-    <div class="stream-list">
-      <StreamList />
+  <VerticalSplitView minSideSize={300}>
+    <div slot="side" class="chat-section">
+      <ChatPage />
     </div>
-  </div>
-  <div
-    class="chat-section"
-    style="left: {chatLeft}; right: {chatRight}; width: {chatWidth}px;"
-  >
-    <ChatPage />
-  </div>
+    <div
+      slot="main"
+      class="content-section"
+      class:checker-attached={isCheckerBarEnable}
+    >
+      <div class="content" />
+      <div class="stream-list">
+        <StreamList />
+      </div>
+    </div>
+  </VerticalSplitView>
   <div class="side-bar" class:show={sideBarVisible}>
     <SideBar />
   </div>
-  <div
-    class="divider"
-    style="left: {dividerPos}px"
-    on:mousedown={(_) => (isMoveMode = true)}
-    on:mousemove={onDividerMove}
-    on:mouseup={(_) => (isMoveMode = false)}
-    class:active={isMoveMode}
-  />
 </div>
 <div class="top-bar"><TopBar /></div>
 
@@ -155,10 +125,7 @@
     background-color: #2a2f38;
 
     .chat-section {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: $default-chat-width;
+      width: 100%;
       height: 100%;
       background: #2a2f38;
       box-shadow: 0 0 8px 0 rgb(0 0 0 / 40%), 0 0 15px 0 rgb(0 0 0 / 30%),
@@ -168,8 +135,8 @@
     .content-section {
       $stream-list-height: 80px;
       position: absolute;
+      width: 100%;
       height: 100%;
-      width: calc(100% - #{$default-chat-width});
       background: #2a2f38;
 
       .content {
@@ -212,24 +179,6 @@
       &.show {
         transform: none;
       }
-    }
-  }
-
-  .divider {
-    position: absolute;
-    top: 0;
-    width: 10px;
-    height: 100%;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    cursor: col-resize;
-
-    &.active {
-      left: 0 !important;
-      width: 100% !important;
-      height: 100% !important;
-      transform: none;
-      -webkit-transform: none;
     }
   }
 

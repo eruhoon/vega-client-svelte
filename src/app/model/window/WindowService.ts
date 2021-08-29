@@ -6,7 +6,7 @@ class WindowServiceInit {
   #isEmojiAttachViewShow = writable(false);
   sideBarShow = writable(false);
   settingMenuShow = writable(false);
-  #modal: Writable<ModalType | null> = writable(null);
+  #modal: Writable<ModalType | null> = writable('site');
   #currentImage: Writable<string | null> = writable(null);
 
   get modal(): Readable<ModalType | null> {

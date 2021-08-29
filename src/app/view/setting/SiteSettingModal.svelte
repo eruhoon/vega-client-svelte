@@ -5,12 +5,10 @@
   import PreferenceView from './site/SiteSettingPreferenceView.svelte';
 
   let enableTimestamp = get(OptionService.timestamp);
+  let enableBot = get(OptionService.enableBot);
 
   OptionService.timestamp.subscribe((v) => (enableTimestamp = v));
-
-  const toggleTimestamp = () => {
-    OptionService.setTimestamp(!enableTimestamp);
-  };
+  OptionService.enableBot.subscribe((v) => (enableBot = v));
 </script>
 
 <SettingModal title="사이트 설정" icon="fas fa-tools">
@@ -18,13 +16,17 @@
     <PreferenceView
       title="채팅 시각 표기"
       enable={enableTimestamp}
-      onClick={toggleTimestamp}
+      onClick={() => OptionService.setTimestamp(!enableTimestamp)}
+    />
+    <PreferenceView
+      title="챗봇 표기"
+      enable={enableBot}
+      onClick={() => OptionService.setEnableBot(!enableBot)}
     />
   </div>
 </SettingModal>
 
 <style lang="scss">
-  // 모달 기본 박스 구성
   .site-set-box {
     width: calc(100% - 20px);
     height: 40px;

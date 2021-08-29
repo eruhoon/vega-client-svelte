@@ -1,12 +1,20 @@
 <script lang="ts">
+  import SettingMenuItem from './SettingMenuItem.svelte';
+
+  export let menuClick = () => {};
   export let name: string;
   export let icon: string;
 </script>
 
-<div class="icon">
-  <i class={icon} />
-</div>
-<p>{name}</p>
+<SettingMenuItem {menuClick}>
+  <svelte:fragment slot="body">
+    <div class="icon">
+      <i class={icon} />
+    </div>
+    <p>{name}</p>
+    <slot name="extra" />
+  </svelte:fragment>
+</SettingMenuItem>
 
 <style lang="scss">
   p {

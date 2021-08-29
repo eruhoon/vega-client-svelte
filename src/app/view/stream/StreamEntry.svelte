@@ -25,7 +25,7 @@
         <h4 class="title">{title}</h4>
         <div class="viewer">
           <span>{viewer}</span>
-          <i class="material-icons">person</i>
+          <i class="fas fa-user" />
         </div>
       </div>
       <p class="description">{description}</p>
@@ -36,7 +36,7 @@
 <style lang="scss">
   $menu-icon-size: 60px;
   $menu-icon-size-5px: 65px;
-  $background-color: #333;
+  $background-color: #2a2f38;
 
   .icon-wrapper {
     position: relative;
@@ -47,13 +47,14 @@
     .icon {
       width: $menu-icon-size - 10px;
       height: $menu-icon-size - 10px;
-      margin: 5px 2.5px 5px 2.5px;
-      border-radius: 5px;
+      margin: 5px;
+      border: 1px solid #1f2226;
+      border-radius: 2px;
       background: darken($background-color, 10%);
       background-repeat: no-repeat;
       background-size: 100% 100%;
       background-position: center;
-      opacity: 0.6;
+      opacity: 0.5;
     }
 
     .bridge {
@@ -69,26 +70,27 @@
       position: absolute;
       display: none;
       align-items: center;
-      right: -5px;
-      bottom: $menu-icon-size-5px;
+      left: 5px;
+      bottom: $menu-icon-size + 5px;
       width: $width;
-      height: 135px;
+      height: 195px;
+      border-radius: 2px;
       background: darken($background-color, 10%);
       background-repeat: no-repeat;
       background-size: 100%;
       background-position: center;
-      border-radius: 5px;
+      border-radius: 0px;
       overflow: hidden;
-      box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
-        0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+      box-shadow: 2px 0px 5px 1px rgb(0 0 0 / 40%),
+        1px 0px 5px 0px rgb(0 0 0 / 30%), 1px 0px 5px 0px rgb(0 0 0 / 30%);
 
       &.thumbnail {
-        height: 135px;
       }
 
       .thumbnail {
         width: $width;
-        max-height: 100%;
+        max-height: 135px;
+        padding-bottom: 65px;
       }
 
       .wrapper {
@@ -105,7 +107,7 @@
           from(transparent),
           to(rgba(0, 0, 0, 0.75))
         );
-        background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+        background: #2a2f38;
 
         .text {
           width: calc(100% - 10px);
@@ -143,8 +145,8 @@
               line-height: 20px;
             }
             i {
-              padding-top: 3px;
-              font-size: 16px;
+              padding-left: 5px;
+              font-size: 14px;
               line-height: 20px;
             }
           }

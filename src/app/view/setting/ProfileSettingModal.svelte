@@ -32,7 +32,7 @@
   <div slot="body">
     <div class="profile-img">
       <img alt="유저이미지" src={icon} />
-      <h2>이야기 정보 수정</h2>
+      <h2>{nickname} 정보 수정</h2>
     </div>
     <div class="profile-form">
       <TextSettingInput

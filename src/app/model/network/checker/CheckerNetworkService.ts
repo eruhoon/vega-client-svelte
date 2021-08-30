@@ -5,7 +5,7 @@ class CheckerNetworkServiceInit {
   #socket: CheckerSocketModel | null = null;
 
   init(privateKey: string) {
-    const host = 'https://mycast.xyz:9000';
+    const host = 'mycast.xyz:9000';
     this.#socket = new SocketIoCheckerSocketModel(host, privateKey);
   }
 }

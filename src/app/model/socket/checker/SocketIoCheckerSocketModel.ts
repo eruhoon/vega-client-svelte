@@ -2,8 +2,6 @@ import io from 'socket.io-client';
 import type { CheckerSocketModel } from './CheckerSocketModel';
 
 export class SocketIoCheckerSocketModel implements CheckerSocketModel {
-  static readonly #HOST: string = 'https://mycast.xyz:9000';
-
   #socket: SocketIOClient.Socket;
 
   constructor(host: string, privateKey: string) {

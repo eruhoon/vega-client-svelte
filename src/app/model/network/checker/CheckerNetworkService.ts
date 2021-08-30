@@ -1,5 +1,9 @@
-import type { CheckerSocketModel } from '../../socket/checker/CheckerSocketModel';
+import type {
+  CheckerSocketModel,
+  RefreshStream,
+} from '../../socket/checker/CheckerSocketModel';
 import { SocketIoCheckerSocketModel } from '../../socket/checker/SocketIoCheckerSocketModel';
+import { StreamService } from '../../stream/StreamService';
 
 class CheckerNetworkServiceInit {
   #socket: CheckerSocketModel | null = null;
@@ -12,11 +16,12 @@ class CheckerNetworkServiceInit {
     const host = 'mycast.xyz:9000';
     const socket = new SocketIoCheckerSocketModel(host, privateKey);
     socket.onRefreshStream((s) => this.#onRefreshStream(s));
-    return;
+    return socket;
   }
 
-  #onRefreshStream(streams: any) {
+  #onRefreshStream(streams: RefreshStream) {
     console.log('refresh_streams', streams);
+    StreamService.setLocals(streams.local);
   }
 }
 

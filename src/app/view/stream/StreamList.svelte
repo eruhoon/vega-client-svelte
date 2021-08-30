@@ -1,29 +1,23 @@
-<script>
+<script lang="ts">
+  import type { StreamInfo } from '../../model/stream/StreamInfo';
+  import { StreamService } from '../../model/stream/StreamService';
   import StreamEntry from './StreamEntry.svelte';
+
+  let entries: StreamInfo[] = [];
+
+  StreamService.locals.subscribe((v) => (entries = v));
 </script>
 
 <div class="stream-list">
-  <StreamEntry
-    description="description"
-    icon="https://i.imgur.com/eSHBOji.jpg"
-    thumbnail="https://i.imgur.com/OBx8TXr.jpg"
-    title="대충 방송"
-    viewer="4"
-  />
-  <StreamEntry
-    description="description"
-    icon="https://i.imgur.com/4OQwLiW.png"
-    thumbnail="https://i.imgur.com/4OQwLiW.png"
-    title="대충 방송2"
-    viewer="4"
-  />
-  <StreamEntry
-    description="description"
-    icon="https://i.imgur.com/XjsUghQ.gif"
-    thumbnail="https://i.imgur.com/OBx8TXr.jpg"
-    title="대충 방송"
-    viewer="4"
-  />
+  {#each entries as b}
+    <StreamEntry
+      description={b.description}
+      icon={b.icon}
+      thumbnail={b.thumbnail}
+      title={b.title}
+      viewer={b.viewer?.toString()}
+    />
+  {/each}
 </div>
 
 <style lang="scss">

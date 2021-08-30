@@ -1,6 +1,7 @@
 <script lang="ts">
   import { get } from 'svelte/store';
   import { ChatNetworkService } from '../../model/network/ChatNetworkService';
+  import { CheckerNetworkService } from '../../model/network/checker/CheckerNetworkService';
   import { OptionService } from '../../model/option/OptionService';
   import { VegaStreamProfileLoader } from '../../model/profile/VegaStreamProfileLoader';
   import { WindowService } from '../../model/window/WindowService';
@@ -26,6 +27,7 @@
   let currentImage: string;
 
   ChatNetworkService.init(privateKey);
+  CheckerNetworkService.init(privateKey);
   WindowService.sideBarShow.subscribe((v) => (sideBarVisible = v));
   WindowService.modal.subscribe((m) => {
     switch (m) {

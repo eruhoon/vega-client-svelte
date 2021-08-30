@@ -1,8 +1,12 @@
 import io from 'socket.io-client';
-import type { CheckerSocketModel } from './CheckerSocketModel';
+import type {
+  CheckerSocketModel,
+  OnRefreshStreams,
+} from './CheckerSocketModel';
 
 export class SocketIoCheckerSocketModel implements CheckerSocketModel {
   #socket: SocketIOClient.Socket;
+  #onRefreshStream: OnRefreshStreams | null = null;
 
   constructor(host: string, privateKey: string) {
     this.#socket = SocketIoCheckerSocketModel.#createSocket(host, privateKey);
@@ -10,11 +14,15 @@ export class SocketIoCheckerSocketModel implements CheckerSocketModel {
       console.log('connected');
     });
     this.#socket.on('refresh_streams', (raw: any) => {
-      console.log('refresh_streams', raw);
+      this.#onRefreshStream(raw);
     });
     this.#socket.on('new_stream_notification', (raw: any) => {
       console.log('new_stream_notification', raw);
     });
+  }
+
+  onRefreshStream(callback: OnRefreshStreams | null) {
+    this.#onRefreshStream = callback;
   }
 
   static #createSocket(

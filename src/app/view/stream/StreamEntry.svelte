@@ -84,9 +84,6 @@
       box-shadow: 2px 0px 5px 1px rgb(0 0 0 / 40%),
         1px 0px 5px 0px rgb(0 0 0 / 30%), 1px 0px 5px 0px rgb(0 0 0 / 30%);
 
-      &.thumbnail {
-      }
-
       .thumbnail {
         width: $width;
         max-height: 135px;

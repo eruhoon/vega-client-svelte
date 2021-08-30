@@ -9,7 +9,10 @@
 <div class="container" on:click={close}>
   <div class="background" />
   <div class="image-wrapper">
-    <img {src} alt="current" />
+    <div class="image-box">
+      <img {src} alt="current" />
+    </div>
+    <div class="text-box" />
   </div>
 </div>
 
@@ -34,9 +37,23 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      img {
+      .image-box {
         width: auto;
         height: auto;
+
+        background: #1f2226;
+        border: 1px solid rgb(10, 12, 14);
+        border-radius: 2px;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        img {
+          width: auto;
+          height: auto;
+        }
+      }
+
+      .text-box {
+        position: absolute;
       }
     }
   }

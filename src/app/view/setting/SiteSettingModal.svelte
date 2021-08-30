@@ -36,7 +36,7 @@
 <style lang="scss">
   .site-set-box {
     width: calc(100% - 20px);
-    height: 40px;
+    //height: 40px;
     padding: 5px 10px;
     border-bottom: 1px solid #1f2226;
   }

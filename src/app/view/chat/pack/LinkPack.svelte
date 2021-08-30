@@ -49,9 +49,9 @@
       height: 100%;
       border-radius: 3px;
       content: '';
-      background: #333333;
+      background: #1f2226;
       opacity: 0.75;
-      border: 1px solid #666666;
+      border: 1px solid rgb(10, 12, 14);
       box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
         0 1px 2px 0 rgba(0, 0, 0, 0.06);
     }
@@ -63,10 +63,10 @@
       width: calc(100% - 20px);
       height: 20px;
       padding: 0 5px;
-      border-bottom: solid 1px #aaa;
+      border-bottom: solid 1px #2a2f38;
       font-size: 15px;
       line-height: 20px;
-      color: #e8e8e8;
+      color: #ffffff;
       @include truncate;
     }
 
@@ -77,7 +77,7 @@
       width: calc(100% - 55px);
       height: 30px;
       font-size: 12px;
-      color: #e8e8e8;
+      color: #ffffff;
       overflow: hidden;
     }
 

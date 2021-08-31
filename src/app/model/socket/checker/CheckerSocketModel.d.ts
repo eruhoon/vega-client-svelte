@@ -16,5 +16,5 @@ type CheckerSocketStream = {
   thumbnail: string;
   title: string;
   url: string;
-  vieiwer: number;
+  viewer: number;
 };

@@ -1,4 +1,5 @@
 import { Readable, Writable, writable } from 'svelte/store';
+import type { Content } from './Content';
 import type { ModalType } from './ModalType';
 
 class WindowServiceInit {
@@ -6,11 +7,11 @@ class WindowServiceInit {
   #isEmojiAttachViewShow = writable(false);
   sideBarShow = writable(false);
   settingMenuShow = writable(false);
-  #content: Writable<string | null> = writable(null);
+  #content: Writable<Content | null> = writable(null);
   #modal: Writable<ModalType | null> = writable(null);
   #currentImage: Writable<string | null> = writable(null);
 
-  get content(): Readable<string> {
+  get content(): Readable<Content> {
     return this.#content;
   }
 
@@ -44,6 +45,10 @@ class WindowServiceInit {
 
   toggleEmojiAttachView() {
     this.#isEmojiAttachViewShow.update((show) => !show);
+  }
+
+  openContent(content: Content) {
+    this.#content.set(content);
   }
 }
 

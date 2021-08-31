@@ -4,6 +4,7 @@
   import { CheckerNetworkService } from '../../model/network/checker/CheckerNetworkService';
   import { OptionService } from '../../model/option/OptionService';
   import { VegaStreamProfileLoader } from '../../model/profile/VegaStreamProfileLoader';
+  import type { Content } from '../../model/window/Content';
   import { WindowService } from '../../model/window/WindowService';
   import { ProfileService } from '../../service/ProfileService';
   import ChatPage from '../chat/ChatPage.svelte';
@@ -26,7 +27,7 @@
   let windowInnerWidth: number;
   let modal = null;
   let currentImage: string;
-  let content: string | null = null;
+  let content: Content | null = null;
 
   ChatNetworkService.init(privateKey);
   CheckerNetworkService.init(privateKey);
@@ -76,7 +77,9 @@
     >
       <div class="content">
         {#if content}
-          <IframeContentView src={content} />
+          {#if content.type === 'iframe'}
+            <IframeContentView src={content.src} />
+          {/if}
         {/if}
       </div>
       <div class="stream-list">

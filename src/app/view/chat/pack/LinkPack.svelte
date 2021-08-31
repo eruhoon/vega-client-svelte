@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { WindowService } from '../../../model/window/WindowService';
+
   export let body: string;
   const json = JSON.parse(body);
 
@@ -9,9 +11,16 @@
   title = json.info.title;
   thumbnail = json.info.thumbnail;
   link = json.uri;
+
+  const openWindow = () => {
+    window.open(link);
+  };
+
+  const openContent = () =>
+    WindowService.openContent({ type: 'iframe', src: link });
 </script>
 
-<div class="root" class:thumbnail-attched={thumbnail}>
+<div class="root" class:thumbnail-attched={thumbnail} on:click={openWindow}>
   {#if thumbnail}
     <img class="thumbnail" alt="thumbnail" src={thumbnail} />
   {/if}

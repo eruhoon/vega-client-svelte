@@ -13,6 +13,7 @@
   import SiteSettingModal from '../setting/SiteSettingModal.svelte';
   import StreamSettingModal from '../setting/StreamSettingModal.svelte';
   import StreamList from '../stream/StreamList.svelte';
+  import IframeContentView from './content/IframeContentView.svelte';
   import ImageViewerPopup from './popup/ImageViewerPopup.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
@@ -25,6 +26,7 @@
   let windowInnerWidth: number;
   let modal = null;
   let currentImage: string;
+  let content: string | null = null;
 
   ChatNetworkService.init(privateKey);
   CheckerNetworkService.init(privateKey);
@@ -51,6 +53,7 @@
     }
   });
   WindowService.currentImage.subscribe((v) => (currentImage = v));
+  WindowService.content.subscribe((v) => (content = v));
   OptionService.enableCheckerBar.subscribe((v) => (isCheckerBarEnable = v));
 
   new VegaStreamProfileLoader(privateKey).load().then((streamProfile) => {
@@ -71,7 +74,11 @@
       class="content-section"
       class:checker-attached={isCheckerBarEnable}
     >
-      <div class="content" />
+      <div class="content">
+        {#if content}
+          <IframeContentView src={content} />
+        {/if}
+      </div>
       <div class="stream-list">
         <StreamList />
       </div>

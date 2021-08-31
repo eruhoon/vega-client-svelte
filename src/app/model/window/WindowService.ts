@@ -48,7 +48,8 @@ class WindowServiceInit {
   }
 
   openContent(content: Content) {
-    this.#content.set(content);
+    this.#content.set(null);
+    setTimeout(() => this.#content.set(content));
   }
 }
 

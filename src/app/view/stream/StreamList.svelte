@@ -16,6 +16,8 @@
       thumbnail={b.thumbnail}
       title={b.title}
       viewer={b.viewer?.toString()}
+      keyId={b.keyid}
+      platform={b.platform}
     />
   {/each}
 </div>

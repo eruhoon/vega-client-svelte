@@ -1,10 +1,36 @@
 <script lang="ts">
+  import type { Content } from '../../model/window/Content';
+
+  import { WindowService } from '../../model/window/WindowService';
+
   export let icon: string;
   export let title: string;
   export let viewer: string;
   export let thumbnail: string;
   export let description: string;
-  export let onIconClick = () => {};
+  export let keyId: string;
+  export let platform: string;
+
+  const onIconClick = () => {
+    WindowService.openContent(content);
+  };
+
+  $: content = getContent(platform);
+
+  const getContent = (p: string): Content => {
+    switch (p) {
+      case 'local':
+        return {
+          type: 'local-stream',
+          src: keyId,
+        };
+      case 'totoro':
+        return {
+          type: 'totoro-stream',
+          src: keyId,
+        };
+    }
+  };
 </script>
 
 <div class="root">

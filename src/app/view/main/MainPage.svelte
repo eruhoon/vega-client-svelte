@@ -15,6 +15,8 @@
   import StreamSettingModal from '../setting/StreamSettingModal.svelte';
   import StreamList from '../stream/StreamList.svelte';
   import IframeContentView from './content/IframeContentView.svelte';
+  import LocalStreamContentView from './content/LocalStreamContentView.svelte';
+  import TotoroStreamContentView from './content/TotoroStreamContentView.svelte';
   import ImageViewerPopup from './popup/ImageViewerPopup.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
@@ -27,7 +29,7 @@
   let windowInnerWidth: number;
   let modal = null;
   let currentImage: string;
-  let content: Content | null = null;
+  let content: Content | null = get(WindowService.content);
 
   ChatNetworkService.init(privateKey);
   CheckerNetworkService.init(privateKey);
@@ -79,6 +81,10 @@
         {#if content}
           {#if content.type === 'iframe'}
             <IframeContentView src={content.src} />
+          {:else if content.type === 'local-stream'}
+            <LocalStreamContentView src={content.src} />
+          {:else if content.type === 'totoro-stream'}
+            <TotoroStreamContentView src={content.src} />
           {/if}
         {/if}
       </div>

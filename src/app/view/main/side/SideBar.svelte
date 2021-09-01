@@ -6,8 +6,14 @@
   import SideBarStreamList from './stream/SideBarStreamList.svelte';
 
   let locals = get(StreamService.locals);
+  let externals = get(StreamService.externals);
+
+  $: twitches = externals.filter((s) => s.platform === 'twitch');
+  $: afreecas = externals.filter((s) => s.platform === 'afreeca');
+  $: kakaotvs = externals.filter((s) => s.platform === 'kakaotv');
 
   StreamService.locals.subscribe((v) => (locals = v));
+  StreamService.externals.subscribe((v) => (externals = v));
 </script>
 
 <div class="side-bar">
@@ -33,26 +39,13 @@
     <hr />
     <SideBarStreamList title="마이캐스트" streams={locals} />
     <hr />
-    <SideBarStreamList
-      title="즐겨찾기"
-      streams={[
-        {
-          description: 'ㅎㅇ',
-          icon: 'https://i.imgur.com/pg8TRNb.png',
-          platform: 'local',
-          keyid: '12345',
-          thumbnail: 'https://i.imgur.com/QLMrmDA.jpg',
-          title: '방송',
-          viewer: 4,
-        },
-      ]}
-    />
+    <SideBarStreamList title="즐겨찾기" streams={[]} />
     <hr />
-    <SideBarStreamList title="트위치" streams={[]} />
+    <SideBarStreamList title="트위치" streams={twitches} />
     <hr />
-    <SideBarStreamList title="아프리카" streams={[]} />
+    <SideBarStreamList title="아프리카" streams={afreecas} />
     <hr />
-    <SideBarStreamList title="카카오TV" streams={[]} />
+    <SideBarStreamList title="카카오TV" streams={kakaotvs} />
   </div>
 </div>
 

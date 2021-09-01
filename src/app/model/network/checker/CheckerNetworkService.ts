@@ -22,6 +22,7 @@ class CheckerNetworkServiceInit {
   #onRefreshStream(streams: RefreshStream) {
     console.log('refresh_streams', streams);
     StreamService.setLocals(streams.local);
+    StreamService.setExternals(streams.external);
   }
 }
 

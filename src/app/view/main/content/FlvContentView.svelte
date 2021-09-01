@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onDestroy, onMount } from 'svelte';
+  import { fade } from 'svelte/transition';
   import type FlvJs from './flv';
 
   export let url: string;
@@ -36,51 +37,71 @@
     flvPlayer?.destroy();
     flvPlayer = null;
   });
+
+  // 플레이어 바 부분 영역
+  let videoMouse = false;
+  const videoMouseOver = () => {
+    videoMouse = true;
+  };
+  const videoMouseOut = () => {
+    videoMouse = false;
+  };
+  const videoBlur = () => {
+    console.log('blur');
+  };
 </script>
 
-<div class="root">
+<!-- svelte-ignore a11y-mouse-events-have-key-events -->
+<div
+  class="root"
+  on:mouseover={videoMouseOver}
+  on:mouseout={videoMouseOut}
+  on:blur={videoBlur}
+>
   <!-- svelte-ignore a11y-media-has-caption -->
   <video bind:this={videoElement} />
   <!-- 플레이어 서비스 하단 바 구현 시작 -->
-  <div class="video-bar">
-    <div class="left-list">
-      <div class="work-btn">
-        <button class="btn play-btn active">
-          <i class="fas fa-play" />
-        </button>
-        <button class="btn pause-btn">
-          <i class="fas fa-pause" />
-        </button>
-      </div>
-      <!-- svelte-ignore a11y-label-has-associated-control -->
-      <label class="volume-side">
-        <div class="volume-btn">
-          <button class="btn up-btn active">
-            <i class="fas fa-volume-up" />
+  {#if videoMouse}
+    <div class="video-bar" transition:fade={{ delay: 150, duration: 400 }}>
+      <div class="left-list">
+        <div class="work-btn">
+          <button class="btn play-btn active">
+            <i class="fas fa-play" />
           </button>
-          <button class="btn down-btn">
-            <i class="fas fa-volume-down" />
-          </button>
-          <button class="btn down-btn">
-            <i class="fas fa-volume-mute" />
+          <button class="btn pause-btn">
+            <i class="fas fa-pause" />
           </button>
         </div>
-        <div class="range">
-          <input id="rangeBar" type="range" min="0" max="100" />
+        <!-- svelte-ignore a11y-label-has-associated-control -->
+        <label class="volume-side">
+          <div class="volume-btn">
+            <button class="btn up-btn active">
+              <i class="fas fa-volume-up" />
+            </button>
+            <button class="btn down-btn">
+              <i class="fas fa-volume-down" />
+            </button>
+            <button class="btn down-btn">
+              <i class="fas fa-volume-mute" />
+            </button>
+          </div>
+          <div class="range">
+            <input id="rangeBar" type="range" min="0" max="100" />
+          </div>
+        </label>
+      </div>
+      <div class="right-list">
+        <div class="size-btn">
+          <button class="btn full-size active">
+            <i class="fas fa-expand" />
+          </button>
+          <button class="btn def-size">
+            <i class="fas fa-compress" />
+          </button>
         </div>
-      </label>
-    </div>
-    <div class="right-list">
-      <div class="size-btn">
-        <button class="btn full-size active">
-          <i class="fas fa-expand" />
-        </button>
-        <button class="btn def-size">
-          <i class="fas fa-compress" />
-        </button>
       </div>
     </div>
-  </div>
+  {/if}
   <!-- 플레이어 서비스 하단 바 구현 끝-->
 </div>
 
@@ -90,6 +111,11 @@
     height: 100%;
     background-color: #000000;
     position: relative;
+
+    &:hover {
+      .video-bar {
+      }
+    }
 
     video {
       width: 100%;

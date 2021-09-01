@@ -166,6 +166,7 @@
         .volume-side {
           display: flex;
           .range {
+            width: 4vw;
             padding: 14px 0px;
             input[type='range'] {
               margin-left: 10px;

@@ -175,7 +175,6 @@
         bottom: 50px;
         height: -2px;
         width: auto;
-        display: block;
         left: -2px;
       }
 
@@ -184,7 +183,7 @@
           height: 100%;
         }
         .stream-list {
-          //display: block;
+          display: block;
           //height: $stream-list-height;
         }
       }

@@ -48,7 +48,6 @@ export class ChatNetworkModel {
 
   #createWebSocketModel(privateKey: string): SocketModel {
     const socket = new WebSocketModel();
-    console.log(privateKey);
     socket.setOnOpen(() => {
       SocketService.isConnected.set(true);
       SocketService.login?.execute(privateKey);

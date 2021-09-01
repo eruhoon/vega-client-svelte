@@ -22,7 +22,6 @@
       });
       player.attachMediaElement(element);
       player.load();
-      console.log(player);
 
       return player;
     }

@@ -14,7 +14,6 @@ class StreamServiceInit {
   }
 
   setLocals(locals: StreamInfo[]) {
-    console.log(locals);
     this.#locals.set(locals);
   }
 

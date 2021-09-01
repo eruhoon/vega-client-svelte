@@ -73,6 +73,9 @@
       font-size: 12px;
       line-height: 12px;
       padding-top: 4px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+
+출처: https://webdir.tistory.com/483 [WEBDIR]
     }
   }
 </style>

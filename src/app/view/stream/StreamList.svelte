@@ -24,12 +24,10 @@
 
 <style lang="scss">
   .stream-list {
-    position: absolute;
-    bottom: 5px;
-    left: 5px;
     height: auto;
     width: auto;
-    margin-left: -2px;
+    padding-left: 4px;
+    padding-right: 8px;
 
     background: #2a2f38;
     border: 1px solid #1f2226;

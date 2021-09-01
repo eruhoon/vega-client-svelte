@@ -1,3 +1,15 @@
+<script>
+  import { get } from 'svelte/store';
+
+  import { StreamService } from '../../../model/stream/StreamService';
+
+  import SideBarStreamList from './stream/SideBarStreamList.svelte';
+
+  let locals = get(StreamService.locals);
+
+  StreamService.locals.subscribe((v) => (locals = v));
+</script>
+
 <div class="side-bar">
   <ul>
     <li class="main">
@@ -17,6 +29,31 @@
       <span>방송추가</span>
     </li>
   </ul>
+  <div>
+    <hr />
+    <SideBarStreamList title="마이캐스트" streams={locals} />
+    <hr />
+    <SideBarStreamList
+      title="즐겨찾기"
+      streams={[
+        {
+          description: 'ㅎㅇ',
+          icon: 'https://i.imgur.com/pg8TRNb.png',
+          platform: 'local',
+          keyid: '12345',
+          thumbnail: 'https://i.imgur.com/QLMrmDA.jpg',
+          title: '방송',
+          viewer: 4,
+        },
+      ]}
+    />
+    <hr />
+    <SideBarStreamList title="트위치" streams={[]} />
+    <hr />
+    <SideBarStreamList title="아프리카" streams={[]} />
+    <hr />
+    <SideBarStreamList title="카카오TV" streams={[]} />
+  </div>
 </div>
 
 <style lang="scss">

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { SessionService } from './app/model/session/SessionService';
+  import ToastList from './app/view/common/ToastList.svelte';
   import LoginPage from './app/view/login/LoginPage.svelte';
   import MainPage from './app/view/main/MainPage.svelte';
 
@@ -14,6 +15,9 @@
   {:else}
     <LoginPage />
   {/if}
+  <div class="toast-layer">
+    <ToastList />
+  </div>
 </main>
 
 <style>

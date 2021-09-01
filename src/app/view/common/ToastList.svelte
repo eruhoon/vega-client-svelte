@@ -1,5 +1,5 @@
 <script lang="ts">
-  const toasts = ['toast1', 'toast2'];
+  const toasts = [];
 </script>
 
 <main>

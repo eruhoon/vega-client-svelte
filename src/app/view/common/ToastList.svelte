@@ -1,10 +1,13 @@
 <script lang="ts">
-  const toasts = [];
+  import { get } from 'svelte/store';
+  import { ToastService } from '../../model/toast/ToastService';
+
+  const toasts = get(ToastService.toasts);
 </script>
 
 <main>
   {#each toasts as toast}
-    <div class="toast">{toast}</div>
+    <div class="toast">{toast.text}</div>
   {/each}
 </main>
 

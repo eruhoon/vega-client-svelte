@@ -1,8 +1,6 @@
 <script>
   import { get } from 'svelte/store';
-
   import { StreamService } from '../../../model/stream/StreamService';
-
   import SideBarStreamList from './stream/SideBarStreamList.svelte';
 
   let locals = get(StreamService.locals);

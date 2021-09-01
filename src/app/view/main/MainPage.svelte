@@ -172,18 +172,20 @@
       .stream-list {
         display: none;
         position: absolute;
-        bottom: 0;
-        height: 0;
-        width: 100%;
+        bottom: 50px;
+        height: -2px;
+        width: auto;
+        display: block;
+        left: -2px;
       }
 
       &.checker-attached {
         .content {
-          height: calc(100% - #{$stream-list-height});
+          height: 100%;
         }
         .stream-list {
-          display: block;
-          height: $stream-list-height;
+          //display: block;
+          //height: $stream-list-height;
         }
       }
     }
@@ -196,6 +198,7 @@
       width: $side-bar-width;
       height: 100%;
       transform: translateX(-$side-bar-width);
+      z-index: 5;
 
       &.show {
         transform: none;
@@ -207,11 +210,13 @@
     position: fixed;
     width: 100%;
     height: 100%;
+    z-index: 60;
   }
 
   .popup-layer {
     position: fixed;
     width: 100%;
     height: 100%;
+    z-index: 50;
   }
 </style>

@@ -17,6 +17,7 @@
   import IframeContentView from './content/IframeContentView.svelte';
   import LocalStreamContentView from './content/LocalStreamContentView.svelte';
   import TotoroStreamContentView from './content/TotoroStreamContentView.svelte';
+  import TwitchContentView from './content/TwitchContentView.svelte';
   import ImageViewerPopup from './popup/ImageViewerPopup.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
@@ -85,6 +86,8 @@
             <LocalStreamContentView src={content.src} />
           {:else if content.type === 'totoro-stream'}
             <TotoroStreamContentView src={content.src} />
+          {:else if content.type === 'twitch-stream'}
+            <TwitchContentView src={content.src} />
           {/if}
         {/if}
       </div>

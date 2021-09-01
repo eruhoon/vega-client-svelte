@@ -1,4 +1,8 @@
-export type Content = IframeContent | LocalStreamContent | TotoroStreamContent;
+export type Content =
+  | IframeContent
+  | LocalStreamContent
+  | TotoroStreamContent
+  | TwitchStreamContent;
 
 type IframeContent = {
   type: 'iframe';
@@ -12,5 +16,10 @@ type LocalStreamContent = {
 
 type TotoroStreamContent = {
   type: 'totoro-stream';
+  src: string;
+};
+
+type TwitchStreamContent = {
+  type: 'twitch-stream';
   src: string;
 };

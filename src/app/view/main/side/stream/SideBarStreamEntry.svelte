@@ -9,6 +9,7 @@
     platform: '',
     title: '',
     viewer: 0,
+    url: '',
     description: '',
     thumbnail: '',
   };
@@ -27,6 +28,16 @@
       case 'totoro':
         return {
           type: 'totoro-stream',
+          src: stream.keyid,
+        };
+      case 'kakaotv':
+        return {
+          type: 'iframe',
+          src: stream.url,
+        };
+      case 'twitch':
+        return {
+          type: 'twitch-stream',
           src: stream.keyid,
         };
     }

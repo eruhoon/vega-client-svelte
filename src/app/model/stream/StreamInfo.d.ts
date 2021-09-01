@@ -6,4 +6,5 @@ export type StreamInfo = {
   thumbnail: string;
   viewer: number;
   description: string;
+  url: string;
 };

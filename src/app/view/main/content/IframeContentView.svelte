@@ -1,8 +1,9 @@
 <script lang="ts">
   export let src: string;
+  export let allowfullscreen: boolean = false;
 </script>
 
-<iframe title="content" {src} />
+<iframe title="content" {src} {allowfullscreen} />
 
 <style lang="scss">
   iframe {

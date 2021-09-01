@@ -62,7 +62,7 @@
   <video bind:this={videoElement} />
   <!-- 플레이어 서비스 하단 바 구현 시작 -->
   {#if videoMouse}
-    <div class="video-bar" transition:fade>
+    <div class="video-bar" transition:fade={{ delay: 150, duration: 400 }}>
       <div class="left-list">
         <div class="work-btn">
           <button class="btn play-btn active">

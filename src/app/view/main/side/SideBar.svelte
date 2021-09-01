@@ -80,4 +80,8 @@
       max-width: calc(100% - 40px);
     }
   }
+  hr {
+    border-color: #36393f;
+    margin: 5px 0px;
+  }
 </style>

@@ -10,15 +10,7 @@
 
 <div class="stream-list">
   {#each entries as b}
-    <StreamEntry
-      description={b.description}
-      icon={b.icon}
-      thumbnail={b.thumbnail}
-      title={b.title}
-      viewer={b.viewer?.toString()}
-      keyId={b.keyid}
-      platform={b.platform}
-    />
+    <StreamEntry stream={b} />
   {/each}
 </div>
 

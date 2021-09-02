@@ -40,6 +40,11 @@
           type: 'twitch-stream',
           src: stream.keyid,
         };
+      case 'afreeca':
+        return {
+          type: 'iframe',
+          src: stream.url,
+        };
     }
   };
 </script>

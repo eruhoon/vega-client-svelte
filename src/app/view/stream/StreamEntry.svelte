@@ -1,33 +1,57 @@
 <script lang="ts">
+  import type { StreamInfo } from '../../model/stream/StreamInfo';
   import type { Content } from '../../model/window/Content';
-
   import { WindowService } from '../../model/window/WindowService';
 
-  export let icon: string;
-  export let title: string;
-  export let viewer: string;
-  export let thumbnail: string;
-  export let description: string;
-  export let keyId: string;
-  export let platform: string;
+  export let stream: StreamInfo = {
+    icon: '',
+    keyid: '',
+    platform: '',
+    title: '',
+    viewer: 0,
+    url: '',
+    description: '',
+    thumbnail: '',
+  };
+
+  $: icon = stream.icon;
+  $: title = stream.title;
+  $: viewer = stream.viewer?.toString();
+  $: thumbnail = stream.thumbnail;
+  $: description = stream.description;
 
   const onIconClick = () => {
     WindowService.openContent(content);
   };
 
-  $: content = getContent(platform);
+  $: content = getContent(stream);
 
-  const getContent = (p: string): Content => {
-    switch (p) {
+  const getContent = (stream: StreamInfo): Content => {
+    switch (stream.platform) {
       case 'local':
         return {
           type: 'local-stream',
-          src: keyId,
+          src: stream.keyid,
         };
       case 'totoro':
         return {
           type: 'totoro-stream',
-          src: keyId,
+          src: stream.keyid,
+        };
+      case 'kakaotv':
+        return {
+          type: 'iframe',
+          src: stream.url,
+        };
+      case 'twitch':
+        return {
+          type: 'twitch-stream',
+          src: stream.keyid,
+        };
+      case 'afreeca':
+        return {
+          type: 'iframe',
+          src: stream.url,
         };
     }
   };

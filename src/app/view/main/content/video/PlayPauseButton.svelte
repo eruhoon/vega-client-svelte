@@ -4,7 +4,7 @@
   export let play: boolean = false;
   export let onClick = () => {};
 
-  $: icon = play ? 'play' : 'pause';
+  $: icon = play ? 'pause' : 'play';
 </script>
 
 <VideoButton icon="fas fa-{icon}" {onClick} />

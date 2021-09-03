@@ -1,14 +1,24 @@
 <script lang="ts">
   import { WindowService } from '../../../model/window/WindowService';
+
+  let modalWrapper: HTMLElement;
+
+  const onClick = (e: Event) => {
+    if (e.target === modalWrapper) {
+      WindowService.closeModal();
+    }
+  };
 </script>
 
 <div class="root">
-  <div class="click-blocker" on:click={(_) => WindowService.closeModal()} />
-  <slot name="modal" />
+  <div class="click-blocker" />
+  <div class="modal-wrapper" on:click={onClick} bind:this={modalWrapper}>
+    <slot name="modal" />
+  </div>
 </div>
 
 <style lang="scss">
-  .root {
+  .modal-wrapper {
     width: 100%;
     height: 100%;
     display: flex;
@@ -24,5 +34,6 @@
     height: 100%;
     background: black;
     opacity: 0.8;
+    z-index: 90;
   }
 </style>

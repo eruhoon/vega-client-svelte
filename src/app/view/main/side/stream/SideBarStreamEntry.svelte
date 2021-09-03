@@ -38,7 +38,7 @@
       case 'twitch':
         return {
           type: 'twitch-stream',
-          src: stream.keyid,
+          src: stream.url,
         };
       case 'afreeca':
         return {

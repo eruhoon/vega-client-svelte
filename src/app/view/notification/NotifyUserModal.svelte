@@ -4,6 +4,7 @@
   import { NotifyUserService } from '../../model/notification/NotifyUserService';
   import { SessionService } from '../../model/session/SessionService';
   import { SocketService } from '../../model/socket/SocketService';
+  import { WindowService } from '../../model/window/WindowService';
 
   let target: NotificationTarget | null = get(NotifyUserService.target);
   $: hash = target?.hash;
@@ -14,6 +15,11 @@
   const notifyUser = () => {
     const privateKey = SessionService.getPrivateKey();
     SocketService.notifyUser?.execute(privateKey, hash);
+  };
+
+  const onSubmitClick = () => {
+    notifyUser();
+    WindowService.closeModal();
   };
 </script>
 
@@ -26,7 +32,7 @@
   <div class="text">
     <p>호출하시겠어요?</p>
   </div>
-  <button on:click={notifyUser}>
+  <button on:click={onSubmitClick}>
     <h3>호출</h3>
   </button>
 </div>

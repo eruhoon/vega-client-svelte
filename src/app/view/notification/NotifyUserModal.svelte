@@ -7,6 +7,8 @@
   let target: NotificationTarget | null = get(NotifyUserService.target);
   $: icon = target?.icon;
 
+  NotifyUserService.target.subscribe((v) => (target = v));
+
   const close = () => {
     WindowService.closeModal();
   };

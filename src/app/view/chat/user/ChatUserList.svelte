@@ -132,16 +132,5 @@
     &::-webkit-scrollbar-thumb {
       background: #ff4081;
     }
-    .def-emoji-list {
-      background-color: #2a2f38;
-      span {
-        &:hover {
-          background: #ff4081;
-        }
-        &:active {
-          background: #ff4081;
-        }
-      }
-    }
   }
 </style>

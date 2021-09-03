@@ -1,6 +1,7 @@
 <script lang="ts">
   import InlineSVG from 'svelte-inline-svg';
   import { get } from 'svelte/store';
+  import { WindowService } from '../../model/window/WindowService';
   import { ProfileService } from '../../service/ProfileService';
   import SettingModal from './SettingModal.svelte';
   import ExternalStreamSettingForm from './stream/ExternalStreamSettingForm.svelte';
@@ -37,6 +38,10 @@
   ProfileService.localId.subscribe((v) => (localId = v));
   ProfileService.afreecaId.subscribe((v) => (afreecaId = v));
   ProfileService.twitchId.subscribe((v) => (twitchId = v));
+
+  function onSubmitClick() {
+    WindowService.closeModal();
+  }
 </script>
 
 <SettingModal title="방송 설정" icon="fas fa-podcast">
@@ -76,7 +81,7 @@
       {:else}
         <div />
       {/if}
-      <button class="stream-sub">
+      <button class="stream-sub" on:click={onSubmitClick}>
         <h2>방송 설정 저장</h2>
       </button>
     </div>

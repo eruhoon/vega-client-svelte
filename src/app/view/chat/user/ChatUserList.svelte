@@ -17,8 +17,9 @@
     </span>
   </div>
   <div class="cu-entry">
-    {#each users as { icon, nickname, computer, mobile }}
+    {#each users as { hash, icon, nickname, computer, mobile }}
       <ChatUserEntry
+        {hash}
         {icon}
         {nickname}
         isComputer={computer}

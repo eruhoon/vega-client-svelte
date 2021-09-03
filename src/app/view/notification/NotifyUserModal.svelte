@@ -1,7 +1,11 @@
 <script lang="ts">
+  import { get } from 'svelte/store';
+  import type { NotificationTarget } from '../../model/notification/NotificationTarget';
+  import { NotifyUserService } from '../../model/notification/NotifyUserService';
   import { WindowService } from '../../model/window/WindowService';
 
-  export let icon: string;
+  let target: NotificationTarget | null = get(NotifyUserService.target);
+  $: icon = target?.icon;
 
   const close = () => {
     WindowService.closeModal();

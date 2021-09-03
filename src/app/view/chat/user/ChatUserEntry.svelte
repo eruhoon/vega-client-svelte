@@ -1,6 +1,8 @@
 <script lang="ts">
+  import { NotifyUserService } from '../../../model/notification/NotifyUserService';
   import { WindowService } from '../../../model/window/WindowService';
 
+  export let hash: string = '';
   export let nickname: string = '';
   export let icon: string = '';
   export let isMobile: boolean = false;
@@ -9,12 +11,14 @@
   const getFlagClass = (flag: boolean) => (flag ? 'active' : '');
   $: mobileClass = getFlagClass(isMobile);
   $: computerClass = getFlagClass(isComputer);
+
+  const openNotifyUserModal = () => {
+    WindowService.openModal('notify-user');
+    NotifyUserService.setTarget({ hash, icon });
+  };
 </script>
 
-<div
-  class="chat-user-entry"
-  on:click={(_) => WindowService.openModal('notify-user')}
->
+<div class="chat-user-entry" on:click={openNotifyUserModal}>
   <div class="user-icon">
     <img src={icon} alt={nickname} />
   </div>

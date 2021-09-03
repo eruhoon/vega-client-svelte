@@ -7,6 +7,7 @@
   import SiteSettingModal from '../../setting/SiteSettingModal.svelte';
   import StreamSettingModal from '../../setting/StreamSettingModal.svelte';
 
+  let modalWrapper: HTMLElement;
   let modal = null;
 
   WindowService.modal.subscribe((m) => {
@@ -33,11 +34,20 @@
         modal = null;
     }
   });
+
+  const onClick = (e: Event) => {
+    if (e.target === modalWrapper) {
+      WindowService.closeModal();
+    }
+  };
 </script>
 
 {#if modal}
   <div class="modal-layer">
-    <svelte:component this={modal} />
+    <div class="click-blocker" />
+    <div class="modal-wrapper" on:click={onClick} bind:this={modalWrapper}>
+      <svelte:component this={modal} />
+    </div>
   </div>
 {/if}
 
@@ -47,5 +57,23 @@
     width: 100%;
     height: 100%;
     z-index: 60;
+  }
+
+  .click-blocker {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.8;
+  }
+
+  .modal-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 100;
   }
 </style>

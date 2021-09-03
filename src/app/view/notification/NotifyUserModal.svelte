@@ -4,7 +4,6 @@
   import { NotifyUserService } from '../../model/notification/NotifyUserService';
   import { SessionService } from '../../model/session/SessionService';
   import { SocketService } from '../../model/socket/SocketService';
-  import Modal from '../chat/modal/Modal.svelte';
 
   let target: NotificationTarget | null = get(NotifyUserService.target);
   $: hash = target?.hash;
@@ -18,21 +17,19 @@
   };
 </script>
 
-<Modal>
-  <div class="modal" slot="modal">
-    <img class="icon" src={icon} alt="호출 유저 아이콘" />
-    <div class="title">
-      <i class="material-icons">alarm</i>
-      <p>유저 호출</p>
-    </div>
-    <div class="text">
-      <p>호출하시겠어요?</p>
-    </div>
-    <button on:click={notifyUser}>
-      <h3>호출</h3>
-    </button>
+<div class="modal">
+  <img class="icon" src={icon} alt="호출 유저 아이콘" />
+  <div class="title">
+    <i class="material-icons">alarm</i>
+    <p>유저 호출</p>
   </div>
-</Modal>
+  <div class="text">
+    <p>호출하시겠어요?</p>
+  </div>
+  <button on:click={notifyUser}>
+    <h3>호출</h3>
+  </button>
+</div>
 
 <style lang="scss">
   .modal {

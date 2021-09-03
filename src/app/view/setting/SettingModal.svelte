@@ -1,6 +1,5 @@
 <script lang="ts">
   import { WindowService } from '../../model/window/WindowService';
-  import Modal from '../chat/modal/Modal.svelte';
 
   export let title: string;
   export let icon: string;
@@ -10,22 +9,20 @@
   };
 </script>
 
-<Modal>
-  <div slot="modal" class="modal">
-    <div class="title">
-      <div class="icon">
-        <i class={icon} />
-      </div>
-      <h3>{title}</h3>
+<div class="modal">
+  <div class="title">
+    <div class="icon">
+      <i class={icon} />
     </div>
-    <div class="body">
-      <slot name="body" />
-    </div>
-    <button class="modal-close" on:click={close}>
-      <i class="fas fa-times" />
-    </button>
+    <h3>{title}</h3>
   </div>
-</Modal>
+  <div class="body">
+    <slot name="body" />
+  </div>
+  <button class="modal-close" on:click={close}>
+    <i class="fas fa-times" />
+  </button>
+</div>
 
 <style lang="scss">
   // 모달 박스 시작

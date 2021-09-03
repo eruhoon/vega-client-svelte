@@ -14,7 +14,7 @@
     } else if (volume > 0) {
       return 'down';
     } else {
-      return 'mute';
+      return 'off';
     }
   };
 </script>

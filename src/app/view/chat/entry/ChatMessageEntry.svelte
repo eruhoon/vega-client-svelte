@@ -76,8 +76,8 @@
       .menu {
         display: flex;
         position: absolute;
-        left: -1px;
-        bottom: -23px;
+        right: -1px;
+        bottom: -0px;
         width: auto;
         padding: 5px;
         background-color: #1c2027;

@@ -17,7 +17,7 @@
 <style lang="scss">
   .stream-list {
     height: auto;
-    width: auto;
+    width: 100%;
     padding-left: 4px;
     padding-right: 8px;
 

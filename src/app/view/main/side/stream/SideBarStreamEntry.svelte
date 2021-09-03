@@ -78,6 +78,9 @@
       font-size: 12px;
       line-height: 12px;
       padding-top: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 </style>

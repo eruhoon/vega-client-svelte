@@ -13,8 +13,13 @@
 </div>
 
 <style lang="scss">
-  .image {
+  .container {
     width: 100%;
+    height: auto;
+    text-align: center;
+  }
+  .image {
+    width: 90%;
     background: #1f2226;
     border: 1px solid rgb(10, 12, 14);
     border-radius: 2px;

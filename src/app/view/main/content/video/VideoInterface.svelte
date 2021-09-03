@@ -32,8 +32,9 @@
 <style lang="scss">
   .video-bar {
     width: 100%;
-    height: 50px;
-    padding-top: 10px;
+    height: 60px;
+    padding-top: 15px;
+    padding-bottom: 5px;
     position: absolute;
     bottom: 0px;
 

@@ -59,7 +59,6 @@
 
 <div class="root">
   <img alt={title} class="icon" src={icon} on:click={onIconClick} />
-  <div class="bridge" />
   <div class="detail thumbnail">
     {#if thumbnail}
       <img
@@ -70,6 +69,14 @@
         on:error={() => (thumbnail = '')}
       />
     {/if}
+    <div class="bridge">
+      <button class="icon">
+        <i class="fas fa-link" />
+      </button>
+      <button class="icon">
+        <i class="fas fa-external-link-alt" />
+      </button>
+    </div>
     <div class="wrapper">
       <div class="text">
         <h4 class="title">{title}</h4>
@@ -97,22 +104,9 @@
     .icon {
       width: $menu-icon-size - 10px;
       height: $menu-icon-size - 10px;
-      margin: 5px;
-      border: 1px solid #1f2226;
+      padding: 5px 2.5px;
       border-radius: 2px;
-      background: darken($background-color, 10%);
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
-      background-position: center;
       opacity: 0.5;
-    }
-
-    .bridge {
-      position: absolute;
-      right: 0;
-      top: -5px;
-      width: $menu-icon-size;
-      height: 5px;
     }
 
     .detail {
@@ -121,7 +115,7 @@
       display: none;
       align-items: center;
       left: 5px;
-      bottom: $menu-icon-size + 5px;
+      bottom: $menu-icon-size + 0px;
       width: $width;
       height: 195px;
       border-radius: 2px;
@@ -138,6 +132,32 @@
         width: $width;
         max-height: 135px;
         padding-bottom: 65px;
+      }
+
+      .bridge {
+        width: auto;
+        height: auto;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        button {
+          width: 32px;
+          height: 32px;
+          border: 0px;
+          border-radius: 20px;
+          margin: 2px;
+          padding: 0%;
+          color: #ffffff;
+          background-color: #2a2f38;
+
+          &:hover {
+            background-color: #ff4081;
+          }
+
+          i {
+            font-size: 12px;
+          }
+        }
       }
 
       .wrapper {

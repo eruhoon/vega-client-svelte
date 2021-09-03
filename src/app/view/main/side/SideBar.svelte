@@ -51,13 +51,52 @@
   .side-bar {
     overflow-y: auto;
     max-height: 100%;
-    background-color: #2a2f38;
-    color: #ffffff;
     z-index: 10;
     height: 100%;
 
     box-shadow: 2px 0px 2px 1px rgb(0 0 0 / 20%),
       2px 0px 3px 1px rgb(0 0 0 / 20%), 2px 0px 3px 0px rgb(0 0 0 / 20%);
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+      border: 3px solid;
+    }
+    &::-webkit-scrollbar-button:start:decrement,
+    &::-webkit-scrollbar-button:end:increment {
+      display: block;
+      height: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      height: 50px;
+      width: 50px;
+      -webkit-border-radius: 8px;
+      border-radius: 8px;
+    }
+  }
+  // 컬러 스크롤링 컬러셋
+  .side-bar {
+    background-color: #2a2f38;
+    color: #ffffff;
+    scrollbar-color: #ff4081 #2a2f38;
+    scrollbar-width: thin;
+    &::-webkit-scrollbar {
+      border-color: #2a2f38;
+    }
+    &::-webkit-scrollbar-button:start:decrement,
+    &::-webkit-scrollbar-button:end:increment {
+      background: #2a2f38;
+    }
+    &::-webkit-scrollbar-track {
+      background: #2a2f38;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #ff4081;
+    }
   }
 
   ul {
@@ -78,6 +117,7 @@
       padding-left: 10px;
       width: calc(100% - 40px);
       max-width: calc(100% - 40px);
+      font-size: 14px;
     }
   }
   hr {

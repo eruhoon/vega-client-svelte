@@ -172,15 +172,15 @@
       .stream-list {
         display: none;
         position: absolute;
-        bottom: 50px;
-        height: -2px;
-        width: auto;
+        width: 100%;
+        height: 50px;
+        bottom: 11px;
         left: -2px;
       }
 
       &.checker-attached {
         .content {
-          height: 100%;
+          height: calc(100% - 50px);
         }
         .stream-list {
           display: block;

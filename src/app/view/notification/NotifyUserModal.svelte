@@ -2,9 +2,12 @@
   import { get } from 'svelte/store';
   import type { NotificationTarget } from '../../model/notification/NotificationTarget';
   import { NotifyUserService } from '../../model/notification/NotifyUserService';
+  import { SessionService } from '../../model/session/SessionService';
+  import { SocketService } from '../../model/socket/SocketService';
   import { WindowService } from '../../model/window/WindowService';
 
   let target: NotificationTarget | null = get(NotifyUserService.target);
+  $: hash = target?.hash;
   $: icon = target?.icon;
 
   NotifyUserService.target.subscribe((v) => (target = v));
@@ -13,7 +16,10 @@
     WindowService.closeModal();
   };
 
-  const onSendClick = () => {};
+  const notifyUser = () => {
+    const privateKey = SessionService.getPrivateKey();
+    SocketService.notifyUser?.execute(privateKey, hash);
+  };
 </script>
 
 <div class="background" on:click={close} />
@@ -26,7 +32,7 @@
   <div class="text">
     <p>호출하시겠어요?</p>
   </div>
-  <button on:click={onSendClick}>
+  <button on:click={notifyUser}>
     <h3>호출</h3>
   </button>
 </div>

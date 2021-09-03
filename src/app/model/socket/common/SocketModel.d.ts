@@ -8,7 +8,8 @@ export interface SocketModel {
 export type SocketRequest =
   | SocketLoginRequest
   | SocketChatRequest
-  | SocketModifyProfileRequest;
+  | SocketModifyProfileRequest
+  | SocketNotifyUserRequest;
 
 type SocketLoginRequest = {
   commandType: 'user-login';
@@ -36,6 +37,14 @@ type SocketModifyProfileRequest = {
       nickname: string;
       statusMessage: string;
     };
+  };
+};
+
+type SocketNotifyUserRequest = {
+  commandType: 'notify-user';
+  resource: {
+    from: string;
+    to: string;
   };
 };
 

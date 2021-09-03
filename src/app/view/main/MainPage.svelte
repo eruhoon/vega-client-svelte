@@ -8,6 +8,7 @@
   import { WindowService } from '../../model/window/WindowService';
   import { ProfileService } from '../../service/ProfileService';
   import ChatPage from '../chat/ChatPage.svelte';
+  import NotifyUserModal from '../notification/NotifyUserModal.svelte';
   import ChatWidgetSettingModal from '../setting/ChatWidgetSettingModal.svelte';
   import DonationSettingModal from '../setting/DonationSettingModal.svelte';
   import ProfileSettingModal from '../setting/ProfileSettingModal.svelte';
@@ -51,6 +52,9 @@
         break;
       case 'donation':
         modal = DonationSettingModal;
+        break;
+      case 'notify-user':
+        modal = NotifyUserModal;
         break;
       default:
         modal = null;

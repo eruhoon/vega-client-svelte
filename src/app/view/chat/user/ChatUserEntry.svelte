@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { WindowService } from '../../../model/window/WindowService';
+
   export let nickname: string = '';
   export let icon: string = '';
   export let isMobile: boolean = false;
@@ -9,7 +11,10 @@
   $: computerClass = getFlagClass(isComputer);
 </script>
 
-<div class="chat-user-entry">
+<div
+  class="chat-user-entry"
+  on:click={(_) => WindowService.openModal('notify-user')}
+>
   <div class="user-icon">
     <img src={icon} alt={nickname} />
   </div>

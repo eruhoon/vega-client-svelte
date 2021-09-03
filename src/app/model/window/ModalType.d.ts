@@ -3,4 +3,5 @@ export type ModalType =
   | 'stream'
   | 'site'
   | 'chat-widget'
-  | 'donation';
+  | 'donation'
+  | 'notify-user';

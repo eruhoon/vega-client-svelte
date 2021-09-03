@@ -2,6 +2,7 @@
   import { get } from 'svelte/store';
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
   import { OptionService } from '../../../model/option/OptionService';
+  import DefaultGeneralPurposeCardPack from '../pack/DefaultGeneralPurposeCardPack.svelte';
   import ImagePack from '../pack/ImagePack.svelte';
   import LinkPack from '../pack/LinkPack.svelte';
   import TextPack from '../pack/TextPack.svelte';
@@ -17,6 +18,8 @@
         return ImagePack;
       case 'link':
         return LinkPack;
+      case 'general-purpose-card':
+        return DefaultGeneralPurposeCardPack;
       default:
         return null;
     }

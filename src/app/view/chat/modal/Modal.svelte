@@ -10,11 +10,9 @@
   };
 </script>
 
-<div class="root">
-  <div class="click-blocker" />
-  <div class="modal-wrapper" on:click={onClick} bind:this={modalWrapper}>
-    <slot name="modal" />
-  </div>
+<div class="click-blocker" />
+<div class="modal-wrapper" on:click={onClick} bind:this={modalWrapper}>
+  <slot name="modal" />
 </div>
 
 <style lang="scss">

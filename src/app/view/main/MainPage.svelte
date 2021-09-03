@@ -8,12 +8,7 @@
   import { WindowService } from '../../model/window/WindowService';
   import { ProfileService } from '../../service/ProfileService';
   import ChatPage from '../chat/ChatPage.svelte';
-  import NotifyUserModal from '../notification/NotifyUserModal.svelte';
-  import ChatWidgetSettingModal from '../setting/ChatWidgetSettingModal.svelte';
-  import DonationSettingModal from '../setting/DonationSettingModal.svelte';
-  import ProfileSettingModal from '../setting/ProfileSettingModal.svelte';
-  import SiteSettingModal from '../setting/SiteSettingModal.svelte';
-  import StreamSettingModal from '../setting/StreamSettingModal.svelte';
+  import ModalLayer from '../chat/modal/ModalLayer.svelte';
   import StreamList from '../stream/StreamList.svelte';
   import IframeContentView from './content/IframeContentView.svelte';
   import LocalStreamContentView from './content/LocalStreamContentView.svelte';
@@ -29,37 +24,12 @@
   let sideBarVisible = get(WindowService.sideBarShow);
   let isCheckerBarEnable = get(OptionService.enableCheckerBar);
   let windowInnerWidth: number;
-  let modal = null;
   let currentImage: string;
   let content: Content | null = get(WindowService.content);
 
   ChatNetworkService.init(privateKey);
   CheckerNetworkService.init(privateKey);
   WindowService.sideBarShow.subscribe((v) => (sideBarVisible = v));
-  WindowService.modal.subscribe((m) => {
-    switch (m) {
-      case 'profile':
-        modal = ProfileSettingModal;
-        break;
-      case 'site':
-        modal = SiteSettingModal;
-        break;
-      case 'stream':
-        modal = StreamSettingModal;
-        break;
-      case 'chat-widget':
-        modal = ChatWidgetSettingModal;
-        break;
-      case 'donation':
-        modal = DonationSettingModal;
-        break;
-      case 'notify-user':
-        modal = NotifyUserModal;
-        break;
-      default:
-        modal = null;
-    }
-  });
   WindowService.currentImage.subscribe((v) => (currentImage = v));
   WindowService.content.subscribe((v) => (content = v));
   OptionService.enableCheckerBar.subscribe((v) => (isCheckerBarEnable = v));
@@ -106,11 +76,7 @@
 </div>
 <div class="top-bar"><TopBar /></div>
 
-{#if modal}
-  <div class="modal-layer">
-    <svelte:component this={modal} />
-  </div>
-{/if}
+<ModalLayer />
 
 {#if currentImage}
   <div class="popup-layer">
@@ -207,13 +173,6 @@
         transform: none;
       }
     }
-  }
-
-  .modal-layer {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 60;
   }
 
   .popup-layer {

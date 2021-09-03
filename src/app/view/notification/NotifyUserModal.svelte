@@ -4,7 +4,7 @@
   import { NotifyUserService } from '../../model/notification/NotifyUserService';
   import { SessionService } from '../../model/session/SessionService';
   import { SocketService } from '../../model/socket/SocketService';
-  import { WindowService } from '../../model/window/WindowService';
+  import Modal from '../chat/modal/Modal.svelte';
 
   let target: NotificationTarget | null = get(NotifyUserService.target);
   $: hash = target?.hash;
@@ -12,42 +12,29 @@
 
   NotifyUserService.target.subscribe((v) => (target = v));
 
-  const close = () => {
-    WindowService.closeModal();
-  };
-
   const notifyUser = () => {
     const privateKey = SessionService.getPrivateKey();
     SocketService.notifyUser?.execute(privateKey, hash);
   };
 </script>
 
-<div class="background" on:click={close} />
-<div class="modal">
-  <img class="icon" src={icon} alt="호출 유저 아이콘" />
-  <div class="title">
-    <i class="material-icons">alarm</i>
-    <p>유저 호출</p>
+<Modal>
+  <div class="modal" slot="modal">
+    <img class="icon" src={icon} alt="호출 유저 아이콘" />
+    <div class="title">
+      <i class="material-icons">alarm</i>
+      <p>유저 호출</p>
+    </div>
+    <div class="text">
+      <p>호출하시겠어요?</p>
+    </div>
+    <button on:click={notifyUser}>
+      <h3>호출</h3>
+    </button>
   </div>
-  <div class="text">
-    <p>호출하시겠어요?</p>
-  </div>
-  <button on:click={notifyUser}>
-    <h3>호출</h3>
-  </button>
-</div>
+</Modal>
 
 <style lang="scss">
-  .background {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: black;
-    opacity: 0.8;
-  }
-
   .modal {
     position: absolute;
     left: calc(50% - 150px);

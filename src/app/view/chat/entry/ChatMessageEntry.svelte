@@ -2,6 +2,7 @@
   import { get } from 'svelte/store';
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
   import { OptionService } from '../../../model/option/OptionService';
+  import AzurlaneShipPack from '../pack/AzurlaneShipPack.svelte';
   import DefaultGeneralPurposeCardPack from '../pack/DefaultGeneralPurposeCardPack.svelte';
   import ImagePack from '../pack/ImagePack.svelte';
   import LinkPack from '../pack/LinkPack.svelte';
@@ -20,6 +21,8 @@
         return LinkPack;
       case 'general-purpose-card':
         return DefaultGeneralPurposeCardPack;
+      case 'al-ship':
+        return AzurlaneShipPack;
       default:
         return null;
     }

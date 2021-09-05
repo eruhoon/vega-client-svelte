@@ -1,15 +1,30 @@
 <script lang="ts">
+  import { get } from 'svelte/store';
+  import { OptionService } from '../../../model/option/OptionService';
+
   import { WindowService } from '../../../model/window/WindowService';
 
   export let body = '';
+  let show = !get(OptionService.enableDataSave);
 
   const openImageViewerPopup = () => {
     WindowService.openImageViewerPopup(body);
   };
+
+  OptionService.enableDataSave.subscribe((it) => (show = !it));
 </script>
 
 <div class="container">
-  <img class="image" src={body} alt="이미지" on:click={openImageViewerPopup} />
+  {#if show}
+    <img
+      class="image"
+      src={body}
+      alt="이미지"
+      on:click={openImageViewerPopup}
+    />
+  {:else}
+    <div on:click={(_) => (show = true)}>이미지</div>
+  {/if}
 </div>
 
 <style lang="scss">

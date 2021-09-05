@@ -5,6 +5,7 @@ export class LocalStorageManager {
   #KEY_TIMESTAMP = 'vega.timestamp';
   #KEY_ENABLE_BOT = 'vega.enable_bot';
   #KEY_ENABLE_CHECKER_BAR = 'vega.enable_checker_bar';
+  #KEY_ENABLE_DATASAVE = 'vega.enable_datasave';
 
   get timestamp(): boolean {
     return localStorage.getItem(this.#KEY_TIMESTAMP) === TRUE;
@@ -28,5 +29,13 @@ export class LocalStorageManager {
 
   set enableCheckerBar(value: boolean) {
     localStorage.setItem(this.#KEY_ENABLE_CHECKER_BAR, value ? TRUE : FALSE);
+  }
+
+  get enableDataSave(): boolean {
+    return localStorage.getItem(this.#KEY_ENABLE_DATASAVE) === TRUE;
+  }
+
+  set enableDataSave(value: boolean) {
+    localStorage.setItem(this.#KEY_ENABLE_DATASAVE, value ? TRUE : FALSE);
   }
 }

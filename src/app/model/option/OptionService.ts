@@ -5,6 +5,7 @@ class OptionManager {
   readonly #timestamp = writable(false);
   readonly #enableBot = writable(true);
   readonly #enableCheckerBar = writable(true);
+  readonly #enableDataSave = writable(false);
 
   #localStorage = new LocalStorageManager();
 
@@ -12,6 +13,7 @@ class OptionManager {
     this.#timestamp.set(this.#localStorage.timestamp);
     this.#enableBot.set(this.#localStorage.enableBot);
     this.#enableCheckerBar.set(this.#localStorage.enableCheckerBar);
+    this.#enableDataSave.set(this.#localStorage.enableDataSave);
   }
 
   get timestamp(): Readable<boolean> {
@@ -24,6 +26,10 @@ class OptionManager {
 
   get enableCheckerBar(): Readable<boolean> {
     return this.#enableCheckerBar;
+  }
+
+  get enableDataSave(): Readable<boolean> {
+    return this.#enableDataSave;
   }
 
   setTimestamp(value: boolean) {
@@ -39,6 +45,11 @@ class OptionManager {
   setEnableCheckerBar(value: boolean) {
     this.#enableCheckerBar.set(value);
     this.#localStorage.enableCheckerBar = value;
+  }
+
+  setEnableDataSave(value: boolean) {
+    this.#enableDataSave.set(value);
+    this.#localStorage.enableDataSave = value;
   }
 }
 

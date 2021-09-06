@@ -9,6 +9,7 @@
   import { ProfileService } from '../../service/ProfileService';
   import ChatPage from '../chat/ChatPage.svelte';
   import ModalLayer from '../chat/modal/ModalLayer.svelte';
+  import PopupLayer from '../popup/PopupLayer.svelte';
   import StreamList from '../stream/StreamList.svelte';
   import IframeContentView from './content/IframeContentView.svelte';
   import LocalStreamContentView from './content/LocalStreamContentView.svelte';
@@ -76,6 +77,7 @@
 </div>
 <div class="top-bar"><TopBar /></div>
 
+<PopupLayer />
 <ModalLayer />
 
 {#if currentImage}

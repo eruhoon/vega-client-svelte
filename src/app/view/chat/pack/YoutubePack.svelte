@@ -1,8 +1,5 @@
 <script lang="ts">
   import { WindowService } from '../../../model/window/WindowService';
-
-  import ContentView from '../../main/content/ContentView.svelte';
-
   import { PopupContentService } from '../../popup/PopupContentService';
 
   export let body: string;

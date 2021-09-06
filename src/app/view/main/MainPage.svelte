@@ -10,10 +10,7 @@
   import ModalLayer from '../chat/modal/ModalLayer.svelte';
   import PopupLayer from '../popup/PopupLayer.svelte';
   import StreamList from '../stream/StreamList.svelte';
-  import IframeContentView from './content/IframeContentView.svelte';
-  import LocalStreamContentView from './content/LocalStreamContentView.svelte';
-  import TotoroStreamContentView from './content/TotoroStreamContentView.svelte';
-  import TwitchContentView from './content/TwitchContentView.svelte';
+  import ContentView from './content/ContentView.svelte';
   import ImageViewerPopup from './popup/ImageViewerPopup.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
@@ -47,22 +44,8 @@
       class="content-section"
       class:checker-attached={isCheckerBarEnable}
     >
-      <div class="content">
-        {#if content}
-          {#if content.type === 'iframe'}
-            <IframeContentView src={content.src} />
-          {:else if content.type === 'local-stream'}
-            <LocalStreamContentView src={content.src} />
-          {:else if content.type === 'totoro-stream'}
-            <TotoroStreamContentView src={content.src} />
-          {:else if content.type === 'twitch-stream'}
-            <TwitchContentView src={content.src} />
-          {/if}
-        {/if}
-      </div>
-      <div class="stream-list">
-        <StreamList />
-      </div>
+      <div class="content"><ContentView /></div>
+      <div class="stream-list"><StreamList /></div>
     </div>
   </VerticalSplitView>
   <div class="side-bar" class:show={sideBarVisible}>

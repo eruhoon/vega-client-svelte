@@ -11,5 +11,7 @@ class PopupContentServiceInit {
   addContent(content: PopupContent) {
     this.#contents.update((it) => [...it, content]);
   }
+
+  removeContent(content: PopupContent) {}
 }
 export const PopupContentService = new PopupContentServiceInit();

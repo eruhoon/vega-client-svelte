@@ -3,7 +3,6 @@
   import { ChatNetworkService } from '../../model/network/ChatNetworkService';
   import { CheckerNetworkService } from '../../model/network/checker/CheckerNetworkService';
   import { OptionService } from '../../model/option/OptionService';
-  import type { Content } from '../../model/window/Content';
   import { WindowService } from '../../model/window/WindowService';
   import { ProfileService } from '../../service/ProfileService';
   import ChatPage from '../chat/ChatPage.svelte';
@@ -22,13 +21,11 @@
   let isCheckerBarEnable = get(OptionService.enableCheckerBar);
   let windowInnerWidth: number;
   let currentImage: string;
-  let content: Content | null = get(WindowService.content);
 
   ChatNetworkService.init(privateKey);
   CheckerNetworkService.init(privateKey);
   WindowService.sideBarShow.subscribe((v) => (sideBarVisible = v));
   WindowService.currentImage.subscribe((v) => (currentImage = v));
-  WindowService.content.subscribe((v) => (content = v));
   OptionService.enableCheckerBar.subscribe((v) => (isCheckerBarEnable = v));
 
   ProfileService.loadStreamProfile(privateKey);

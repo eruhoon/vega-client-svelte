@@ -4,6 +4,7 @@
   import { OptionService } from '../../../model/option/OptionService';
   import AzurlaneShipPack from '../pack/AzurlaneShipPack.svelte';
   import DefaultGeneralPurposeCardPack from '../pack/DefaultGeneralPurposeCardPack.svelte';
+  import GeneralPurposeCarouselPack from '../pack/GeneralPurposeCarouselPack.svelte';
   import ImagePack from '../pack/ImagePack.svelte';
   import LinkPack from '../pack/LinkPack.svelte';
   import TextPack from '../pack/TextPack.svelte';
@@ -23,6 +24,8 @@
         return DefaultGeneralPurposeCardPack;
       case 'al-ship':
         return AzurlaneShipPack;
+      case 'general-purpose-carousel':
+        return GeneralPurposeCarouselPack;
       default:
         return null;
     }

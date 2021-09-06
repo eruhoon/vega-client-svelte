@@ -7,5 +7,9 @@ class PopupContentServiceInit {
   get contents(): Readable<PopupContent[]> {
     return this.#contents;
   }
+
+  addContent(content: PopupContent) {
+    this.#contents.update((it) => [...it, content]);
+  }
 }
 export const PopupContentService = new PopupContentServiceInit();

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { PopupContentService } from '../../popup/PopupContentService';
+
   export let body: string;
 
   $: json = JSON.parse(body);
@@ -12,7 +14,13 @@
   $: timeText = json.time > 0 ? getTimeText(json.time) : null;
 
   function onClick() {
-    console.log('click', link); // TODO: click
+    PopupContentService.addContent({
+      type: 'iframe',
+      src: {
+        link,
+        title: 'YoutubePack',
+      },
+    });
   }
 
   function onContextMenu() {

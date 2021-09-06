@@ -19,7 +19,6 @@
   {#each contents as content}
     <svelte:component this={getComponent(content)} {content} />
   {/each}
-  {JSON.stringify(contents)}
 </div>
 
 <style lang="scss">

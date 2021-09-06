@@ -3,7 +3,6 @@
   import { ChatNetworkService } from '../../model/network/ChatNetworkService';
   import { CheckerNetworkService } from '../../model/network/checker/CheckerNetworkService';
   import { OptionService } from '../../model/option/OptionService';
-  import { VegaStreamProfileLoader } from '../../model/profile/VegaStreamProfileLoader';
   import type { Content } from '../../model/window/Content';
   import { WindowService } from '../../model/window/WindowService';
   import { ProfileService } from '../../service/ProfileService';
@@ -35,12 +34,7 @@
   WindowService.content.subscribe((v) => (content = v));
   OptionService.enableCheckerBar.subscribe((v) => (isCheckerBarEnable = v));
 
-  new VegaStreamProfileLoader(privateKey).load().then((streamProfile) => {
-    ProfileService.platform.set(streamProfile.platform);
-    ProfileService.localId.set(streamProfile.localId);
-    ProfileService.afreecaId.set(streamProfile.afreecaId);
-    ProfileService.twitchId.set(streamProfile.twitchId);
-  });
+  ProfileService.loadStreamProfile(privateKey);
 </script>
 
 <div class="main-section">

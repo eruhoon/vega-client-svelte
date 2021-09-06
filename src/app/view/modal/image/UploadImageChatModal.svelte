@@ -1,16 +1,22 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+
   import { ChatClipboardService } from '../../../model/chat/clipboard/ChatClipboardService';
   import { SessionService } from '../../../model/session/SessionService';
   import { SocketService } from '../../../model/socket/SocketService';
 
   import { WindowService } from '../../../model/window/WindowService';
 
+  let root: HTMLElement;
   let currentImage: string;
 
   ChatClipboardService.currentImage.subscribe((it) => (currentImage = it));
 
+  onMount(() => {
+    root.focus();
+  });
+
   function onKeyDown(e: KeyboardEvent) {
-    console.log(e);
     if (e.key === 'Enter') {
       sendImage();
       WindowService.closeModal();
@@ -28,7 +34,7 @@
   }
 </script>
 
-<div class="container" on:keydown={onKeyDown} tabindex="0">
+<div class="container" bind:this={root} on:keydown={onKeyDown} tabindex="0">
   <div class="image-mod">
     <div class="image-wrapper">
       <div class="title">

@@ -1,7 +1,13 @@
 <script lang="ts">
+  import { ChatClipboardService } from '../../../model/chat/clipboard/ChatClipboardService';
+  import { SessionService } from '../../../model/session/SessionService';
+  import { SocketService } from '../../../model/socket/SocketService';
+
   import { WindowService } from '../../../model/window/WindowService';
 
-  let image: string;
+  let currentImage: string;
+
+  ChatClipboardService.currentImage.subscribe((it) => (currentImage = it));
 
   function onKeyDown(e: KeyboardEvent) {
     console.log(e);
@@ -11,8 +17,14 @@
     }
   }
 
-  function sendImage() {
+  function onSubmitClick() {
+    sendImage();
     WindowService.closeModal();
+  }
+
+  function sendImage() {
+    const privateKey = SessionService.getPrivateKey();
+    SocketService.chat.execute(privateKey, 'image', currentImage);
   }
 </script>
 
@@ -24,9 +36,9 @@
         <p>클립보드 붙여넣기</p>
       </div>
 
-      <img src={image} alt="첨부된 이미지" />
+      <img src={currentImage} alt="첨부된 이미지" />
 
-      <button on:click={sendImage}>
+      <button on:click={onSubmitClick}>
         <i class="material-icons">save_alt</i> 보내기
       </button>
     </div>

@@ -1,4 +1,8 @@
 <script lang="ts">
+  import { ChatClipboardService } from '../../model/chat/clipboard/ChatClipboardService';
+
+  import { ClipboardManager } from '../../model/clipboard/ClipboardManager';
+
   import { WindowService } from '../../model/window/WindowService';
   import ChatInterface from './ChatInterface.svelte';
   import ChatList from './ChatList.svelte';
@@ -17,7 +21,11 @@
     if (!e.clipboardData) {
       return;
     }
-    console.log(e);
+
+    new ClipboardManager().uploadImageCache(e.clipboardData, (imageUri) => {
+      ChatClipboardService.setCurrentImage(imageUri);
+      WindowService.openModal('upload-image-chat');
+    });
   }
 </script>
 

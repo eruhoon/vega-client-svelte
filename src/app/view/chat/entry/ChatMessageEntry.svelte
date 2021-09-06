@@ -8,6 +8,7 @@
   import ImagePack from '../pack/ImagePack.svelte';
   import LinkPack from '../pack/LinkPack.svelte';
   import TextPack from '../pack/TextPack.svelte';
+  import YoutubePack from '../pack/YoutubePack.svelte';
 
   export let message: ChatMessage;
   let enableTimestamp = get(OptionService.timestamp);
@@ -26,6 +27,8 @@
         return AzurlaneShipPack;
       case 'general-purpose-carousel':
         return GeneralPurposeCarouselPack;
+      case 'youtube':
+        return YoutubePack;
       default:
         return null;
     }

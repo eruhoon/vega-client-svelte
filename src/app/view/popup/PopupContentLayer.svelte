@@ -1,10 +1,10 @@
 <script lang="ts">
 </script>
 
-<div class="popup-layer" />
+<div class="popup-content-layer" />
 
 <style lang="scss">
-  .popup-layer {
+  .popup-content-layer {
     position: fixed;
     width: 0;
     height: 0;

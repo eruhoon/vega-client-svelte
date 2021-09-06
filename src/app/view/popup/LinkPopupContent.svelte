@@ -1,7 +1,8 @@
 <script lang="ts">
   import type { IframePopupContent } from './IframePopupContent';
-
-  export let src: IframePopupContent['src'];
+  import { PopupContentService } from './PopupContentService';
+  export let content: IframePopupContent;
+  $: src = content.src;
   $: title = src.title;
   $: link = src.link;
   let left = 50;
@@ -25,7 +26,10 @@
       top += e.movementY;
     }
   }
-  function onExit() {}
+
+  function onExit() {
+    PopupContentService.removeContent(content);
+  }
 </script>
 
 <div
@@ -35,7 +39,7 @@
   <div class="title-bar" on:mousedown={onDragStart}>
     <span class="material-icons"> live_tv </span>
     <div class="title">{title}</div>
-    <button on:click={onExit}>
+    <button on:mousedown={onExit}>
       <i class="material-icons">clear</i>
     </button>
   </div>

@@ -1,6 +1,5 @@
-<script>
+<script lang="ts">
   import { WindowService } from '../../model/window/WindowService';
-
   import ChatInterface from './ChatInterface.svelte';
   import ChatList from './ChatList.svelte';
   import EmojiAttachView from './emoji/EmojiAttachView.svelte';
@@ -13,9 +12,16 @@
   WindowService.emojiAttachViewShow.subscribe(
     (show) => (emojiAttachViewShow = show)
   );
+
+  function onPaste(e: ClipboardEvent) {
+    if (!e.clipboardData) {
+      return;
+    }
+    console.log(e);
+  }
 </script>
 
-<div class="chat-page">
+<div class="chat-page" on:paste={onPaste}>
   <div class="chat-list">
     <ChatList />
   </div>

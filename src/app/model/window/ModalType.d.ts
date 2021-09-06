@@ -4,4 +4,5 @@ export type ModalType =
   | 'site'
   | 'chat-widget'
   | 'donation'
-  | 'notify-user';
+  | 'notify-user'
+  | 'upload-image-chat';

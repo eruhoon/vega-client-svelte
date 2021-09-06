@@ -1,5 +1,6 @@
 <script lang="ts">
   import { WindowService } from '../../../model/window/WindowService';
+  import UploadImageChatModal from '../../modal/image/UploadImageChatModal.svelte';
   import NotifyUserModal from '../../notification/NotifyUserModal.svelte';
   import ChatWidgetSettingModal from '../../setting/ChatWidgetSettingModal.svelte';
   import DonationSettingModal from '../../setting/DonationSettingModal.svelte';
@@ -29,6 +30,9 @@
         break;
       case 'notify-user':
         modal = NotifyUserModal;
+        break;
+      case 'upload-image-chat':
+        modal = UploadImageChatModal;
         break;
       default:
         modal = null;

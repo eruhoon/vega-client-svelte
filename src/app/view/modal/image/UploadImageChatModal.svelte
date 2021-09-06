@@ -1,0 +1,134 @@
+<script lang="ts">
+  import { WindowService } from '../../../model/window/WindowService';
+
+  let image: string;
+
+  function onKeyDown(e: KeyboardEvent) {
+    console.log(e);
+    if (e.key === 'Enter') {
+      sendImage();
+      WindowService.closeModal();
+    }
+  }
+
+  function sendImage() {
+    WindowService.closeModal();
+  }
+</script>
+
+<div class="container" on:keydown={onKeyDown} tabindex="0">
+  <div class="image-mod">
+    <div class="image-wrapper">
+      <div class="title">
+        <i class="material-icons"> add_photo_alternate </i>
+        <p>클립보드 붙여넣기</p>
+      </div>
+
+      <img src={image} alt="첨부된 이미지" />
+
+      <button on:click={sendImage}>
+        <i class="material-icons">save_alt</i> 보내기
+      </button>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  .image-wrapper {
+    width: 450px;
+    max-width: 600px;
+    max-height: 865px;
+    opacity: 1;
+    position: relative;
+    background: #ffffff;
+    border-radius: 5px;
+    border: 5px solid #ffffff;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+    .title {
+      width: 100%;
+      height: 40px;
+      background: #ffffff;
+
+      i {
+        float: left;
+        padding: 7px;
+        font-size: 24px;
+        line-height: 26px;
+        color: #424242;
+      }
+
+      p {
+        padding: 10px;
+        color: #424242;
+        margin: 0%;
+      }
+    }
+
+    img {
+      width: 100%;
+      max-height: calc(860px - 100px);
+
+      background: #ffffff;
+      border-radius: 5px;
+    }
+
+    button {
+      width: calc(100% + 10px);
+      height: 60px;
+      margin: -5px;
+      background-color: #ff4081;
+      border: 0px solid #f5f5f5;
+
+      font-size: 24px;
+      font-weight: bolder;
+      line-height: 24px;
+      color: #ffffff;
+
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      margin-top: 4px;
+    }
+
+    .modal-close {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      top: calc(0% - 15px);
+      right: calc(0% - 15px);
+
+      background-color: #fafafa;
+      border: 1px solid #f5f5f5;
+      border-radius: 50%;
+      box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+        0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+
+      text-align: center;
+
+      i {
+        font-size: 24px;
+        line-height: 42px;
+        padding-left: 2px;
+        color: #424242;
+      }
+
+      &:hover {
+        background-color: #ff4081;
+        border: 1px solid #ff4081;
+
+        i {
+          color: #ffffff;
+        }
+      }
+
+      &:active {
+        background-color: #e91e63;
+        border-color: #e91e63;
+
+        i {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+</style>

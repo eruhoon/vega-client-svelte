@@ -1,12 +1,13 @@
 <script lang="ts">
+  import { WindowService } from '../../../model/window/WindowService';
+
+  import ContentView from '../../main/content/ContentView.svelte';
+
   import { PopupContentService } from '../../popup/PopupContentService';
 
   export let body: string;
 
   $: json = JSON.parse(body);
-  $: {
-    console.log(json);
-  }
   $: title = json.title;
   $: thumbnail = json.thumbnail;
   $: description = json.description;
@@ -24,7 +25,7 @@
   }
 
   function onContextMenu() {
-    console.log('contextMenu', link); // TODO: context menu
+    WindowService.openContent({ type: 'iframe', src: link });
   }
 
   function getTimeText(time: number): string {

@@ -1,9 +1,9 @@
 <script lang="ts">
   import type { StreamInfo } from '../../../../model/stream/StreamInfo';
-  import type { Content } from '../../../../model/window/Content';
   import { WindowService } from '../../../../model/window/WindowService';
+  import { ContentFactory } from '../../content/ContentFactory';
 
-  export let stream: StreamInfo = {
+  let stream: StreamInfo = {
     icon: '',
     keyid: '',
     platform: '',
@@ -13,40 +13,11 @@
     description: '',
     thumbnail: '',
   };
+  let factory = new ContentFactory();
 
   $: icon = stream.icon;
   $: title = stream.title;
-  $: content = getContent(stream);
-
-  const getContent = (stream: StreamInfo): Content => {
-    switch (stream.platform) {
-      case 'local':
-        return {
-          type: 'local-stream',
-          src: stream.keyid,
-        };
-      case 'totoro':
-        return {
-          type: 'totoro-stream',
-          src: stream.keyid,
-        };
-      case 'kakaotv':
-        return {
-          type: 'iframe',
-          src: stream.url,
-        };
-      case 'twitch':
-        return {
-          type: 'twitch-stream',
-          src: stream.url,
-        };
-      case 'afreeca':
-        return {
-          type: 'iframe',
-          src: stream.url,
-        };
-    }
-  };
+  $: content = factory.createFromStream(stream);
 </script>
 
 <li on:click={(_) => WindowService.openContent(content)}>

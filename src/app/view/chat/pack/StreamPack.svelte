@@ -1,5 +1,7 @@
 <script lang="ts">
   import { OptionService } from '../../../model/option/OptionService';
+  import type { Content } from '../../../model/window/Content';
+  import { WindowService } from '../../../model/window/WindowService';
 
   export let body: string;
   let isDataSave: boolean;
@@ -8,12 +10,43 @@
   $: icon = json.icon;
   $: name = json.nickname;
   $: keyId = json.keyId;
+  $: link = json.link;
   $: platform = json.platform;
 
   OptionService.enableDataSave.subscribe((it) => (isDataSave = it));
 
   function onClick() {
-    // TODO: onClick
+    WindowService.openContent(getContent());
+  }
+
+  function getContent(): Content {
+    switch (platform) {
+      case 'local':
+        return {
+          type: 'local-stream',
+          src: keyId,
+        };
+      case 'totoro':
+        return {
+          type: 'totoro-stream',
+          src: keyId,
+        };
+      case 'kakaotv':
+        return {
+          type: 'iframe',
+          src: link,
+        };
+      case 'twitch':
+        return {
+          type: 'twitch-stream',
+          src: link,
+        };
+      case 'afreeca':
+        return {
+          type: 'iframe',
+          src: link,
+        };
+    }
   }
 </script>
 

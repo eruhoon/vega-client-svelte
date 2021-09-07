@@ -2,6 +2,7 @@
   import type { StreamInfo } from '../../model/stream/StreamInfo';
   import type { Content } from '../../model/window/Content';
   import { WindowService } from '../../model/window/WindowService';
+  import { ContentFactory } from '../main/content/ContentFactory';
 
   export let stream: StreamInfo = {
     icon: '',
@@ -13,47 +14,17 @@
     description: '',
     thumbnail: '',
   };
+  let factory = new ContentFactory();
 
   $: icon = stream.icon;
   $: title = stream.title;
   $: viewer = stream.viewer?.toString();
   $: thumbnail = stream.thumbnail;
   $: description = stream.description;
+  $: content = factory.createFromStream(stream);
 
   const onIconClick = () => {
     WindowService.openContent(content);
-  };
-
-  $: content = getContent(stream);
-
-  const getContent = (stream: StreamInfo): Content => {
-    switch (stream.platform) {
-      case 'local':
-        return {
-          type: 'local-stream',
-          src: stream.keyid,
-        };
-      case 'totoro':
-        return {
-          type: 'totoro-stream',
-          src: stream.keyid,
-        };
-      case 'kakaotv':
-        return {
-          type: 'iframe',
-          src: stream.url,
-        };
-      case 'twitch':
-        return {
-          type: 'twitch-stream',
-          src: stream.url,
-        };
-      case 'afreeca':
-        return {
-          type: 'iframe',
-          src: stream.url,
-        };
-    }
   };
 </script>
 

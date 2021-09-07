@@ -7,6 +7,7 @@
   import GeneralPurposeCarouselPack from '../pack/GeneralPurposeCarouselPack.svelte';
   import ImagePack from '../pack/ImagePack.svelte';
   import LinkPack from '../pack/LinkPack.svelte';
+  import StreamPack from '../pack/StreamPack.svelte';
   import TextPack from '../pack/TextPack.svelte';
   import YoutubePack from '../pack/YoutubePack.svelte';
 
@@ -29,6 +30,8 @@
         return GeneralPurposeCarouselPack;
       case 'youtube':
         return YoutubePack;
+      case 'stream':
+        return StreamPack;
       default:
         return null;
     }

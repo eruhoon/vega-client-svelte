@@ -12,7 +12,9 @@
 
   OptionService.enableDataSave.subscribe((it) => (isDataSave = it));
 
-  function onClick() {}
+  function onClick() {
+    // TODO: onClick
+  }
 </script>
 
 {#if isDataSave}

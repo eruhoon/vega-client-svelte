@@ -10,6 +10,7 @@
   import StreamPack from '../pack/StreamPack.svelte';
   import TextPack from '../pack/TextPack.svelte';
   import TwitchChannelPack from '../pack/TwitchChannelPack.svelte';
+  import TwitchClipPack from '../pack/TwitchClipPack.svelte';
   import YoutubePack from '../pack/YoutubePack.svelte';
 
   export let message: ChatMessage;
@@ -35,6 +36,8 @@
         return StreamPack;
       case 'twitch':
         return TwitchChannelPack;
+      case 'twitch-clip':
+        return TwitchClipPack;
       default:
         return null;
     }

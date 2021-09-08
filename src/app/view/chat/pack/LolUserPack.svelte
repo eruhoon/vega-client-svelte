@@ -1,4 +1,7 @@
 <script lang="ts">
+  import PopupContentLayer from '../../popup/PopupContentLayer.svelte';
+  import { PopupContentService } from '../../popup/PopupContentService';
+
   export let body: string;
   $: json = JSON.parse(body);
   $: {
@@ -13,8 +16,17 @@
   $: tierText = getTierText(tier);
   let mostChamps: { icon: string; name: string; background: string }[];
   $: mostChamps = json.most.top;
+  $: link = `https://www.op.gg/summoner/userName=${name}`;
 
-  function onClick() {}
+  function onClick() {
+    PopupContentService.addContent({
+      type: 'iframe',
+      src: {
+        link,
+        title: `LOL 유저 정보: ${name}`,
+      },
+    });
+  }
 
   function getTierText(tierObj: {
     tier: string;

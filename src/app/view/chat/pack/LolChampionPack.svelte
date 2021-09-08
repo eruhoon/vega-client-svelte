@@ -10,7 +10,7 @@
   $: name = json.name;
   $: description = json.description;
   $: icon = json.icon;
-  $: background = json.background;
+  $: background = json.skin[0].splash;
   $: skills = json.skill;
   $: link = json.link;
 

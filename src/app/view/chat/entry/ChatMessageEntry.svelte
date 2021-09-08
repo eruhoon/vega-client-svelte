@@ -9,6 +9,7 @@
   import LinkPack from '../pack/LinkPack.svelte';
   import StreamPack from '../pack/StreamPack.svelte';
   import TextPack from '../pack/TextPack.svelte';
+  import TwitchChannelPack from '../pack/TwitchChannelPack.svelte';
   import YoutubePack from '../pack/YoutubePack.svelte';
 
   export let message: ChatMessage;
@@ -32,6 +33,8 @@
         return YoutubePack;
       case 'stream':
         return StreamPack;
+      case 'twitch':
+        return TwitchChannelPack;
       default:
         return null;
     }

@@ -70,7 +70,7 @@
     }
     .card-info {
       border-radius: 3px;
-      border: 1px solid #ffffff;
+      border: 1px solid #1f2226;
       box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
       margin-right: 10px;
       border-radius: 3px;
@@ -83,8 +83,8 @@
         width: 80px;
         height: 80px;
         overflow: hidden;
-        border-right: 1px solid #ffffff;
-        background-color: #212121;
+        border-right: 1px solid #1f2226;
+        background-color: #2a2f38;
         margin: 0px auto;
         img {
           width: 100%;
@@ -100,9 +100,9 @@
         }
         p {
           font-size: 12px;
+          padding-bottom: 4px;
           &.title {
             font-family: 'Jeju Gothic', sans-serif !important;
-            font-weight: bolder;
             font-size: 14px;
             line-height: 16px;
           }
@@ -119,7 +119,7 @@
           width: 100px;
           height: 100px;
           float: left;
-          border-right: 1px solid #ffffff;
+          border-right: 1px solid #1f2226;
         }
         .info {
           width: calc(100% - 121px);
@@ -133,6 +133,7 @@
             text-overflow: ellipsis;
             display: -webkit-box;
             line-height: 16px;
+            padding-bottom: 4px;
             max-height: 32px;
             max-lines: 2;
             -webkit-line-clamp: 2; /* 표시하고자 하는 라인 수 */
@@ -148,7 +149,7 @@
         .img {
           width: 100px;
           height: 100px;
-          border-bottom: 1px solid #ffffff;
+          border-bottom: 1px solid #1f2226;
         }
         .info {
           width: calc(100% - 6px);

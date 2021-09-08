@@ -25,13 +25,16 @@
 
 <div class="modal">
   <img class="icon" src={icon} alt="호출 유저 아이콘" />
-  <div class="title">
-    <i class="material-icons">alarm</i>
-    <p>유저 호출</p>
+  <div>
+    <div class="title">
+      <i class="fas fa-bell" />
+      <p>유저 호출</p>
+    </div>
+    <div class="text">
+      <p>호출하시겠어요?</p>
+    </div>
   </div>
-  <div class="text">
-    <p>호출하시겠어요?</p>
-  </div>
+
   <button on:click={onSubmitClick}>
     <h3>호출</h3>
   </button>
@@ -40,81 +43,80 @@
 <style lang="scss">
   .modal {
     position: absolute;
-    left: calc(50% - 150px);
-    top: calc(50% - 60px);
-    width: 300px;
-    height: 120px;
+    left: calc(50% - 170px);
+    top: calc(50% - 100px);
+    width: 310px;
+    height: 200px;
+    padding: 0px 10px;
     opacity: 1;
-    background: #ffffff;
+    background: #2a2f38;
     border-radius: 5px;
-    border: 5px solid #ffffff;
+    border: 5px solid #2a2f38;
     box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
       0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 
     img {
       width: 120px;
       height: 120px;
-      background: #ffffff;
-      border-radius: 15px;
+      background: #2a2f38;
+      border-radius: 50%;
+      margin-right: 10px;
+      margin-top: 5px;
+      float: left;
 
       box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
         0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-
-      position: absolute;
-      top: -60px;
-      left: 10px;
     }
 
-    .title {
-      width: calc(100% - 140px);
-      height: 20px;
-      padding-top: 10px;
-      padding-left: 140px;
+    div {
+      width: calc(100% - 130px);
+      float: left;
+      .title {
+        width: 100%;
+        height: 20px;
+        padding-top: 40px;
 
-      text-align: left;
+        text-align: left;
 
-      position: absolute;
-      top: -40px;
-      left: 0px;
-
-      i {
-        float: left;
-        font-size: 20px;
-        line-height: 20px;
-        color: #ffffff;
-        padding: 0%;
-        margin: 0%;
+        i {
+          float: left;
+          font-size: 16px;
+          line-height: 15px;
+          color: #ffffff;
+          padding: 0%;
+          padding-right: 5px;
+          margin: 0%;
+        }
+        p {
+          float: left;
+          color: #ffffff;
+          padding: 0%;
+          margin: 0%;
+          font-size: 14px;
+          width: auto;
+          padding-left: 5px;
+        }
       }
-      p {
-        float: left;
-        color: #ffffff;
-        padding: 0%;
-        margin: 0%;
-        font-size: 14px;
-        width: auto;
-        padding-left: 5px;
-      }
-    }
 
-    .text {
-      width: calc(100% - 140px);
-      height: 40px;
-      padding: 15px 0px;
-      padding-left: 130px;
-      text-align: center;
-      p {
-        padding: 0%;
-        margin: 0%;
-        line-height: 24px;
-        font-size: 20px;
-        color: #757575;
+      .text {
+        width: 100%;
+        height: 40px;
+        padding: 15px 0px;
+        text-align: left;
+        p {
+          padding: 0%;
+          margin: 0%;
+          line-height: 24px;
+          font-size: 20px;
+          color: #ffffff;
+        }
       }
     }
 
     button {
-      width: calc(100% + 10px);
+      width: calc(100% + 30px);
       height: 60px;
-      margin: -5px;
+      margin: 0px -15px;
       background-color: #ff4081;
       border: 0px solid #f5f5f5;
 
@@ -122,7 +124,7 @@
 
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
-      margin-top: 4px;
+      margin-top: 20px;
 
       h3 {
         font-size: 24px;

@@ -37,10 +37,10 @@
   style="transform:translate({left}px, {top}px); width: {width}px; height: {height}px; "
 >
   <div class="title-bar" on:mousedown={onDragStart}>
-    <span class="material-icons"> live_tv </span>
+    <i class="fas fa-video" />
     <div class="title">{title}</div>
     <button on:mousedown={onExit}>
-      <i class="material-icons">clear</i>
+      <i class="fas fa-times" />
     </button>
   </div>
   <iframe class="content" src={link} {allowfullscreen} {title} />
@@ -68,7 +68,7 @@
       width: 100%;
       height: calc(100% - 30px);
       border: 0px;
-      background: white;
+      background: #1f2226;
     }
   }
 
@@ -90,10 +90,10 @@
     align-items: center;
     cursor: default;
     opacity: 0;
-    background: #ffffff;
-    color: #424242;
-    span {
-      padding: 0 5px 0 5px;
+    background: #1f2226;
+    color: #ffffff;
+    i {
+      padding: 0 10px 0 15px;
     }
     .title {
       display: inline-block;
@@ -103,13 +103,13 @@
       font-size: 15px;
     }
     button {
-      width: 30px;
-      height: 30px;
-      margin: 5px;
+      width: 40px;
+      height: 40px;
+      margin: 0;
       padding: 0;
-      border-radius: 50%;
-      background: #ffffff;
-      color: #424242;
+      border-radius: 0%;
+      background: #000000;
+      color: #ffffff;
       border: none;
       outline: none;
       i {

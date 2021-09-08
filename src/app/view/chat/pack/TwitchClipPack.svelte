@@ -1,16 +1,21 @@
 <script lang="ts">
+  import { get } from 'svelte/store';
+  import { OptionService } from '../../../model/option/OptionService';
+
   import { WindowService } from '../../../model/window/WindowService';
   import { LinkUtils } from '../../../util/link/LinkUtils';
   import { PopupContentService } from '../../popup/PopupContentService';
 
   export let body: string;
-  let isDataSaveMode = false;
+  let isDataSaveMode: boolean;
   $: json = JSON.parse(body);
   $: type = json.game;
   $: icon = json.icon;
   $: link = LinkUtils.addQuery(json.link, 'parent', location.hostname);
   $: title = json.title;
   $: thumbnail = json.thumbnail;
+
+  OptionService.enableDataSave.subscribe((it) => (isDataSaveMode = it));
 
   function onClick() {
     PopupContentService.addContent({

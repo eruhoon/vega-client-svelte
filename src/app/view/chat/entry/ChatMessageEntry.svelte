@@ -7,6 +7,7 @@
   import GeneralPurposeCarouselPack from '../pack/GeneralPurposeCarouselPack.svelte';
   import ImagePack from '../pack/ImagePack.svelte';
   import LinkPack from '../pack/LinkPack.svelte';
+  import LolChampionPack from '../pack/LolChampionPack.svelte';
   import LolUserPack from '../pack/LolUserPack.svelte';
   import StreamPack from '../pack/StreamPack.svelte';
   import TextPack from '../pack/TextPack.svelte';
@@ -41,6 +42,8 @@
         return TwitchClipPack;
       case 'lol':
         return LolUserPack;
+      case 'champion':
+        return LolChampionPack;
       default:
         return null;
     }

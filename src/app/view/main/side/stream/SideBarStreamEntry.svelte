@@ -3,7 +3,7 @@
   import { WindowService } from '../../../../model/window/WindowService';
   import { ContentFactory } from '../../content/ContentFactory';
 
-  let stream: StreamInfo = {
+  export let stream: StreamInfo = {
     icon: '',
     keyid: '',
     platform: '',

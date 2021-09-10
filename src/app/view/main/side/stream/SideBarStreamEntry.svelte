@@ -18,9 +18,14 @@
   $: icon = stream.icon;
   $: title = stream.title;
   $: content = factory.createFromStream(stream);
+
+  function onClick() {
+    WindowService.openContent(content);
+    WindowService.closeSideBar();
+  }
 </script>
 
-<li on:click={(_) => WindowService.openContent(content)}>
+<li on:click={onClick}>
   <img src={icon} alt={title} />
   <span>{title}</span>
 </li>

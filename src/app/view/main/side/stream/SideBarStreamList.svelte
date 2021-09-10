@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { StreamInfo } from '../../../../model/stream/StreamInfo';
-
   import SideBarStreamEntry from './SideBarStreamEntry.svelte';
 
   export let title: string;

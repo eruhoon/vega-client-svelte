@@ -14,7 +14,7 @@
   WindowService.settingMenuShow.subscribe((v) => (settingMenuShow = v));
 
   const toggleSideBar = () => {
-    WindowService.sideBarShow.update((v) => !v);
+    WindowService.toggleSideBar();
   };
 
   const toggleSettingMenu = () => {

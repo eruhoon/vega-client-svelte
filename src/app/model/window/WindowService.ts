@@ -5,7 +5,7 @@ import type { ModalType } from './ModalType';
 class WindowServiceInit {
   userListShow = writable(false);
   #isEmojiAttachViewShow = writable(false);
-  sideBarShow = writable(false);
+  #sideBarShow = writable(false);
   settingMenuShow = writable(false);
   #content: Writable<Content | null> = writable(null);
   #modal: Writable<ModalType | null> = writable(null);
@@ -49,6 +49,18 @@ class WindowServiceInit {
 
   closeEmojiAttachView() {
     this.#isEmojiAttachViewShow.set(false);
+  }
+
+  get sideBarShow(): Readable<boolean> {
+    return this.#sideBarShow;
+  }
+
+  toggleSideBar() {
+    this.#sideBarShow.update((show) => !show);
+  }
+
+  closeSideBar() {
+    this.#sideBarShow.set(false);
   }
 
   openContent(content: Content) {

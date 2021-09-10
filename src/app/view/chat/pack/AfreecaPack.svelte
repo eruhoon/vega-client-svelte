@@ -4,9 +4,6 @@
   export let body: string;
   let json: Param;
   $: json = JSON.parse(body);
-  $: {
-    console.log(json);
-  }
   $: icon = json.icon;
   $: name = json.nickname;
   $: id = json.keyid;

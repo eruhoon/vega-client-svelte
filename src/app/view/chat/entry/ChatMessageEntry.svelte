@@ -3,6 +3,7 @@
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
   import { OptionService } from '../../../model/option/OptionService';
   import AzurlaneShipPack from '../pack/AzurlaneShipPack.svelte';
+  import BookPack from '../pack/BookPack.svelte';
   import DefaultGeneralPurposeCardPack from '../pack/DefaultGeneralPurposeCardPack.svelte';
   import GeneralPurposeCarouselPack from '../pack/GeneralPurposeCarouselPack.svelte';
   import ImagePack from '../pack/ImagePack.svelte';
@@ -20,6 +21,8 @@
 
   const getPack = (type: string) => {
     switch (type) {
+      case 'book':
+        return BookPack;
       case 'chat':
         return TextPack;
       case 'image':

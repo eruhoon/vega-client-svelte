@@ -3,13 +3,21 @@
   import { PopupContentService } from '../../popup/PopupContentService';
 
   export let body: string;
-
-  $: json = JSON.parse(body);
+  let isError: boolean = false;
+  $: json = parseJson(body);
   $: title = json.title;
   $: thumbnail = json.thumbnail;
   $: description = json.description;
   $: link = json.link;
   $: timeText = json.time > 0 ? getTimeText(json.time) : null;
+
+  function parseJson(body: string) {
+    if (!body) {
+      isError = true;
+      return {};
+    }
+    return JSON.parse(body);
+  }
 
   function onClick() {
     PopupContentService.addContent({
@@ -36,20 +44,24 @@
   }
 </script>
 
-<div
-  class="youtube-pack"
-  on:click={onClick}
-  on:contextmenu|preventDefault={onContextMenu}
->
-  <img class="thumbnail" src={thumbnail} alt="유튜브 썸네일" />
-  <div class="logo description-added" />
-  <div class="title description-added">{title}</div>
-  <!-- svelte-ignore a11y-distracting-elements -->
-  <marquee class="description" scrollamount="3">{description}</marquee>
-  {#if timeText}
-    <div class="time">{timeText}</div>
-  {/if}
-</div>
+{#if isError}
+  <div>잘못된 Youtube</div>
+{:else}
+  <div
+    class="youtube-pack"
+    on:click={onClick}
+    on:contextmenu|preventDefault={onContextMenu}
+  >
+    <img class="thumbnail" src={thumbnail} alt="유튜브 썸네일" />
+    <div class="logo description-added" />
+    <div class="title description-added">{title}</div>
+    <!-- svelte-ignore a11y-distracting-elements -->
+    <marquee class="description" scrollamount="3">{description}</marquee>
+    {#if timeText}
+      <div class="time">{timeText}</div>
+    {/if}
+  </div>
+{/if}
 
 <style lang="scss">
   @mixin truncate {

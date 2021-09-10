@@ -1,6 +1,7 @@
 <script>
   import { get } from 'svelte/store';
   import { StreamService } from '../../../model/stream/StreamService';
+  import { WindowService } from '../../../model/window/WindowService';
   import SideBarStreamList from './stream/SideBarStreamList.svelte';
 
   let locals = get(StreamService.locals);
@@ -12,6 +13,11 @@
 
   StreamService.locals.subscribe((v) => (locals = v));
   StreamService.externals.subscribe((v) => (externals = v));
+
+  function onAddStreamClick() {
+    WindowService.openModal('add-stream');
+    WindowService.closeSideBar();
+  }
 </script>
 
 <div class="side-bar">
@@ -28,7 +34,7 @@
       <i class="fas fa-images" />
       <span>이미지 갤러리</span>
     </li>
-    <li class="main">
+    <li class="main" on:click={onAddStreamClick}>
       <i class="fas fa-broadcast-tower" />
       <span>방송추가</span>
     </li>

@@ -1,12 +1,13 @@
 <script lang="ts">
-  import UploadImageChatModal from '../../modal/image/UploadImageChatModal.svelte';
   import { WindowService } from '../../model/window/WindowService';
-  import NotifyUserModal from '../../notification/NotifyUserModal.svelte';
-  import ChatWidgetSettingModal from '../../setting/ChatWidgetSettingModal.svelte';
-  import DonationSettingModal from '../../setting/DonationSettingModal.svelte';
-  import ProfileSettingModal from '../../setting/ProfileSettingModal.svelte';
-  import SiteSettingModal from '../../setting/SiteSettingModal.svelte';
-  import StreamSettingModal from '../../setting/StreamSettingModal.svelte';
+  import NotifyUserModal from '../notification/NotifyUserModal.svelte';
+  import ChatWidgetSettingModal from '../setting/ChatWidgetSettingModal.svelte';
+  import DonationSettingModal from '../setting/DonationSettingModal.svelte';
+  import ProfileSettingModal from '../setting/ProfileSettingModal.svelte';
+  import SiteSettingModal from '../setting/SiteSettingModal.svelte';
+  import StreamSettingModal from '../setting/StreamSettingModal.svelte';
+  import AddStreamModal from './AddStreamModal.svelte';
+  import UploadImageChatModal from './image/UploadImageChatModal.svelte';
 
   let modalWrapper: HTMLElement;
   let modal = null;
@@ -33,6 +34,9 @@
         break;
       case 'upload-image-chat':
         modal = UploadImageChatModal;
+        break;
+      case 'add-stream':
+        modal = AddStreamModal;
         break;
       default:
         modal = null;

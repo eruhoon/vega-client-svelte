@@ -5,4 +5,5 @@ export type ModalType =
   | 'chat-widget'
   | 'donation'
   | 'notify-user'
-  | 'upload-image-chat';
+  | 'upload-image-chat'
+  | 'add-stream';

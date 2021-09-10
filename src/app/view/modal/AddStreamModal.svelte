@@ -22,7 +22,7 @@
       const command = new StageStreamCommand(currentPlatform.id, searchKeyword);
       const result = await command.execute();
       if (result === null) {
-        console.log('검색결과가 없습니다.'); //TODO: make toast
+        ToastService.toast({ text: '검색결과가 없습니다.' });
         return;
       }
       stagedStream = result;

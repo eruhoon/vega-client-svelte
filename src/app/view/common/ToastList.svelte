@@ -1,8 +1,9 @@
 <script lang="ts">
-  import { get } from 'svelte/store';
+  import type { Toast } from '../../model/toast/Toast';
   import { ToastService } from '../../model/toast/ToastService';
 
-  const toasts = get(ToastService.toasts);
+  let toasts: Toast[] = [];
+  ToastService.toasts.subscribe((it) => (toasts = it));
 </script>
 
 <main>

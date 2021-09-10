@@ -27,4 +27,11 @@
     padding: 0;
     margin: 0;
   }
+
+  .toast-layer {
+    position: fixed;
+    width: 0;
+    height: 0;
+    z-index: 100;
+  }
 </style>

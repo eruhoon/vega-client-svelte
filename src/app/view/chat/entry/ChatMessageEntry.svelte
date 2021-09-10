@@ -13,6 +13,7 @@
   import LolChampionPack from '../pack/LolChampionPack.svelte';
   import LolUserPack from '../pack/LolUserPack.svelte';
   import MemoPack from '../pack/MemoPack.svelte';
+  import MoviePack from '../pack/MoviePack.svelte';
   import StreamPack from '../pack/StreamPack.svelte';
   import TextPack from '../pack/TextPack.svelte';
   import TwitchChannelPack from '../pack/TwitchChannelPack.svelte';
@@ -38,6 +39,8 @@
         return LinkPack;
       case 'memo':
         return MemoPack;
+      case 'movie':
+        return MoviePack;
       case 'general-purpose-card':
         return DefaultGeneralPurposeCardPack;
       case 'al-ship':

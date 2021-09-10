@@ -2,6 +2,7 @@
   import { get } from 'svelte/store';
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
   import { OptionService } from '../../../model/option/OptionService';
+  import AnimationPack from '../pack/AnimationPack.svelte';
   import AzurlaneShipPack from '../pack/AzurlaneShipPack.svelte';
   import BookPack from '../pack/BookPack.svelte';
   import DefaultGeneralPurposeCardPack from '../pack/DefaultGeneralPurposeCardPack.svelte';
@@ -21,6 +22,8 @@
 
   const getPack = (type: string) => {
     switch (type) {
+      case 'animation':
+        return AnimationPack;
       case 'book':
         return BookPack;
       case 'chat':

@@ -2,6 +2,7 @@
   import { get } from 'svelte/store';
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
   import { OptionService } from '../../../model/option/OptionService';
+  import AfreecaPack from '../pack/AfreecaPack.svelte';
   import AnimationPack from '../pack/AnimationPack.svelte';
   import AzurlaneShipPack from '../pack/AzurlaneShipPack.svelte';
   import BookPack from '../pack/BookPack.svelte';
@@ -22,6 +23,8 @@
 
   const getPack = (type: string) => {
     switch (type) {
+      case 'afreeca':
+        return AfreecaPack;
       case 'animation':
         return AnimationPack;
       case 'book':

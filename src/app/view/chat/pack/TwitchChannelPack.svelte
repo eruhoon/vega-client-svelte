@@ -1,12 +1,24 @@
 <script lang="ts">
   import { WindowService } from '../../../model/window/WindowService';
+  import ExternalStreamPack from './ExternalStreamPack.svelte';
 
   export let body: string;
-  $: json = JSON.parse(body);
-  $: icon = json.stream.channel.logo;
-  $: name = json.stream.channel.display_name;
-  $: id = json.stream.channel.name;
-  $: link = `https://player.twitch.tv/?channel=${id}`;
+  let isError: boolean = false;
+  let icon: string;
+  let name: string;
+  let id: string;
+  let link: string;
+  $: {
+    try {
+      const json = JSON.parse(body);
+      icon = json.stream.channel.logo;
+      name = json.stream.channel.display_name;
+      id = json.stream.channel.name;
+      link = `https://player.twitch.tv/?channel=${id}`;
+    } catch {
+      isError = true;
+    }
+  }
 
   function onClick() {
     WindowService.openContent({
@@ -20,67 +32,15 @@
   }
 </script>
 
-<div
-  class="stream-pack"
-  on:click={onClick}
-  on:contextmenu|preventDefault={onContextMenu}
->
-  <img class="icon" src={icon} alt={name} />
-  <div class="logo" />
-  <div class="name">
-    {name} <span>({id})</span>
-  </div>
-</div>
-
-<style lang="scss">
-  .stream-pack {
-    position: relative;
-    width: auto;
-    max-width: 400px;
-    height: 50px;
-    background: #6441a4;
-    align-items: center;
-    justify-content: center;
-    border-radius: 25px;
-    cursor: pointer;
-  }
-
-  .icon {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    width: 40px;
-    height: 40px;
-    border-radius: 25px;
-  }
-  .logo {
-    position: absolute;
-    background: url('/../assets/image/chat/cp/twitch/twitch-white.svg') center
-      no-repeat;
-    top: 15px;
-    left: 50px;
-    width: 20px;
-    height: 20px;
-  }
-  .name {
-    position: absolute;
-    top: 15px;
-    left: 75px;
-    width: calc(100% - 100px);
-    height: 20px;
-    font-size: 14px;
-    color: white;
-    line-height: 20px;
-
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    word-wrap: normal;
-    word-break: break-all;
-    text-overflow: ellipsis;
-    overflow: hidden;
-
-    span {
-      font-size: 12px;
-    }
-  }
-</style>
+{#if isError}
+  <strong>잘못된 트위치 채널</strong>
+{:else}
+  <ExternalStreamPack
+    {icon}
+    {name}
+    {id}
+    {onClick}
+    {onContextMenu}
+    backgroundColor="#6441a4"
+  />
+{/if}

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { WindowService } from '../../../model/window/WindowService';
   import UploadImageChatModal from '../../modal/image/UploadImageChatModal.svelte';
+  import { WindowService } from '../../model/window/WindowService';
   import NotifyUserModal from '../../notification/NotifyUserModal.svelte';
   import ChatWidgetSettingModal from '../../setting/ChatWidgetSettingModal.svelte';
   import DonationSettingModal from '../../setting/DonationSettingModal.svelte';

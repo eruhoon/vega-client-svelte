@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { StageStreamCommand } from '../../model/stream/StageStreamCommand';
+  import { ToastService } from '../../model/toast/ToastService';
+
   const platforms = [
     { id: 'twitch', name: '트위치' },
     { id: 'afreeca', name: '아프리카' },
@@ -13,8 +16,19 @@
     currentPlatform = platform;
   }
 
-  function onSearchClick() {
+  async function onSearchClick() {
     searching = true;
+    try {
+      const command = new StageStreamCommand(currentPlatform.id, searchKeyword);
+      const result = await command.execute();
+      if (result === null) {
+        console.log('검색결과가 없습니다.'); //TODO: make toast
+        return;
+      }
+      stagedStream = result;
+    } finally {
+      searching = false;
+    }
   }
 
   function onAddClick() {}

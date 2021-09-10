@@ -1,6 +1,8 @@
 <script lang="ts">
+  import { RegisterStreamCommand } from '../../model/stream/RegisterStreamCommand';
   import { StageStreamCommand } from '../../model/stream/StageStreamCommand';
   import { ToastService } from '../../model/toast/ToastService';
+  import { WindowService } from '../../model/window/WindowService';
 
   const platforms = [
     { id: 'twitch', name: '트위치' },
@@ -31,7 +33,29 @@
     }
   }
 
-  function onAddClick() {}
+  async function onAddClick() {
+    if (!stagedStream) {
+      ToastService.toast({ text: '비정상 접근입니다.' });
+      return;
+    }
+
+    this.adding = true;
+    const command = new RegisterStreamCommand(
+      stagedStream.platform,
+      stagedStream.keyId
+    );
+    try {
+      const result = await command.execute();
+      if (result) {
+        ToastService.toast({ text: '방송을 추가했습니다.' });
+      } else {
+        ToastService.toast({ text: '방송추가를 실패했습니다.' });
+      }
+    } finally {
+      this.adding = false;
+      WindowService.closeModal();
+    }
+  }
 
   type Platform = { id: string; name: string };
 </script>

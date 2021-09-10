@@ -1,6 +1,7 @@
 <script lang="ts">
   import { SessionService } from '../../../model/session/SessionService';
   import { SocketService } from '../../../model/socket/SocketService';
+  import { WindowService } from '../../../model/window/WindowService';
 
   const emojiStream: string =
     '😒 😊 😂 🤣 ❤ 😍 👌 😘 🤷‍♂️ 🤷‍♀️ 🤦‍♂️ 🤦‍♀️ 🙌 👍 😁 💕 ✌ 🤞 😉 😎 🎶 😢 💖 😜 🤳 🎂 🎉 🌹 💋 👏 ✔ 👀 😃 ✨ 😆 🤔 🤢 🎁';
@@ -9,6 +10,11 @@
     const privateKey = SessionService.getPrivateKey();
     SocketService.chat?.execute(privateKey, 'chat', emoji);
   };
+
+  function onEmojiClick(emoji: string) {
+    sendEmoji(emoji);
+    WindowService.closeEmojiAttachView();
+  }
 </script>
 
 <div class="container">
@@ -18,7 +24,7 @@
   <div class="emoji-list">
     <div class="def-emoji-list">
       {#each emojies as emoji}
-        <span on:click={(e) => sendEmoji(emoji)}>{emoji}</span>
+        <span on:click={(_) => onEmojiClick(emoji)}>{emoji}</span>
       {/each}
     </div>
   </div>

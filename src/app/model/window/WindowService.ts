@@ -47,6 +47,10 @@ class WindowServiceInit {
     this.#isEmojiAttachViewShow.update((show) => !show);
   }
 
+  closeEmojiAttachView() {
+    this.#isEmojiAttachViewShow.set(false);
+  }
+
   openContent(content: Content) {
     this.#content.set(null);
     setTimeout(() => this.#content.set(content));

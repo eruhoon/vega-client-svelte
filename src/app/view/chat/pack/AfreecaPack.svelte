@@ -20,7 +20,7 @@
   }
 
   function onContextMenu() {
-    window.open(link + '&parent=' + location.hostname);
+    window.open(link);
   }
 
   type Param = {

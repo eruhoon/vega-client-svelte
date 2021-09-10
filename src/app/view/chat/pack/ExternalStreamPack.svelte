@@ -6,7 +6,7 @@
   export let onClick = () => {};
   export let onContextMenu = () => {};
 
-  $: style = backgroundColor ? `background: {background}` : null;
+  $: style = backgroundColor ? `background: ${backgroundColor}` : null;
 </script>
 
 <div

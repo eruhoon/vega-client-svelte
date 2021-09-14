@@ -1,5 +1,6 @@
 <script lang="ts">
   import { SocketShareStreamCommand } from '../../model/socket/command/SocketShareStreamCommand';
+  import { StreamEmbedLinkUtils } from '../../model/stream/StreamEmbedLinkUtils';
   import type { StreamInfo } from '../../model/stream/StreamInfo';
   import { WindowService } from '../../model/window/WindowService';
   import { ContentFactory } from '../main/content/ContentFactory';
@@ -22,7 +23,7 @@
   $: thumbnail = stream.thumbnail;
   $: description = stream.description;
   $: content = factory.createFromStream(stream);
-  $: link = stream.url;
+  $: link = StreamEmbedLinkUtils.getLink(stream);
 
   const onIconClick = () => {
     WindowService.openContent(content);
@@ -33,7 +34,7 @@
   }
 
   function onNewWindowClick() {
-    window.open(link, '_blank', 'width=800');
+    window.open(link, '_blank', 'width=1280,height=720');
   }
 </script>
 

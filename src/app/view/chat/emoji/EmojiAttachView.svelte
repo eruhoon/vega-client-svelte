@@ -101,6 +101,7 @@
           text-align: center;
           border-radius: 3px;
           overflow: hidden;
+          cursor: pointer;
         }
       }
     }

@@ -55,7 +55,9 @@
 {:else}
   <div class="stream-live-box" on:click={onClick}>
     <div class="stream-live-img">
-      <img src={thumbnail} alt="썸네일" />
+      {#if thumbnail}
+        <img src={thumbnail} alt="썸네일" on:error={(_) => (thumbnail = '')} />
+      {/if}
     </div>
     <div class="stream-live-info">
       <div class="str-user-img">

@@ -41,7 +41,11 @@
   </ul>
   <div>
     <hr />
-    <SideBarStreamList title="마이캐스트" streams={locals} />
+    <SideBarStreamList
+      title="마이캐스트"
+      streams={locals}
+      supportFavorite={false}
+    />
     <hr />
     <SideBarStreamList title="즐겨찾기" streams={[]} />
     <hr />

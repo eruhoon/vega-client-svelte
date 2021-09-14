@@ -15,12 +15,12 @@
     description: '',
     thumbnail: '',
   };
+  export let supportFavorite = true;
   let factory = new ContentFactory();
 
   $: icon = stream.icon;
   $: title = stream.title;
   $: content = factory.createFromStream(stream);
-  $: thumbnail = stream.thumbnail;
   $: link = StreamEmbedLinkUtils.getLink(stream);
 
   function onClick() {
@@ -46,9 +46,11 @@
   <button class="icon" on:click|stopPropagation={onShareClick}>
     <i class="fas fa-link" />
   </button>
-  <button class="icon">
-    <i class="fas fa-star" />
-  </button>
+  {#if supportFavorite}
+    <button class="icon">
+      <i class="fas fa-star" />
+    </button>
+  {/if}
   <button class="icon" on:click|stopPropagation={onNewWindowClick}>
     <i class="fas fa-external-link-alt" />
   </button>

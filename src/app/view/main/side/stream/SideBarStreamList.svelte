@@ -5,6 +5,7 @@
   export let title: string;
   export let streams: StreamInfo[] = [];
   export let selected = false;
+  export let supportFavorite = true;
   $: size = streams.length;
 </script>
 
@@ -13,7 +14,7 @@
 </h3>
 <ul class="stream" class:selected>
   {#each streams as stream}
-    <SideBarStreamEntry {stream} />
+    <SideBarStreamEntry {stream} {supportFavorite} />
   {/each}
 </ul>
 

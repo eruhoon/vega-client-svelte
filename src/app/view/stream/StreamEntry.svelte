@@ -22,6 +22,7 @@
   $: thumbnail = stream.thumbnail;
   $: description = stream.description;
   $: content = factory.createFromStream(stream);
+  $: link = stream.url;
 
   const onIconClick = () => {
     WindowService.openContent(content);
@@ -29,6 +30,10 @@
 
   function onShareClick() {
     new SocketShareStreamCommand(stream).execute();
+  }
+
+  function onNewWindowClick() {
+    window.open(link, '_blank', 'width=800');
   }
 </script>
 
@@ -48,7 +53,7 @@
       <button class="icon" on:click={onShareClick}>
         <i class="fas fa-link" />
       </button>
-      <button class="icon">
+      <button class="icon" on:click={onNewWindowClick}>
         <i class="fas fa-external-link-alt" />
       </button>
     </div>

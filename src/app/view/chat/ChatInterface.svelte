@@ -17,6 +17,7 @@
       }
       SocketService.chat?.execute(privateKey, 'chat', message);
       message = '';
+      ChatService.requestScrollDown(true);
     }
   };
 
@@ -34,11 +35,8 @@
     ChatService.chats.set([]);
   };
 
-  let scrollDown = () => {};
-
   SocketService.isConnected.subscribe((v) => (isConnected = v));
   ChatService.scrollLock.subscribe((v) => (isScrollLock = v));
-  ChatService.scrollDown.subscribe((v) => (scrollDown = v));
 </script>
 
 <div class="chat-interface">
@@ -50,7 +48,10 @@
       <div on:click={clearChats}>
         <i class="fas fa-remove-format" />
       </div>
-      <div class:hide={!isScrollLock} on:click={scrollDown}>
+      <div
+        class:hide={!isScrollLock}
+        on:click={(_) => ChatService.requestScrollDown(true)}
+      >
         <i class="fas fa-arrow-down" />
       </div>
     </div>

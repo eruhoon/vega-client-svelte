@@ -30,9 +30,11 @@
     ChatService.scrollLock.set(diff > threashold);
   };
 
-  const scrollDown = () => {
-    if (scrollLock) {
-      return;
+  const scrollDown = (force: boolean) => {
+    if (!force) {
+      if (scrollLock) {
+        return;
+      }
     }
     setTimeout(() => {
       rootView.scrollTop = rootView.scrollHeight;
@@ -44,7 +46,7 @@
   onMount(() => {
     ChatService.chats.subscribe((c) => {
       chats = c;
-      scrollDown();
+      ChatService.requestScrollDown();
     });
   });
 </script>

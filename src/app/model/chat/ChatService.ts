@@ -1,14 +1,19 @@
-import { writable, Writable } from 'svelte/store';
+import { get, writable, Writable } from 'svelte/store';
 import type { ChatProperty } from './ChatProperty';
 
-export const ChatService: ChatServiceInit = {
-  chats: writable([]),
-  scrollLock: writable(false),
-  scrollDown: writable(() => {}),
-};
+class ChatServiceInit {
+  readonly chats: Writable<ChatProperty[]> = writable([]);
+  readonly scrollLock: Writable<boolean> = writable(false);
+  readonly scrollDown: Writable<ScrollDownCommand> = writable(
+    (force: boolean) => {}
+  );
 
-type ChatServiceInit = {
-  readonly chats: Writable<ChatProperty[]>;
-  readonly scrollLock: Writable<boolean>;
-  readonly scrollDown: Writable<() => void>;
-};
+  requestScrollDown(force: boolean = false) {
+    const scrollDown = get(this.scrollDown);
+    scrollDown(force);
+  }
+}
+
+export const ChatService = new ChatServiceInit();
+
+type ScrollDownCommand = (force: boolean) => void;

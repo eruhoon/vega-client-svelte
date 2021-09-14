@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
+  import { ChatService } from '../../../model/chat/ChatService';
   import { SessionService } from '../../../model/session/SessionService';
   import { SocketService } from '../../../model/socket/SocketService';
   import type { ChatEntryProp } from './ChatEntryProp';
@@ -16,6 +17,7 @@
   const sendIcon = () => {
     const privateKey = SessionService.getPrivateKey();
     SocketService.chat?.execute(privateKey, 'chat', prop.icon);
+    ChatService.requestScrollDown(true);
   };
 </script>
 

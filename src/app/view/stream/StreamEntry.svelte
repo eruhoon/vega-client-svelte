@@ -1,6 +1,6 @@
 <script lang="ts">
+  import { SocketShareStreamCommand } from '../../model/socket/command/SocketShareStreamCommand';
   import type { StreamInfo } from '../../model/stream/StreamInfo';
-  import type { Content } from '../../model/window/Content';
   import { WindowService } from '../../model/window/WindowService';
   import { ContentFactory } from '../main/content/ContentFactory';
 
@@ -26,6 +26,11 @@
   const onIconClick = () => {
     WindowService.openContent(content);
   };
+
+  function onShareClick() {
+    console.log('onShareClick');
+    new SocketShareStreamCommand(stream).execute();
+  }
 </script>
 
 <div class="root">
@@ -41,7 +46,7 @@
       />
     {/if}
     <div class="bridge">
-      <button class="icon">
+      <button class="icon" on:click={onShareClick}>
         <i class="fas fa-link" />
       </button>
       <button class="icon">

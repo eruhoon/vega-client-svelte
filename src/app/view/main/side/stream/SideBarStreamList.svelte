@@ -4,8 +4,8 @@
 
   export let title: string;
   export let streams: StreamInfo[] = [];
+  export let selected = false;
   $: size = streams.length;
-  let selected = true;
 </script>
 
 <h3 on:click={(_) => (selected = !selected)}>

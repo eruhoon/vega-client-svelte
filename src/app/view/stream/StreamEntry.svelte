@@ -28,7 +28,6 @@
   };
 
   function onShareClick() {
-    console.log('onShareClick');
     new SocketShareStreamCommand(stream).execute();
   }
 </script>

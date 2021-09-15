@@ -42,7 +42,7 @@
       class:checker-attached={isCheckerBarEnable}
     >
       <div class="content"><ContentView /></div>
-      <div class="stream-list"><StreamList /></div>
+      <div class="bottom-bar"><StreamList /></div>
     </div>
   </VerticalSplitView>
   <div class="side-bar" class:show={sideBarVisible}>
@@ -100,7 +100,7 @@
     }
 
     .content-section {
-      $stream-list-height: 80px;
+      $bottom-bar-height: 60px;
       position: absolute;
       width: 100%;
       height: 100%;
@@ -115,22 +115,22 @@
         height: 100%;
       }
 
-      .stream-list {
+      .bottom-bar {
         display: none;
         position: absolute;
+        left: 0;
+        bottom: 0;
         width: 100%;
-        height: 50px;
-        bottom: 11px;
-        left: -2px;
+        height: 0px;
       }
 
       &.checker-attached {
         .content {
-          height: calc(100% - 50px);
+          height: calc(100% - #{$bottom-bar-height});
         }
-        .stream-list {
+        .bottom-bar {
           display: block;
-          //height: $stream-list-height;
+          height: $bottom-bar-height;
         }
       }
     }

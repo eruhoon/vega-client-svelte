@@ -6,6 +6,7 @@ export class LocalStorageManager {
   #KEY_ENABLE_BOT = 'vega.enable_bot';
   #KEY_ENABLE_CHECKER_BAR = 'vega.enable_checker_bar';
   #KEY_ENABLE_DATASAVE = 'vega.enable_datasave';
+  #KEY_FAVORITE_STREAMS = 'vega.favorite_stream';
 
   get timestamp(): boolean {
     return localStorage.getItem(this.#KEY_TIMESTAMP) === TRUE;
@@ -37,5 +38,13 @@ export class LocalStorageManager {
 
   set enableDataSave(value: boolean) {
     localStorage.setItem(this.#KEY_ENABLE_DATASAVE, value ? TRUE : FALSE);
+  }
+
+  get favoriteStreams(): string {
+    return localStorage.getItem(this.#KEY_FAVORITE_STREAMS) || '[]';
+  }
+
+  set favoriteStreams(value: string) {
+    localStorage.setItem(this.#KEY_FAVORITE_STREAMS, value ? value : '[]');
   }
 }

@@ -1,5 +1,6 @@
 <script>
   import { get } from 'svelte/store';
+  import { FavoriteService } from '../../../model/favorite/FavoriteService';
   import { StreamService } from '../../../model/stream/StreamService';
   import { WindowService } from '../../../model/window/WindowService';
   import SideBarStreamList from './stream/SideBarStreamList.svelte';
@@ -10,6 +11,10 @@
   $: twitches = externals.filter((s) => s.platform === 'twitch');
   $: afreecas = externals.filter((s) => s.platform === 'afreeca');
   $: kakaotvs = externals.filter((s) => s.platform === 'kakaotv');
+  $: favorites = externals.filter((it) => {
+    const { platform, keyid: keyId } = it;
+    return FavoriteService.isFavorite(platform, keyId);
+  });
 
   StreamService.locals.subscribe((v) => (locals = v));
   StreamService.externals.subscribe((v) => (externals = v));
@@ -47,7 +52,7 @@
       supportFavorite={false}
     />
     <hr />
-    <SideBarStreamList title="즐겨찾기" streams={[]} />
+    <SideBarStreamList title="즐겨찾기" streams={favorites} />
     <hr />
     <SideBarStreamList title="트위치" streams={twitches} />
     <hr />

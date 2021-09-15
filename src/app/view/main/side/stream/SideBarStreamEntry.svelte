@@ -1,4 +1,11 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+
+  import { get } from 'svelte/store';
+
+  import { FavoriteService } from '../../../../model/favorite/FavoriteService';
+  import type { FavoriteStream } from '../../../../model/favorite/FavoriteStream';
+
   import { SocketShareStreamCommand } from '../../../../model/socket/command/SocketShareStreamCommand';
   import { StreamEmbedLinkUtils } from '../../../../model/stream/StreamEmbedLinkUtils';
   import type { StreamInfo } from '../../../../model/stream/StreamInfo';
@@ -17,11 +24,16 @@
   };
   export let supportFavorite = true;
   let factory = new ContentFactory();
+  let isFavorite = false;
 
   $: icon = stream.icon;
   $: title = stream.title;
   $: content = factory.createFromStream(stream);
   $: link = StreamEmbedLinkUtils.getLink(stream);
+
+  onMount(() => {
+    isFavorite = FavoriteService.isFavorite(stream.platform, stream.keyid);
+  });
 
   function onClick() {
     WindowService.openContent(content);
@@ -31,6 +43,15 @@
   function onShareClick() {
     new SocketShareStreamCommand(stream).execute();
     WindowService.closeSideBar();
+  }
+
+  function onFavoriteClick() {
+    if (isFavorite) {
+      FavoriteService.removeFavorite(stream.platform, stream.keyid);
+    } else {
+      FavoriteService.addFavorite(stream.platform, stream.keyid);
+    }
+    isFavorite = !isFavorite;
   }
 
   function onNewWindowClick() {
@@ -47,8 +68,8 @@
     <i class="fas fa-link" />
   </button>
   {#if supportFavorite}
-    <button class="icon">
-      <i class="fas fa-star" />
+    <button class="icon" on:click|stopPropagation={onFavoriteClick}>
+      <i class="fas fa-star" class:activated={isFavorite} />
     </button>
   {/if}
   <button class="icon" on:click|stopPropagation={onNewWindowClick}>
@@ -101,6 +122,9 @@
       i {
         font-size: 12px;
         line-height: 30px;
+        &.activated {
+          color: #ffff22;
+        }
       }
     }
   }

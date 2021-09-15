@@ -1,17 +1,32 @@
 <script lang="ts">
+  import { FavoriteService } from '../../model/favorite/FavoriteService';
+
   import type { StreamInfo } from '../../model/stream/StreamInfo';
   import { StreamService } from '../../model/stream/StreamService';
   import StreamEntry from './StreamEntry.svelte';
 
   let entries: StreamInfo[] = [];
+  let externals: StreamInfo[] = [];
+  let favorites: StreamInfo[];
+
+  $: favorites = externals.filter((it) => {
+    const { platform, keyid: keyId } = it;
+    return FavoriteService.isFavorite(platform, keyId);
+  });
 
   StreamService.locals.subscribe((v) => (entries = v));
+  StreamService.externals.subscribe((it) => (externals = it));
 </script>
 
 <div class="stream-list">
   {#each entries as b}
     <div class="stream-item">
       <StreamEntry stream={b} />
+    </div>
+  {/each}
+  {#each favorites as favorite}
+    <div class="stream-item">
+      <StreamEntry stream={favorite} />
     </div>
   {/each}
 </div>

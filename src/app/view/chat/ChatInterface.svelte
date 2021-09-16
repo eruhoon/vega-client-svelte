@@ -1,9 +1,13 @@
 <script lang="ts">
   import { ChatService } from '../../model/chat/ChatService';
+  import { ChatClipboardService } from '../../model/chat/clipboard/ChatClipboardService';
+  import { ClipboardManager } from '../../model/clipboard/ClipboardManager';
   import { SessionService } from '../../model/session/SessionService';
   import { SocketService } from '../../model/socket/SocketService';
   import { WindowService } from '../../model/window/WindowService';
 
+  const clipboardManager = new ClipboardManager();
+  let imageInput: HTMLInputElement;
   let message: string = '';
   let userListShow = false;
   let isConnected = false;
@@ -37,6 +41,21 @@
 
   SocketService.isConnected.subscribe((v) => (isConnected = v));
   ChatService.scrollLock.subscribe((v) => (isScrollLock = v));
+
+  function onImageChange() {
+    console.log('on');
+    const elm = imageInput;
+    const file = elm?.files?.item(0);
+    if (!file) {
+      console.warn('image not found');
+      return;
+    }
+    clipboardManager.uploadImageCacheWithFile(file, (imageUri) => {
+      WindowService.openModal('upload-image-chat');
+      ChatClipboardService.setCurrentImage(imageUri);
+      imageInput.value = '';
+    });
+  }
 </script>
 
 <div class="chat-interface">
@@ -63,7 +82,9 @@
       <div on:click={(_) => toggleEmojiAttachView()}>
         <i class="far fa-smile" />
       </div>
-      <div><i class="fas fa-file-image" /></div>
+      <div on:click={(_) => imageInput.click()}>
+        <i class="fas fa-file-image" />
+      </div>
     </div>
   </div>
   <input
@@ -72,7 +93,13 @@
     bind:value={message}
     on:keydown={(event) => onKeyDown(event)}
   />
-  <input type="file" accept="image/*" style="display: none" />
+  <input
+    type="file"
+    accept="image/*"
+    style="display: none"
+    bind:this={imageInput}
+    on:change={onImageChange}
+  />
 </div>
 
 <style lang="scss">

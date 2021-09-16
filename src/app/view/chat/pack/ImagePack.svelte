@@ -1,5 +1,6 @@
 <script lang="ts">
   import { get } from 'svelte/store';
+  import { ChatService } from '../../../model/chat/ChatService';
   import { OptionService } from '../../../model/option/OptionService';
 
   import { WindowService } from '../../../model/window/WindowService';
@@ -12,6 +13,10 @@
   };
 
   OptionService.enableDataSave.subscribe((it) => (show = !it));
+
+  function onImageLoaded() {
+    ChatService.requestScrollDown();
+  }
 </script>
 
 <div class="container">
@@ -21,6 +26,7 @@
       src={body}
       alt="이미지"
       on:click={openImageViewerPopup}
+      on:load={onImageLoaded}
     />
   {:else}
     <div on:click={(_) => (show = true)}>이미지</div>

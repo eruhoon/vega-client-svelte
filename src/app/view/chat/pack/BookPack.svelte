@@ -9,10 +9,9 @@
   $: subtitle = parseSubtitle(json);
   $: link = json.link;
 
-  function parseSubtitle(json: { author: string; translator: string }): string {
-    return json.translator
-      ? `${json.author} 저, ${json.translator} 역`
-      : json.author;
+  function parseSubtitle(json: Book): string {
+    const { author, translator } = json;
+    return translator ? `${author} 저, ${translator} 역` : json.author;
   }
 
   type Book = {

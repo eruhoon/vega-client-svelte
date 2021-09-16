@@ -24,7 +24,7 @@
       const command = new StageStreamCommand(currentPlatform.id, searchKeyword);
       const result = await command.execute();
       if (result === null) {
-        ToastService.toast({ text: '검색결과가 없습니다.' });
+        ToastService.toastText('검색결과가 없습니다.');
         return;
       }
       stagedStream = result;
@@ -35,7 +35,7 @@
 
   async function onAddClick() {
     if (!stagedStream) {
-      ToastService.toast({ text: '비정상 접근입니다.' });
+      ToastService.toastText('비정상 접근입니다.');
       return;
     }
 
@@ -47,9 +47,9 @@
     try {
       const result = await command.execute();
       if (result) {
-        ToastService.toast({ text: '방송을 추가했습니다.' });
+        ToastService.toastText('방송을 추가했습니다.');
       } else {
-        ToastService.toast({ text: '방송추가를 실패했습니다.' });
+        ToastService.toastText('방송추가를 실패했습니다.');
       }
     } finally {
       this.adding = false;

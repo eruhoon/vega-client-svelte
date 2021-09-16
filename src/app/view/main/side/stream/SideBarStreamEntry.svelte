@@ -44,10 +44,10 @@
   function onFavoriteClick() {
     if (isFavorite) {
       FavoriteService.removeFavorite(stream.platform, stream.keyid);
-      ToastService.toast({ text: '즐겨찾기가 해제되었습니다.' });
+      ToastService.toastText('즐겨찾기가 해제되었습니다.');
     } else {
       FavoriteService.addFavorite(stream.platform, stream.keyid);
-      ToastService.toast({ text: '즐겨찾기로 설정되었습니다.' });
+      ToastService.toastText('즐겨찾기로 설정되었습니다.');
     }
     isFavorite = !isFavorite;
   }

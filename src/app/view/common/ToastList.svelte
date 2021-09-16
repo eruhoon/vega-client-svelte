@@ -7,7 +7,7 @@
 </script>
 
 <div class="root">
-  {#each toasts as toast}
+  {#each toasts as toast (toast.hash)}
     <div class="toast">{toast.text}</div>
   {/each}
 </div>

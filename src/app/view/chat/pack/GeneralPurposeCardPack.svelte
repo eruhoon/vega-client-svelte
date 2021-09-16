@@ -1,16 +1,15 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
+
   export let title: string;
   export let icon: string;
   export let subtitle: string;
   export let orientation: string;
   export let link: string;
-
-  function onClick() {
-    console.log(link);
-  }
+  const dispatch = createEventDispatcher();
 </script>
 
-<div class="card-info {orientation}" on:click={onClick}>
+<div class="card-info {orientation}" on:click={(_) => dispatch('click')}>
   <div class="img">
     <img src={icon} alt="{title} 아이콘" />
   </div>

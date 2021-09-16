@@ -1,14 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-
-  import { get } from 'svelte/store';
-
   import { FavoriteService } from '../../../../model/favorite/FavoriteService';
-  import type { FavoriteStream } from '../../../../model/favorite/FavoriteStream';
-
   import { SocketShareStreamCommand } from '../../../../model/socket/command/SocketShareStreamCommand';
   import { StreamEmbedLinkUtils } from '../../../../model/stream/StreamEmbedLinkUtils';
   import type { StreamInfo } from '../../../../model/stream/StreamInfo';
+  import { ToastService } from '../../../../model/toast/ToastService';
   import { WindowService } from '../../../../model/window/WindowService';
   import { ContentFactory } from '../../content/ContentFactory';
 
@@ -48,8 +44,10 @@
   function onFavoriteClick() {
     if (isFavorite) {
       FavoriteService.removeFavorite(stream.platform, stream.keyid);
+      ToastService.toast({ text: '즐겨찾기가 해제되었습니다.' });
     } else {
       FavoriteService.addFavorite(stream.platform, stream.keyid);
+      ToastService.toast({ text: '즐겨찾기로 설정되었습니다.' });
     }
     isFavorite = !isFavorite;
   }

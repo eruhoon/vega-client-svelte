@@ -6,13 +6,21 @@
   ToastService.toasts.subscribe((it) => (toasts = it));
 </script>
 
-<main>
+<div class="root">
   {#each toasts as toast}
     <div class="toast">{toast.text}</div>
   {/each}
-</main>
+</div>
 
 <style lang="scss">
+  .root {
+    position: fixed;
+    flex-direction: column;
+    display: flex;
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+  }
   .toast {
     min-width: 250px;
     background-color: #333;

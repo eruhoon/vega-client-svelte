@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { PopupContentService } from '../../popup/PopupContentService';
-
-  import GeneralPurposeCardPack from './GeneralPurposeCardPack.svelte';
+  import { PopupContentService } from '../../../popup/PopupContentService';
+  import GeneralPurposeCardPack from '../GeneralPurposeCardPack.svelte';
 
   export let body: string;
   let json: Book;
@@ -63,7 +62,6 @@
     {icon}
     {title}
     {subtitle}
-    {link}
     orientation="horizontal"
     on:click={onClick}
   />

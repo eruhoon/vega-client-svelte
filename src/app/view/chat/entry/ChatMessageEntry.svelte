@@ -5,7 +5,7 @@
   import AfreecaPack from '../pack/AfreecaPack.svelte';
   import AnimationPack from '../pack/AnimationPack.svelte';
   import AzurlaneShipPack from '../pack/AzurlaneShipPack.svelte';
-  import BookPack from '../pack/BookPack.svelte';
+  import BookPack from '../pack/book/BookPack.svelte';
   import DefaultGeneralPurposeCardPack from '../pack/DefaultGeneralPurposeCardPack.svelte';
   import GeneralPurposeCarouselPack from '../pack/GeneralPurposeCarouselPack.svelte';
   import ImagePack from '../pack/ImagePack.svelte';

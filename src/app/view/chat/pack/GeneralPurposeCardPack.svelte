@@ -5,7 +5,6 @@
   export let icon: string;
   export let subtitle: string;
   export let orientation: string;
-  export let link: string;
   const dispatch = createEventDispatcher();
 </script>
 

@@ -1,0 +1,202 @@
+<script lang="ts">
+  let params: Param[] = [];
+
+  type VegaNotification = {
+    hash: string;
+    icon: string;
+    title: string;
+    body: string;
+    timestamp: number;
+    read: boolean;
+    mute: boolean;
+    channel: NotificationChannelHash;
+  };
+
+  type NotificationChannel = {
+    hash: string;
+    name: string;
+    browser: boolean;
+    os: boolean;
+  };
+
+  type NotificationChannelHash = 'default' | 'alarm' | 'local-stream';
+
+  type Param = {
+    notification: VegaNotification;
+    timeText: string;
+  };
+</script>
+
+<div class="nt-list">
+  {#if params.length === 0}
+    <div class="nt-no-entry">
+      <i class="material-icons">visibility_off</i>
+      <p>알림이 없습니다.</p>
+    </div>
+  {:else}
+    {#each params as param}
+      <div class="nt-entry" class:read={param.notification.read}>
+        <div class="entry">
+          <img src={param.notification.icon} alt="푸시 아이콘" />
+        </div>
+        <div class="nt-info-txt">
+          <div class="title">
+            <h4>{param.notification.title}</h4>
+            <p>{param.timeText}</p>
+          </div>
+          <div class="nt-alert">
+            <p>{param.notification.body}</p>
+          </div>
+        </div>
+      </div>
+    {/each}
+  {/if}
+</div>
+
+<style lang="scss">
+  .nt-no-entry {
+    width: 370px;
+    height: 50px;
+
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+
+    background: linear-gradient(145deg, #ffffff, #fefefe);
+    box-shadow: 0 1px 1px 0 rgba(60, 64, 67, 0.08),
+      0 1px 3px 1px rgba(60, 64, 67, 0.16);
+
+    padding: 10px 15px;
+
+    i {
+      width: 50px;
+      height: 50px;
+      font-size: 28px;
+      text-align: center;
+      line-height: 50px;
+      color: #616161;
+      float: left;
+    }
+
+    p {
+      width: calc(100% - 60px);
+      height: 50px;
+      float: right;
+
+      padding: 0%;
+      margin: 0%;
+
+      color: #616161;
+
+      font-size: 14px;
+      line-height: 46px;
+    }
+  }
+
+  // 알림이 있을경우
+  .nt-entry {
+    width: 370px;
+    height: 50px;
+
+    border: 1px solid #e0e0e0;
+    border-bottom-color: white;
+
+    background: linear-gradient(145deg, #ffffff, #fefefe);
+    box-shadow: 0 1px 1px 0 rgba(60, 64, 67, 0.08),
+      0 1px 3px 1px rgba(60, 64, 67, 0.16);
+
+    padding: 10px 15px;
+
+    &:first-child {
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      border-bottom-color: #e0e0e0;
+    }
+
+    &.read {
+      background: linear-gradient(145deg, #efefef, #e3e3e3);
+    }
+
+    .entry {
+      width: 50px;
+      height: 50px;
+      float: left;
+      display: inline-block;
+
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+      }
+    }
+
+    .nt-info-txt {
+      width: calc(100% - 60px);
+      height: 36px;
+      padding-top: 4px;
+      padding-left: 10px;
+      float: left;
+      display: inline-block;
+
+      h4,
+      p {
+        padding: 0%;
+        margin: 0%;
+      }
+
+      .title {
+        width: 100%;
+        height: 20px;
+
+        * {
+          float: left;
+        }
+
+        h4 {
+          line-height: 20px;
+          font-weight: bold;
+          color: #212121;
+        }
+
+        p {
+          padding-left: 5px;
+          color: #9e9e9e;
+          font-size: 12px;
+          line-height: 20px;
+        }
+      }
+
+      .nt-alert {
+        width: 100%;
+        height: 16px;
+        padding-top: 5px;
+
+        p {
+          font-size: 14px;
+          line-height: 16px;
+          text-align: left;
+          color: #616161;
+
+          // 한줄 표기
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .nt-no-entry {
+      width: calc(100% - 32px);
+      height: 50px;
+    }
+    .nt-entry {
+      width: calc(100% - 32px);
+    }
+  }
+</style>

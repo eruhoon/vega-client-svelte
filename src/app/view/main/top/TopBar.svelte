@@ -1,8 +1,10 @@
 <script lang="ts">
   import { WindowService } from '../../../model/window/WindowService';
   import { ProfileService } from '../../../service/ProfileService';
+  import PushList from '../push/PushList.svelte';
   import SettingMenu from './menu/SettingMenu.svelte';
 
+  let isPushListShow = false;
   let settingMenuShow = false;
   let profileIcon = '';
   $: settingMenuActiveClass = settingMenuShow ? 'active' : 'deactive';
@@ -29,7 +31,10 @@
     </button>
   </div>
   <div class="part right">
-    <button class="alert-btn">
+    <button
+      class="alert-btn"
+      on:click={(_) => (isPushListShow = !isPushListShow)}
+    >
       <i class="fas fa-bell" />
       <div>
         <!-- {{ this.getUnreadNotificationCount() }} -->
@@ -42,6 +47,9 @@
 </nav>
 
 <div class={'setting-menu ' + settingMenuActiveClass}><SettingMenu /></div>
+{#if isPushListShow}
+  <div class="push-list"><PushList /></div>
+{/if}
 
 <style lang="scss">
   $icon-size: 40px;
@@ -127,6 +135,25 @@
 
     &.deactive {
       transform: translateX(100%);
+    }
+  }
+
+  .push-list {
+    position: fixed;
+    right: 50px;
+    overflow-y: hidden;
+
+    -webkit-transition: max-height 0.5s ease-in-out;
+    -moz-transition: max-height 0.5s ease-in-out;
+    -o-transition: max-height 0.5s ease-in-out;
+    transition: max-height 0.5s ease-in-out;
+
+    &.active {
+      max-height: 500px;
+    }
+
+    &.deactive {
+      max-height: 0px;
     }
   }
 

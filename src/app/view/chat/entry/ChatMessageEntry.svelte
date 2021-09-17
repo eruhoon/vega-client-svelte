@@ -19,12 +19,10 @@
   import TwitchChannelPack from '../pack/TwitchChannelPack.svelte';
   import TwitchClipPack from '../pack/TwitchClipPack.svelte';
   import YoutubePack from '../pack/YoutubePack.svelte';
+  import ReactionList from './reaction/ChatReactionListView.svelte';
 
   export let message: ChatMessage;
   $: reactions = message.reactions;
-  $: {
-    console.log(reactions);
-  }
   let enableTimestamp = get(OptionService.timestamp);
 
   const getPack = (type: string) => {
@@ -107,18 +105,7 @@
   </div>
   {#if reactions.length > 0}
     <div class="reaction">
-      {#each reactions as reaction}
-        <div class="reaction-item">
-          {#if reaction.value === 'thumb-up'}
-            <span>👍</span>
-          {:else}
-            <span>👎</span>
-          {/if}
-          <div class="reaction-item-title">
-            <!-- <span> {reaction.title} </span> -->
-          </div>
-        </div>
-      {/each}
+      <ReactionList {reactions} />
     </div>
   {/if}
   {#if enableTimestamp}

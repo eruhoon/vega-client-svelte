@@ -7,7 +7,7 @@ import { SocketChatCommand } from '../socket/command/SocketChatCommand';
 import { SocketLoginCommand } from '../socket/command/SocketLoginCommand';
 import { ModifyProfileCommand } from '../socket/command/SocketModifyProfileCommand';
 import { NotifyUserCommand } from '../socket/command/SocketNotifyUserCommand';
-import type { SocketModel } from '../socket/common/SocketModel';
+import type { SocketCommand, SocketModel } from '../socket/common/SocketModel';
 import { SocketService } from '../socket/SocketService';
 import { WebSocketModel } from '../socket/websocket/WebSocketModel';
 import { ChatAdapter } from './chat/ChatAdapter';
@@ -27,7 +27,7 @@ export class ChatNetworkModel {
     SocketService.modifyProfile = new ModifyProfileCommand(this.#socket);
     SocketService.notifyUser = new NotifyUserCommand(this.#socket);
 
-    this.#socket.onReceived((command) => {
+    this.#socket.onReceived((command: SocketCommand) => {
       switch (command.commandType) {
         case 'applyMyStatus':
           ProfileService.statusMessage.set(command.response.statusMessage);
@@ -42,6 +42,12 @@ export class ChatNetworkModel {
           break;
         case 'applyNotifyTo':
           console.log(command);
+          break;
+        case 'reaction':
+          ChatService.updateReaction(
+            command.response.chatHash,
+            command.response.reactions
+          );
           break;
         case 'applyNotifyFrom':
           PushListService.push({

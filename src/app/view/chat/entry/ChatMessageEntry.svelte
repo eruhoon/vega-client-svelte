@@ -21,6 +21,10 @@
   import YoutubePack from '../pack/YoutubePack.svelte';
 
   export let message: ChatMessage;
+  $: reactions = message.reactions;
+  $: {
+    console.log(reactions);
+  }
   let enableTimestamp = get(OptionService.timestamp);
 
   const getPack = (type: string) => {
@@ -101,6 +105,22 @@
     </div>
     <!-- 테스트 구문 끝 -->
   </div>
+  {#if reactions.length > 0}
+    <div class="reaction">
+      {#each reactions as reaction}
+        <div class="reaction-item">
+          {#if reaction.value === 'thumb-up'}
+            <span>👍</span>
+          {:else}
+            <span>👎</span>
+          {/if}
+          <div class="reaction-item-title">
+            <!-- <span> {reaction.title} </span> -->
+          </div>
+        </div>
+      {/each}
+    </div>
+  {/if}
   {#if enableTimestamp}
     <div class="footer">{timestamp}</div>
   {/if}

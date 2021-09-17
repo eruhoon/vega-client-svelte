@@ -56,7 +56,8 @@ export type SocketCommand =
   | SocketCurrentChatsCommand
   | SocketCurrentUsersCommand
   | SocketNotificationFromCommand
-  | SocketNotificationToCommand;
+  | SocketNotificationToCommand
+  | SocketReactionCommand;
 
 type BaseSocketCommand<T, Request, Response> = {
   hash: string;
@@ -141,4 +142,20 @@ type SocketNotificationFromCommand = BaseSocketCommand<
   'applyNotifyTo',
   null,
   SocketNotificationToResponse
+>;
+
+type SocketReactionResponse = {
+  chatHash: string;
+  reactions: {
+    hash: string;
+    timestamp: string;
+    user: { hash: string; icon: string; nickname: string };
+    value: string;
+  }[];
+};
+
+type SocketReactionCommand = BaseSocketCommand<
+  'reaction',
+  null,
+  SocketReactionResponse
 >;

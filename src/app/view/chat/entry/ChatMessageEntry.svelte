@@ -1,7 +1,10 @@
 <script lang="ts">
   import { get } from 'svelte/store';
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
+  import { ChatService } from '../../../model/chat/ChatService';
   import { OptionService } from '../../../model/option/OptionService';
+  import { SessionService } from '../../../model/session/SessionService';
+  import { SocketService } from '../../../model/socket/SocketService';
   import AfreecaPack from '../pack/AfreecaPack.svelte';
   import AnimationPack from '../pack/AnimationPack.svelte';
   import AzurlaneShipPack from '../pack/AzurlaneShipPack.svelte';
@@ -67,6 +70,11 @@
   };
   let pack = getPack(message.type);
 
+  const reactionMenus = [
+    { icon: 'thumbs-up', value: 'thumb-up' },
+    { icon: 'thumbs-down', value: 'thumb-down' },
+  ];
+
   $: timestamp = convertTimeToString(new Date(message.timestamp).getTime());
 
   const convertTimeToString = (timestamp: number): string => {
@@ -83,6 +91,12 @@
   };
 
   OptionService.timestamp.subscribe((v) => (enableTimestamp = v));
+
+  function onReactionClick(reactionValue: string) {
+    const privateKey = SessionService.getPrivateKey();
+    const chatHash = message.hash;
+    SocketService.reaction?.execute(privateKey, chatHash, reactionValue);
+  }
 </script>
 
 <div class="container">
@@ -93,15 +107,18 @@
       {message.type}
     {/if}
 
-    <!-- 테스트 구문 시작 -->
     <div class="menu">
-      <button><i class="far fa-angry" /></button>
+      {#each reactionMenus as menu}
+        <button on:click={(_) => onReactionClick(menu.value)}>
+          <i class="far fa-{menu.icon}" />
+        </button>
+      {/each}
+      <!-- <button><i class="far fa-angry" /></button>
       <button><i class="far fa-grimace" /></button>
       <button><i class="far fa-grin" /></button>
       <button><i class="far fa-grin-squint-tears" /></button>
-      <button><i class="far fa-sad-tear" /></button>
+      <button><i class="far fa-sad-tear" /></button> -->
     </div>
-    <!-- 테스트 구문 끝 -->
   </div>
   {#if reactions?.length > 0}
     <div class="reaction">

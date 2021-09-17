@@ -7,6 +7,7 @@ import { SocketChatCommand } from '../socket/command/SocketChatCommand';
 import { SocketLoginCommand } from '../socket/command/SocketLoginCommand';
 import { ModifyProfileCommand } from '../socket/command/SocketModifyProfileCommand';
 import { NotifyUserCommand } from '../socket/command/SocketNotifyUserCommand';
+import { SocketReactionCommand } from '../socket/command/SocketReactionCommand';
 import type { SocketCommand, SocketModel } from '../socket/common/SocketModel';
 import { SocketService } from '../socket/SocketService';
 import { WebSocketModel } from '../socket/websocket/WebSocketModel';
@@ -26,6 +27,7 @@ export class ChatNetworkModel {
     SocketService.login = new SocketLoginCommand(this.#socket);
     SocketService.modifyProfile = new ModifyProfileCommand(this.#socket);
     SocketService.notifyUser = new NotifyUserCommand(this.#socket);
+    SocketService.reaction = new SocketReactionCommand(this.#socket);
 
     this.#socket.onReceived((command: SocketCommand) => {
       switch (command.commandType) {

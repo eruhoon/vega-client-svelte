@@ -9,7 +9,8 @@ export type SocketRequest =
   | SocketLoginRequest
   | SocketChatRequest
   | SocketModifyProfileRequest
-  | SocketNotifyUserRequest;
+  | SocketNotifyUserRequest
+  | SocketReactionRequest;
 
 type SocketLoginRequest = {
   commandType: 'user-login';
@@ -45,6 +46,15 @@ type SocketNotifyUserRequest = {
   resource: {
     from: string;
     to: string;
+  };
+};
+
+type SocketReactionRequest = {
+  commandType: 'reaction';
+  resource: {
+    userKey: string;
+    chatHash: string;
+    reaction: string;
   };
 };
 

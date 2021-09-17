@@ -1,30 +1,10 @@
 <script lang="ts">
-  let params: Param[] = [];
+  import type { PushEntryParam } from './PushEntryParam';
+  import { PushListService } from './PushListService';
 
-  type VegaNotification = {
-    hash: string;
-    icon: string;
-    title: string;
-    body: string;
-    timestamp: number;
-    read: boolean;
-    mute: boolean;
-    channel: NotificationChannelHash;
-  };
+  let params: PushEntryParam[] = [];
 
-  type NotificationChannel = {
-    hash: string;
-    name: string;
-    browser: boolean;
-    os: boolean;
-  };
-
-  type NotificationChannelHash = 'default' | 'alarm' | 'local-stream';
-
-  type Param = {
-    notification: VegaNotification;
-    timeText: string;
-  };
+  PushListService.params.subscribe((it) => (params = it));
 </script>
 
 <div class="nt-list">

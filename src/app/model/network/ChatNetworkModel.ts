@@ -28,7 +28,6 @@ export class ChatNetworkModel {
     SocketService.notifyUser = new NotifyUserCommand(this.#socket);
 
     this.#socket.onReceived((command) => {
-      console.log(command.commandType);
       switch (command.commandType) {
         case 'applyMyStatus':
           ProfileService.statusMessage.set(command.response.statusMessage);

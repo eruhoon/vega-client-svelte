@@ -103,7 +103,7 @@
     </div>
     <!-- 테스트 구문 끝 -->
   </div>
-  {#if reactions.length > 0}
+  {#if reactions?.length > 0}
     <div class="reaction">
       <ReactionList {reactions} />
     </div>

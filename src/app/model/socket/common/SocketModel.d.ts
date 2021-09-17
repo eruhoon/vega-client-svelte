@@ -54,7 +54,9 @@ export type SocketCommand =
   | SocketChatCommand
   | SocketApplyMyStatusCommand
   | SocketCurrentChatsCommand
-  | SocketCurrentUsersCommand;
+  | SocketCurrentUsersCommand
+  | SocketNotificationFromCommand
+  | SocketNotificationToCommand;
 
 type BaseSocketCommand<T, Request, Response> = {
   hash: string;
@@ -117,4 +119,26 @@ type SocketCurrentUsersCommand = BaseSocketCommand<
   'applyCurrentUserList',
   null,
   SocketCurrentUser[]
+>;
+
+type SocketNotificationFromResponse = {
+  from: { icon: string; nickname: string };
+  timestamp: string;
+};
+
+type SocketNotificationFromCommand = BaseSocketCommand<
+  'applyNotifyFrom',
+  null,
+  SocketNotificationFromResponse
+>;
+
+type SocketNotificationToResponse = {
+  result: boolean;
+  to: string;
+};
+
+type SocketNotificationFromCommand = BaseSocketCommand<
+  'applyNotifyTo',
+  null,
+  SocketNotificationToResponse
 >;

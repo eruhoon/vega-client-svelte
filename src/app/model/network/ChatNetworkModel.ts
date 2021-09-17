@@ -1,5 +1,7 @@
 import { ProfileService } from '../../service/ProfileService';
 import { UserListService } from '../../service/UserListService';
+import { HashGenerator } from '../../util/hash/HashGenerator';
+import { PushListService } from '../../view/main/push/PushListService';
 import { ChatService } from '../chat/ChatService';
 import { SocketChatCommand } from '../socket/command/SocketChatCommand';
 import { SocketLoginCommand } from '../socket/command/SocketLoginCommand';
@@ -26,6 +28,7 @@ export class ChatNetworkModel {
     SocketService.notifyUser = new NotifyUserCommand(this.#socket);
 
     this.#socket.onReceived((command) => {
+      console.log(command.commandType);
       switch (command.commandType) {
         case 'applyMyStatus':
           ProfileService.statusMessage.set(command.response.statusMessage);
@@ -37,6 +40,21 @@ export class ChatNetworkModel {
           break;
         case 'applyCurrentChatList':
           ChatService.chats.set(this.#chatAdapter.toChats(command.response));
+          break;
+        case 'applyNotifyTo':
+          console.log(command);
+          break;
+        case 'applyNotifyFrom':
+          PushListService.push({
+            hash: new HashGenerator().generate('applyNotifyFrom'),
+            channel: 'alarm',
+            mute: false,
+            read: false,
+            timestamp: command.response.timestamp,
+            icon: command.response.from.icon,
+            title: command.response.from.nickname,
+            body: `"${command.response.from.nickname}"로 부터 알림이 왔어요.`,
+          });
           break;
         case 'chat':
           ChatService.chats.update((prev) =>

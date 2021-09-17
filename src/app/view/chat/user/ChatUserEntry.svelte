@@ -14,7 +14,7 @@
 
   const openNotifyUserModal = () => {
     WindowService.openModal('notify-user');
-    NotifyUserService.setTarget({ hash, icon });
+    NotifyUserService.setTarget({ hash, icon, nickname });
   };
 </script>
 

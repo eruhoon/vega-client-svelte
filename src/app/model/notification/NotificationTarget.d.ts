@@ -1,1 +1,5 @@
-export type NotificationTarget = { hash: string; icon: string };
+export type NotificationTarget = {
+  hash: string;
+  icon: string;
+  nickname: string;
+};

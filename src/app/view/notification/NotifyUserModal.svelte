@@ -4,17 +4,20 @@
   import { NotifyUserService } from '../../model/notification/NotifyUserService';
   import { SessionService } from '../../model/session/SessionService';
   import { SocketService } from '../../model/socket/SocketService';
+  import { ToastService } from '../../model/toast/ToastService';
   import { WindowService } from '../../model/window/WindowService';
 
   let target: NotificationTarget | null = get(NotifyUserService.target);
   $: hash = target?.hash;
   $: icon = target?.icon;
+  $: name = target?.nickname;
 
   NotifyUserService.target.subscribe((v) => (target = v));
 
   const notifyUser = () => {
     const privateKey = SessionService.getPrivateKey();
     SocketService.notifyUser?.execute(privateKey, hash);
+    ToastService.toastText(`${name}님에게 호출했어요 !`);
   };
 
   const onSubmitClick = () => {

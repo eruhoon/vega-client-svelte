@@ -1,10 +1,10 @@
-import { Readable, writable } from 'svelte/store';
+import { Readable, Writable, writable } from 'svelte/store';
 import { HashGenerator } from '../../../util/hash/HashGenerator';
 import type { PushEntryParam } from './PushEntryParam';
 
 class PushListServiceInit {
   readonly #MAX_PUSH_LENGTH = 10;
-  readonly #params = writable([]);
+  readonly #params: Writable<PushEntryParam[]> = writable([]);
   readonly #hashGenerator = new HashGenerator();
 
   get params(): Readable<PushEntryParam[]> {
@@ -20,6 +20,16 @@ class PushListServiceInit {
     this.#params.update((it) =>
       [param, ...it].filter((e, i) => i < this.#MAX_PUSH_LENGTH)
     );
+  }
+
+  readAll() {
+    this.#params.update((it) => {
+      it.map((param) => {
+        param.notification.read = true;
+        return param;
+      });
+      return it;
+    });
   }
 
   #createTimeText(timestamp: number): string {

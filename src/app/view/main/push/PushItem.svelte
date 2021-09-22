@@ -21,6 +21,7 @@
 
 <style lang="scss">
   .nt-entry {
+    display: flex;
     width: 370px;
     height: 50px;
 

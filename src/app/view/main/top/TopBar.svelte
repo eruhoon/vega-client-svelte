@@ -16,7 +16,9 @@
   });
 
   WindowService.settingMenuShow.subscribe((v) => (settingMenuShow = v));
-  PushListService.params.subscribe((it) => (pushCount = it.length));
+  PushListService.params.subscribe(
+    (it) => (pushCount = it.filter((param) => !param.notification.read).length)
+  );
 
   const toggleSideBar = () => {
     WindowService.toggleSideBar();

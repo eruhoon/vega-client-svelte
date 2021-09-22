@@ -2,8 +2,14 @@
   import PushEntry from './PushItem.svelte';
   import type { PushEntryParam } from './PushEntryParam';
   import { PushListService } from './PushListService';
+  import { onMount } from 'svelte';
 
   let params: PushEntryParam[] = [];
+
+  onMount(() => {
+    console.log('readAll');
+    PushListService.readAll();
+  });
 
   PushListService.params.subscribe((it) => (params = it));
 </script>

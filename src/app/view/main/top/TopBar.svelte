@@ -2,11 +2,13 @@
   import { WindowService } from '../../../model/window/WindowService';
   import { ProfileService } from '../../../service/ProfileService';
   import PushList from '../push/PushList.svelte';
+  import { PushListService } from '../push/PushListService';
   import SettingMenu from './menu/SettingMenu.svelte';
 
   let isPushListShow = false;
   let settingMenuShow = false;
   let profileIcon = '';
+  let pushCount = 0;
   $: settingMenuActiveClass = settingMenuShow ? 'active' : 'deactive';
 
   ProfileService.profileIcon.subscribe((icon) => {
@@ -14,6 +16,7 @@
   });
 
   WindowService.settingMenuShow.subscribe((v) => (settingMenuShow = v));
+  PushListService.params.subscribe((it) => (pushCount = it.length));
 
   const toggleSideBar = () => {
     WindowService.toggleSideBar();
@@ -36,9 +39,9 @@
       on:click={(_) => (isPushListShow = !isPushListShow)}
     >
       <i class="fas fa-bell" />
-      <div>
-        <!-- {{ this.getUnreadNotificationCount() }} -->
-      </div>
+      {#if pushCount > 0}
+        <div class="push">{pushCount}</div>
+      {/if}
     </button>
     <button on:click={toggleSettingMenu}>
       <img class="profile" src={profileIcon} alt="profile" />
@@ -67,6 +70,7 @@
     align-items: center;
 
     button {
+      position: relative;
       width: $icon-size;
       height: $icon-size;
       border-radius: 50%;
@@ -90,6 +94,20 @@
 
         i {
           font-size: 20px;
+        }
+
+        div.push {
+          position: absolute;
+          right: 0px;
+          bottom: 0px;
+          font-size: 12px;
+          width: 18px;
+          height: 18px;
+          border-radius: 15px;
+          text-align: center;
+          line-height: 18px;
+          background: #ec407a;
+          color: white;
         }
       }
       &.menu-btn {

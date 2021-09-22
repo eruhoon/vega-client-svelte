@@ -1,7 +1,6 @@
 <script lang="ts">
   import { get } from 'svelte/store';
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
-  import { ChatService } from '../../../model/chat/ChatService';
   import { OptionService } from '../../../model/option/OptionService';
   import { SessionService } from '../../../model/session/SessionService';
   import { SocketService } from '../../../model/socket/SocketService';

@@ -51,7 +51,6 @@
     .entry {
       width: 50px;
       height: 50px;
-      float: left;
       display: inline-block;
 
       img {
@@ -66,7 +65,6 @@
       height: 36px;
       padding-top: 4px;
       padding-left: 10px;
-      float: left;
       display: inline-block;
 
       h4,

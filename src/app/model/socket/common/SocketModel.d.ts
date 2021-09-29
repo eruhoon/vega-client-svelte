@@ -62,6 +62,7 @@ export type SocketCallback = (response: SocketCommand) => void;
 
 export type SocketCommand =
   | SocketChatCommand
+  | SocketLinkUpdateCommand
   | SocketApplyMyStatusCommand
   | SocketCurrentChatsCommand
   | SocketCurrentUsersCommand
@@ -88,6 +89,15 @@ type SocketMyStatus = {
   nickname: string;
   statusMessage: string;
 };
+
+type SocketLinkUpdateCommand = BaseSocketCommand<'link-update', null>;
+
+type SocketLinkUpdateResponse = {
+  chatHash: string;
+  thumbnail: string;
+  title: string;
+};
+
 type SocketApplyMyStatusCommand = BaseSocketCommand<
   'applyMyStatus',
   null,

@@ -67,6 +67,14 @@ export class ChatNetworkModel {
           ChatService.chats.update((prev) =>
             this.#chatAdapter.addChat(prev, command.response)
           );
+          break;
+        case 'link-update':
+          ChatService.updateLink(
+            command.response.chatHash,
+            command.response.title,
+            command.response.thumbnail
+          );
+          break;
       }
     });
 

@@ -27,6 +27,23 @@ class ChatServiceInit {
       })
     );
   }
+
+  updateLink(chatMessageHash: string, title: string, thumbnail: string) {
+    this.chats.update((it) =>
+      it.map((chat) => {
+        chat.messages = chat.messages.map((msg) => {
+          if (msg.hash === chatMessageHash) {
+            const json = JSON.parse(msg.body);
+            json.info.title = title;
+            json.info.thumbnail = thumbnail;
+            msg.body = JSON.stringify(json);
+          }
+          return msg;
+        });
+        return chat;
+      })
+    );
+  }
 }
 
 export const ChatService = new ChatServiceInit();

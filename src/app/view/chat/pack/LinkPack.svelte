@@ -2,15 +2,15 @@
   import { WindowService } from '../../../model/window/WindowService';
 
   export let body: string;
-  const json = JSON.parse(body);
-
   let thumbnail: string = '';
   let title: string = '';
   let link: string = '';
-
-  title = json.info.title;
-  thumbnail = json.info.thumbnail;
-  link = json.uri;
+  $: {
+    const json = JSON.parse(body);
+    title = json.info.title;
+    thumbnail = json.info.thumbnail;
+    link = json.uri;
+  }
 
   const openWindow = () => {
     window.open(link);

@@ -25,10 +25,10 @@
     width: 370px;
     height: 50px;
 
-    border: 1px solid #e0e0e0;
-    border-bottom-color: white;
+    border: 1px solid #1f2226;
+    border-bottom-color: #1f2226;
 
-    background: linear-gradient(145deg, #ffffff, #fefefe);
+    background: #ff4081;
     box-shadow: 0 1px 1px 0 rgba(60, 64, 67, 0.08),
       0 1px 3px 1px rgba(60, 64, 67, 0.16);
 
@@ -42,11 +42,11 @@
     &:last-child {
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
-      border-bottom-color: #e0e0e0;
+      border-bottom-color: #1f2226;
     }
 
     &.read {
-      background: linear-gradient(145deg, #efefef, #e3e3e3);
+      background: #1f2226;
     }
 
     .entry {
@@ -85,12 +85,12 @@
         h4 {
           line-height: 20px;
           font-weight: bold;
-          color: #212121;
+          color: #ffffff;
         }
 
         p {
           padding-left: 5px;
-          color: #9e9e9e;
+          color: #ffffff;
           font-size: 12px;
           line-height: 20px;
         }
@@ -105,7 +105,7 @@
           font-size: 14px;
           line-height: 16px;
           text-align: left;
-          color: #616161;
+          color: #ffffff;
 
           // 한줄 표기
           white-space: nowrap;

@@ -1,0 +1,17 @@
+{
+  "name": "마이캐스트",
+  "short_name": "마이캐스트",
+  "theme_color": "#e7427a",
+  "background_color": "#fafafa",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "assets/image/main/main-logo-60.png",
+      "sizes": "60x60",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+}

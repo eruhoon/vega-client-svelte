@@ -1,9 +1,7 @@
 <script lang="ts">
   import { get } from 'svelte/store';
-
   import { ChatNetworkService } from '../../model/network/ChatNetworkService';
   import { WindowService } from '../../model/window/WindowService';
-
   import ChatPage from '../chat/ChatPage.svelte';
   import ModalLayer from '../modal/ModalLayer.svelte';
   import PopupContentLayer from '../popup/PopupContentLayer.svelte';

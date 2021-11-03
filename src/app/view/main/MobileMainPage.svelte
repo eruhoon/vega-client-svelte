@@ -2,6 +2,8 @@
   import { ChatNetworkService } from '../../model/network/ChatNetworkService';
 
   import ChatPage from '../chat/ChatPage.svelte';
+  import ModalLayer from '../modal/ModalLayer.svelte';
+  import PopupContentLayer from '../popup/PopupContentLayer.svelte';
   import TopBar from './top/TopBar.svelte';
 
   export let privateKey: string;
@@ -15,6 +17,9 @@
     <ChatPage />
   </div>
 </div>
+
+<PopupContentLayer />
+<ModalLayer />
 
 <style lang="scss">
   $top-bar-height: 50px;

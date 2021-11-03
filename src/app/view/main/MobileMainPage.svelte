@@ -1,20 +1,30 @@
 <script lang="ts">
+  import { get } from 'svelte/store';
+
   import { ChatNetworkService } from '../../model/network/ChatNetworkService';
+  import { WindowService } from '../../model/window/WindowService';
 
   import ChatPage from '../chat/ChatPage.svelte';
   import ModalLayer from '../modal/ModalLayer.svelte';
   import PopupContentLayer from '../popup/PopupContentLayer.svelte';
+  import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
 
   export let privateKey: string;
 
+  let sideBarVisible = get(WindowService.sideBarShow);
+
   ChatNetworkService.init(privateKey);
+  WindowService.sideBarShow.subscribe((v) => (sideBarVisible = v));
 </script>
 
 <div class="top-bar"><TopBar /></div>
 <div class="main-section">
   <div class="chat-section">
     <ChatPage />
+  </div>
+  <div class="side-bar" class:show={sideBarVisible}>
+    <SideBar />
   </div>
 </div>
 
@@ -56,6 +66,21 @@
       background: #2a2f38;
       box-shadow: 0 0 8px 0 rgb(0 0 0 / 40%), 0 0 15px 0 rgb(0 0 0 / 30%),
         0 0 20px 4px rgb(0 0 0 / 30%);
+    }
+
+    .side-bar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transition: 0.2s ease-in-out;
+      width: $side-bar-width;
+      height: 100%;
+      transform: translateX(-$side-bar-width);
+      z-index: 5;
+
+      &.show {
+        transform: none;
+      }
     }
   }
 </style>

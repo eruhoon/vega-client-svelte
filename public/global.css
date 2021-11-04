@@ -1,30 +1,9 @@
-/*
-@font-face {
-  font-family: 'NEXON Lv2 Gothic';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'NEXON Lv2 Gothic Bold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic Bold.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-*/
-
-@font-face {
-  font-family: 'ChosunKg';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunKg.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'ChosunSg';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunSg.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 100;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype');}
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 300;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf) format('opentype');}
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 400;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format('opentype');}
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 500;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf) format('opentype');}
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 700;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');}
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 900;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');}
 
 html,
 body {
@@ -37,7 +16,7 @@ body {
 *{
   margin: 0 auto;
   padding: 0px;
-  font-family: 'ChosunSg', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 h1,
 h2,
@@ -48,7 +27,7 @@ h6 {
   line-height:100%; 
   margin:0; 
   padding:0px; 
-  font-family: 'ChosunKg', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-weight: 500;
 }
 h1 > *, 
@@ -60,7 +39,7 @@ h6 > * {
   line-height:100%;
   margin:0;
   padding:0px;
-  font-family: 'ChosunKg', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-weight: 500;
 }
 h1 > small, 
@@ -72,13 +51,14 @@ h6 > small {
   line-height:100%;
   margin:0;
   padding:0px;
-  font-family: 'ChosunSg', sans-serif
+  font-family: 'Noto Sans KR', sans-serif
 }
 p {
   line-height:100%; 
   margin:0; 
   padding:0px; 
-  font-family: 'ChosunSg', sans-serif;
+  font-weight: 300;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 body {
@@ -86,7 +66,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'ChosunSg', 'Segoe UI', Roboto,
+  font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', 'Segoe UI', Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 }
 

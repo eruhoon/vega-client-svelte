@@ -38,7 +38,9 @@
   <div class="image-mod">
     <div class="image-wrapper">
       <div class="title">
-        <i class="material-icons"> add_photo_alternate </i>
+        <span class="icon">
+          <i class="far fa-image" />
+        </span>
         <p>클립보드 붙여넣기</p>
       </div>
 
@@ -52,33 +54,40 @@
 </div>
 
 <style lang="scss">
+  :focus-visible {
+  }
+  .container {
+    &:focus-visible {
+      outline: 1px solid #1f2226;
+    }
+  }
   .image-wrapper {
     width: 450px;
     max-width: 600px;
     max-height: 865px;
     opacity: 1;
     position: relative;
-    background: #ffffff;
-    border-radius: 5px;
-    border: 5px solid #ffffff;
+    background: #2a2f38;
+    border-radius: 2px;
+    border: 5px solid #2a2f38;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 
     .title {
       width: 100%;
       height: 40px;
-      background: #ffffff;
+      background: #2a2f38;
 
-      i {
+      span.icon {
         float: left;
         padding: 7px;
-        font-size: 24px;
-        line-height: 26px;
-        color: #424242;
+        font-size: 16px;
+        line-height: 24px;
+        color: #ffffff;
       }
 
       p {
         padding: 10px;
-        color: #424242;
+        color: #ffffff;
         margin: 0%;
       }
     }
@@ -103,8 +112,8 @@
       line-height: 24px;
       color: #ffffff;
 
-      border-bottom-left-radius: 5px;
-      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 2px;
+      border-bottom-right-radius: 2px;
       margin-top: 4px;
     }
   }

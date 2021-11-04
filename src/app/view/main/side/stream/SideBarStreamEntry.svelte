@@ -106,12 +106,10 @@
 
     button {
       display: none;
-      width: 30px;
-      height: 30px;
       border: 0px;
       border-radius: 15px;
       margin: 2px;
-      padding: 0%;
+      padding: 2px 10px;
       color: #ffffff;
       background-color: #2a2f38;
       &:hover {

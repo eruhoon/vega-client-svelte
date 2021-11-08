@@ -21,6 +21,7 @@
   let isCheckerBarEnable = get(OptionService.enableCheckerBar);
   let windowInnerWidth: number;
   let currentImage: string;
+  let chatViewOffset = get(OptionService.chatViewOffset);
 
   ChatNetworkService.init(privateKey);
   CheckerNetworkService.init(privateKey);
@@ -29,10 +30,18 @@
   OptionService.enableCheckerBar.subscribe((v) => (isCheckerBarEnable = v));
 
   ProfileService.loadStreamProfile(privateKey);
+
+  function onOffsetChanged(e: CustomEvent<number>) {
+    OptionService.setChatViewOffset(e.detail);
+  }
 </script>
 
 <div class="main-section">
-  <VerticalSplitView minSideSize={300}>
+  <VerticalSplitView
+    minSideSize={300}
+    offset={chatViewOffset}
+    on:offsetchange={onOffsetChanged}
+  >
     <div slot="side" class="chat-section">
       <ChatPage />
     </div>

@@ -1,21 +1,28 @@
 <script lang="ts">
-  export let minSideSize: number;
+  import { createEventDispatcher } from 'svelte';
 
-  let rawDividerPos = 300;
+  const dispatch = createEventDispatcher<{ offsetchange: number }>();
+
+  export let minSideSize: number;
+  export let offset = 300;
+
   let isMoveMode = false;
   let clientWidth: number;
 
   $: minX = minSideSize;
   $: maxX = clientWidth - minSideSize;
-  $: dividerPos = trimPosition(rawDividerPos, minX, maxX);
+  $: dividerPos = trimPosition(offset, minX, maxX);
   $: isSideLeft = dividerPos < clientWidth / 2;
   $: sideWidth = isSideLeft ? dividerPos : clientWidth - dividerPos;
   $: sideLeft = isSideLeft ? '0' : 'auto';
   $: sideRight = isSideLeft ? 'auto' : '0';
+  $: {
+    dispatch('offsetchange', dividerPos);
+  }
 
   const onDividerMove = (e: MouseEvent) => {
     if (isMoveMode) {
-      rawDividerPos = e.clientX;
+      offset = e.clientX;
     }
   };
 

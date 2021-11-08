@@ -1,5 +1,6 @@
 const TRUE = '1';
 const FALSE = '0';
+const DEFAULT_CHAT_VIEW_OFFSET = 300;
 
 export class LocalStorageManager {
   #KEY_TIMESTAMP = 'vega.timestamp';
@@ -7,6 +8,7 @@ export class LocalStorageManager {
   #KEY_ENABLE_CHECKER_BAR = 'vega.enable_checker_bar';
   #KEY_ENABLE_DATASAVE = 'vega.enable_datasave';
   #KEY_FAVORITE_STREAMS = 'vega.favorite_stream';
+  #KEY_CHAT_VIEW_OFFSET = 'vega.chat_view_offset';
 
   get timestamp(): boolean {
     return localStorage.getItem(this.#KEY_TIMESTAMP) === TRUE;
@@ -46,5 +48,14 @@ export class LocalStorageManager {
 
   set favoriteStreams(value: string) {
     localStorage.setItem(this.#KEY_FAVORITE_STREAMS, value ? value : '[]');
+  }
+
+  get chatViewOffset(): number {
+    const raw = localStorage.getItem(this.#KEY_CHAT_VIEW_OFFSET);
+    return raw ? parseInt(raw) : DEFAULT_CHAT_VIEW_OFFSET;
+  }
+
+  set chatViewOffset(value: number) {
+    localStorage.setItem(this.#KEY_CHAT_VIEW_OFFSET, value.toString());
   }
 }

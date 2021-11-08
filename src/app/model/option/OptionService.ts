@@ -6,6 +6,7 @@ class OptionManager {
   readonly #enableBot = writable(true);
   readonly #enableCheckerBar = writable(true);
   readonly #enableDataSave = writable(false);
+  readonly #chatViewOffset = writable<number>(300);
 
   #localStorage = new LocalStorageManager();
 
@@ -14,6 +15,7 @@ class OptionManager {
     this.#enableBot.set(this.#localStorage.enableBot);
     this.#enableCheckerBar.set(this.#localStorage.enableCheckerBar);
     this.#enableDataSave.set(this.#localStorage.enableDataSave);
+    this.#chatViewOffset.set(this.#localStorage.chatViewOffset);
   }
 
   get timestamp(): Readable<boolean> {
@@ -30,6 +32,10 @@ class OptionManager {
 
   get enableDataSave(): Readable<boolean> {
     return this.#enableDataSave;
+  }
+
+  get chatViewOffset(): Readable<number> {
+    return this.#chatViewOffset;
   }
 
   setTimestamp(value: boolean) {
@@ -50,6 +56,11 @@ class OptionManager {
   setEnableDataSave(value: boolean) {
     this.#enableDataSave.set(value);
     this.#localStorage.enableDataSave = value;
+  }
+
+  setChatViewOffset(value: number) {
+    this.#chatViewOffset.set(value);
+    this.#localStorage.chatViewOffset = value;
   }
 }
 

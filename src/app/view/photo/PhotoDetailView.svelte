@@ -1,0 +1,445 @@
+<script lang="ts">
+  let sizeText = '123x456';
+  let dateText = 'date';
+  let timeText = 'time';
+  let mimeType = 'mime-type';
+  let rawMimeType = 'raw-mime-type';
+  let editTagMode = false;
+  let tags = ['123', '456'];
+  let viewer = 1;
+  let adult = false;
+  let thumbnail = 'https://i.imgur.com/sEFqIqN.png';
+
+  function onCloseClick() {}
+
+  function onTagSubmit() {}
+
+  function onAdultClick() {}
+
+  function onShareClick() {}
+</script>
+
+<div class="photo-view">
+  <span class="material-icons mob-clear" on:click={onCloseClick}>clear</span>
+  <div class="photo-img">
+    <!-- svelte-ignore a11y-missing-attribute -->
+    <img class="blurEffect" src={thumbnail} />
+  </div>
+  <div class="photo-info">
+    <div class="title">
+      <h3>정보</h3>
+      <span class="material-icons pc-clear" on:click={onCloseClick}>clear</span>
+    </div>
+    <div class="p-info-box">
+      <p class="lab">사이즈</p>
+      <p class="info-txt">{sizeText}</p>
+    </div>
+    <div class="p-info-box">
+      <p class="lab">태그</p>
+      {#if editTagMode}
+        <div class="tag-input-box">
+          <input
+            type="text"
+            class="tag-input"
+            value={tags}
+            on:keydown={onTagSubmit}
+          />
+          <span class="material-icons" on:click={onTagSubmit}>send</span>
+        </div>
+      {:else}
+        <!-- svelte-ignore a11y-missing-attribute -->
+        <a class="add-tag" on:click={(_) => (editTagMode = true)}>
+          <span class="material-icons">add_comment</span>
+        </a>
+      {/if}
+      <div class="tag-list">
+        {#each tags as tag}
+          <div class="tag-box">
+            <p>{tag}</p>
+          </div>
+        {/each}
+      </div>
+    </div>
+    <div class="p-info-box">
+      <p class="lab">세부정보</p>
+      <div class="in-txt">
+        <span class="material-icons">calendar_today</span>
+        <div class="in-txt-list">
+          <p class="ma-title">{dateText}</p>
+          <p class="sub-text">{timeText}</p>
+        </div>
+      </div>
+      <div class="in-txt">
+        <span class="material-icons">image</span>
+        <div class="in-txt-list">
+          <p class="ma-title">{mimeType}</p>
+          <p class="sub-text">{rawMimeType}</p>
+        </div>
+      </div>
+      <div class="in-txt">
+        <span class="material-icons">visibility</span>
+        <div class="in-txt-list">
+          <p class="ma-title see-txt">{viewer}명</p>
+        </div>
+      </div>
+    </div>
+    <div class="p-info-box">
+      <p class="lab">세부도구</p>
+      <div
+        class="in-txt tool attention-limit"
+        class:active={adult}
+        on:click={onAdultClick}
+      >
+        <span class="material-icons">verified_user</span>
+        <div class="in-txt-list">
+          <p class="ma-title see-txt">후방주의 이미지</p>
+        </div>
+      </div>
+      <div class="in-txt tool" on:click={onShareClick}>
+        <span class="material-icons">launch</span>
+        <div class="in-txt-list">
+          <p class="ma-title see-txt">채팅으로 보내기</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  .photo-view {
+    width: 100%;
+    height: 100%;
+
+    padding: 0%;
+    margin: 0%;
+
+    background: #f0f0f0;
+
+    .mob-clear {
+      display: none;
+    }
+
+    .photo-info {
+      width: 300px;
+      height: 100%;
+      background-color: #ffffff;
+      border-right: 1px solid #e3e3e3;
+      border-left: 1px solid #e3e3e3;
+      padding: 10px;
+      float: left;
+
+      .title {
+        width: 100%;
+        height: auto;
+        padding: 5px;
+        position: relative;
+
+        h3 {
+          font-size: 24px;
+          line-height: 28px;
+          color: #757575;
+        }
+
+        span {
+          width: 28px;
+          height: 28px;
+          font-size: 28px;
+          line-height: 28px;
+          color: #757575;
+          cursor: pointer;
+
+          position: absolute;
+          top: 31px;
+          right: 10px;
+        }
+      }
+
+      .p-info-box {
+        width: 100%;
+        height: auto;
+
+        padding: 5px;
+        padding-bottom: 30px;
+
+        position: relative;
+
+        p.lab {
+          font-size: 14px;
+          color: #9e9e9e;
+          padding: 0%;
+          margin: 0%;
+        }
+
+        p.info-txt {
+          font-size: 36px;
+          color: #424242;
+          padding: 0%;
+          margin: 0%;
+        }
+
+        .add-tag {
+          width: auto;
+          width: 24px;
+          color: #9e9e9e;
+          font-size: 14px;
+          display: block;
+          position: absolute;
+          right: 5px;
+          top: 6px;
+          cursor: pointer;
+
+          span {
+            font-size: 18px;
+          }
+        }
+        .tag-input-box {
+          width: 100%;
+          height: 36px;
+          position: relative;
+
+          margin-top: 15px;
+
+          .tag-input {
+            width: calc(100% - 64px);
+            height: 20px;
+            line-height: 20px;
+            font-size: 14px;
+            color: #757575;
+
+            padding: 7px 15px;
+            padding-right: 40px;
+            border-radius: 25px;
+            border: 1px solid #e3e3e3;
+            outline: none;
+          }
+          span {
+            width: 36px;
+            height: 36px;
+
+            position: absolute;
+            right: 9px;
+            top: 1px;
+
+            color: #757575;
+            text-align: center;
+            line-height: 36px;
+
+            &:hover {
+              color: #ff4081;
+            }
+          }
+        }
+
+        .tag-list {
+          width: 100%;
+          height: auto;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+
+          .tag-box {
+            width: auto;
+            height: auto;
+
+            background-color: #f8bbd0;
+            color: #f50057;
+            border-radius: 15px;
+            margin-right: 10px;
+            margin-top: 10px;
+
+            p {
+              margin: 0%;
+              padding: 0%;
+              padding: 5px 10px;
+            }
+          }
+        }
+
+        .in-txt {
+          width: 100%;
+          height: 40px;
+
+          margin-top: 20px;
+
+          &.tool {
+            cursor: pointer;
+          }
+          &.attention-limit.active {
+            color: #f50057;
+            span {
+              color: #f50057;
+            }
+            .in-txt-list > p.see-txt {
+              color: #f50057;
+            }
+          }
+
+          span {
+            width: auto;
+            height: auto;
+
+            font-size: 36px;
+            color: #424242;
+            float: left;
+          }
+
+          .in-txt-list {
+            width: calc(100% - 45px);
+            padding-left: 5px;
+            float: left;
+
+            p {
+              padding: 0%;
+              margin: 0%;
+            }
+
+            p.ma-title {
+              font-size: 20px;
+              color: #424242;
+              line-height: 20px;
+            }
+
+            p.sub-text {
+              font-size: 14px;
+              color: #757575;
+              line-height: 16px;
+            }
+
+            p.ma-title.see-txt {
+              padding-top: 9px;
+            }
+
+            &.active {
+            }
+          }
+        }
+      }
+    }
+
+    .photo-img {
+      width: calc(100% - 322px);
+      height: 100%;
+
+      float: right;
+      position: relative;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+
+        box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+          0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+          0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+
+        overflow: hidden;
+      }
+      img.blurEffect:active {
+        filter: blur(10px);
+        -webkit-filter: blur(10px);
+      }
+      img.blurEffect:active {
+        filter: blur(0px);
+        -webkit-filter: blur(0px);
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .photo-view {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow-x: hidden;
+      overflow-y: scroll;
+
+      background-color: #212121 !important;
+
+      span.material-icons.mob-clear {
+        width: 28px;
+        height: 26px;
+        padding: 7px 6px;
+
+        box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+          0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+          0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+
+        display: inline;
+
+        font-size: 28px;
+        line-height: 28px;
+        color: #757575;
+        background: #ffffff;
+        border-radius: 50%;
+        cursor: pointer;
+
+        position: fixed;
+        top: 60px;
+        left: 10px;
+
+        z-index: 3;
+      }
+      .photo-info {
+        width: 100%;
+        height: auto;
+        padding: 0px;
+        border: 0px;
+        border-top: 1px solid #e3e3e3;
+
+        .title {
+          width: 100%;
+          height: auto;
+          padding: 5px;
+          position: relative;
+
+          h3 {
+            font-size: 24px;
+            line-height: 28px;
+            color: #757575;
+            margin: 10px 0px;
+          }
+
+          span {
+            display: none;
+          }
+        }
+        .p-info-box {
+          .add-tag {
+            right: 20px;
+          }
+        }
+      }
+      .photo-img {
+        width: 100%;
+        min-height: 320px;
+        max-height: calc(100% - 90px);
+        overflow: hidden;
+        background-color: #212121;
+        margin: 15px 0px;
+
+        img {
+          max-width: 100%;
+
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+
+          box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+            0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+            0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+
+          overflow: hidden;
+        }
+      }
+    }
+  }
+</style>

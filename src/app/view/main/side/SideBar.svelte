@@ -19,6 +19,11 @@
   StreamService.locals.subscribe((v) => (locals = v));
   StreamService.externals.subscribe((v) => (externals = v));
 
+  function onPhotoClick() {
+    WindowService.openContent({ type: 'photo' });
+    WindowService.closeSideBar();
+  }
+
   function onAddStreamClick() {
     WindowService.openModal('add-stream');
     WindowService.closeSideBar();
@@ -35,7 +40,7 @@
       <i class="fas fa-book" />
       <span>메모</span>
     </li>
-    <li class="main">
+    <li class="main" on:click={onPhotoClick}>
       <i class="fas fa-images" />
       <span>이미지 갤러리</span>
     </li>

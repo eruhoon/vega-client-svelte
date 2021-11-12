@@ -1,5 +1,6 @@
 export type Content =
   | IframeContent
+  | PhotoContent
   | LocalStreamContent
   | TotoroStreamContent
   | TwitchStreamContent;
@@ -7,6 +8,10 @@ export type Content =
 type IframeContent = {
   type: 'iframe';
   src: string;
+};
+
+type PhotoContent = {
+  type: 'photo';
 };
 
 type LocalStreamContent = {

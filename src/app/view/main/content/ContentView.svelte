@@ -4,6 +4,7 @@
   import { WindowService } from '../../../model/window/WindowService';
   import IframeContentView from './IframeContentView.svelte';
   import LocalStreamContentView from './LocalStreamContentView.svelte';
+  import PhotoContentView from './photo/PhotoContentView.svelte';
   import TotoroStreamContentView from './TotoroStreamContentView.svelte';
   import TwitchContentView from './TwitchContentView.svelte';
 
@@ -22,6 +23,8 @@
       <TotoroStreamContentView src={content.src} />
     {:else if content.type === 'twitch-stream'}
       <TwitchContentView src={content.src} />
+    {:else if content.type === 'photo'}
+      <PhotoContentView />
     {/if}
   {/if}
 </div>

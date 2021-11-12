@@ -3,27 +3,59 @@
   import type { Photo } from '../../model/photo/Photo';
   import PhotoEntry from './PhotoEntry.svelte';
 
+  const CHUNK_SIZE = 100;
+  const photoLoader = new VegaPhotoLoader();
+
+  let offset = 0;
   let photos: Photo[] = [];
   let photoSets = [{ dateString: '' }];
+  let scroller: HTMLDivElement;
+  let loading = false;
+  let timer = -1;
 
-  async function load() {
-    console.log('photos');
-    const loaded = await new VegaPhotoLoader().load({
+  async function load(start: number) {
+    if (loading) {
+      return;
+    }
+    loading = true;
+    const loaded = await photoLoader.load({
       q: '',
-      start: 0,
-      length: 10,
+      start: start,
+      length: CHUNK_SIZE,
     });
-    photos = loaded;
+    photos = [...photos, ...loaded];
+    loading = false;
+    offset += CHUNK_SIZE;
   }
 
-  load();
+  load(offset);
 
-  function onScroll() {}
+  function onScroll() {
+    const diff = scroller.scrollHeight - scroller.scrollTop;
+    const threashold = scroller.clientHeight * 2;
+    if (diff < threashold) {
+      load(offset);
+    }
+  }
 
-  function onKeyDown() {}
+  function onKeyDown() {
+    clearTimeout(this.mTimer);
+    timer = Number(
+      setTimeout(() => {
+        searchPhoto();
+        timer = -1;
+      }, 600)
+    );
+  }
+
+  function searchPhoto() {
+    const elm = this.mSearchInput.nativeElement;
+    const query = elm.value;
+    this.mService.search(query);
+  }
 </script>
 
-<div class="photo-main-content" on:scroll={onScroll}>
+<div bind:this={scroller} class="photo-main-content" on:scroll={onScroll}>
   <div class="ph-search">
     <!-- svelte-ignore a11y-label-has-associated-control -->
     <label>검색</label>

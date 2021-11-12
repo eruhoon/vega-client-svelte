@@ -1,5 +1,5 @@
-포토페이지<br />포토페이지<br />포토페이지<br />포토페이지<br />포토페이지<br
-/>포토페이지<br />포토페이지<br />포토페이지<br />포토페이지<br />포토페이지<br
-/>포토페이지<br />포토페이지<br />포토페이지<br />포토페이지<br />포토페이지<br
-/>포토페이지<br />포토페이지<br />포토페이지<br />포토페이지<br />포토페이지<br
-/>포토페이지<br />포토페이지<br />
+<script>
+  import PhotoMainView from '../../../photo/PhotoMainView.svelte';
+</script>
+
+<PhotoMainView />

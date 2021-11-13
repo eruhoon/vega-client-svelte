@@ -37,7 +37,7 @@
         <span>채팅</span>
       </li>
     {/if}
-    <li class="main">
+    <li class="main" on:click={(_) => dispatch('memoclick')}>
       <i class="fas fa-book" />
       <span>메모</span>
     </li>

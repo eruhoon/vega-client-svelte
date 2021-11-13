@@ -4,6 +4,7 @@
   import { CheckerNetworkService } from '../../model/network/checker/CheckerNetworkService';
   import { WindowService } from '../../model/window/WindowService';
   import ChatPage from '../chat/ChatPage.svelte';
+  import MemoPage from '../memo/MemoPage.svelte';
   import ModalLayer from '../modal/ModalLayer.svelte';
   import PhotoPage from '../photo/PhotoPage.svelte';
   import PopupContentLayer from '../popup/PopupContentLayer.svelte';
@@ -29,6 +30,11 @@
     mainMode = 'chat';
     WindowService.closeSideBar();
   }
+
+  function onMemoClick() {
+    mainMode = 'memo';
+    WindowService.closeSideBar();
+  }
 </script>
 
 <div class="top-bar"><TopBar /></div>
@@ -41,9 +47,17 @@
     <div class="photo-section">
       <PhotoPage />
     </div>
+  {:else if mainMode === 'memo'}
+    <div class="memo-section">
+      <MemoPage />
+    </div>
   {/if}
   <div class="side-bar" class:show={sideBarVisible}>
-    <SideBar on:photoclick={onPhotoClick} on:chatclick={onChatClick} />
+    <SideBar
+      on:photoclick={onPhotoClick}
+      on:chatclick={onChatClick}
+      on:memoclick={onMemoClick}
+    />
   </div>
 </div>
 

@@ -2,6 +2,7 @@
   import { get } from 'svelte/store';
   import type { Content } from '../../../model/window/Content';
   import { WindowService } from '../../../model/window/WindowService';
+  import MemoContentView from '../../memo/MemoContentView.svelte';
   import PhotoContentView from '../../photo/PhotoContentView.svelte';
   import IframeContentView from './IframeContentView.svelte';
   import LocalStreamContentView from './LocalStreamContentView.svelte';
@@ -25,6 +26,8 @@
       <TwitchContentView src={content.src} />
     {:else if content.type === 'photo'}
       <PhotoContentView />
+    {:else if content.type === 'memo'}
+      <MemoContentView />
     {/if}
   {/if}
 </div>

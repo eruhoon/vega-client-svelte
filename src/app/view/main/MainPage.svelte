@@ -39,6 +39,11 @@
     WindowService.openContent({ type: 'photo' });
     WindowService.closeSideBar();
   }
+
+  function onMemoClick() {
+    WindowService.openContent({ type: 'memo' });
+    WindowService.closeSideBar();
+  }
 </script>
 
 <div class="main-section">
@@ -60,7 +65,11 @@
     </div>
   </VerticalSplitView>
   <div class="side-bar" class:show={sideBarVisible}>
-    <SideBar chatEnabled={false} on:photoclick={onPhotoClick} />
+    <SideBar
+      chatEnabled={false}
+      on:photoclick={onPhotoClick}
+      on:memoclick={onMemoClick}
+    />
   </div>
 </div>
 <div class="top-bar"><TopBar /></div>

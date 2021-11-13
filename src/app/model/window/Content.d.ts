@@ -1,5 +1,6 @@
 export type Content =
   | IframeContent
+  | MemoContent
   | PhotoContent
   | LocalStreamContent
   | TotoroStreamContent
@@ -8,6 +9,10 @@ export type Content =
 type IframeContent = {
   type: 'iframe';
   src: string;
+};
+
+type MemoContent = {
+  type: 'memo';
 };
 
 type PhotoContent = {

@@ -1,10 +1,14 @@
 <script lang="ts">
+  import { MemoService } from '../../service/MemoService';
+
   let name = 'name';
   let icon = '';
   let dateString = 'dateString';
   let memo = '';
 
-  function close() {}
+  function close() {
+    MemoService.setUploadMode(false);
+  }
 
   function upload() {}
 </script>

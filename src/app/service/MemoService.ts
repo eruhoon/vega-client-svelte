@@ -16,6 +16,10 @@ class MemoManager {
   setCurrentMemo(memo: Memo | null) {
     this.#currentMemo.set(memo);
   }
+
+  setUploadMode(mode: boolean) {
+    this.#uploadMode.set(mode);
+  }
 }
 
 export const MemoService = new MemoManager();

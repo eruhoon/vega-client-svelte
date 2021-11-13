@@ -7,17 +7,18 @@
   import MemoMainView from './MemoMainView.svelte';
   import MemoUploadView from './MemoUploadView.svelte';
 
-  let isUploadMode = false;
+  let uploadMode = false;
   let memos = [];
   let currentMemo: Memo = null;
 
   function onUploadClick() {
-    isUploadMode = true;
+    MemoService.setUploadMode(true);
   }
 
   onMount(async () => {
     memos = await new VegaMemoLoader().load();
     MemoService.currentMemo.subscribe((it) => (currentMemo = it));
+    MemoService.uploadMode.subscribe((it) => (uploadMode = it));
   });
 </script>
 
@@ -45,7 +46,7 @@
   {#if currentMemo !== null}
     <MemoDetailView memo={currentMemo} />
   {/if}
-  {#if isUploadMode}
+  {#if uploadMode}
     <MemoUploadView />
   {/if}
 </div>

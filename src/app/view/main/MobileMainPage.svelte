@@ -1,6 +1,7 @@
 <script lang="ts">
   import { get } from 'svelte/store';
   import { ChatNetworkService } from '../../model/network/ChatNetworkService';
+  import { CheckerNetworkService } from '../../model/network/checker/CheckerNetworkService';
   import { WindowService } from '../../model/window/WindowService';
   import ChatPage from '../chat/ChatPage.svelte';
   import ModalLayer from '../modal/ModalLayer.svelte';
@@ -13,6 +14,7 @@
   let sideBarVisible = get(WindowService.sideBarShow);
 
   ChatNetworkService.init(privateKey);
+  CheckerNetworkService.init(privateKey);
   WindowService.sideBarShow.subscribe((v) => (sideBarVisible = v));
 </script>
 

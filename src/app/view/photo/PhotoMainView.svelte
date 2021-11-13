@@ -70,6 +70,7 @@
       <div class="ph-list">
         {#each photos as photo}
           <PhotoEntry
+            {photo}
             originalHeight={photo.height}
             originalWidth={photo.width}
             adult={photo.isForAdult}

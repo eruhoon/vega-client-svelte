@@ -1,4 +1,9 @@
 <script lang="ts">
+  import type { Photo } from '../../model/photo/Photo';
+
+  import { PhotoContentService } from '../../model/photo/PhotoContentService';
+
+  export let photo: Photo;
   export let originalHeight = 0;
   export let originalWidth = 0;
   export let adult = false;
@@ -7,7 +12,9 @@
   let hover: boolean = false;
   let animated: boolean = false;
 
-  function onClick() {}
+  function onClick() {
+    PhotoContentService.setCurrentPhoto(photo);
+  }
 
   function onFilterClick() {}
 

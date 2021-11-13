@@ -1,29 +1,72 @@
 <script lang="ts">
-  let sizeText = '123x456';
-  let dateText = 'date';
-  let timeText = 'time';
-  let mimeType = 'mime-type';
-  let rawMimeType = 'raw-mime-type';
+  import { bind, onMount } from 'svelte/internal';
+  import type { Photo } from '../../model/photo/Photo';
+
+  import { PhotoContentService } from '../../model/photo/PhotoContentService';
+  import { DateUtils } from '../../util/date/DateUtils';
+
+  export let photo: Photo;
+  let container: HTMLDivElement;
   let editTagMode = false;
   let tags = ['123', '456'];
   let viewer = 1;
   let adult = false;
-  let thumbnail = 'https://i.imgur.com/sEFqIqN.png';
 
-  function onCloseClick() {}
+  const getMimeType = (raw: string) => {
+    return raw?.split('image/')[1].toLocaleUpperCase();
+  };
+
+  const getDateText = (dateObj: Date): string => {
+    const date = dateObj.getDate();
+    const month = dateObj.getMonth() + 1;
+    const year = dateObj.getFullYear();
+    return `${year}년 ${month}월 ${date}일`;
+  };
+
+  const getTimeText = (dateObj: Date): string => {
+    const day = DateUtils.getDayString(dateObj.getDay());
+    const rawHour = dateObj.getHours();
+    const amPm = rawHour < 12 ? '오전' : '오후';
+    const hour = rawHour % 12;
+    const minute = dateObj.getMinutes();
+    return `${day}, ${amPm} ${hour}:${minute}`;
+  };
+
+  function onCloseClick() {
+    PhotoContentService.setCurrentPhoto(null);
+  }
 
   function onTagSubmit() {}
 
   function onAdultClick() {}
 
   function onShareClick() {}
+
+  function onKeyPress(e: KeyboardEvent) {
+    if (e.key === 'Escape') {
+      PhotoContentService.setCurrentPhoto(null);
+    }
+  }
+
+  $: mimeType = getMimeType(photo.mimeType);
+  $: dateText = getDateText(photo.regDate);
+  $: timeText = getTimeText(photo.regDate);
+
+  onMount(() => {
+    container.focus();
+  });
 </script>
 
-<div class="photo-view">
+<div
+  bind:this={container}
+  class="photo-view"
+  on:keydown={onKeyPress}
+  tabindex="0"
+>
   <span class="material-icons mob-clear" on:click={onCloseClick}>clear</span>
   <div class="photo-img">
     <!-- svelte-ignore a11y-missing-attribute -->
-    <img class="blurEffect" src={thumbnail} />
+    <img class="blurEffect" src={photo.url} />
   </div>
   <div class="photo-info">
     <div class="title">
@@ -32,7 +75,7 @@
     </div>
     <div class="p-info-box">
       <p class="lab">사이즈</p>
-      <p class="info-txt">{sizeText}</p>
+      <p class="info-txt">{photo.width}x{photo.height}</p>
     </div>
     <div class="p-info-box">
       <p class="lab">태그</p>
@@ -41,7 +84,7 @@
           <input
             type="text"
             class="tag-input"
-            value={tags}
+            value={photo.tags.join(',')}
             on:keydown={onTagSubmit}
           />
           <span class="material-icons" on:click={onTagSubmit}>send</span>
@@ -51,14 +94,14 @@
         <a class="add-tag" on:click={(_) => (editTagMode = true)}>
           <span class="material-icons">add_comment</span>
         </a>
+        <div class="tag-list">
+          {#each photo.tags as tag}
+            <div class="tag-box">
+              <p>{tag}</p>
+            </div>
+          {/each}
+        </div>
       {/if}
-      <div class="tag-list">
-        {#each tags as tag}
-          <div class="tag-box">
-            <p>{tag}</p>
-          </div>
-        {/each}
-      </div>
     </div>
     <div class="p-info-box">
       <p class="lab">세부정보</p>
@@ -73,7 +116,7 @@
         <span class="material-icons">image</span>
         <div class="in-txt-list">
           <p class="ma-title">{mimeType}</p>
-          <p class="sub-text">{rawMimeType}</p>
+          <p class="sub-text">{photo.mimeType}</p>
         </div>
       </div>
       <div class="in-txt">

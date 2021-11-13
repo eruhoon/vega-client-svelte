@@ -10,7 +10,10 @@
     MemoService.setUploadMode(false);
   }
 
-  function upload() {}
+  async function upload() {
+    await MemoService.uploadMemo(memo);
+    MemoService.setUploadMode(false);
+  }
 </script>
 
 <div class="memo-upload">
@@ -24,11 +27,11 @@
         <h3>{name}</h3>
         <p>{dateString}</p>
       </div>
-      <form class="content">
+      <form class="content" on:submit|preventDefault>
         <textarea
           name="memo"
           placeholder="건전한 메모장을 위해 타인에게 불쾌감을 주는 욕설 또는 위험한 링크를 제한합니다."
-          value={memo}
+          bind:value={memo}
         />
         <button class="sub-btn memo-sub" on:click={upload}>메모작성</button>
       </form>

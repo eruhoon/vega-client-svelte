@@ -1,5 +1,7 @@
+import axios from 'axios';
 import { Readable, writable, Writable } from 'svelte/store';
 import type { Memo } from '../model/memo/Memo';
+import { SessionService } from '../model/session/SessionService';
 
 class MemoManager {
   #currentMemo: Writable<Memo> = writable(null);
@@ -19,6 +21,16 @@ class MemoManager {
 
   setUploadMode(mode: boolean) {
     this.#uploadMode.set(mode);
+  }
+
+  async uploadMemo(memo: string): Promise<void> {
+    const url = 'https://mycast.xyz:9011/memo';
+    const form = {
+      userKey: SessionService.getPrivateKey(),
+      text: memo,
+    };
+    axios.post(url, form);
+    return;
   }
 }
 

@@ -4,7 +4,9 @@
 
   export let memo: Memo;
 
-  function shareMemo() {}
+  function shareMemo() {
+    MemoService.shareMemo(memo.hash);
+  }
 
   function onClick() {
     MemoService.setCurrentMemo(memo);

@@ -29,8 +29,16 @@ class MemoManager {
       userKey: SessionService.getPrivateKey(),
       text: memo,
     };
-    axios.post(url, form);
-    return;
+    await axios.post(url, form);
+  }
+
+  async shareMemo(memoHash: string) {
+    const url = 'https://mycast.xyz:8002/memo';
+    const privKey = SessionService.getPrivateKey();
+    await axios.post(url, {
+      user: privKey,
+      memoIdx: Number(memoHash),
+    });
   }
 }
 

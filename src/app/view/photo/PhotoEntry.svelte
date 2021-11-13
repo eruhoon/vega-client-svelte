@@ -1,31 +1,38 @@
 <script lang="ts">
   import type { Photo } from '../../model/photo/Photo';
-
   import { PhotoContentService } from '../../model/photo/PhotoContentService';
+  import { PhotoAdultFilterCommand } from './PhotoAdultFilterCommand';
+  import { PhotoShareCommand } from './PhotoShareCommand';
+
+  const filter = new PhotoAdultFilterCommand();
+  const share = new PhotoShareCommand();
 
   export let photo: Photo;
   export let originalHeight = 0;
   export let originalWidth = 0;
-  export let adult = false;
+  export let adult = photo.isForAdult;
   export let thumbnail = '';
 
-  let hover: boolean = false;
   let animated: boolean = false;
 
   function onClick() {
     PhotoContentService.setCurrentPhoto(photo);
   }
 
-  function onFilterClick() {}
+  async function onFilterClick() {
+    const nextAdult = !adult;
+    const result = await filter.execute(photo.hash, nextAdult);
+    if (result) {
+      adult = nextAdult;
+    }
+  }
 
-  function onLinkClick() {}
+  function onLinkClick() {
+    share.execute(photo.url);
+  }
 </script>
 
-<div
-  class="ph-img"
-  on:mouseenter={(_) => (hover = true)}
-  on:mouseleave={(_) => (hover = false)}
->
+<div class="ph-img">
   <!-- svelte-ignore a11y-missing-attribute -->
   <img class:blurEffect={adult} src={thumbnail} on:click={onClick} />
   <div class="ph-info">

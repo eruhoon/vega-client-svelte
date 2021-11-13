@@ -4,6 +4,10 @@
 
   export let memo: Memo;
 
+  $: regDate = memo.regDate.toISOString();
+  $: body = memo.body;
+  $: author = memo.userName;
+
   function shareMemo() {
     MemoService.shareMemo(memo.hash);
   }
@@ -11,10 +15,6 @@
   function onClick() {
     MemoService.setCurrentMemo(memo);
   }
-
-  $: regDate = memo.regDate.toISOString();
-  $: body = memo.body;
-  $: author = memo.userName;
 </script>
 
 <div class="memo-box">

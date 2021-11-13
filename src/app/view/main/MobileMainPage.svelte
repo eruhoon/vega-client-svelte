@@ -5,11 +5,14 @@
   import { WindowService } from '../../model/window/WindowService';
   import ChatPage from '../chat/ChatPage.svelte';
   import ModalLayer from '../modal/ModalLayer.svelte';
+  import PhotoPage from '../photo/PhotoPage.svelte';
   import PopupContentLayer from '../popup/PopupContentLayer.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
 
   export let privateKey: string;
+
+  let mainMode = 'chat';
 
   let sideBarVisible = get(WindowService.sideBarShow);
 
@@ -20,9 +23,15 @@
 
 <div class="top-bar"><TopBar /></div>
 <div class="main-section">
-  <div class="chat-section">
-    <ChatPage />
-  </div>
+  {#if mainMode === 'chat'}
+    <div class="chat-section">
+      <ChatPage />
+    </div>
+  {:else if mainMode === 'photo'}
+    <div class="photo-section">
+      <PhotoPage />
+    </div>
+  {/if}
   <div class="side-bar" class:show={sideBarVisible}>
     <SideBar />
   </div>
@@ -61,6 +70,7 @@
     height: calc(100% - #{$top-bar-height});
     background-color: #2a2f38;
 
+    .photo-section,
     .chat-section {
       width: 100%;
       height: 100%;

@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { bind, onMount } from 'svelte/internal';
+  import { onMount } from 'svelte/internal';
   import type { Photo } from '../../model/photo/Photo';
-
   import { PhotoContentService } from '../../model/photo/PhotoContentService';
   import { DateUtils } from '../../util/date/DateUtils';
 

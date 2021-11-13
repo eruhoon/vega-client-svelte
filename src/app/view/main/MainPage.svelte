@@ -60,7 +60,7 @@
     </div>
   </VerticalSplitView>
   <div class="side-bar" class:show={sideBarVisible}>
-    <SideBar on:photoclick={onPhotoClick} />
+    <SideBar chatEnabled={false} on:photoclick={onPhotoClick} />
   </div>
 </div>
 <div class="top-bar"><TopBar /></div>

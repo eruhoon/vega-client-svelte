@@ -7,6 +7,8 @@
   import { createEventDispatcher } from 'svelte';
 
   const dispatch = createEventDispatcher();
+
+  export let chatEnabled = true;
   let locals = get(StreamService.locals);
   let externals = get(StreamService.externals);
 
@@ -29,10 +31,12 @@
 
 <div class="side-bar">
   <ul>
-    <li class="main" on:click={(_) => dispatch('chatclick')}>
-      <i class="far fa-comments" />
-      <span>채팅</span>
-    </li>
+    {#if chatEnabled}
+      <li class="main" on:click={(_) => dispatch('chatclick')}>
+        <i class="far fa-comments" />
+        <span>채팅</span>
+      </li>
+    {/if}
     <li class="main">
       <i class="fas fa-book" />
       <span>메모</span>

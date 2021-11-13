@@ -8,9 +8,6 @@
   export let photo: Photo;
   let container: HTMLDivElement;
   let editTagMode = false;
-  let tags = ['123', '456'];
-  let viewer = 1;
-  let adult = false;
 
   const getMimeType = (raw: string) => {
     return raw?.split('image/')[1].toLocaleUpperCase();
@@ -119,18 +116,20 @@
           <p class="sub-text">{photo.mimeType}</p>
         </div>
       </div>
+      <!--
       <div class="in-txt">
         <span class="material-icons">visibility</span>
         <div class="in-txt-list">
           <p class="ma-title see-txt">{viewer}명</p>
         </div>
       </div>
+      -->
     </div>
     <div class="p-info-box">
       <p class="lab">세부도구</p>
       <div
         class="in-txt tool attention-limit"
-        class:active={adult}
+        class:active={photo.isForAdult}
         on:click={onAdultClick}
       >
         <span class="material-icons">verified_user</span>

@@ -34,6 +34,11 @@
   function onOffsetChanged(e: CustomEvent<number>) {
     OptionService.setChatViewOffset(e.detail);
   }
+
+  function onPhotoClick() {
+    WindowService.openContent({ type: 'photo' });
+    WindowService.closeSideBar();
+  }
 </script>
 
 <div class="main-section">
@@ -55,7 +60,7 @@
     </div>
   </VerticalSplitView>
   <div class="side-bar" class:show={sideBarVisible}>
-    <SideBar />
+    <SideBar on:photoclick={onPhotoClick} />
   </div>
 </div>
 <div class="top-bar"><TopBar /></div>

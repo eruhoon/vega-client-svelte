@@ -19,6 +19,16 @@
   ChatNetworkService.init(privateKey);
   CheckerNetworkService.init(privateKey);
   WindowService.sideBarShow.subscribe((v) => (sideBarVisible = v));
+
+  function onPhotoClick() {
+    mainMode = 'photo';
+    WindowService.closeSideBar();
+  }
+
+  function onChatClick() {
+    mainMode = 'chat';
+    WindowService.closeSideBar();
+  }
 </script>
 
 <div class="top-bar"><TopBar /></div>
@@ -33,7 +43,7 @@
     </div>
   {/if}
   <div class="side-bar" class:show={sideBarVisible}>
-    <SideBar />
+    <SideBar on:photoclick={onPhotoClick} on:chatclick={onChatClick} />
   </div>
 </div>
 

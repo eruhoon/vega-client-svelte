@@ -4,7 +4,9 @@
   import { StreamService } from '../../../model/stream/StreamService';
   import { WindowService } from '../../../model/window/WindowService';
   import SideBarStreamList from './stream/SideBarStreamList.svelte';
+  import { createEventDispatcher } from 'svelte';
 
+  const dispatch = createEventDispatcher();
   let locals = get(StreamService.locals);
   let externals = get(StreamService.externals);
 
@@ -19,11 +21,6 @@
   StreamService.locals.subscribe((v) => (locals = v));
   StreamService.externals.subscribe((v) => (externals = v));
 
-  function onPhotoClick() {
-    WindowService.openContent({ type: 'photo' });
-    WindowService.closeSideBar();
-  }
-
   function onAddStreamClick() {
     WindowService.openModal('add-stream');
     WindowService.closeSideBar();
@@ -32,7 +29,7 @@
 
 <div class="side-bar">
   <ul>
-    <li class="main">
+    <li class="main" on:click={(_) => dispatch('chatclick')}>
       <i class="far fa-comments" />
       <span>채팅</span>
     </li>
@@ -40,7 +37,7 @@
       <i class="fas fa-book" />
       <span>메모</span>
     </li>
-    <li class="main" on:click={onPhotoClick}>
+    <li class="main" on:click={(_) => dispatch('photoclick')}>
       <i class="fas fa-images" />
       <span>이미지 갤러리</span>
     </li>

@@ -67,6 +67,10 @@ class WindowServiceInit {
     this.#content.set(null);
     setTimeout(() => this.#content.set(content));
   }
+
+  closeContent() {
+    this.#content.set(null);
+  }
 }
 
 export const WindowService = new WindowServiceInit();

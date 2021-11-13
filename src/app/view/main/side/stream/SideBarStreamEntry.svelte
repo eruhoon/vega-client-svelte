@@ -22,7 +22,7 @@
   let factory = new ContentFactory();
   let isFavorite = false;
 
-  $: icon = getIcon(stream);
+  $: icon = stream.icon;
   $: title = stream.title;
   $: content = factory.createFromStream(stream);
   $: link = StreamEmbedLinkUtils.getLink(stream);
@@ -55,17 +55,6 @@
   function onNewWindowClick() {
     window.open(link, '_blank', 'width=1280,height=720');
     WindowService.closeSideBar();
-  }
-
-  function getIcon(stream: StreamInfo): string {
-    if (stream.platform === 'afreeca') {
-      const keyId = stream.keyid;
-      const dict = keyId.substring(0, 2);
-      const host = 'profile.img.afreecatv.com';
-      return `https://${host}/LOGO/${dict}/${keyId}/${keyId}.jpg`;
-    } else {
-      return stream.icon;
-    }
   }
 </script>
 

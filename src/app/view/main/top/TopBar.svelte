@@ -45,7 +45,7 @@
         <div class="push">{pushCount}</div>
       {/if}
     </button>
-    <button on:click={toggleSettingMenu}>
+    <button on:click={toggleSettingMenu} on:contextmenu|preventDefault>
       <img class="profile" src={profileIcon} alt="profile" />
     </button>
   </div>

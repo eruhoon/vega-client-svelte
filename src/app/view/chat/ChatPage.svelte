@@ -7,6 +7,8 @@
   import EmojiAttachView from './emoji/EmojiAttachView.svelte';
   import ChatUserList from './user/ChatUserList.svelte';
 
+  const clipboard = new ClipboardManager();
+
   let userListShow = false;
   let emojiAttachViewShow = false;
 
@@ -20,14 +22,34 @@
       return;
     }
 
-    new ClipboardManager().uploadImageCache(e.clipboardData, (imageUri) => {
+    clipboard.uploadImageCache(e.clipboardData, (imageUri) => {
       ChatClipboardService.setCurrentImage(imageUri);
       WindowService.openModal('upload-image-chat');
     });
   }
+
+  function onDrop(e: DragEvent) {
+    const data = e.dataTransfer;
+    const dropResult = clipboard.uploadImageCache(data, (uri) => {
+      ChatClipboardService.setCurrentImage(uri);
+      WindowService.openModal('upload-image-chat');
+    });
+    if (!dropResult) {
+      clipboard.uploadImageCacheWithUrl(data, (uri) => {
+        ChatClipboardService.setCurrentImage(uri);
+        WindowService.openModal('upload-image-chat');
+      });
+    }
+    return false;
+  }
 </script>
 
-<div class="chat-page" on:paste={onPaste}>
+<div
+  class="chat-page"
+  on:paste={onPaste}
+  on:dragover|preventDefault
+  on:drop|preventDefault={onDrop}
+>
   <div class="chat-list">
     <ChatList />
   </div>

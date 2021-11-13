@@ -3,6 +3,11 @@
   import type { Photo } from '../../model/photo/Photo';
   import { PhotoContentService } from '../../model/photo/PhotoContentService';
   import { DateUtils } from '../../util/date/DateUtils';
+  import { PhotoAdultFilterCommand } from './PhotoAdultFilterCommand';
+  import { PhotoShareCommand } from './PhotoShareCommand';
+
+  const adultFilter = new PhotoAdultFilterCommand();
+  const share = new PhotoShareCommand();
 
   export let photo: Photo;
   let container: HTMLDivElement;
@@ -34,9 +39,17 @@
 
   function onTagSubmit() {}
 
-  function onAdultClick() {}
+  async function onAdultClick() {
+    const nextAdult = !adult;
+    const result = await adultFilter.execute(photo.hash, nextAdult);
+    if (result) {
+      adult = nextAdult;
+    }
+  }
 
-  function onShareClick() {}
+  function onShareClick() {
+    share.execute(photo.url);
+  }
 
   function onKeyPress(e: KeyboardEvent) {
     if (e.key === 'Escape') {
@@ -47,6 +60,7 @@
   $: mimeType = getMimeType(photo.mimeType);
   $: dateText = getDateText(photo.regDate);
   $: timeText = getTimeText(photo.regDate);
+  $: adult = photo.isForAdult;
 
   onMount(() => {
     container.focus();
@@ -62,7 +76,7 @@
   <span class="material-icons mob-clear" on:click={onCloseClick}>clear</span>
   <div class="photo-img">
     <!-- svelte-ignore a11y-missing-attribute -->
-    <img class="blurEffect" src={photo.url} />
+    <img src={photo.url} />
   </div>
   <div class="photo-info">
     <div class="title">
@@ -128,7 +142,7 @@
       <p class="lab">세부도구</p>
       <div
         class="in-txt tool attention-limit"
-        class:active={photo.isForAdult}
+        class:active={adult}
         on:click={onAdultClick}
       >
         <span class="material-icons">verified_user</span>
@@ -380,14 +394,6 @@
           0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 
         overflow: hidden;
-      }
-      img.blurEffect:active {
-        filter: blur(10px);
-        -webkit-filter: blur(10px);
-      }
-      img.blurEffect:active {
-        filter: blur(0px);
-        -webkit-filter: blur(0px);
       }
     }
   }

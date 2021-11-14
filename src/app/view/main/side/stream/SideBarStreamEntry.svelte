@@ -7,6 +7,7 @@
   import { ToastService } from '../../../../model/toast/ToastService';
   import { WindowService } from '../../../../model/window/WindowService';
   import { ContentFactory } from '../../content/ContentFactory';
+  import SimpleEntry from './entry/SimpleEntry.svelte';
 
   export let stream: StreamInfo = {
     icon: '',
@@ -22,8 +23,6 @@
   const factory = new ContentFactory();
   let isFavorite = false;
 
-  $: icon = stream.icon;
-  $: title = stream.title;
   $: content = factory.createFromStream(stream);
   $: link = StreamEmbedLinkUtils.getLink(stream);
 
@@ -59,75 +58,30 @@
 </script>
 
 <li on:click={onClick}>
-  <img src={icon} alt={title} />
-  <span>{title}</span>
-
-  <button class="icon" on:click|stopPropagation={onShareClick}>
-    <i class="fas fa-link" />
-  </button>
-  {#if supportFavorite}
-    <button class="icon" on:click|stopPropagation={onFavoriteClick}>
-      <i class="fas fa-star" class:activated={isFavorite} />
-    </button>
-  {/if}
-  <button class="icon" on:click|stopPropagation={onNewWindowClick}>
-    <i class="fas fa-external-link-alt" />
-  </button>
+  <div class="entry-cont">
+    <SimpleEntry
+      {stream}
+      {supportFavorite}
+      {isFavorite}
+      on:favoriteclick={onFavoriteClick}
+      on:newwindowclick={onNewWindowClick}
+      on:shareclick={onShareClick}
+    />
+  </div>
 </li>
 
 <style lang="scss">
   li {
-    position: relative;
     display: flex;
-    height: 30px;
-    list-style-type: none;
-    padding: 5px 10px;
+    width: 100%;
+    height: 40px;
     align-items: center;
-    font-size: 16px;
-    cursor: pointer;
+    justify-content: center;
 
-    img {
-      width: 30px;
+    .entry-cont {
+      position: relative;
+      width: calc(100% - 10px);
       height: 30px;
-      border-radius: 15px;
-    }
-
-    span {
-      padding-left: 10px;
-      width: calc(100% - 40px);
-      max-width: calc(100% - 40px);
-      font-size: 12px;
-      line-height: 12px;
-      padding-top: 4px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    button {
-      display: none;
-      border: 0px;
-      border-radius: 15px;
-      margin: 2px;
-      padding: 2px 10px;
-      color: #ffffff;
-      background-color: #2a2f38;
-      &:hover {
-        background-color: #ff4081;
-      }
-      i {
-        font-size: 12px;
-        line-height: 30px;
-        &.activated {
-          color: #ffff22;
-        }
-      }
-    }
-  }
-
-  li:hover {
-    button {
-      display: block;
     }
   }
 </style>

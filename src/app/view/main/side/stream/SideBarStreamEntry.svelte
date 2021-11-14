@@ -19,7 +19,7 @@
     thumbnail: '',
   };
   export let supportFavorite = true;
-  let factory = new ContentFactory();
+  const factory = new ContentFactory();
   let isFavorite = false;
 
   $: icon = stream.icon;

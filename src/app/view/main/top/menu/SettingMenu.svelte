@@ -1,11 +1,15 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { SessionService } from '../../../../model/session/SessionService';
   import type { ModalType } from '../../../../model/window/ModalType';
   import { WindowService } from '../../../../model/window/WindowService';
+  import { ProfileService } from '../../../../service/ProfileService';
   import DefaultMenuItem from './DefaultSettingMenuItem.svelte';
-  import SettingMenuImage from './SettingMenuImage.svelte';
+  import SettingMenuPlatformIcon from './SettingMenuPlatformIcon.svelte';
   import SettingSwitch from './SettingSwitch.svelte';
   import UserSettingMenuItem from './UserSettingMenuItem.svelte';
+
+  let platformId = 'local';
 
   const logout = () => {
     SessionService.setPrivateKey('');
@@ -14,6 +18,10 @@
   const openModal = (modal: ModalType) => {
     WindowService.openModal(modal);
   };
+
+  onMount(() => {
+    ProfileService.platform.subscribe((it) => (platformId = it));
+  });
 </script>
 
 <div class="setting-list">
@@ -23,7 +31,7 @@
     name="방송 설정"
     icon="fas fa-podcast"
   >
-    <SettingMenuImage slot="extra" />
+    <SettingMenuPlatformIcon slot="extra" {platformId} />
   </DefaultMenuItem>
   <DefaultMenuItem
     menuClick={() => openModal('site')}

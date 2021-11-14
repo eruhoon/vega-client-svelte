@@ -1,6 +1,8 @@
 <script lang="ts">
   import InlineSVG from 'svelte-inline-svg';
   import { get } from 'svelte/store';
+  import { SessionService } from '../../model/session/SessionService';
+  import { ModifyStreamCommand } from '../../model/stream/ModifyStreamCommand';
   import { WindowService } from '../../model/window/WindowService';
   import { ProfileService } from '../../service/ProfileService';
   import SettingModal from './SettingModal.svelte';
@@ -40,6 +42,17 @@
   ProfileService.twitchId.subscribe((v) => (twitchId = v));
 
   function onSubmitClick() {
+    const privateKey = SessionService.getPrivateKey();
+    new ModifyStreamCommand().execute(
+      privateKey,
+      currentPlatformId,
+      '',
+      afreecaId,
+      twitchId
+    );
+    ProfileService.afreecaId.set(afreecaId);
+    ProfileService.twitchId.set(twitchId);
+    ProfileService.platform.set(currentPlatformId);
     WindowService.closeModal();
   }
 </script>
@@ -75,9 +88,9 @@
           streamKey={localId}
         />
       {:else if currentPlatformId === 'afreeca'}
-        <ExternalStreamSettingForm streamKey={afreecaId} />
+        <ExternalStreamSettingForm bind:streamKey={afreecaId} />
       {:else if currentPlatformId === 'twitch'}
-        <ExternalStreamSettingForm streamKey={twitchId} />
+        <ExternalStreamSettingForm bind:streamKey={twitchId} />
       {:else}
         <div />
       {/if}

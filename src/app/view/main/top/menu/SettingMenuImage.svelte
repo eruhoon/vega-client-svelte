@@ -1,7 +1,17 @@
-<img src="https://mycast.xyz/assets/image/stream/mycast.png" alt="방송배경" />
+<script lang="ts">
+  import InlineSVG from 'svelte-inline-svg';
+
+  export let imageSrc: string;
+</script>
+
+<!-- svelte-ignore a11y-missing-attribute -->
+
+<div>
+  <InlineSVG src={imageSrc} />
+</div>
 
 <style lang="scss">
-  img {
+  div {
     position: absolute;
     top: 0;
     right: 0;

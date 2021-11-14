@@ -12,11 +12,13 @@
 
 <style lang="scss">
   div {
+    width: 31px;
+    height: 31px;
+    padding: 7px;
     position: absolute;
     top: 0;
     right: 0;
-    width: 45px;
-    height: 45px;
     border-left: 1px solid #1f2226;
+    fill: #ffffff;
   }
 </style>

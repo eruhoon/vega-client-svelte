@@ -1,5 +1,6 @@
 <script lang="ts">
   import { WindowService } from '../../../model/window/WindowService';
+  import { MobileUtils } from '../../../util/mobile/MobileUtils';
   import { PopupContentService } from '../../popup/PopupContentService';
 
   export let body: string;
@@ -20,13 +21,17 @@
   }
 
   function onClick() {
-    PopupContentService.addContent({
-      type: 'iframe',
-      src: {
-        link,
-        title: 'YoutubePack',
-      },
-    });
+    if (MobileUtils.isMobile()) {
+      WindowService.openContent({ type: 'iframe', src: link });
+    } else {
+      PopupContentService.addContent({
+        type: 'iframe',
+        src: {
+          link,
+          title: 'YoutubePack',
+        },
+      });
+    }
   }
 
   function onContextMenu() {

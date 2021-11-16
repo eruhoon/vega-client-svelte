@@ -1,3 +1,11 @@
-import { ChatNetworkManager } from '../model/network/ChatNetworkManager';
+import { ChatNetworkModel } from '../model/network/ChatNetworkModel';
 
-export const ChatNetworkService = new ChatNetworkManager();
+class ChatNetworkManagerInit {
+  #model = new ChatNetworkModel();
+
+  init(privateKey: string): void {
+    this.#model.init(privateKey);
+  }
+}
+
+export const ChatNetworkService = new ChatNetworkManagerInit();

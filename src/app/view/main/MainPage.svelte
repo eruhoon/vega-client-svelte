@@ -1,9 +1,9 @@
 <script lang="ts">
   import { get } from 'svelte/store';
-  import { ChatNetworkService } from '../../model/network/ChatNetworkService';
-  import { CheckerNetworkService } from '../../model/network/checker/CheckerNetworkService';
   import { OptionService } from '../../model/option/OptionService';
   import { WindowService } from '../../model/window/WindowService';
+  import { ChatNetworkService } from '../../service/ChatNetworkService';
+  import { CheckerNetworkService } from '../../service/CheckerNetworkService';
   import { ProfileService } from '../../service/ProfileService';
   import ChatPage from '../chat/ChatPage.svelte';
   import ModalLayer from '../modal/ModalLayer.svelte';

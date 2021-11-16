@@ -1,9 +1,9 @@
 import type {
   CheckerSocketModel,
   RefreshStream,
-} from '../../socket/checker/CheckerSocketModel';
-import { SocketIoCheckerSocketModel } from '../../socket/checker/SocketIoCheckerSocketModel';
-import { StreamService } from '../../stream/StreamService';
+} from '../model/socket/checker/CheckerSocketModel';
+import { SocketIoCheckerSocketModel } from '../model/socket/checker/SocketIoCheckerSocketModel';
+import { StreamService } from '../model/stream/StreamService';
 
 class CheckerNetworkServiceInit {
   #socket: CheckerSocketModel | null = null;

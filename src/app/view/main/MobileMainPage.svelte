@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { ChatNetworkService } from '../../model/network/ChatNetworkService';
-  import { CheckerNetworkService } from '../../model/network/checker/CheckerNetworkService';
   import { WindowService } from '../../model/window/WindowService';
+  import { ChatNetworkService } from '../../service/ChatNetworkService';
+  import { CheckerNetworkService } from '../../service/CheckerNetworkService';
   import ChatPage from '../chat/ChatPage.svelte';
   import MemoPage from '../memo/MemoPage.svelte';
   import ModalLayer from '../modal/ModalLayer.svelte';

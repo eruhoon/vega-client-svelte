@@ -9,7 +9,6 @@
   import type { ChatEntryProp } from './entry/ChatEntryProp';
 
   const hashGenerator = new HashGenerator();
-  let saltIndex = 0;
   let enableBot: boolean = get(OptionService.enableBot);
   let scrollLock: boolean = false;
   let chats: ChatProperty[] = [];
@@ -19,7 +18,7 @@
 
   $: props = chats.map<ChatEntryProp>((c) => {
     return {
-      hash: hashGenerator.generate('chat' + saltIndex++),
+      hash: hashGenerator.generate('chat'),
       icon: c.sender.icon,
       nickname: c.sender.nickname,
       senderType: c.sender.type,

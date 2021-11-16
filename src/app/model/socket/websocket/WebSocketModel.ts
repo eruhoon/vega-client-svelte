@@ -11,15 +11,21 @@ export class WebSocketModel implements SocketModel {
   #socket: WebSocket | null = null;
   #callback: SocketCallback;
   #onOpen: () => void;
+  #onClose: () => void;
 
   constructor() {
     this.#socket = null;
     this.#onOpen = () => {};
+    this.#onClose = () => {};
     this.#callback = (_) => {};
   }
 
   setOnOpen(onOpen: () => void): void {
     this.#onOpen = onOpen;
+  }
+
+  setOnClose(onClose: () => void): void {
+    this.#onClose = onClose;
   }
 
   send(request: SocketRequest): void {
@@ -33,10 +39,6 @@ export class WebSocketModel implements SocketModel {
   #onRawMessage(messageEvent: MessageEvent): void {
     const data: SocketCommand = JSON.parse(messageEvent.data);
     this.#callback(data);
-  }
-
-  #onClose(): void {
-    console.log('close');
   }
 
   connect(): void {

@@ -4,9 +4,12 @@
   import type { ChatProperty } from '../../model/chat/ChatProperty';
   import { ChatService } from '../../model/chat/ChatService';
   import { OptionService } from '../../model/option/OptionService';
+  import { HashGenerator } from '../../util/hash/HashGenerator';
   import ChatEntry from './entry/ChatEntry.svelte';
   import type { ChatEntryProp } from './entry/ChatEntryProp';
 
+  const hashGenerator = new HashGenerator();
+  let saltIndex = 0;
   let enableBot: boolean = get(OptionService.enableBot);
   let scrollLock: boolean = false;
   let chats: ChatProperty[] = [];
@@ -16,6 +19,7 @@
 
   $: props = chats.map<ChatEntryProp>((c) => {
     return {
+      hash: hashGenerator.generate('chat' + saltIndex++),
       icon: c.sender.icon,
       nickname: c.sender.nickname,
       senderType: c.sender.type,
@@ -52,7 +56,7 @@
 </script>
 
 <div class="chat-list" bind:this={rootView} on:scroll={(e) => onScroll(e)}>
-  {#each props as prop}
+  {#each props as prop (prop.hash)}
     {#if !(!enableBot && prop.senderType === 'BOT')}
       <ChatEntry {prop} messages={prop.messages} />
     {/if}

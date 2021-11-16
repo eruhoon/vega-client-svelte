@@ -1,6 +1,6 @@
 import { ChatNetworkModel } from '../model/network/ChatNetworkModel';
 
-class ChatNetworkManagerInit {
+class ChatNetworkServiceInit {
   #model = new ChatNetworkModel();
 
   init(privateKey: string): void {
@@ -8,4 +8,4 @@ class ChatNetworkManagerInit {
   }
 }
 
-export const ChatNetworkService = new ChatNetworkManagerInit();
+export const ChatNetworkService = new ChatNetworkServiceInit();

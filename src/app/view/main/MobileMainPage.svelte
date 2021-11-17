@@ -15,6 +15,9 @@
   export let privateKey: string;
 
   let mainMode = 'chat';
+  let contentResizeMode = false;
+  let height = 200;
+  let prevY = -1;
 
   let sideBarVisible = false;
   let currentContent = null;
@@ -44,14 +47,47 @@
   function onContentCloseClick() {
     WindowService.closeContent();
   }
+
+  function onTouchStart(e: TouchEvent) {
+    console.log('touchstart', e);
+    const touches = e.changedTouches;
+    if (touches.length > 0) {
+      prevY = touches[0].clientY;
+    }
+  }
+
+  function onTouchEnd(e: TouchEvent) {
+    console.log('touchend');
+  }
+
+  function onTouchMove(e: TouchEvent) {
+    const touches = e.changedTouches;
+    if (touches.length > 0) {
+      const y = touches[0].clientY;
+      const diff = prevY - y;
+      height = height - diff;
+      prevY = y;
+      console.log('touchmove', diff);
+    }
+  }
 </script>
 
 <div class="top-bar"><TopBar /></div>
 <div class="main-section">
   {#if currentContent !== null}
-    <div class="content-section">
+    <div class="content-section" style="height: {height}px">
       <ContentView />
-      <button class="fab" on:click={onContentCloseClick}>x</button>
+      <div class="fab-list">
+        <button class="fab" on:click={onContentCloseClick}>x</button>
+        <div
+          class="button"
+          on:touchstart={onTouchStart}
+          on:touchend={onTouchEnd}
+          on:touchmove={onTouchMove}
+        >
+          <i class="fas fa-arrows-alt-v" />
+        </div>
+      </div>
     </div>
   {/if}
   {#if mainMode === 'chat'}
@@ -114,11 +150,12 @@
       position: relative;
       flex-shrink: 0;
       height: auto;
+      min-height: 100px;
       max-height: 300px;
       margin: 0;
       padding: 0;
 
-      button.fab {
+      .fab-list {
         position: absolute;
         right: 10px;
         bottom: -50px;

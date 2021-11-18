@@ -40,7 +40,9 @@
     text-align: center;
   }
   .image {
-    width: 90%;
+    max-width: 90%;
+    height: auto;
+    max-height: 300px;
     background: #1f2226;
     border: 1px solid rgb(10, 12, 14);
     border-radius: 2px;

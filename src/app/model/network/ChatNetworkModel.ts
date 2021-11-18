@@ -41,6 +41,7 @@ export class ChatNetworkModel {
           UserListService.users.set(command.response);
           break;
         case 'applyCurrentChatList':
+          ChatService.chats.set([]);
           ChatService.chats.set(this.#chatAdapter.toChats(command.response));
           break;
         case 'applyNotifyTo':

@@ -9,7 +9,8 @@
   let flvPlayer: FlvJs.FlvPlayer | null;
   let videoElement: HTMLMediaElement;
   let interfaceShow = false;
-  let volume: number = 0.5;
+  let volume: number = 50;
+  $: videoVolume = volume / 100;
 
   const mountPlayer = (element: HTMLMediaElement, url: string): any | null => {
     // @ts-ignore
@@ -45,8 +46,8 @@
   };
 
   const onMouseWheel = (e: WheelEvent) => {
-    const delta = Math.sign(e.deltaY) * 0.05;
-    volume = clamp(volume - delta, 0, 1);
+    const delta = Math.sign(e.deltaY) * 5;
+    volume = clamp(volume - delta, 0, 100);
   };
 
   const clamp = (num: number, min: number, max: number) =>
@@ -78,11 +79,16 @@
   on:blur={videoBlur}
 >
   <!-- svelte-ignore a11y-media-has-caption -->
-  <video bind:this={videoElement} bind:volume bind:paused bind:muted />
+  <video
+    bind:this={videoElement}
+    bind:paused
+    bind:muted
+    bind:volume={videoVolume}
+  />
 
   {#if interfaceShow}
     <VideoInterface
-      volume={volume * 100}
+      bind:volume
       {muted}
       {paused}
       onPlayPauseClick={togglePause}

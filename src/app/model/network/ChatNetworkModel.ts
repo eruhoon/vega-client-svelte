@@ -3,7 +3,6 @@ import { UserListService } from '../../service/UserListService';
 import { HashGenerator } from '../../util/hash/HashGenerator';
 import { PushListService } from '../../view/main/push/PushListService';
 import { ChatService } from '../chat/ChatService';
-import { SocketIoCheckerSocketModel } from '../socket/checker/SocketIoCheckerSocketModel';
 import { SocketChatCommand } from '../socket/command/SocketChatCommand';
 import { SocketLoginCommand } from '../socket/command/SocketLoginCommand';
 import { ModifyProfileCommand } from '../socket/command/SocketModifyProfileCommand';

@@ -4,10 +4,11 @@
   export let body = '';
 
   $: isEmoji = EmojiUtils.isEmoji(body);
+  $: replaced = body.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 </script>
 
 <div>
-  <p class:emoji={isEmoji}>{body}</p>
+  <p class:emoji={isEmoji}>{replaced}</p>
 </div>
 
 <style lang="scss">

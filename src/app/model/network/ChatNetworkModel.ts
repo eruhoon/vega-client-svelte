@@ -90,6 +90,7 @@ export class ChatNetworkModel {
     });
     socket.setOnClose(() => {
       SocketService.isConnected.set(false);
+      ChatService.chats.set([]);
       this.init(privateKey);
     });
     return socket;

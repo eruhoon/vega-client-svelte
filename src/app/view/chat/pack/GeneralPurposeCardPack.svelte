@@ -1,27 +1,34 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
+  import { get } from 'svelte/store';
+  import { OptionService } from '../../../model/option/OptionService';
 
   export let title: string;
   export let icon: string;
   export let subtitle: string;
   export let orientation: string;
+  let isDataSaveMode = get(OptionService.enableDataSave);
   const dispatch = createEventDispatcher();
+
+  OptionService.enableDataSave.subscribe((it) => (isDataSaveMode = it));
 </script>
 
-<div class="card-info {orientation}" on:click={(_) => dispatch('click')}>
-  <div class="img">
-    <img src={icon} alt="{title} 아이콘" />
+{#if isDataSaveMode}
+  <div on:click={(_) => dispatch('click')}>
+    (대충 {title} / {subtitle})
   </div>
-  <div class="info">
-    <p class="title">{title}</p>
-    <p>{subtitle}</p>
+{:else}
+  <div class="card-info {orientation}" on:click={(_) => dispatch('click')}>
+    <div class="img">
+      <img src={icon} alt="{title} 아이콘" />
+    </div>
+    <div class="info">
+      <p class="title">{title}</p>
+      <p>{subtitle}</p>
+    </div>
   </div>
-</div>
+{/if}
 
-<!-- <div *ngIf="bindError">{getErrorMessage()}</div>
-<div *ngIf="isDataSaveMode()">
-  (대충 {{ title }} / {{ subtitle }})
-</div> -->
 <style lang="scss">
   .card-info {
     width: 100%;

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { PopupContentService } from '../../popup/PopupContentService';
   import GeneralPurposeCard from './gpc/GeneralPurposeCard.svelte';
 
   export let body: string;
@@ -9,6 +10,16 @@
   $: subtitle = json.date;
   $: link = json.link;
 
+  function onClick() {
+    PopupContentService.addContent({
+      src: {
+        link,
+        title,
+      },
+      type: 'iframe',
+    });
+  }
+
   type Animation = {
     author: string;
     date: string;
@@ -18,4 +29,10 @@
   };
 </script>
 
-<GeneralPurposeCard {icon} {title} {subtitle} {link} orientation="horizontal" />
+<GeneralPurposeCard
+  {icon}
+  {title}
+  {subtitle}
+  orientation="horizontal"
+  on:click={onClick}
+/>

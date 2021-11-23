@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { PopupContentService } from '../../popup/PopupContentService';
   import GeneralPurposeCard from './gpc/GeneralPurposeCard.svelte';
 
   export let body: string;
@@ -19,6 +20,16 @@
     }
   }
 
+  function onClick() {
+    PopupContentService.addContent({
+      src: {
+        link,
+        title,
+      },
+      type: 'iframe',
+    });
+  }
+
   type Movie = {
     actor: string[];
     director: string[];
@@ -30,4 +41,10 @@
   };
 </script>
 
-<GeneralPurposeCard {icon} {title} {subtitle} {link} orientation="horizontal" />
+<GeneralPurposeCard
+  {icon}
+  {title}
+  {subtitle}
+  orientation="horizontal"
+  on:click={onClick}
+/>

@@ -1,5 +1,5 @@
 <script>
-  import { PopupContentService } from '../../../../popup/PopupContentService';
+  import { PopupContentService } from '../../../popup/PopupContentService';
   import GeneralPurposeCard from './GeneralPurposeCard.svelte';
 
   export let body;

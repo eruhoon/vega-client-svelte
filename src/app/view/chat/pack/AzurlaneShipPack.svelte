@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { PopupContentService } from '../../popup/PopupContentService';
+
   import GeneralPurposeCard from './gpc/GeneralPurposeCard.svelte';
   export let body: string;
   $: json = JSON.parse(body);
@@ -7,8 +9,23 @@
   $: link = json.link;
   $: title = json.name;
   $: subtitle = `${json.rarity} ${json.type.name}`;
-  $: showType = 'in-app-browser';
   $: orientation = 'horizontal';
+
+  function onClick() {
+    PopupContentService.addContent({
+      src: {
+        link,
+        title,
+      },
+      type: 'iframe',
+    });
+  }
 </script>
 
-<GeneralPurposeCard {icon} {title} {link} {subtitle} {orientation} />
+<GeneralPurposeCard
+  {icon}
+  {title}
+  {subtitle}
+  {orientation}
+  on:click={onClick}
+/>

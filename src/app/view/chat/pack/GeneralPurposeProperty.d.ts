@@ -4,4 +4,5 @@ export type GeneralPurposeProperty = {
   subtitle: string;
   orientation: string;
   link: string;
+  showType: string; //TODO : showType
 };

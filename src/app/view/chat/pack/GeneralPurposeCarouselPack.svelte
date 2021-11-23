@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { PopupContentService } from '../../popup/PopupContentService';
+
   import type { GeneralPurposeProperty } from './GeneralPurposeProperty';
 
   export let body: string = '[]';
@@ -11,7 +13,16 @@
   $: props = json || [];
 
   function onClick(prop: GeneralPurposeProperty) {
-    console.log(prop.link);
+    switch (prop.showType) {
+      case 'in-app-browser':
+        PopupContentService.addContent({
+          src: {
+            link: prop.link,
+            title: prop.title,
+          },
+          type: 'iframe',
+        });
+    }
   }
 </script>
 

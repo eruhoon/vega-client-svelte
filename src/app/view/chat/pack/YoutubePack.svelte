@@ -1,9 +1,13 @@
 <script lang="ts">
+  import { get } from 'svelte/store';
+  import { OptionService } from '../../../model/option/OptionService';
   import { WindowService } from '../../../model/window/WindowService';
   import { MobileUtils } from '../../../util/mobile/MobileUtils';
   import { PopupContentService } from '../../popup/PopupContentService';
 
   export let body: string;
+  let isDataSave = !get(OptionService.enableDataSave);
+
   let isError: boolean = false;
   $: json = parseJson(body);
   $: title = json.title;
@@ -47,10 +51,16 @@
     const sStr = `${s}s`;
     return `${hStr} ${mStr} ${sStr}`;
   }
+
+  OptionService.enableDataSave.subscribe((it) => (isDataSave = it));
 </script>
 
 {#if isError}
   <div>잘못된 Youtube</div>
+{:else if isDataSave}
+  <div on:click={onClick} on:contextmenu|preventDefault={onContextMenu}>
+    <strong>[Youtube: {title}]</strong>
+  </div>
 {:else}
   <div
     class="youtube-pack"

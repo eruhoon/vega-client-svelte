@@ -1,6 +1,6 @@
 <script lang="ts">
   import { PopupContentService } from '../../../popup/PopupContentService';
-  import GeneralPurposeCardPack from '../GeneralPurposeCardPack.svelte';
+  import GeneralPurposeCardPack from '../gpc/GeneralPurposeCard.svelte';
 
   export let body: string;
   let json: Book;

@@ -1,7 +1,7 @@
 <script>
-  import { PopupContentService } from '../../popup/PopupContentService';
+  import { PopupContentService } from '../../../../popup/PopupContentService';
+  import GeneralPurposeCard from './GeneralPurposeCard.svelte';
 
-  import GeneralPurposeCardPack from './GeneralPurposeCardPack.svelte';
   export let body;
   $: json = JSON.parse(body);
 
@@ -26,7 +26,7 @@
   }
 </script>
 
-<GeneralPurposeCardPack
+<GeneralPurposeCard
   {icon}
   {title}
   {link}

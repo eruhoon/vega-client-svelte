@@ -8,8 +8,8 @@
   import AnimationPack from '../pack/AnimationPack.svelte';
   import AzurlaneShipPack from '../pack/AzurlaneShipPack.svelte';
   import BookPack from '../pack/book/BookPack.svelte';
-  import DefaultGeneralPurposeCardPack from '../pack/DefaultGeneralPurposeCardPack.svelte';
-  import GeneralPurposeCarouselPack from '../pack/GeneralPurposeCarouselPack.svelte';
+  import GeneralPurposeCardPack from '../pack/gpc/GeneralPurposeCardPack.svelte';
+  import GeneralPurposeCarouselPack from '../pack/gpc/GeneralPurposeCarouselPack.svelte';
   import ImagePack from '../pack/ImagePack.svelte';
   import LinkPack from '../pack/LinkPack.svelte';
   import LolChampionPack from '../pack/LolChampionPack.svelte';
@@ -46,7 +46,7 @@
       case 'movie':
         return MoviePack;
       case 'general-purpose-card':
-        return DefaultGeneralPurposeCardPack;
+        return GeneralPurposeCardPack;
       case 'al-ship':
         return AzurlaneShipPack;
       case 'general-purpose-carousel':

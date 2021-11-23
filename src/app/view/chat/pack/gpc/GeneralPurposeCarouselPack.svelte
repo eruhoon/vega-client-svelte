@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { PopupContentService } from '../../popup/PopupContentService';
+  import { PopupContentService } from '../../../popup/PopupContentService';
 
-  import type { GeneralPurposeProperty } from './GeneralPurposeProperty';
+  import type { GeneralPurposeProperty } from '../GeneralPurposeProperty';
 
   export let body: string = '[]';
   const errorMessage = 'error';

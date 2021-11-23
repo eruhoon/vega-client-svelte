@@ -1,5 +1,5 @@
 <script lang="ts">
-  import GeneralPurposeCardPack from './GeneralPurposeCardPack.svelte';
+  import GeneralPurposeCard from './gpc/GeneralPurposeCard.svelte';
   export let body: string;
   $: json = JSON.parse(body);
 
@@ -11,4 +11,4 @@
   $: orientation = 'horizontal';
 </script>
 
-<GeneralPurposeCardPack {icon} {title} {link} {subtitle} {orientation} />
+<GeneralPurposeCard {icon} {title} {link} {subtitle} {orientation} />

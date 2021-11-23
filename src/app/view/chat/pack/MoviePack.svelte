@@ -1,5 +1,5 @@
 <script lang="ts">
-  import GeneralPurposeCardPack from './GeneralPurposeCardPack.svelte';
+  import GeneralPurposeCard from './gpc/GeneralPurposeCard.svelte';
 
   export let body: string;
   let isError: boolean = false;
@@ -30,10 +30,4 @@
   };
 </script>
 
-<GeneralPurposeCardPack
-  {icon}
-  {title}
-  {subtitle}
-  {link}
-  orientation="horizontal"
-/>
+<GeneralPurposeCard {icon} {title} {subtitle} {link} orientation="horizontal" />

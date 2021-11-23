@@ -24,7 +24,13 @@
   <div class="image-wrapper">
     <div class="image-info">
       <div class="image-box" class:oversize={overSized}>
-        <img bind:this={imageElement} class={imageClass} {src} alt="current" />
+        <img
+          bind:this={imageElement}
+          class={imageClass}
+          {src}
+          alt="current"
+          style="max-height: {bodyHeight * 0.8}px"
+        />
       </div>
       <div class="image-menu" />
     </div>
@@ -65,14 +71,19 @@
           img {
             width: auto;
             height: auto;
-            max-width: 100%;
-            max-height: 100%;
-
             background: #1f2226;
             border: 1px solid rgb(10, 12, 14);
             border-radius: 2px;
             box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
               0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            &.vertical {
+              width: auto;
+              height: 100%;
+            }
+            &.horizontal {
+              width: 100%;
+              height: auto;
+            }
           }
         }
       }

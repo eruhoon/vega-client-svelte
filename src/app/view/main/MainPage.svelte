@@ -1,6 +1,7 @@
 <script lang="ts">
   import { get } from 'svelte/store';
   import { OptionService } from '../../model/option/OptionService';
+  import { SocketService } from '../../model/socket/SocketService';
   import { WindowService } from '../../model/window/WindowService';
   import { ChatNetworkService } from '../../service/ChatNetworkService';
   import { CheckerNetworkService } from '../../service/CheckerNetworkService';
@@ -22,12 +23,14 @@
   let windowInnerWidth: number;
   let currentImage: string;
   let chatViewOffset = get(OptionService.chatViewOffset);
+  let chatConnected = false;
 
   ChatNetworkService.init(privateKey);
   CheckerNetworkService.init(privateKey);
   WindowService.sideBarShow.subscribe((v) => (sideBarVisible = v));
   WindowService.currentImage.subscribe((v) => (currentImage = v));
   OptionService.enableCheckerBar.subscribe((v) => (isCheckerBarEnable = v));
+  SocketService.isConnected.subscribe((it) => (chatConnected = it));
 
   ProfileService.loadStreamProfile(privateKey);
 
@@ -44,6 +47,10 @@
     WindowService.openContent({ type: 'memo' });
     WindowService.closeSideBar();
   }
+
+  function onConnectClick() {
+    ChatNetworkService.init(privateKey);
+  }
 </script>
 
 <div class="main-section">
@@ -53,7 +60,16 @@
     on:offsetchange={onOffsetChanged}
   >
     <div slot="side" class="chat-section">
-      <ChatPage />
+      {#if chatConnected}
+        <ChatPage />
+      {:else}
+        <div class="error-page">
+          <div class="container">
+            <div>Not Connected</div>
+            <button on:click={onConnectClick}>connect</button>
+          </div>
+        </div>
+      {/if}
     </div>
     <div
       slot="main"
@@ -180,5 +196,18 @@
     width: 100%;
     height: 100%;
     z-index: 50;
+  }
+
+  .error-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    color: #e8e8e8;
+    align-items: center;
+
+    .container {
+      width: 100%;
+      text-align: center;
+    }
   }
 </style>

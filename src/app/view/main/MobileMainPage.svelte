@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { SocketService } from '../../model/socket/SocketService';
   import { WindowService } from '../../model/window/WindowService';
   import { ChatNetworkService } from '../../service/ChatNetworkService';
   import { CheckerNetworkService } from '../../service/CheckerNetworkService';
@@ -18,6 +19,9 @@
 
   let sideBarVisible = false;
   let currentContent = null;
+  let chatConnected = false;
+
+  SocketService.isConnected.subscribe((it) => (chatConnected = it));
 
   onMount(() => {
     ChatNetworkService.init(privateKey);
@@ -40,6 +44,10 @@
     mainMode = 'memo';
     WindowService.closeSideBar();
   }
+
+  function onConnectClick() {
+    ChatNetworkService.init(privateKey);
+  }
 </script>
 
 <div class="top-bar"><TopBar /></div>
@@ -47,7 +55,16 @@
   <CollapsedContentView subViewActivated={currentContent !== null}>
     <div slot="main" class="bottom-section">
       {#if mainMode === 'chat'}
-        <ChatPage />
+        {#if chatConnected}
+          <ChatPage />
+        {:else}
+          <div class="error-page">
+            <div class="container">
+              <div>Not Connected</div>
+              <button on:click={onConnectClick}>connect</button>
+            </div>
+          </div>
+        {/if}
       {:else if mainMode === 'photo'}
         <PhotoPage />
       {:else if mainMode === 'memo'}
@@ -116,6 +133,19 @@
       &.show {
         transform: none;
       }
+    }
+  }
+
+  .error-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    color: #e8e8e8;
+    align-items: center;
+
+    .container {
+      width: 100%;
+      text-align: center;
     }
   }
 </style>

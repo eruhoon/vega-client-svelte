@@ -48,7 +48,7 @@
 
 <div class="root">
   <img alt={title} class="icon" src={icon} on:click={onIconClick} />
-  <div class="detail thumbnail">
+  <div class="detail" class:thumbnail>
     {#if thumbnail}
       <img
         class="thumbnail"
@@ -106,7 +106,7 @@
       left: 5px;
       bottom: $menu-icon-size + 0px;
       width: $width;
-      height: 195px;
+      height: 120px;
       border-radius: 2px;
       background: darken($background-color, 10%);
       background-repeat: no-repeat;
@@ -116,6 +116,10 @@
       overflow: hidden;
       box-shadow: 2px 0px 5px 1px rgb(0 0 0 / 40%),
         1px 0px 5px 0px rgb(0 0 0 / 30%), 1px 0px 5px 0px rgb(0 0 0 / 30%);
+
+      &.thumbnail {
+        height: 195px;
+      }
 
       .thumbnail {
         width: $width;

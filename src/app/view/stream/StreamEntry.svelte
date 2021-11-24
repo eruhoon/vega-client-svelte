@@ -20,7 +20,7 @@
   $: icon = stream.icon;
   $: title = stream.title;
   $: viewer = stream.viewer?.toString();
-  $: thumbnail = stream.thumbnail;
+  $: thumbnail = getThumbnail(stream);
   $: description = stream.description;
   $: content = factory.createFromStream(stream);
   $: link = StreamEmbedLinkUtils.getLink(stream);
@@ -35,6 +35,14 @@
 
   function onNewWindowClick() {
     window.open(link, '_blank', 'width=1280,height=720');
+  }
+
+  function getThumbnail(stream: StreamInfo): string | null {
+    if (stream.platform === 'totoro') {
+      return null;
+    } else {
+      return stream.thumbnail;
+    }
   }
 </script>
 

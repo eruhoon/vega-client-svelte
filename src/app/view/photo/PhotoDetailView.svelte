@@ -168,7 +168,7 @@
     padding: 0%;
     margin: 0%;
 
-    background: #f0f0f0;
+    background: #1c2027;
 
     .mob-clear {
       display: none;
@@ -177,9 +177,9 @@
     .photo-info {
       width: 300px;
       height: 100%;
-      background-color: #ffffff;
-      border-right: 1px solid #e3e3e3;
-      border-left: 1px solid #e3e3e3;
+      background-color: #2a2f38;
+      border-right: 1px solid #1c2027;
+      border-left: 1px solid #1c2027;
       padding: 10px;
       float: left;
 
@@ -192,7 +192,7 @@
         h3 {
           font-size: 24px;
           line-height: 28px;
-          color: #757575;
+          color: #ffffff;
         }
 
         span {
@@ -200,7 +200,7 @@
           height: 28px;
           font-size: 28px;
           line-height: 28px;
-          color: #757575;
+          color: #ffffff;
           cursor: pointer;
 
           position: absolute;
@@ -220,14 +220,14 @@
 
         p.lab {
           font-size: 14px;
-          color: #9e9e9e;
+          color: #eeeeee;
           padding: 0%;
           margin: 0%;
         }
 
         p.info-txt {
           font-size: 36px;
-          color: #424242;
+          color: #ffffff;
           padding: 0%;
           margin: 0%;
         }
@@ -235,7 +235,7 @@
         .add-tag {
           width: auto;
           width: 24px;
-          color: #9e9e9e;
+          color: #eeeeee;
           font-size: 14px;
           display: block;
           position: absolute;
@@ -255,16 +255,17 @@
           margin-top: 15px;
 
           .tag-input {
-            width: calc(100% - 64px);
-            height: 20px;
+            width: calc(100% - 10px);
+            height: 100%;
             line-height: 20px;
             font-size: 14px;
-            color: #757575;
+            color: #ffffff;
 
             padding: 7px 15px;
-            padding-right: 40px;
-            border-radius: 25px;
-            border: 1px solid #e3e3e3;
+            padding-right: 50px;
+            border-radius: 2px;
+            border: 1px solid #1c2027;
+            background-color: #1c2027;
             outline: none;
           }
           span {
@@ -275,7 +276,7 @@
             right: 9px;
             top: 1px;
 
-            color: #757575;
+            color: #ffffff;
             text-align: center;
             line-height: 36px;
 
@@ -296,9 +297,10 @@
             width: auto;
             height: auto;
 
-            background-color: #f8bbd0;
-            color: #f50057;
-            border-radius: 15px;
+            background-color: #ff4081;
+            color: #ffffff;
+            border-radius: 2px;
+            margin: 0%;
             margin-right: 10px;
             margin-top: 10px;
 
@@ -306,6 +308,8 @@
               margin: 0%;
               padding: 0%;
               padding: 5px 10px;
+              padding-bottom: 9px;
+              font-weight: bolder;
             }
           }
         }
@@ -334,7 +338,7 @@
             height: auto;
 
             font-size: 36px;
-            color: #424242;
+            color: #ffffff;
             float: left;
           }
 
@@ -350,13 +354,13 @@
 
             p.ma-title {
               font-size: 20px;
-              color: #424242;
+              color: #ffffff;
               line-height: 20px;
             }
 
             p.sub-text {
               font-size: 14px;
-              color: #757575;
+              color: #eeeeee;
               line-height: 16px;
             }
 

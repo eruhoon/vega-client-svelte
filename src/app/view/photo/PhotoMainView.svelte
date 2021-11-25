@@ -148,7 +148,7 @@
           width: calc(100% - 64px);
           height: 50px;
           padding: 7px 15px;
-          padding-right: 40px;
+          padding-right: 65px;
           border-radius: 2px;
 
           outline: none;
@@ -240,7 +240,7 @@
 
       .ph-search {
         width: calc(100% - 10px);
-        height: 36px;
+        height: 50px;
         padding-top: 25px;
         padding-bottom: 20px;
         position: relative;
@@ -251,34 +251,41 @@
 
         .ph-search-input {
           width: 100%;
-          height: 36px;
+          height: 50px;
           position: relative;
           float: left;
 
           input {
-            width: calc(100% - 60px);
-            height: 20px;
+            width: calc(100% - 10px);
+            height: 50px;
             line-height: 20px;
             font-size: 14px;
 
             padding: 7px 15px;
             padding-right: 40px;
-            border-radius: 25px;
+            border-radius: 2px;
             border: 1px solid #1c2027;
             outline: none;
             background-color: #2a2f38;
           }
 
-          i {
+          .icon {
             width: 36px;
             height: 36px;
+            padding-left: 10px;
 
             position: absolute;
-            right: 9px;
-            top: 1px;
+            right: 20px;
+            top: 7px;
 
             text-align: center;
             line-height: 36px;
+            border-left: 1px solid #ffffff;
+            color: #ffffff;
+
+            i {
+              font-size: 20px;
+            }
           }
         }
       }

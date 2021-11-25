@@ -73,7 +73,9 @@
   on:keydown={onKeyPress}
   tabindex="0"
 >
-  <span class="material-icons mob-clear" on:click={onCloseClick}>clear</span>
+  <span class="mob-clear" on:click={onCloseClick}>
+    <i class="fas fa-times" />
+  </span>
   <div class="photo-img">
     <!-- svelte-ignore a11y-missing-attribute -->
     <img src={photo.url} />
@@ -81,7 +83,9 @@
   <div class="photo-info">
     <div class="title">
       <h3>정보</h3>
-      <span class="material-icons pc-clear" on:click={onCloseClick}>clear</span>
+      <span class="pc-clear" on:click={onCloseClick}>
+        <i class="fas fa-times" />
+      </span>
     </div>
     <div class="p-info-box">
       <p class="lab">사이즈</p>
@@ -184,9 +188,12 @@
       float: left;
 
       .title {
-        width: 100%;
+        width: calc(100% - 10px);
         height: auto;
-        padding: 5px;
+        padding: 10px 5px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #1c2027;
+        margin-bottom: 10px;
         position: relative;
 
         h3 {
@@ -204,8 +211,11 @@
           cursor: pointer;
 
           position: absolute;
-          top: 31px;
-          right: 10px;
+          top: 9px;
+          right: 5px;
+          &:hover {
+            color: #ff4081;
+          }
         }
       }
 
@@ -324,12 +334,12 @@
             cursor: pointer;
           }
           &.attention-limit.active {
-            color: #f50057;
+            color: #ff4081;
             span {
-              color: #f50057;
+              color: #ff4081;
             }
             .in-txt-list > p.see-txt {
-              color: #f50057;
+              color: #ff4081;
             }
           }
 
@@ -412,10 +422,10 @@
 
       background-color: #212121 !important;
 
-      span.material-icons.mob-clear {
+      span.mob-clear {
         width: 28px;
         height: 26px;
-        padding: 7px 6px;
+        padding: 12px 11px;
 
         box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
           0px 1px 1px 0px rgba(0, 0, 0, 0.14),
@@ -425,23 +435,23 @@
 
         font-size: 28px;
         line-height: 28px;
-        color: #757575;
-        background: #ffffff;
-        border-radius: 50%;
+        color: #ffffff;
+        background: #ff4081;
+        border-radius: 2px;
         cursor: pointer;
 
         position: fixed;
-        top: 60px;
-        left: 10px;
+        top: 50px;
+        left: 0px;
 
         z-index: 3;
+        text-align: center;
       }
       .photo-info {
         width: 100%;
         height: auto;
         padding: 0px;
         border: 0px;
-        border-top: 1px solid #e3e3e3;
 
         .title {
           width: 100%;
@@ -452,7 +462,7 @@
           h3 {
             font-size: 24px;
             line-height: 28px;
-            color: #757575;
+            color: #ffffff;
             margin: 10px 0px;
           }
 

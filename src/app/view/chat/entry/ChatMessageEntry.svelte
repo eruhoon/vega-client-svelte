@@ -4,6 +4,7 @@
   import { OptionService } from '../../../model/option/OptionService';
   import { SessionService } from '../../../model/session/SessionService';
   import { SocketService } from '../../../model/socket/SocketService';
+  import { MobileUtils } from '../../../util/mobile/MobileUtils';
   import AfreecaPack from '../pack/AfreecaPack.svelte';
   import AnimationPack from '../pack/AnimationPack.svelte';
   import AzurlaneShipPack from '../pack/AzurlaneShipPack.svelte';
@@ -11,6 +12,7 @@
   import GeneralPurposeCardPack from '../pack/gpc/GeneralPurposeCardPack.svelte';
   import GeneralPurposeCarouselPack from '../pack/gpc/GeneralPurposeCarouselPack.svelte';
   import ImagePack from '../pack/image/ImagePack.svelte';
+  import MobileImagePack from '../pack/image/MobileImagePack.svelte';
   import LinkPack from '../pack/LinkPack.svelte';
   import LolChampionPack from '../pack/LolChampionPack.svelte';
   import LolUserPack from '../pack/LolUserPack.svelte';
@@ -38,7 +40,7 @@
       case 'chat':
         return TextPack;
       case 'image':
-        return ImagePack;
+        return MobileUtils.isMobile() ? MobileImagePack : ImagePack;
       case 'link':
         return LinkPack;
       case 'memo':

@@ -23,9 +23,13 @@
   {#if dataSaveMode}
     <div class="image-wrapper" class:hidden>
       <img class="image" src={body} alt="이미지" on:load={onImageLoaded} />
+      <div class="alt">Hidden</div>
     </div>
     {#if menuMode}
-      <div class="menu-wrapper" on:click={(_) => (menuMode = false)}>
+      <div
+        class="menu-wrapper"
+        on:click|stopPropagation={(_) => (menuMode = false)}
+      >
         <div class="menu-list">
           <div>
             {#if hidden}
@@ -61,8 +65,22 @@
     height: auto;
     text-align: center;
 
+    .alt {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 30px;
+      width: 100%;
+    }
+
     &.hidden {
-      visibility: hidden;
+      img {
+        visibility: hidden;
+      }
+
+      .alt {
+        display: block;
+      }
     }
   }
 

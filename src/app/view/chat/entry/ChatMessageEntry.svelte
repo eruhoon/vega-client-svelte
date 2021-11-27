@@ -10,7 +10,7 @@
   import BookPack from '../pack/book/BookPack.svelte';
   import GeneralPurposeCardPack from '../pack/gpc/GeneralPurposeCardPack.svelte';
   import GeneralPurposeCarouselPack from '../pack/gpc/GeneralPurposeCarouselPack.svelte';
-  import ImagePack from '../pack/ImagePack.svelte';
+  import ImagePack from '../pack/image/ImagePack.svelte';
   import LinkPack from '../pack/LinkPack.svelte';
   import LolChampionPack from '../pack/LolChampionPack.svelte';
   import LolUserPack from '../pack/LolUserPack.svelte';

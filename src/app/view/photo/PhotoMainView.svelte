@@ -61,7 +61,9 @@
     <label>검색</label>
     <div class="ph-search-input">
       <input type="text" on:keyup={onKeyDown} />
-      <i class="material-icons">search</i>
+      <spna class="icon">
+        <i class="fas fa-search" />
+      </spna>
     </div>
   </div>
   {#each photoSets as photoSet}
@@ -84,12 +86,11 @@
 
 <style lang="scss">
   .photo-main-content {
-    width: calc(100% - 231px);
+    width: auto;
     height: 100%;
     margin: 0%;
     padding-left: 10px;
     position: relative;
-    float: left;
     overflow-y: scroll;
 
     scrollbar-width: thin;
@@ -120,48 +121,62 @@
 
     .ph-search {
       width: 100%;
-      height: 36px;
+      height: 50px;
       padding-top: 25px;
       padding-bottom: 20px;
       position: relative;
 
       label {
         width: 40px;
-        font-size: 16px;
-        line-height: 36px;
+        padding: 7px 0px;
+        padding-right: 10px;
         margin-left: 10px;
         float: left;
+
+        font-size: 18px;
+        line-height: 36px;
+        color: #ffffff;
       }
 
       .ph-search-input {
         width: calc(50% - 30px);
-        height: 36px;
-        position: relative;
+        height: 50px;
         float: left;
+        position: relative;
 
         input {
           width: calc(100% - 64px);
-          height: 20px;
+          height: 50px;
+          padding: 7px 15px;
+          padding-right: 65px;
+          border-radius: 2px;
+
+          outline: none;
+          color: #ffffff;
+          border: 1px solid #1c2027;
+          background-color: #1c2027;
+
           line-height: 20px;
           font-size: 14px;
-
-          padding: 7px 15px;
-          padding-right: 40px;
-          border-radius: 25px;
-          border: 1px solid;
-          outline: none;
         }
 
-        i {
+        .icon {
           width: 36px;
           height: 36px;
+          padding-left: 10px;
 
           position: absolute;
-          right: 9px;
-          top: 1px;
+          right: 70px;
+          top: 7px;
 
           text-align: center;
           line-height: 36px;
+          border-left: 1px solid #ffffff;
+          color: #ffffff;
+
+          i {
+            font-size: 20px;
+          }
         }
       }
     }
@@ -177,6 +192,7 @@
         font-size: 16px;
         line-height: 20px;
         margin-left: 10px;
+        color: #ffffff;
       }
 
       .ph-list {
@@ -187,6 +203,26 @@
         flex-direction: row;
         flex-wrap: wrap;
       }
+    }
+  }
+
+  // 컬러 스크롤링 컬러셋
+  .photo-main-content {
+    background-color: #2a2f38;
+    scrollbar-color: #ff4081 #2a2f38;
+    scrollbar-width: thin;
+    &::-webkit-scrollbar {
+      border-color: #2a2f38;
+    }
+    &::-webkit-scrollbar-button:start:decrement,
+    &::-webkit-scrollbar-button:end:increment {
+      background: #2a2f38;
+    }
+    &::-webkit-scrollbar-track {
+      background: #2a2f38;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #ff4081;
     }
   }
 
@@ -204,7 +240,7 @@
 
       .ph-search {
         width: calc(100% - 10px);
-        height: 36px;
+        height: 50px;
         padding-top: 25px;
         padding-bottom: 20px;
         position: relative;
@@ -215,33 +251,41 @@
 
         .ph-search-input {
           width: 100%;
-          height: 36px;
+          height: 50px;
           position: relative;
           float: left;
 
           input {
-            width: calc(100% - 60px);
-            height: 20px;
+            width: calc(100% - 10px);
+            height: 50px;
             line-height: 20px;
             font-size: 14px;
 
             padding: 7px 15px;
             padding-right: 40px;
-            border-radius: 25px;
-            border: 1px solid;
+            border-radius: 2px;
+            border: 1px solid #1c2027;
             outline: none;
+            background-color: #2a2f38;
           }
 
-          i {
+          .icon {
             width: 36px;
             height: 36px;
+            padding-left: 10px;
 
             position: absolute;
-            right: 9px;
-            top: 1px;
+            right: 20px;
+            top: 7px;
 
             text-align: center;
             line-height: 36px;
+            border-left: 1px solid #ffffff;
+            color: #ffffff;
+
+            i {
+              font-size: 20px;
+            }
           }
         }
       }

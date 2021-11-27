@@ -55,13 +55,13 @@
   {#if adult}
     <div class="img-chk attention-limit">
       <!-- svelte-ignore a11y-missing-attribute -->
-      <img class="logo" src="/../assets/image/main/img_19_limit.png" />
+      <img class="logo" src="/assets/image/photo/img_19_limit.png" />
     </div>
   {/if}
   {#if animated}
     <div class="img-chk gif-chk">
       <!-- svelte-ignore a11y-missing-attribute -->
-      <img class="logo" src="/../assets/image/main/img_gif.png" />
+      <img class="logo" src="/assets/image/photo/img_gif.png" />
     </div>
   {/if}
 </div>
@@ -74,8 +74,7 @@
     margin: 0px 10px;
     margin-bottom: 15px;
 
-    background-color: #fff;
-    background-color: var(--mdc-theme-surface, #fff);
+    background-color: #1c2027;
     box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
       0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 
@@ -180,7 +179,7 @@
 
     .img-chk {
       width: 30px;
-      height: 16px;
+      height: 22px;
       padding: 2px 3px;
       padding-right: 7px;
 
@@ -192,8 +191,11 @@
       background-color: var(--mdc-theme-surface, #fff);
       opacity: 0.9;
 
-      border-top-right-radius: 10px;
-      border-bottom-right-radius: 10px;
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+
+      box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+        0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 
       img {
         width: 20px;
@@ -213,7 +215,7 @@
     .ph-img {
       width: 75px;
       height: 75px;
-      background: #ffffff;
+      background: #1c2027;
       overflow: hidden;
       display: flex;
       align-items: center;

@@ -73,7 +73,9 @@
   on:keydown={onKeyPress}
   tabindex="0"
 >
-  <span class="material-icons mob-clear" on:click={onCloseClick}>clear</span>
+  <span class="mob-clear" on:click={onCloseClick}>
+    <i class="fas fa-times" />
+  </span>
   <div class="photo-img">
     <!-- svelte-ignore a11y-missing-attribute -->
     <img src={photo.url} />
@@ -81,7 +83,9 @@
   <div class="photo-info">
     <div class="title">
       <h3>정보</h3>
-      <span class="material-icons pc-clear" on:click={onCloseClick}>clear</span>
+      <span class="pc-clear" on:click={onCloseClick}>
+        <i class="fas fa-times" />
+      </span>
     </div>
     <div class="p-info-box">
       <p class="lab">사이즈</p>
@@ -168,7 +172,7 @@
     padding: 0%;
     margin: 0%;
 
-    background: #f0f0f0;
+    background: #1c2027;
 
     .mob-clear {
       display: none;
@@ -177,22 +181,25 @@
     .photo-info {
       width: 300px;
       height: 100%;
-      background-color: #ffffff;
-      border-right: 1px solid #e3e3e3;
-      border-left: 1px solid #e3e3e3;
+      background-color: #2a2f38;
+      border-right: 1px solid #1c2027;
+      border-left: 1px solid #1c2027;
       padding: 10px;
       float: left;
 
       .title {
-        width: 100%;
+        width: calc(100% - 10px);
         height: auto;
-        padding: 5px;
+        padding: 10px 5px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #1c2027;
+        margin-bottom: 10px;
         position: relative;
 
         h3 {
           font-size: 24px;
           line-height: 28px;
-          color: #757575;
+          color: #ffffff;
         }
 
         span {
@@ -200,12 +207,15 @@
           height: 28px;
           font-size: 28px;
           line-height: 28px;
-          color: #757575;
+          color: #ffffff;
           cursor: pointer;
 
           position: absolute;
-          top: 31px;
-          right: 10px;
+          top: 9px;
+          right: 5px;
+          &:hover {
+            color: #ff4081;
+          }
         }
       }
 
@@ -220,14 +230,14 @@
 
         p.lab {
           font-size: 14px;
-          color: #9e9e9e;
+          color: #eeeeee;
           padding: 0%;
           margin: 0%;
         }
 
         p.info-txt {
           font-size: 36px;
-          color: #424242;
+          color: #ffffff;
           padding: 0%;
           margin: 0%;
         }
@@ -235,7 +245,7 @@
         .add-tag {
           width: auto;
           width: 24px;
-          color: #9e9e9e;
+          color: #eeeeee;
           font-size: 14px;
           display: block;
           position: absolute;
@@ -255,16 +265,17 @@
           margin-top: 15px;
 
           .tag-input {
-            width: calc(100% - 64px);
-            height: 20px;
+            width: calc(100% - 10px);
+            height: 100%;
             line-height: 20px;
             font-size: 14px;
-            color: #757575;
+            color: #ffffff;
 
             padding: 7px 15px;
-            padding-right: 40px;
-            border-radius: 25px;
-            border: 1px solid #e3e3e3;
+            padding-right: 50px;
+            border-radius: 2px;
+            border: 1px solid #1c2027;
+            background-color: #1c2027;
             outline: none;
           }
           span {
@@ -275,7 +286,7 @@
             right: 9px;
             top: 1px;
 
-            color: #757575;
+            color: #ffffff;
             text-align: center;
             line-height: 36px;
 
@@ -296,9 +307,10 @@
             width: auto;
             height: auto;
 
-            background-color: #f8bbd0;
-            color: #f50057;
-            border-radius: 15px;
+            background-color: #ff4081;
+            color: #ffffff;
+            border-radius: 2px;
+            margin: 0%;
             margin-right: 10px;
             margin-top: 10px;
 
@@ -306,6 +318,8 @@
               margin: 0%;
               padding: 0%;
               padding: 5px 10px;
+              padding-bottom: 9px;
+              font-weight: bolder;
             }
           }
         }
@@ -320,12 +334,12 @@
             cursor: pointer;
           }
           &.attention-limit.active {
-            color: #f50057;
+            color: #ff4081;
             span {
-              color: #f50057;
+              color: #ff4081;
             }
             .in-txt-list > p.see-txt {
-              color: #f50057;
+              color: #ff4081;
             }
           }
 
@@ -334,7 +348,7 @@
             height: auto;
 
             font-size: 36px;
-            color: #424242;
+            color: #ffffff;
             float: left;
           }
 
@@ -350,13 +364,13 @@
 
             p.ma-title {
               font-size: 20px;
-              color: #424242;
+              color: #ffffff;
               line-height: 20px;
             }
 
             p.sub-text {
               font-size: 14px;
-              color: #757575;
+              color: #eeeeee;
               line-height: 16px;
             }
 
@@ -408,10 +422,10 @@
 
       background-color: #212121 !important;
 
-      span.material-icons.mob-clear {
+      span.mob-clear {
         width: 28px;
         height: 26px;
-        padding: 7px 6px;
+        padding: 12px 11px;
 
         box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
           0px 1px 1px 0px rgba(0, 0, 0, 0.14),
@@ -421,23 +435,23 @@
 
         font-size: 28px;
         line-height: 28px;
-        color: #757575;
-        background: #ffffff;
-        border-radius: 50%;
+        color: #ffffff;
+        background: #ff4081;
+        border-radius: 2px;
         cursor: pointer;
 
         position: fixed;
-        top: 60px;
-        left: 10px;
+        top: 50px;
+        left: 0px;
 
         z-index: 3;
+        text-align: center;
       }
       .photo-info {
         width: 100%;
         height: auto;
         padding: 0px;
         border: 0px;
-        border-top: 1px solid #e3e3e3;
 
         .title {
           width: 100%;
@@ -448,7 +462,7 @@
           h3 {
             font-size: 24px;
             line-height: 28px;
-            color: #757575;
+            color: #ffffff;
             margin: 10px 0px;
           }
 

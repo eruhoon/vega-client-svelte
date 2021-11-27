@@ -10,6 +10,7 @@
   import PhotoPage from '../photo/PhotoPage.svelte';
   import PopupContentLayer from '../popup/PopupContentLayer.svelte';
   import CollapsedContentView from './CollapsedContentView.svelte';
+  import ImageViewerPopup from './popup/ImageViewerPopup.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
 
@@ -20,7 +21,9 @@
   let sideBarVisible = false;
   let currentContent = null;
   let chatConnected = false;
+  let currentImage: string;
 
+  WindowService.currentImage.subscribe((it) => (currentImage = it));
   SocketService.isConnected.subscribe((it) => (chatConnected = it));
 
   onMount(() => {
@@ -83,6 +86,12 @@
 
 <PopupContentLayer />
 <ModalLayer />
+
+{#if currentImage}
+  <div class="popup-layer">
+    <ImageViewerPopup src={currentImage} />
+  </div>
+{/if}
 
 <style lang="scss">
   $top-bar-height: 50px;
@@ -147,5 +156,12 @@
       width: 100%;
       text-align: center;
     }
+  }
+
+  .popup-layer {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
   }
 </style>

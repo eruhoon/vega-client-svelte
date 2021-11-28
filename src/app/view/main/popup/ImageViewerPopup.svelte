@@ -12,10 +12,6 @@
   $: imageClass = imageWidth > imageHeight ? 'horizontal' : 'vertical';
   $: overSized = bodyWidth * 0.8 < imageWidth || bodyHeight * 0.8 < imageHeight;
 
-  $: {
-    console.log(bodyWidth, bodyHeight, imageWidth, imageHeight, overSized);
-  }
-
   const close = () => WindowService.closeImageViewerPopup();
 </script>
 

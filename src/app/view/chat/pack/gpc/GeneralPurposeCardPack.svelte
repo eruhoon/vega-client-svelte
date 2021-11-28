@@ -22,6 +22,10 @@
           },
           type: 'iframe',
         });
+        break;
+      case 'new-window':
+        window.open(link);
+        break;
     }
   }
 </script>

@@ -67,6 +67,8 @@
           img {
             width: auto;
             height: auto;
+            max-height: 100%;
+            max-width: 100%;
             background: #1f2226;
             border: 1px solid rgb(10, 12, 14);
             border-radius: 2px;

@@ -11,6 +11,7 @@
   import PopupContentLayer from '../popup/PopupContentLayer.svelte';
   import StreamList from '../stream/StreamList.svelte';
   import ContentView from './content/ContentView.svelte';
+  import ImagePopupLayer from './popup/ImagePopupLayer.svelte';
   import ImageViewerPopup from './popup/ImageViewerPopup.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
@@ -21,14 +22,12 @@
   let sideBarVisible = get(WindowService.sideBarShow);
   let isCheckerBarEnable = get(OptionService.enableCheckerBar);
   let windowInnerWidth: number;
-  let currentImage: string;
   let chatViewOffset = get(OptionService.chatViewOffset);
   let chatConnected = false;
 
   ChatNetworkService.init(privateKey);
   CheckerNetworkService.init(privateKey);
   WindowService.sideBarShow.subscribe((v) => (sideBarVisible = v));
-  WindowService.currentImage.subscribe((v) => (currentImage = v));
   OptionService.enableCheckerBar.subscribe((v) => (isCheckerBarEnable = v));
   SocketService.isConnected.subscribe((it) => (chatConnected = it));
 
@@ -92,12 +91,7 @@
 
 <PopupContentLayer />
 <ModalLayer />
-
-{#if currentImage}
-  <div class="popup-layer">
-    <ImageViewerPopup src={currentImage} />
-  </div>
-{/if}
+<ImagePopupLayer />
 
 <svelte:window bind:innerWidth={windowInnerWidth} />
 
@@ -189,13 +183,6 @@
         transform: none;
       }
     }
-  }
-
-  .popup-layer {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 50;
   }
 
   .error-page {

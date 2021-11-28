@@ -2,21 +2,31 @@
   import { onMount } from 'svelte';
   import { VegaMemoLoader } from '../../model/memo/loader/VegaMemoLoader';
   import type { Memo } from '../../model/memo/Memo';
+  import { MemoService } from '../../service/MemoService';
+  import MemoUploadView from './MemoUploadView.svelte';
   import MobileMemoEntry from './MobileMemoEntry.svelte';
-
-  const loader = new VegaMemoLoader();
 
   export let memos: Memo[] = [];
 
+  const loader = new VegaMemoLoader();
+  let uploadMode = false;
+
   onMount(async () => {
     memos = await loader.load();
+    MemoService.uploadMode.subscribe((it) => (uploadMode = it));
   });
+
+  function onAddClick() {
+    MemoService.setUploadMode(true);
+  }
 </script>
 
 <div class="memo-main-content">
-  <div class="mm-search">
+  <div class="header">
+    <div class="left-side">
+      <button on:click={onAddClick}><i class="fas fa-plus" /></button>
+    </div>
     <!-- svelte-ignore a11y-label-has-associated-control -->
-    <label>검색</label>
     <div class="mm-search-input">
       <input type="text" />
       <span class="icon">
@@ -31,6 +41,10 @@
   </div>
 </div>
 
+{#if uploadMode}
+  <MemoUploadView />
+{/if}
+
 <style lang="scss">
   .memo-main-content {
     $h-padding: 10px;
@@ -43,25 +57,41 @@
     overflow-y: scroll;
   }
 
-  .mm-search {
-    width: calc(100% - 10px);
+  .header {
+    position: relative;
+    display: flex;
+    width: 100%;
     height: 50px;
     padding-top: 25px;
     padding-bottom: 20px;
-    position: relative;
 
-    label {
-      display: none;
+    .left-side {
+      width: 50px;
+      flex-shrink: 0;
+      text-align: center;
+
+      button {
+        width: 50px;
+        height: 50px;
+        padding: 0;
+
+        i {
+          text-align: center;
+          line-height: 50px;
+          font-size: 20px;
+        }
+      }
     }
 
     .mm-search-input {
-      width: 100%;
+      flex-grow: 1;
+      width: 0;
       height: 50px;
       position: relative;
       float: left;
 
       input {
-        width: calc(100% - 10px);
+        width: 100%;
         height: 50px;
         line-height: 20px;
         font-size: 14px;
@@ -78,9 +108,10 @@
         width: 36px;
         height: 36px;
         padding-left: 10px;
+        padding-right: 10px;
 
         position: absolute;
-        right: 20px;
+        right: 0;
         top: 7px;
 
         text-align: center;
@@ -101,6 +132,7 @@
   }
 
   .memo-main-content {
+    color: #ffffff;
     .mm-search {
       input {
         color: #ffffff;

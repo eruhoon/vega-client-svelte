@@ -19,9 +19,9 @@
     <label>검색</label>
     <div class="mm-search-input">
       <input type="text" />
-      <spna class="icon">
+      <span class="icon">
         <i class="fas fa-search" />
-      </spna>
+      </span>
     </div>
   </div>
   <div class="memo-list">

@@ -12,7 +12,6 @@
   import StreamList from '../stream/StreamList.svelte';
   import ContentView from './content/ContentView.svelte';
   import ImagePopupLayer from './popup/ImagePopupLayer.svelte';
-  import ImageViewerPopup from './popup/ImageViewerPopup.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
   import VerticalSplitView from './VerticalSplitView.svelte';

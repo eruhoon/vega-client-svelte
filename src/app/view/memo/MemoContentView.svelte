@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { VegaMemoLoader } from '../../model/memo/loader/VegaMemoLoader';
   import type { Memo } from '../../model/memo/Memo';
   import { MemoService } from '../../service/MemoService';
   import MemoDetailView from './MemoDetailView.svelte';
@@ -15,8 +14,8 @@
     MemoService.setUploadMode(true);
   }
 
-  onMount(async () => {
-    memos = await new VegaMemoLoader().load();
+  onMount(() => {
+    MemoService.memos.subscribe((it) => (memos = it));
     MemoService.currentMemo.subscribe((it) => (currentMemo = it));
     MemoService.uploadMode.subscribe((it) => (uploadMode = it));
   });

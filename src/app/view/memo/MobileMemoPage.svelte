@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { VegaMemoLoader } from '../../model/memo/loader/VegaMemoLoader';
   import type { Memo } from '../../model/memo/Memo';
   import { MemoService } from '../../service/MemoService';
   import MemoUploadView from './MemoUploadView.svelte';
@@ -8,12 +7,13 @@
 
   export let memos: Memo[] = [];
 
-  const loader = new VegaMemoLoader();
   let uploadMode = false;
 
   onMount(async () => {
-    memos = await loader.load();
+    MemoService.memos.subscribe((it) => (memos = it));
     MemoService.uploadMode.subscribe((it) => (uploadMode = it));
+
+    MemoService.refresh();
   });
 
   function onAddClick() {

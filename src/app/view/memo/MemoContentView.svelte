@@ -18,6 +18,8 @@
     MemoService.memos.subscribe((it) => (memos = it));
     MemoService.currentMemo.subscribe((it) => (currentMemo = it));
     MemoService.uploadMode.subscribe((it) => (uploadMode = it));
+
+    MemoService.refresh();
   });
 </script>
 

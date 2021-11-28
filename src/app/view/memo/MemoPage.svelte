@@ -1,5 +1,11 @@
 <script>
-  import MemoContentView from './MemoContentView.svelte';
+  import { MobileUtils } from '../../util/mobile/MobileUtils';
+  import DesktopMemoPage from './DesktopMemoPage.svelte';
+  import MobileMemoPage from './MobileMemoPage.svelte';
 </script>
 
-<MemoContentView />
+{#if MobileUtils.isMobile()}
+  <MobileMemoPage />
+{:else}
+  <DesktopMemoPage />
+{/if}

@@ -1,10 +1,17 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { MemoService } from '../../service/MemoService';
+  import { ProfileService } from '../../service/ProfileService';
 
   let name = 'name';
   let icon = '';
-  let dateString = 'dateString';
+  let dateString = new Date().toISOString();
   let memo = '';
+
+  onMount(() => {
+    ProfileService.profileIcon.subscribe((it) => (icon = it));
+    ProfileService.nickname.subscribe((it) => (name = it));
+  });
 
   function close() {
     MemoService.setUploadMode(false);

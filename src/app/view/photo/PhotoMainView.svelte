@@ -1,57 +1,36 @@
 <script lang="ts">
-  import { VegaPhotoLoader } from '../../model/photo/loader/VegaPhotoLoader';
+  import { onMount } from 'svelte';
   import type { Photo } from '../../model/photo/Photo';
   import PhotoEntry from './PhotoEntry.svelte';
+  import { PhotoService } from './PhotoService';
 
-  const CHUNK_SIZE = 100;
-  const photoLoader = new VegaPhotoLoader();
-
-  let offset = 0;
+  let searchQuery: string;
   let photos: Photo[] = [];
   let photoSets = [{ dateString: '' }];
   let scroller: HTMLDivElement;
-  let loading = false;
   let timer = -1;
 
-  async function load(start: number) {
-    if (loading) {
-      return;
-    }
-    loading = true;
-    const loaded = await photoLoader.load({
-      q: '',
-      start: start,
-      length: CHUNK_SIZE,
-    });
-    photos = [...photos, ...loaded];
-    loading = false;
-    offset += CHUNK_SIZE;
-  }
-
-  load(offset);
+  onMount(() => {
+    PhotoService.photos.subscribe((it) => (photos = it));
+    PhotoService.init('');
+  });
 
   function onScroll() {
     const diff = scroller.scrollHeight - scroller.scrollTop;
     const threashold = scroller.clientHeight * 2;
     if (diff < threashold) {
-      load(offset);
+      PhotoService.loadMore();
     }
   }
 
   function onKeyDown() {
-    clearTimeout(this.mTimer);
+    clearTimeout(timer);
     timer = Number(
       setTimeout(() => {
-        searchPhoto();
+        PhotoService.init(searchQuery);
         timer = -1;
       }, 600)
     );
-  }
-
-  function searchPhoto() {
-    const elm = this.mSearchInput.nativeElement;
-    const query = elm.value;
-    this.mService.search(query);
   }
 </script>
 
@@ -60,7 +39,7 @@
     <!-- svelte-ignore a11y-label-has-associated-control -->
     <label>검색</label>
     <div class="ph-search-input">
-      <input type="text" on:keyup={onKeyDown} />
+      <input type="text" on:keyup={onKeyDown} bind:value={searchQuery} />
       <spna class="icon">
         <i class="fas fa-search" />
       </spna>

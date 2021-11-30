@@ -5,7 +5,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --no-clear -s",
+    "start": "sirv public --no-clear --single",
     "validate": "svelte-check"
   },
   "devDependencies": {
@@ -34,6 +34,6 @@
     "sirv-cli": "^1.0.0",
     "socket.io-client": "^2.4.0",
     "svelte-inline-svg": "^1.0.8",
-    "svelte-router-spa": "^6.0.2"
+    "svelte-routing": "^1.6.0"
   }
 }

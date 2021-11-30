@@ -6,6 +6,7 @@
   const hasId = urlParams.has('id');
   const id = urlParams.get('id');
   const platform = urlParams.get('p');
+  console.log(hasId, id, platform);
 </script>
 
 {#if hasId}

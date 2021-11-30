@@ -20,6 +20,7 @@
     bottom: 50px;
     left: 0;
     width: 100%;
+    pointer-events: none;
   }
   .toast {
     min-width: 250px;

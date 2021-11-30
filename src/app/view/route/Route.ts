@@ -7,7 +7,7 @@ const routes = [
     component: MainRoute,
   },
   {
-    name: 'embed',
+    name: '/embed',
     component: EmbedRoute,
   },
 ];

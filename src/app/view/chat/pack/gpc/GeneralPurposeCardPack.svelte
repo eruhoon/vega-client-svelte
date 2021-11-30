@@ -1,4 +1,6 @@
 <script>
+  import { MobileUtils } from '../../../../util/mobile/MobileUtils';
+
   import { PopupContentService } from '../../../popup/PopupContentService';
   import GeneralPurposeCard from './GeneralPurposeCard.svelte';
 
@@ -15,13 +17,17 @@
   function onClick() {
     switch (showType) {
       case 'in-app-browser':
-        PopupContentService.addContent({
-          src: {
-            link,
-            title,
-          },
-          type: 'iframe',
-        });
+        if (MobileUtils.isMobile()) {
+          window.open(link);
+        } else {
+          PopupContentService.addContent({
+            src: {
+              link,
+              title,
+            },
+            type: 'iframe',
+          });
+        }
         break;
       case 'new-window':
         window.open(link);

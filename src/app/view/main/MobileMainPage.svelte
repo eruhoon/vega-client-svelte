@@ -5,6 +5,7 @@
   import { ChatNetworkService } from '../../service/ChatNetworkService';
   import { CheckerNetworkService } from '../../service/CheckerNetworkService';
   import ChatPage from '../chat/ChatPage.svelte';
+  import DonationPage from '../donation/DonationPage.svelte';
   import MemoPage from '../memo/MemoPage.svelte';
   import ModalLayer from '../modal/ModalLayer.svelte';
   import PhotoPage from '../photo/PhotoPage.svelte';
@@ -30,6 +31,11 @@
     WindowService.sideBarShow.subscribe((it) => (sideBarVisible = it));
     WindowService.content.subscribe((it) => (currentContent = it));
   });
+
+  function onDonationClick() {
+    mainMode = 'donation';
+    WindowService.closeSideBar();
+  }
 
   function onPhotoClick() {
     mainMode = 'photo';
@@ -66,6 +72,8 @@
             </div>
           </div>
         {/if}
+      {:else if mainMode === 'donation'}
+        <DonationPage />
       {:else if mainMode === 'photo'}
         <PhotoPage />
       {:else if mainMode === 'memo'}
@@ -78,6 +86,7 @@
       on:photoclick={onPhotoClick}
       on:chatclick={onChatClick}
       on:memoclick={onMemoClick}
+      on:donationclick={onDonationClick}
     />
   </div>
 </div>

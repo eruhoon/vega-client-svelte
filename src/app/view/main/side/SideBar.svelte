@@ -41,6 +41,12 @@
       <i class="fas fa-book" />
       <span>메모</span>
     </li>
+    {#if false}
+      <li class="main" on:click={(_) => dispatch('donationclick')}>
+        <i class="fas fa-money-bill-wave" />
+        <span>도네이션</span>
+      </li>
+    {/if}
     <li class="main" on:click={(_) => dispatch('photoclick')}>
       <i class="fas fa-images" />
       <span>이미지 갤러리</span>

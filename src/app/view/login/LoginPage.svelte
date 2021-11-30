@@ -5,6 +5,7 @@
 
   let id = '';
   let pw = '';
+  let passInput: HTMLInputElement;
 
   const requestLogin = async () => {
     try {
@@ -14,6 +15,20 @@
       console.log('failed');
     }
   };
+
+  function onPassKeyPress(e: KeyboardEvent) {
+    const { key } = e;
+    if (key === 'Enter') {
+      requestLogin();
+    }
+  }
+
+  function onIdKeyPress(e: KeyboardEvent) {
+    const { key } = e;
+    if (key === 'Enter') {
+      passInput.focus();
+    }
+  }
 </script>
 
 <main>
@@ -30,13 +45,16 @@
           placeholder="아이디"
           id="id"
           class="login-input"
+          on:keypress={onIdKeyPress}
         />
         <input
+          bind:this={passInput}
           type="password"
           bind:value={pw}
           placeholder="비밀번호"
           id="pw"
           class="login-input"
+          on:keypress={onPassKeyPress}
         />
         <button type="submit" on:click={requestLogin} class="login-sub-btn"
           >LOGIN</button

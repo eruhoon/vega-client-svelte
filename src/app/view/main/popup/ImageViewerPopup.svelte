@@ -12,10 +12,6 @@
   $: imageClass = imageWidth > imageHeight ? 'horizontal' : 'vertical';
   $: overSized = bodyWidth * 0.8 < imageWidth || bodyHeight * 0.8 < imageHeight;
 
-  $: {
-    console.log(bodyWidth, bodyHeight, imageWidth, imageHeight, overSized);
-  }
-
   const close = () => WindowService.closeImageViewerPopup();
 </script>
 
@@ -71,6 +67,8 @@
           img {
             width: auto;
             height: auto;
+            max-height: 100%;
+            max-width: 100%;
             background: #1f2226;
             border: 1px solid rgb(10, 12, 14);
             border-radius: 2px;

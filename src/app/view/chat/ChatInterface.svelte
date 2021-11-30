@@ -13,18 +13,6 @@
   let isConnected = false;
   let isScrollLock = false;
 
-  const onKeyDown = ({ key }: KeyboardEvent) => {
-    if (key === 'Enter' && message.trim().length !== 0) {
-      const privateKey = SessionService.getPrivateKey();
-      if (!privateKey) {
-        return;
-      }
-      SocketService.chat?.execute(privateKey, 'chat', message);
-      message = '';
-      ChatService.requestScrollDown(true);
-    }
-  };
-
   const toggleUserList = () => {
     const next = !userListShow;
     userListShow = next;
@@ -55,6 +43,19 @@
       ChatClipboardService.setCurrentImage(imageUri);
       imageInput.value = '';
     });
+  }
+
+  function onKeyPress(e: KeyboardEvent) {
+    const { key } = e;
+    if (key === 'Enter' && message.trim().length !== 0) {
+      const privateKey = SessionService.getPrivateKey();
+      if (!privateKey) {
+        return;
+      }
+      SocketService.chat?.execute(privateKey, 'chat', message);
+      message = '';
+      ChatService.requestScrollDown(true);
+    }
   }
 </script>
 
@@ -91,7 +92,7 @@
     type="text"
     class="input-box"
     bind:value={message}
-    on:keydown={(event) => onKeyDown(event)}
+    on:keypress={onKeyPress}
   />
   <input
     type="file"

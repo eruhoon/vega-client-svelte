@@ -10,6 +10,7 @@
   import PhotoPage from '../photo/PhotoPage.svelte';
   import PopupContentLayer from '../popup/PopupContentLayer.svelte';
   import CollapsedContentView from './CollapsedContentView.svelte';
+  import ImagePopupLayer from './popup/ImagePopupLayer.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
 
@@ -83,6 +84,7 @@
 
 <PopupContentLayer />
 <ModalLayer />
+<ImagePopupLayer />
 
 <style lang="scss">
   $top-bar-height: 50px;

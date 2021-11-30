@@ -54,10 +54,11 @@
     </button>
   </div>
   <iframe class="content" src={link} {allowfullscreen} {title} />
+  {#if moveMode}
+    <div class="movebox" on:mousemove={onDrag} on:mouseup={onDragEnd} />
+  {/if}
 </div>
-{#if moveMode}
-  <div class="movebox" on:mousemove={onDrag} on:mouseup={onDragEnd} />
-{/if}
+
 <svelte:window bind:innerWidth={windowWidth} bind:innerHeight={windowHeight} />
 
 <style lang="scss">

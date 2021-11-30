@@ -1,16 +1,26 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import type { IframePopupContent } from './IframePopupContent';
   import { PopupContentService } from './PopupContentService';
+
   export let content: IframePopupContent;
   $: src = content.src;
   $: title = src.title;
   $: link = src.link;
-  let left = 50;
-  let top = 50;
-  let width = 400;
-  let height = 300;
+  let left: number;
+  let top: number;
+  const width = 400;
+  const height = 300;
   let moveMode = false;
   const allowfullscreen = true;
+
+  let windowWidth: number;
+  let windowHeight: number;
+
+  onMount(() => {
+    left = (windowWidth - width) / 2;
+    top = (windowHeight - height) / 2;
+  });
 
   function onDragStart() {
     moveMode = true;
@@ -48,6 +58,7 @@
 {#if moveMode}
   <div class="movebox" on:mousemove={onDrag} on:mouseup={onDragEnd} />
 {/if}
+<svelte:window bind:innerWidth={windowWidth} bind:innerHeight={windowHeight} />
 
 <style lang="scss">
   @mixin shadow() {

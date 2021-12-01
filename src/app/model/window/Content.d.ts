@@ -2,6 +2,7 @@ export type Content =
   | IframeContent
   | MemoContent
   | PhotoContent
+  | DonationContent
   | LocalStreamContent
   | TotoroStreamContent
   | TwitchStreamContent;
@@ -17,6 +18,10 @@ type MemoContent = {
 
 type PhotoContent = {
   type: 'photo';
+};
+
+type DonationContent = {
+  type: 'donation';
 };
 
 type LocalStreamContent = {

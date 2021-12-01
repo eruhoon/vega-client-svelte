@@ -4,6 +4,7 @@
   import { WindowService } from '../../../model/window/WindowService';
   import MemoContentView from '../../memo/MemoContentView.svelte';
   import PhotoContentView from '../../photo/PhotoContentView.svelte';
+  import DonationPage from '../../donation/DonationPage.svelte';
   import IframeContentView from './IframeContentView.svelte';
   import LocalStreamContentView from './LocalStreamContentView.svelte';
   import TotoroStreamContentView from './TotoroStreamContentView.svelte';
@@ -28,6 +29,8 @@
       <PhotoContentView />
     {:else if content.type === 'memo'}
       <MemoContentView />
+    {:else if content.type === 'donation'}
+      <DonationPage />
     {/if}
   {/if}
 </div>

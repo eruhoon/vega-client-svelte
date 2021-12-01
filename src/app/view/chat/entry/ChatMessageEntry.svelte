@@ -22,6 +22,7 @@
   import TextPack from '../pack/TextPack.svelte';
   import TwitchChannelPack from '../pack/TwitchChannelPack.svelte';
   import TwitchClipPack from '../pack/TwitchClipPack.svelte';
+  import TwitchVideoPack from '../pack/video/TwitchVideoPack.svelte';
   import YoutubePack from '../pack/YoutubePack.svelte';
   import ReactionList from './reaction/ChatReactionListView.svelte';
 
@@ -61,6 +62,8 @@
         return TwitchChannelPack;
       case 'twitch-clip':
         return TwitchClipPack;
+      case 'twitch-video':
+        return TwitchVideoPack;
       case 'lol':
         return LolUserPack;
       case 'champion':

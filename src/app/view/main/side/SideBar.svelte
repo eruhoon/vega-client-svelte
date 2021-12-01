@@ -41,8 +41,8 @@
       <i class="fas fa-book" />
       <span>메모</span>
     </li>
-    {#if false}
-      <li class="main" on:click={(_) => dispatch('donationclick')}>
+    {#if true}
+      <li class="main" on:click={(_) => dispatch('donationClick')}>
         <i class="fas fa-money-bill-wave" />
         <span>도네이션</span>
       </li>

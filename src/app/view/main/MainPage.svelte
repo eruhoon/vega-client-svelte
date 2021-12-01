@@ -41,6 +41,13 @@
     WindowService.closeSideBar();
   }
 
+  function onDonationClick() {
+    console.log('donation-click');
+
+    WindowService.openContent({ type: 'donation' });
+    WindowService.closeSideBar();
+  }
+
   function onMemoClick() {
     WindowService.openContent({ type: 'memo' });
     WindowService.closeSideBar();
@@ -83,6 +90,7 @@
       chatEnabled={false}
       on:photoclick={onPhotoClick}
       on:memoclick={onMemoClick}
+      on:donationClick={onDonationClick}
     />
   </div>
 </div>

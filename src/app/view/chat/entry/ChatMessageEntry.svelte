@@ -29,6 +29,7 @@
   export let message: ChatMessage;
   $: reactions = message.reactions;
   let enableTimestamp = get(OptionService.timestamp);
+  let hover = false;
 
   const getPack = (type: string) => {
     switch (type) {
@@ -101,9 +102,33 @@
     const chatHash = message.hash;
     SocketService.reaction?.execute(privateKey, chatHash, reactionValue);
   }
+
+  function onMouseEnter() {
+    if (!MobileUtils.isMobile()) {
+      hover = true;
+    }
+  }
+
+  function onMouseLeave() {
+    if (!MobileUtils.isMobile()) {
+      hover = false;
+    }
+  }
+
+  function onClick() {
+    if (MobileUtils.isMobile()) {
+      hover = !hover;
+    }
+  }
 </script>
 
-<div class="container">
+<div
+  class="container"
+  class:hover
+  on:mouseenter={onMouseEnter}
+  on:mouseleave={onMouseLeave}
+  on:click={onClick}
+>
   <div class="body">
     {#if pack}
       <svelte:component this={pack} body={message.body} />
@@ -179,12 +204,6 @@
           }
         }
       }
-
-      &:hover {
-        .menu {
-          visibility: visible;
-        }
-      }
     }
     .footer {
       display: block;
@@ -193,6 +212,12 @@
       text-align: end;
       padding-bottom: 6px;
       color: #6c6f75;
+    }
+
+    &.hover {
+      .menu {
+        visibility: visible;
+      }
     }
   }
 </style>

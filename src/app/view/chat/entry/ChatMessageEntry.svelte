@@ -30,9 +30,9 @@
   import ReactionList from './reaction/ChatReactionListView.svelte';
 
   export let message: ChatMessage;
-  export let menuActive: boolean;
+  let menuActive: boolean = false;
+  let enableTimestamp: boolean = false;
   $: reactions = message.reactions;
-  let enableTimestamp = get(OptionService.timestamp);
 
   const getPack = (type: string) => {
     switch (type) {
@@ -102,7 +102,7 @@
     ChatService.activeChatMessage.subscribe(
       (it) => (menuActive = it === message.hash)
     );
-    OptionService.timestamp.subscribe((v) => (enableTimestamp = v));
+    OptionService.timestamp.subscribe((it) => (enableTimestamp = it));
   });
 
   function onReactionClick(reactionValue: string) {

@@ -59,7 +59,7 @@
   }
 </script>
 
-<div class="chat-interface">
+<div class="chat-interface" on:click={(_) => ChatService.setActive(null)}>
   <div class="input-sticker">
     <div class="sticker-section">
       <div on:click={toggleUserList}>

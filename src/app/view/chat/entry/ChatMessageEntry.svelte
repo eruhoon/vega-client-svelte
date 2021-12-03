@@ -1,6 +1,8 @@
 <script lang="ts">
+  import { onMount, SvelteComponent } from 'svelte';
   import { get } from 'svelte/store';
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
+  import { ChatService } from '../../../model/chat/ChatService';
   import { OptionService } from '../../../model/option/OptionService';
   import { SessionService } from '../../../model/session/SessionService';
   import { SocketService } from '../../../model/socket/SocketService';
@@ -22,61 +24,58 @@
   import TextPack from '../pack/TextPack.svelte';
   import TwitchChannelPack from '../pack/TwitchChannelPack.svelte';
   import TwitchClipPack from '../pack/TwitchClipPack.svelte';
+  import TwitchVideoPack from '../pack/video/TwitchVideoPack.svelte';
   import YoutubePack from '../pack/YoutubePack.svelte';
   import ReactionList from './reaction/ChatReactionListView.svelte';
 
   export let message: ChatMessage;
-  $: reactions = message.reactions;
-  let enableTimestamp = get(OptionService.timestamp);
-
-  const getPack = (type: string) => {
-    switch (type) {
-      case 'afreeca':
-        return AfreecaPack;
-      case 'animation':
-        return AnimationPack;
-      case 'book':
-        return BookPack;
-      case 'chat':
-        return TextPack;
-      case 'image':
-        return MobileUtils.isMobile() ? MobileImagePack : ImagePack;
-      case 'link':
-        return LinkPack;
-      case 'memo':
-        return MemoPack;
-      case 'movie':
-        return MoviePack;
-      case 'general-purpose-card':
-        return GeneralPurposeCardPack;
-      case 'al-ship':
-        return AzurlaneShipPack;
-      case 'general-purpose-carousel':
-        return GeneralPurposeCarouselPack;
-      case 'youtube':
-        return YoutubePack;
-      case 'stream':
-        return StreamPack;
-      case 'twitch':
-        return TwitchChannelPack;
-      case 'twitch-clip':
-        return TwitchClipPack;
-      case 'lol':
-        return LolUserPack;
-      case 'champion':
-        return LolChampionPack;
-      default:
-        return null;
-    }
-  };
-  let pack = getPack(message.type);
+  let menuActive: boolean = false;
+  let enableTimestamp: boolean = false;
+  const packs: Pack[] = [
+    { type: 'afreeca', component: AfreecaPack },
+    { type: 'animation', component: AnimationPack },
+    { type: 'book', component: BookPack },
+    { type: 'chat', component: TextPack },
+    {
+      type: 'image',
+      component: ImagePack,
+      mobileComponent: MobileImagePack,
+    },
+    { type: 'link', component: LinkPack },
+    { type: 'memo', component: MemoPack },
+    { type: 'movie', component: MoviePack },
+    { type: 'general-purpose-card', component: GeneralPurposeCardPack },
+    { type: 'al-ship', component: AzurlaneShipPack },
+    { type: 'general-purpose-carousel', component: GeneralPurposeCarouselPack },
+    { type: 'youtube', component: YoutubePack },
+    { type: 'stream', component: StreamPack },
+    { type: 'twitch', component: TwitchChannelPack },
+    { type: 'twitch-clip', component: TwitchClipPack },
+    { type: 'twitch-video', component: TwitchVideoPack },
+    { type: 'lol', component: LolUserPack },
+    { type: 'champion', component: LolChampionPack },
+  ];
 
   const reactionMenus = [
     { icon: 'thumbs-up', value: 'thumb-up' },
     { icon: 'thumbs-down', value: 'thumb-down' },
   ];
 
+  $: pack = getComponent(message.type);
+  $: reactions = message.reactions;
   $: timestamp = convertTimeToString(new Date(message.timestamp).getTime());
+
+  const getComponent = (type: string): typeof SvelteComponent | null => {
+    const pack = packs.find((p) => p.type === type);
+    if (!pack) {
+      return null;
+    }
+    if (MobileUtils.isMobile() && pack.mobileComponent) {
+      return pack.mobileComponent ? pack.mobileComponent : pack.component;
+    } else {
+      return pack.component;
+    }
+  };
 
   const convertTimeToString = (timestamp: number): string => {
     const padZero = (n: number) => (n < 10 ? `0${n}` : n);
@@ -91,16 +90,55 @@
     return `${y}-${mm}-${d} ${h}:${m}:${s}`;
   };
 
-  OptionService.timestamp.subscribe((v) => (enableTimestamp = v));
+  onMount(() => {
+    ChatService.activeChatMessage.subscribe(
+      (it) => (menuActive = it === message.hash)
+    );
+    OptionService.timestamp.subscribe((it) => (enableTimestamp = it));
+  });
 
   function onReactionClick(reactionValue: string) {
     const privateKey = SessionService.getPrivateKey();
     const chatHash = message.hash;
     SocketService.reaction?.execute(privateKey, chatHash, reactionValue);
   }
+
+  function onMouseEnter() {
+    if (!MobileUtils.isMobile()) {
+      ChatService.setActive(message.hash);
+    }
+  }
+
+  function onMouseLeave() {
+    if (!MobileUtils.isMobile()) {
+      ChatService.setActive(null);
+    }
+  }
+
+  function onClick() {
+    if (MobileUtils.isMobile()) {
+      if (message.hash === get(ChatService.activeChatMessage)) {
+        ChatService.setActive(null);
+      } else {
+        ChatService.setActive(message.hash);
+      }
+    }
+  }
+
+  type Pack = {
+    type: string;
+    component: typeof SvelteComponent;
+    mobileComponent?: typeof SvelteComponent;
+  };
 </script>
 
-<div class="container">
+<div
+  class="container"
+  class:hover={menuActive}
+  on:mouseenter={onMouseEnter}
+  on:mouseleave={onMouseLeave}
+  on:click={onClick}
+>
   <div class="body">
     {#if pack}
       <svelte:component this={pack} body={message.body} />
@@ -176,12 +214,6 @@
           }
         }
       }
-
-      &:hover {
-        .menu {
-          visibility: visible;
-        }
-      }
     }
     .footer {
       display: block;
@@ -190,6 +222,12 @@
       text-align: end;
       padding-bottom: 6px;
       color: #6c6f75;
+    }
+
+    &.hover {
+      .menu {
+        visibility: visible;
+      }
     }
   }
 </style>

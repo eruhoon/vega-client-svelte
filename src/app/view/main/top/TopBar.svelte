@@ -46,7 +46,9 @@
       {/if}
     </button>
     <button on:click={toggleSettingMenu} on:contextmenu|preventDefault>
-      <img class="profile" src={profileIcon} alt="profile" />
+      {#if profileIcon}
+        <img class="profile" src={profileIcon} alt="profile" />
+      {/if}
     </button>
   </div>
 </nav>

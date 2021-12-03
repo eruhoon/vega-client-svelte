@@ -1,6 +1,9 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+
   import { get } from 'svelte/store';
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
+  import { ChatService } from '../../../model/chat/ChatService';
   import { OptionService } from '../../../model/option/OptionService';
   import { SessionService } from '../../../model/session/SessionService';
   import { SocketService } from '../../../model/socket/SocketService';
@@ -27,9 +30,9 @@
   import ReactionList from './reaction/ChatReactionListView.svelte';
 
   export let message: ChatMessage;
+  export let menuActive: boolean;
   $: reactions = message.reactions;
   let enableTimestamp = get(OptionService.timestamp);
-  let hover = false;
 
   const getPack = (type: string) => {
     switch (type) {
@@ -95,7 +98,12 @@
     return `${y}-${mm}-${d} ${h}:${m}:${s}`;
   };
 
-  OptionService.timestamp.subscribe((v) => (enableTimestamp = v));
+  onMount(() => {
+    ChatService.activeChatMessage.subscribe(
+      (it) => (menuActive = it === message.hash)
+    );
+    OptionService.timestamp.subscribe((v) => (enableTimestamp = v));
+  });
 
   function onReactionClick(reactionValue: string) {
     const privateKey = SessionService.getPrivateKey();
@@ -105,26 +113,30 @@
 
   function onMouseEnter() {
     if (!MobileUtils.isMobile()) {
-      hover = true;
+      ChatService.setActive(message.hash);
     }
   }
 
   function onMouseLeave() {
     if (!MobileUtils.isMobile()) {
-      hover = false;
+      ChatService.setActive(null);
     }
   }
 
   function onClick() {
     if (MobileUtils.isMobile()) {
-      hover = !hover;
+      if (message.hash === get(ChatService.activeChatMessage)) {
+        ChatService.setActive(null);
+      } else {
+        ChatService.setActive(message.hash);
+      }
     }
   }
 </script>
 
 <div
   class="container"
-  class:hover
+  class:hover={menuActive}
   on:mouseenter={onMouseEnter}
   on:mouseleave={onMouseLeave}
   on:click={onClick}

@@ -1,4 +1,4 @@
-import { get, writable, Writable } from 'svelte/store';
+import { get, Readable, writable, Writable } from 'svelte/store';
 import type { ChatProperty } from './ChatProperty';
 import type { ChatReaction } from './ChatReaction';
 
@@ -8,6 +8,11 @@ class ChatServiceInit {
   readonly scrollDown: Writable<ScrollDownCommand> = writable(
     (force: boolean) => {}
   );
+  readonly #activeChatMessage: Writable<string | null> = writable(null);
+
+  get activeChatMessage(): Readable<string | null> {
+    return this.#activeChatMessage;
+  }
 
   requestScrollDown(force: boolean = false) {
     const scrollDown = get(this.scrollDown);
@@ -43,6 +48,10 @@ class ChatServiceInit {
         return chat;
       })
     );
+  }
+
+  setActive(chatMessageHash: string) {
+    this.#activeChatMessage.set(chatMessageHash);
   }
 }
 

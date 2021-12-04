@@ -90,7 +90,7 @@
       chatEnabled={false}
       on:photoclick={onPhotoClick}
       on:memoclick={onMemoClick}
-      on:donationClick={onDonationClick}
+      on:donationclick={onDonationClick}
     />
   </div>
 </div>

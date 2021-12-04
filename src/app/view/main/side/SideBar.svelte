@@ -42,7 +42,7 @@
       <span>메모</span>
     </li>
     {#if true}
-      <li class="main" on:click={(_) => dispatch('donationClick')}>
+      <li class="main" on:click={(_) => dispatch('donationclick')}>
         <i class="fas fa-money-bill-wave" />
         <span>도네이션</span>
       </li>

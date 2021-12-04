@@ -48,7 +48,7 @@
       <div class="content">
         <div class="link-group">
           <h3 class="link-text">http://mycast.xyz/Donation/스트림키</h3>
-          <span class="btn-group">
+          <div class="btn-group">
             <button class="icon-btn">
               <span class="icon">
                 <i class="fas fa-paperclip" />
@@ -57,7 +57,7 @@
             <button class="text-btn">
               <p>이동</p>
             </button>
-          </span>
+          </div>
         </div>
         <hr />
         <div class="supporting-text">
@@ -77,7 +77,7 @@
       <div class="content">
         <div class="link-group">
           <h3 class="link-text">http://mycast.xyz/Chatting/스트림키</h3>
-          <span class="btn-group">
+          <div class="btn-group">
             <button class="icon-btn">
               <span class="icon">
                 <i class="fas fa-paperclip" />
@@ -86,7 +86,7 @@
             <button class="text-btn">
               <p>이동</p>
             </button>
-          </span>
+          </div>
         </div>
         <hr />
         <div class="supporting-text">
@@ -141,7 +141,7 @@
       <div class="content">
         <div class="link-group">
           <h3 class="link-text">a7dd72998c42bb735905e62b1b992f9d</h3>
-          <span class="btn-group">
+          <div class="btn-group">
             <button class="icon-btn">
               <span class="icon">
                 <i class="fas fa-paperclip" />
@@ -150,7 +150,7 @@
             <button class="text-btn">
               <p>재발급</p>
             </button>
-          </span>
+          </div>
         </div>
         <hr />
         <div class="supporting-text">
@@ -425,5 +425,226 @@
         }
       }
     }
+  }
+
+  @media (min-width: 320px) and (max-width: 767px) {
+    .donation-row {
+      width: 100%;
+      padding-bottom: 15px;
+      display: block;
+      .don-item {
+        width: calc(100% - 20px);
+        padding: 15px;
+        position: relative;
+        margin-bottom: 10px;
+        &:last-child {
+          margin-bottom: 0px;
+        }
+        .info {
+          padding-top: 0px;
+          h2 {
+            padding-bottom: 5px;
+            small {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+    .donation-setup-group {
+      width: 100%;
+      margin-top: 10px;
+      display: block;
+
+      // 앞으로 도네이션 모든 구문의 박스 처리 scss
+      // 너비 / 마진 값은 따로 빼야됨
+      .donation-card {
+        width: 100%;
+        margin-left: 0%;
+        margin-right: 0px;
+        .title {
+          width: calc(100% - 30px);
+          height: 32px;
+          background-color: #1c2027;
+          padding: 15px;
+          margin-bottom: 20px;
+          h1 {
+            font-size: 20px;
+            font-weight: bolder;
+
+            small {
+              color: #ff4081;
+              font-size: 16px;
+              font-weight: normal;
+            }
+          }
+        }
+        .supporting-text {
+          width: calc(100% - 20px);
+          padding: 15px 10px;
+          padding-left: 10px;
+          p {
+            font-size: 12px;
+          }
+        }
+
+        hr {
+          border-color: #36393f;
+        }
+        // 좌측 링크 박스형
+        .link-group {
+          width: 100%;
+          min-height: 40px;
+          height: auto;
+          padding-bottom: 15px;
+          display: block;
+
+          h3.link-text {
+            font-size: 16px;
+            line-height: 40px;
+            padding-left: 10px;
+            display: inline-block;
+          }
+
+          .btn-group {
+            width: 100%;
+            height: 40px;
+
+            button {
+              width: auto;
+              height: auto;
+
+              float: right;
+              display: inline-block;
+              margin-right: 10px;
+
+              &.icon-btn {
+                width: 40px;
+                height: 40px;
+                padding: 3px;
+              }
+              &.text-btn {
+                width: auto;
+                height: 40px;
+
+                p {
+                  font-size: 16px;
+                  padding: 0px 10px;
+                }
+              }
+            }
+          }
+        }
+
+        // 버튼형 박스
+        .btn-list {
+          .set-btn-group {
+            width: 100%;
+            min-height: 40px;
+            height: auto;
+            padding: 15px 0px;
+            &:first-child {
+              padding-top: 0px;
+            }
+            h3 {
+              font-size: 18px;
+              font-weight: bolder;
+              line-height: 40px;
+              padding-left: 10px;
+              display: inline-block;
+            }
+
+            .switch {
+              width: 60px;
+              height: 34px;
+              position: relative;
+              display: inline-block;
+              float: right;
+              margin-right: 15px;
+              input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+              }
+              .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #1c2027;
+                -webkit-transition: 0.4s;
+                transition: 0.4s;
+              }
+
+              .slider:before {
+                position: absolute;
+                content: '';
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                -webkit-transition: 0.4s;
+                transition: 0.4s;
+              }
+              input:checked + .slider {
+                background-color: #ff4081;
+              }
+              input:focus + .slider {
+                box-shadow: 0 0 1px #ff4081;
+              }
+              input:checked + .slider:before {
+                -webkit-transform: translateX(26px);
+                -ms-transform: translateX(26px);
+                transform: translateX(26px);
+              }
+              .slider.round {
+                border-radius: 34px;
+              }
+              .slider.round:before {
+                border-radius: 50%;
+              }
+            }
+
+            button {
+              width: auto;
+              height: auto;
+
+              float: right;
+              display: inline-block;
+              margin-right: 10px;
+
+              color: #fff;
+              text-align: center;
+
+              background-color: #ff4081;
+              border: 0px;
+              border-radius: 40px;
+              box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+                0px 1px 1px 0px rgb(0 0 0 / 14%),
+                0px 1px 3px 0px rgb(0 0 0 / 12%);
+
+              &.icon-btn {
+                width: 40px;
+                height: 40px;
+                padding: 3px;
+              }
+              &.text-btn {
+                width: auto;
+                height: 40px;
+
+                p {
+                  font-size: 16px;
+                  padding: 0px 10px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    //CSS
   }
 </style>

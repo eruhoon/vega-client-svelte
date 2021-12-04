@@ -193,4 +193,42 @@
       }
     }
   }
+
+  @media (min-width: 320px) and (max-width: 767px) {
+    .dontion-main-view {
+      width: calc(100% - 10px);
+      height: 100%;
+      padding: 0px 5px;
+      padding-right: 5px;
+
+      .donation-navbar {
+        width: 100%;
+        display: block;
+
+        .donation-title {
+          width: 100%;
+          padding-bottom: 15px;
+          h1 {
+            padding-left: 0px;
+          }
+        }
+
+        .donation-nav {
+          width: 100%;
+          height: auto;
+          margin-right: 0%;
+          padding-right: 0px;
+
+          justify-content: flex-start;
+
+          .nav-btn {
+            height: auto;
+            margin-right: 15px;
+            padding: 5px 7px;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
 </style>

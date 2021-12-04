@@ -6,7 +6,9 @@
   import type { StreamInfo } from '../../../../model/stream/StreamInfo';
   import { ToastService } from '../../../../model/toast/ToastService';
   import { WindowService } from '../../../../model/window/WindowService';
+  import { MobileUtils } from '../../../../util/mobile/MobileUtils';
   import { ContentFactory } from '../../content/ContentFactory';
+  import DropDownEntry from './entry/DropDownEntry.svelte';
   import SimpleEntry from './entry/SimpleEntry.svelte';
 
   export let stream: StreamInfo = {
@@ -59,14 +61,25 @@
 
 <li on:click={onClick}>
   <div class="entry-cont">
-    <SimpleEntry
-      {stream}
-      {supportFavorite}
-      {isFavorite}
-      on:favoriteclick={onFavoriteClick}
-      on:newwindowclick={onNewWindowClick}
-      on:shareclick={onShareClick}
-    />
+    {#if MobileUtils.isMobile()}
+      <DropDownEntry
+        {stream}
+        {supportFavorite}
+        {isFavorite}
+        on:favoriteclick={onFavoriteClick}
+        on:newwindowclick={onNewWindowClick}
+        on:shareclick={onShareClick}
+      />
+    {:else}
+      <SimpleEntry
+        {stream}
+        {supportFavorite}
+        {isFavorite}
+        on:favoriteclick={onFavoriteClick}
+        on:newwindowclick={onNewWindowClick}
+        on:shareclick={onShareClick}
+      />
+    {/if}
   </div>
 </li>
 
@@ -74,14 +87,17 @@
   li {
     display: flex;
     width: 100%;
-    height: 40px;
+    height: auto;
+    min-height: 40px;
     align-items: center;
     justify-content: center;
 
     .entry-cont {
       position: relative;
       width: calc(100% - 10px);
-      height: 30px;
+      height: auto;
+      min-height: 30px;
+      margin: 5px 0;
     }
   }
 </style>

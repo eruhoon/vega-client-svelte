@@ -43,8 +43,10 @@
         <button class="sub-btn memo-sub" on:click={upload}>메모작성</button>
       </form>
     </div>
+    <button class="modal-close" on:click={close}>
+      <i class="fas fa-times" />
+    </button>
   </div>
-  <i class="material-icons clear" on:click={close}>clear</i>
 </div>
 
 <style lang="scss">
@@ -76,6 +78,10 @@
       top: 50px;
       margin: auto;
       border-radius: 10px;
+
+      background-color: #2a2f38;
+      color: #ffffff;
+
       box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
         0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 
@@ -135,27 +141,81 @@
           font-size: 16px;
           line-height: 20px;
           resize: none;
+
+          background-color: #2a2f38;
+          color: #ffffff;
         }
         .sub-btn {
           width: 100%;
           height: 50px;
-          border-radius: 5px;
+          border-radius: 2px;
           font-size: 20px;
           font-weight: bolder;
           letter-spacing: 3px;
           margin-top: 25px;
+
+          background-color: #ff4081;
+          border: 1px solid #ff4081;
+
+          color: #ffffff;
+        }
+      }
+
+      .modal-close {
+        width: 58px;
+        height: 58px;
+        position: absolute;
+        top: 0%;
+        right: 0%;
+
+        background-color: #1f2226;
+        border: 1px solid #1f2226;
+        border-radius: 0%;
+        text-align: center;
+
+        i {
+          font-size: 24px;
+          line-height: 42px;
+          padding-left: 2px;
+          color: #ffffff;
+        }
+
+        &:hover {
+          background-color: #ff4081;
+          border: 1px solid #ff4081;
+
+          i {
+            color: #ffffff;
+          }
+        }
+
+        &:active {
+          background-color: #e91e63;
+          border-color: #e91e63;
+
+          i {
+            color: #ffffff;
+          }
         }
       }
     }
+  }
 
-    // 상단, 좌우 버튼
-    i.clear {
-      font-size: 40px;
-      z-index: 120;
-      position: absolute;
-      right: 0px;
-      top: 10px;
-      cursor: pointer;
+  /*
+##Device = Low Resolution Tablets, Mobiles (Landscape)
+##Screen = B/w 481px to 767px
+##Device = 저해상도 태블릿, 모바일(가로)
+##Screen = 481px에서 767px 사이
+*/
+
+  @media (min-width: 320px) and (max-width: 767px) {
+    .memo-upload {
+      .memo-box {
+        width: 100%;
+        height: calc(100% - 50px);
+        top: 50px;
+      }
     }
+    //CSS
   }
 </style>

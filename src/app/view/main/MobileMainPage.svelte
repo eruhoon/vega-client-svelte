@@ -33,6 +33,8 @@
   });
 
   function onDonationClick() {
+    console.log('donaiton');
+
     mainMode = 'donation';
     WindowService.closeSideBar();
   }

@@ -35,10 +35,16 @@
   <div class="right-side">
     {#if link}
       <button on:click={onLinkClick}>
-        <i class="fas fa-external-link-alt" />
+        <div class="icon">
+          <i class="fas fa-external-link-alt" />
+        </div>
       </button>
     {/if}
-    <button on:click={onShareClick}><i class="fas fa-link" /></button>
+    <button on:click={onShareClick}>
+      <div class="icon">
+        <i class="fas fa-link" />
+      </div>
+    </button>
   </div>
 </div>
 
@@ -46,12 +52,22 @@
   .memo-entry {
     display: flex;
     height: 50px;
-    color: #e8e8e8;
+    color: #fff;
+    padding: 5px 0px;
+    padding-top: 10px;
+    border-bottom: 1px solid #1c2027;
 
+    &:first-child {
+      padding-top: 5px;
+    }
     .left-side {
       width: 30px;
       height: 30px;
       flex-shrink: 0;
+      overflow: hidden;
+      border-radius: 15px;
+      margin-right: 8px;
+
       img {
         width: 30px;
         height: 30px;
@@ -63,15 +79,16 @@
       flex-grow: 1;
 
       .header {
-        font-size: 14px;
+        font-size: 12px;
         line-height: 20px;
-        color: #ffffff;
+        color: #e0e0e0;
         padding-top: 0px;
       }
 
       .body {
         width: 100%;
         max-lines: 1;
+        color: #eee;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
@@ -80,11 +97,30 @@
 
     .right-side {
       width: 80px;
+      height: 30px;
+      padding: 10px 0px;
       text-align: end;
 
       button {
         width: 30px;
         height: 30px;
+        color: #ffffff;
+        border: 1px solid #1c2027;
+        background-color: #1c2027;
+
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+
+        &:hover {
+          border-color: #ff4081;
+          color: #ff4081;
+        }
+        .icon {
+          width: 16px;
+          height: auto;
+          font-size: 12px;
+          font-weight: 600;
+        }
       }
       flex-shrink: 0;
     }

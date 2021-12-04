@@ -213,7 +213,7 @@
 
   @media screen and (max-width: 768px) {
     .ph-img {
-      width: 75px;
+      width: calc(25% - 11px);
       height: 75px;
       background: #1c2027;
       overflow: hidden;

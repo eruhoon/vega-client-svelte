@@ -79,6 +79,17 @@
         width: 50px;
         height: 50px;
         padding: 0;
+        color: #ffffff;
+        border: 1px solid #1c2027;
+        background-color: #1c2027;
+
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+
+        &:hover {
+          border-color: #ff4081;
+          color: #ff4081;
+        }
 
         i {
           text-align: center;

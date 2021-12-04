@@ -1,12 +1,21 @@
 <script lang="ts">
+  import InlineSVG from 'svelte-inline-svg';
   import { RegisterStreamCommand } from '../../model/stream/RegisterStreamCommand';
   import { StageStreamCommand } from '../../model/stream/StageStreamCommand';
   import { ToastService } from '../../model/toast/ToastService';
   import { WindowService } from '../../model/window/WindowService';
 
   const platforms = [
-    { id: 'twitch', name: '트위치' },
-    { id: 'afreeca', name: '아프리카' },
+    {
+      id: 'twitch',
+      name: '트위치',
+      icon: 'twitch',
+    },
+    {
+      id: 'afreeca',
+      name: '아프리카',
+      icon: 'afreecatv',
+    },
   ];
   let currentPlatform: Platform;
   let stagedStream = null;
@@ -57,11 +66,18 @@
     }
   }
 
+  export const close = () => {
+    WindowService.closeModal();
+  };
+
   type Platform = { id: string; name: string };
 </script>
 
 <div class="modal">
   <div class="title">
+    <div class="icon">
+      <i class="fas fa-satellite-dish" />
+    </div>
     <h3>스트리머 추가</h3>
   </div>
   {#if stagedStream === null}
@@ -76,6 +92,9 @@
                   name="live-corp-select"
                   checked={platform === currentPlatform}
                 />
+                <div class="icon">
+                  <InlineSVG src="/assets/image/stream/{platform.icon}.svg" />
+                </div>
               </div>
             </div>
             <p>{platform.name}</p>
@@ -127,6 +146,9 @@
       </button>
     </div>
   {/if}
+  <button class="modal-close" on:click={close}>
+    <i class="fas fa-times" />
+  </button>
 </div>
 
 <style lang="scss">
@@ -147,8 +169,8 @@
     height: auto;
     max-width: 90%;
     max-height: 90%;
-    background: #ffffff;
-    border-radius: 5px;
+    background: #2a2f38;
+    border-radius: 2px;
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08), 0 0 15px 0 rgba(0, 0, 0, 0.02),
       0 0 20px 4px rgba(0, 0, 0, 0.06);
 
@@ -158,13 +180,31 @@
     }
 
     .title {
-      width: calc(100% - 20px);
-      font-size: 24px;
-      color: #616161;
-      text-align: left;
-      padding: 10px;
-      padding-top: 15px;
-      border-bottom: 1px solid #e3e3e3;
+      width: calc(100% - 30px);
+      height: auto;
+      padding: 5px 15px;
+      display: flex;
+      margin-bottom: 15px;
+      .icon {
+        width: 46px;
+        height: 46px;
+        color: #ffffff;
+        margin: 0%;
+        text-align: center;
+        i {
+          font-size: 24px;
+          padding: 11px 11px;
+        }
+      }
+      h3 {
+        margin: 0%;
+        width: auto;
+        color: #ffffff;
+        padding: 14px 10px;
+        padding-right: 0px;
+        font-size: 20px;
+        height: auto;
+      }
     }
     .live-corp-list {
       width: calc(100% - 20px);
@@ -181,20 +221,28 @@
 
         .live-corp-img {
           width: 100%;
-          background: #e0e0e0;
+          height: 80px;
+          background: #1c2027;
           border-radius: 5px;
           overflow: hidden;
           text-align: center;
           position: relative;
+          border: 1px solid #1c2027;
 
           padding: 10px 0px;
 
           margin-bottom: 5px;
 
-          img {
+          .icon {
             width: 60px;
-            height: auto;
+            height: 60px;
+            margin-bottom: 15px;
+            position: absolute;
+            top: 15px;
+            left: -50px;
+            fill: #ffffff;
           }
+
           .checks {
             width: 21px;
             height: 21px;
@@ -205,7 +253,7 @@
           }
 
           &:hover {
-            background-color: #757575;
+            border-color: #ff4081;
           }
           &:active {
             background-color: #ff4081;
@@ -214,18 +262,19 @@
 
         p {
           font-size: 14px;
-          color: #616161;
+          color: #ffffff;
         }
       }
     }
     .live-stream-search {
       width: calc(100% - 20px);
       padding-bottom: 5px;
+      padding-top: 10px;
 
       label {
         width: 100%;
         font-size: 14px;
-        color: #757575;
+        color: #ffffff;
         padding-left: 10px;
 
         p {
@@ -240,9 +289,10 @@
         font-size: 16px;
         margin: 0 10px;
         padding: 0px 10px;
-        color: #424242;
+        color: #ffffff;
 
-        border: 1px solid #eeeeee;
+        background-color: #1c2027;
+        border: 1px solid #1c2027;
         border-radius: 5px;
         overflow: hidden;
       }
@@ -259,7 +309,7 @@
       margin-bottom: 15px;
 
       margin-top: 15px;
-      border-radius: 5px;
+      border-radius: 2px;
       color: #ffffff;
       background-color: #ff4081;
       border: 1px solid #ff4081;
@@ -291,6 +341,10 @@
 
       display: inline-block;
       margin: 0px 10px;
+
+      &:first-child {
+        border-top: 0px;
+      }
 
       .error-search {
         width: 100%;
@@ -336,11 +390,11 @@
 
           h3 {
             padding-top: 15px;
-            color: #424242;
+            color: #ffffff;
           }
           p {
             font-size: 12px;
-            color: #757575;
+            color: #ffffff;
           }
         }
       }
@@ -377,30 +431,28 @@
     }
 
     .modal-close {
-      width: 40px;
-      height: 40px;
+      width: 58px;
+      height: 58px;
       position: absolute;
-      top: calc(0% - 15px);
-      right: calc(0% - 15px);
+      top: 0%;
+      right: 0%;
 
-      background-color: #fafafa;
-      border: 1px solid #f5f5f5;
-      border-radius: 50%;
-      box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
-        0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-
+      background-color: #1f2226;
+      border: 1px solid #1f2226;
+      border-radius: 0%;
       text-align: center;
 
       i {
         font-size: 24px;
         line-height: 42px;
         padding-left: 2px;
-        color: #424242;
+        color: #ffffff;
       }
 
       &:hover {
         background-color: #ff4081;
         border: 1px solid #ff4081;
+
         i {
           color: #ffffff;
         }
@@ -409,6 +461,7 @@
       &:active {
         background-color: #e91e63;
         border-color: #e91e63;
+
         i {
           color: #ffffff;
         }

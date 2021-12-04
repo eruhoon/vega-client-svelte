@@ -35,14 +35,24 @@
 </script>
 
 <div bind:this={scroller} class="photo-main-content" on:scroll={onScroll}>
-  <div class="ph-search">
-    <!-- svelte-ignore a11y-label-has-associated-control -->
-    <label>검색</label>
-    <div class="ph-search-input">
-      <input type="text" on:keyup={onKeyDown} bind:value={searchQuery} />
-      <spna class="icon">
-        <i class="fas fa-search" />
-      </spna>
+  <div class="ph-navbar">
+    <div class="ph-search">
+      <!-- svelte-ignore a11y-label-has-associated-control -->
+      <label>검색</label>
+      <div class="ph-search-input">
+        <input type="text" on:keyup={onKeyDown} bind:value={searchQuery} />
+        <spna class="icon">
+          <i class="fas fa-search" />
+        </spna>
+      </div>
+    </div>
+    <div class="ph-upload">
+      <button class="upload-btn">
+        <div class="icon">
+          <i class="fas fa-file-upload" />
+        </div>
+        <p>업로드</p>
+      </button>
     </div>
   </div>
   {#each photoSets as photoSet}
@@ -97,9 +107,61 @@
       -webkit-border-radius: 8px;
       border-radius: 8px;
     }
+    .ph-navbar {
+      width: 100%;
+      height: auto;
+      display: flex;
+    }
+    .ph-upload {
+      width: 50%;
+      height: 50px;
+      padding-top: 25px;
+      padding-bottom: 20px;
+
+      .upload-btn {
+        width: auto;
+        height: 50px;
+        padding: 7px 15px;
+        margin-right: 15px;
+        border-radius: 2px;
+
+        float: right;
+        outline: none;
+        color: #ffffff;
+        border: 1px solid #1c2027;
+        background-color: #1c2027;
+
+        line-height: 20px;
+        font-size: 14px;
+
+        display: flex;
+
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+
+        &:hover {
+          border-color: #ff4081;
+          color: #ff4081;
+        }
+
+        .icon {
+          width: 30px;
+          height: auto;
+          padding: 2px 0px;
+
+          font-size: 30px;
+        }
+        p {
+          width: auto;
+          height: auto;
+          padding-left: 7px;
+          padding-top: 8px;
+        }
+      }
+    }
 
     .ph-search {
-      width: 100%;
+      width: 50%;
       height: 50px;
       padding-top: 25px;
       padding-bottom: 20px;
@@ -118,7 +180,7 @@
       }
 
       .ph-search-input {
-        width: calc(50% - 30px);
+        width: calc(100% - 60px);
         height: 50px;
         float: left;
         position: relative;

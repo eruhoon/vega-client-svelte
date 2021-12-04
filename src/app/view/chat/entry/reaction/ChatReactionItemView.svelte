@@ -40,9 +40,10 @@
       span {
         color: white;
         padding: 5px;
-        border-radius: 10px;
+        border-radius: 2px;
         font-size: 12px;
         line-height: 20px;
+        background: #1c2027;
       }
     }
     &:hover {

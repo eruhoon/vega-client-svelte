@@ -183,6 +183,7 @@
           &.selected {
             background: #ff4081;
             border-color: #ff4081;
+            color: #ffffff !important;
           }
           &:hover {
             border-color: #ff4081;

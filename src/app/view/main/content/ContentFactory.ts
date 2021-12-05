@@ -29,6 +29,16 @@ export class ContentFactory {
           type: 'iframe',
           src: stream.url,
         };
+      case 'youtube':
+        return {
+          type: 'iframe',
+          src: stream.url,
+        };
+      default:
+        return {
+          type: 'iframe',
+          src: stream.url,
+        };
     }
   }
 }

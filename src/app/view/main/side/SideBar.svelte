@@ -15,6 +15,7 @@
   $: twitches = externals.filter((s) => s.platform === 'twitch');
   $: afreecas = externals.filter((s) => s.platform === 'afreeca');
   $: kakaotvs = externals.filter((s) => s.platform === 'kakaotv');
+  $: youtubes = externals.filter((s) => s.platform === 'youtube');
   $: favorites = externals.filter((it) => {
     const { platform, keyid: keyId } = it;
     return FavoriteService.isFavorite(platform, keyId);
@@ -71,6 +72,8 @@
     <SideBarStreamList title="아프리카" streams={afreecas} />
     <hr />
     <SideBarStreamList title="카카오TV" streams={kakaotvs} />
+    <hr />
+    <SideBarStreamList title="유튜브" streams={youtubes} />
   </div>
 </div>
 

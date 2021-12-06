@@ -1,5 +1,17 @@
+<script lang="ts">
+  import { createEventDispatcher } from 'svelte';
+
+  export let checked: boolean;
+
+  const dispatch = createEventDispatcher<{ valuechange: boolean }>();
+
+  function onChange() {
+    dispatch('valuechange', checked);
+  }
+</script>
+
 <label class="switch">
-  <input type="checkbox" />
+  <input type="checkbox" bind:checked on:change={onChange} />
   <span class="slider round" />
 </label>
 

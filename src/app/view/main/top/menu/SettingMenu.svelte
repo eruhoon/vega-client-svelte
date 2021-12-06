@@ -4,12 +4,14 @@
   import type { ModalType } from '../../../../model/window/ModalType';
   import { WindowService } from '../../../../model/window/WindowService';
   import { ProfileService } from '../../../../service/ProfileService';
+  import { ThemeService } from '../../../../service/ThemeService';
   import DefaultMenuItem from './DefaultSettingMenuItem.svelte';
   import SettingMenuPlatformIcon from './SettingMenuPlatformIcon.svelte';
   import SettingSwitch from './SettingSwitch.svelte';
   import UserSettingMenuItem from './UserSettingMenuItem.svelte';
 
   let platformId = 'local';
+  let darkModeChecked = false;
 
   const logout = () => {
     SessionService.setPrivateKey('');
@@ -21,7 +23,12 @@
 
   onMount(() => {
     ProfileService.platform.subscribe((it) => (platformId = it));
+    ThemeService.theme.subscribe((it) => (darkModeChecked = it === 'dark'));
   });
+
+  function onThemeValueChange({ detail: darkMode }: CustomEvent<boolean>) {
+    ThemeService.setTheme(darkMode ? 'dark' : 'default');
+  }
 </script>
 
 <div class="setting-list">
@@ -49,7 +56,11 @@
     icon="fas fa-donate"
   />
   <DefaultMenuItem name="테마" icon="fas fa-adjust">
-    <SettingSwitch slot="extra" />
+    <SettingSwitch
+      slot="extra"
+      checked={darkModeChecked}
+      on:valuechange={onThemeValueChange}
+    />
   </DefaultMenuItem>
   <DefaultMenuItem name="모바일 모드" icon="fas fa-mobile" />
   <DefaultMenuItem name="후원리스트" icon="fas fa-clipboard-list" />

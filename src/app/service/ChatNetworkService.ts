@@ -14,6 +14,7 @@ import { WebSocketModel } from '../model/socket/websocket/WebSocketModel';
 import { HashGenerator } from '../util/hash/HashGenerator';
 import { PushListService } from '../view/main/push/PushListService';
 import { ProfileService } from './ProfileService';
+import { SoundService } from './SoundService';
 import { UserListService } from './UserListService';
 
 class ChatNetworkServiceInit {
@@ -66,6 +67,7 @@ class ChatNetworkServiceInit {
             title: command.response.from.nickname,
             body: `"${command.response.from.nickname}"로 부터 알림이 왔어요.`,
           });
+          SoundService.playNotificationSound();
           break;
         case 'chat':
           ChatService.chats.update((prev) =>

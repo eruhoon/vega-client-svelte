@@ -46,6 +46,16 @@
           type: 'iframe',
           src: link,
         };
+      case 'youtube':
+        return {
+          type: 'iframe',
+          src: link,
+        };
+      default:
+        return {
+          type: 'iframe',
+          src: link,
+        };
     }
   }
 </script>

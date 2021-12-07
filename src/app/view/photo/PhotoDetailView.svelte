@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte/internal';
+  import { PhotoTagCommand } from '../../model/photo/command/PhotoTagCommand';
   import type { Photo } from '../../model/photo/Photo';
   import { PhotoContentService } from '../../model/photo/PhotoContentService';
   import { DateUtils } from '../../util/date/DateUtils';
@@ -7,11 +8,17 @@
   import { PhotoShareCommand } from './PhotoShareCommand';
 
   const adultFilter = new PhotoAdultFilterCommand();
+  const tagCommand = new PhotoTagCommand();
   const share = new PhotoShareCommand();
 
   export let photo: Photo;
   let container: HTMLDivElement;
   let editTagMode = false;
+  let tagValue = '';
+
+  onMount(() => {
+    tagValue = photo.tags.join(',');
+  });
 
   const getMimeType = (raw: string) => {
     return raw?.split('image/')[1].toLocaleUpperCase();
@@ -37,7 +44,17 @@
     PhotoContentService.setCurrentPhoto(null);
   }
 
-  function onTagSubmit() {}
+  function onTagKeyDown({ key }: KeyboardEvent) {
+    if (key === 'Enter') {
+      onTagSubmit();
+    }
+  }
+
+  function onTagSubmit() {
+    tagCommand.execute(photo.hash, tagValue);
+    editTagMode = false;
+    photo.tags = tagValue.split(',');
+  }
 
   async function onAdultClick() {
     const nextAdult = !adult;
@@ -98,8 +115,8 @@
           <input
             type="text"
             class="tag-input"
-            value={photo.tags.join(',')}
-            on:keydown={onTagSubmit}
+            bind:value={tagValue}
+            on:keydown={onTagKeyDown}
           />
           <span class="material-icons" on:click={onTagSubmit}>send</span>
         </div>

@@ -1,18 +1,38 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { ClipboardImageParser } from '../../model/clipboard/ClipboardImageParser';
   import type { Photo } from '../../model/photo/Photo';
   import PhotoEntry from './PhotoEntry.svelte';
   import { PhotoService } from './PhotoService';
+  import { PhotoUploadService } from './PhotoUploadService';
 
+  const imageParser = new ClipboardImageParser();
   let searchQuery: string;
   let photos: Photo[] = [];
   let photoSets = [{ dateString: '' }];
   let scroller: HTMLDivElement;
   let timer = -1;
+  let uploadFiles: FileList;
+  let uploading: boolean = false;
+
+  let uploadingFile: File | null = null;
+  let uploadingFilePath: string | null = null;
+  $: uploadingFileSize = uploadingFile
+    ? `${Math.round((uploadingFile.size / 1024) * 10) / 10} KB`
+    : '- KB';
+  $: uploadingFileType = uploadingFile
+    ? uploadingFile.type.split('/')[1].toUpperCase()
+    : 'PNG';
 
   onMount(() => {
     PhotoService.photos.subscribe((it) => (photos = it));
     PhotoService.init('');
+
+    PhotoUploadService.uploading.subscribe((it) => (uploading = it));
+    PhotoUploadService.uploadingBase64.subscribe(
+      (it) => (uploadingFilePath = it)
+    );
+    PhotoUploadService.uplaodingFile.subscribe((it) => (uploadingFile = it));
   });
 
   function onScroll() {
@@ -32,9 +52,36 @@
       }, 600)
     );
   }
+
+  function onUploadFileStaged() {}
+
+  function onPaste(event: ClipboardEvent) {
+    const imageFile = imageParser.parseImageFile(event.clipboardData);
+    uploadImageFile(imageFile);
+  }
+
+  function onDrop(event: DragEvent) {
+    const imageFile = imageParser.parseImageFile(event.dataTransfer);
+    uploadImageFile(imageFile);
+  }
+
+  function uploadImageFile(imageFile: File | null): void {
+    if (!imageFile) {
+      console.error('null image');
+      return;
+    }
+    console.log('url ', imageFile);
+    PhotoUploadService.addPhotoByFile(imageFile);
+  }
 </script>
 
-<div bind:this={scroller} class="photo-main-content" on:scroll={onScroll}>
+<div
+  bind:this={scroller}
+  class="photo-main-content"
+  on:scroll={onScroll}
+  on:paste={onPaste}
+  on:drop={onDrop}
+>
   <div class="ph-navbar">
     <div class="ph-search">
       <!-- svelte-ignore a11y-label-has-associated-control -->
@@ -72,6 +119,25 @@
     </div>
   {/each}
 </div>
+<form enctype="multipart/form-data">
+  <input type="file" on:change={onUploadFileStaged} bind:files={uploadFiles} />
+</form>
+{#if uploading}
+  <div class="photo-upload-view">
+    <div class="photo-img-box">
+      <!-- svelte-ignore a11y-missing-attribute -->
+      <img src={uploadingFilePath} />
+    </div>
+    <div class="photo-info-box">
+      <h4>{uploadingFile?.name}</h4>
+      <p>{uploadingFileSize} / {uploadingFileType}</p>
+    </div>
+    <div class="photo-state">
+      <!-- svelte-ignore a11y-missing-attribute -->
+      <img src="/assets/image/photo/loader-large.gif" />
+    </div>
+  </div>
+{/if}
 
 <style lang="scss">
   .photo-main-content {
@@ -344,6 +410,81 @@
           margin: 0px;
           padding: 0px;
         }
+      }
+    }
+  }
+
+  .photo-upload-view {
+    width: 350px;
+    height: 50px;
+    padding: 5px;
+    position: fixed;
+    bottom: 80px;
+    right: 10px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+
+    .photo-img-box {
+      width: 50px;
+      height: 50px;
+      text-align: right;
+      float: left;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+    .photo-info-box {
+      width: calc(100% - 120px);
+      height: 30px;
+      padding: 10px;
+      float: left;
+
+      * {
+        padding: 0%;
+        margin: 0%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      h4 {
+        width: 100%;
+        height: auto;
+        font-size: 14px;
+        line-height: 16px;
+        font-weight: normal;
+        color: #424242;
+      }
+      p {
+        width: 100%;
+        height: auto;
+        font-size: 12px;
+        line-height: 14px;
+        font-weight: lighter;
+        color: #616161;
+      }
+    }
+    .photo-state {
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      float: left;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+
+        // display: none;
+      }
+      i {
+        font-size: 32px;
+        line-height: 50px;
+
+        color: #43a047;
       }
     }
   }

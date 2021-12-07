@@ -191,7 +191,6 @@
     main {
       height: 100%;
       overflow: auto;
-      padding-bottom: 40px;
 
       &::-webkit-scrollbar {
         width: 5px;

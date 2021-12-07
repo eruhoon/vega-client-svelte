@@ -188,6 +188,47 @@
     }
   }
   @media all and (max-width: 768px) {
+    main {
+      height: 100%;
+      overflow: auto;
+      padding-bottom: 40px;
+
+      &::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+        border: 3px solid;
+      }
+      &::-webkit-scrollbar-button:start:decrement,
+      &::-webkit-scrollbar-button:end:increment {
+        display: block;
+        height: 5px;
+      }
+      &::-webkit-scrollbar-track {
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+      }
+      &::-webkit-scrollbar-thumb {
+        height: 50px;
+        width: 50px;
+        -webkit-border-radius: 8px;
+        border-radius: 8px;
+      }
+
+      // 컬러셋
+      &::-webkit-scrollbar {
+        border-color: #2a2f38;
+      }
+      &::-webkit-scrollbar-button:start:decrement,
+      &::-webkit-scrollbar-button:end:increment {
+        background: #2a2f38;
+      }
+      &::-webkit-scrollbar-track {
+        background: #2a2f38;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #ff4081;
+      }
+    }
   }
 
   // 일반적 환경 (PC환경 접속시 처리 되는 SCSS)

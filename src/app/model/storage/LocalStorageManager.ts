@@ -1,6 +1,7 @@
 const TRUE = '1';
 const FALSE = '0';
 const DEFAULT_CHAT_VIEW_OFFSET = 300;
+const DEFAULT_VOLUME = 50;
 
 export class LocalStorageManager {
   #KEY_TIMESTAMP = 'vega.timestamp';
@@ -9,6 +10,7 @@ export class LocalStorageManager {
   #KEY_ENABLE_DATASAVE = 'vega.enable_datasave';
   #KEY_FAVORITE_STREAMS = 'vega.favorite_stream';
   #KEY_CHAT_VIEW_OFFSET = 'vega.chat_view_offset';
+  #KEY_VOLUME = 'vega.volume';
 
   get timestamp(): boolean {
     return localStorage.getItem(this.#KEY_TIMESTAMP) === TRUE;
@@ -57,5 +59,14 @@ export class LocalStorageManager {
 
   set chatViewOffset(value: number) {
     localStorage.setItem(this.#KEY_CHAT_VIEW_OFFSET, value.toString());
+  }
+
+  get volume(): number {
+    const raw = localStorage.getItem(this.#KEY_VOLUME);
+    return raw ? parseInt(raw) : DEFAULT_VOLUME;
+  }
+
+  set volume(value: number) {
+    localStorage.setItem(this.#KEY_VOLUME, value.toString());
   }
 }

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onDestroy, onMount } from 'svelte';
+  import { OptionService } from '../../../model/option/OptionService';
   import type FlvJs from './flv';
   import VideoInterface from './video/VideoInterface.svelte';
 
@@ -32,6 +33,7 @@
   };
 
   onMount(() => {
+    OptionService.volume.subscribe((it) => (volume = it));
     flvPlayer = mountPlayer(videoElement, url);
     flvPlayer.play();
   });
@@ -68,6 +70,11 @@
       videoElement.pause();
     }
   };
+
+  function onVolumeChange() {
+    const volume = Math.round(videoElement.volume * 100);
+    OptionService.setVolume(volume);
+  }
 </script>
 
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
@@ -84,6 +91,7 @@
     bind:paused
     bind:muted
     bind:volume={videoVolume}
+    on:volumechange={onVolumeChange}
   />
 
   {#if interfaceShow}

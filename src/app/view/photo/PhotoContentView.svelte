@@ -11,6 +11,5 @@
 
 {#if currentPhoto}
   <PhotoDetailView photo={currentPhoto} />
-{:else}
-  <PhotoMainView />
 {/if}
+<PhotoMainView />

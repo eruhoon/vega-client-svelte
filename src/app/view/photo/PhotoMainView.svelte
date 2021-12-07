@@ -64,7 +64,7 @@
 
 <div
   bind:this={scroller}
-  class="photo-main-content"
+  class="container"
   on:scroll={onScroll}
   on:paste={onPaste}
   on:dragover|preventDefault
@@ -106,7 +106,7 @@
 {/if}
 
 <style lang="scss">
-  .photo-main-content {
+  .container {
     width: auto;
     height: 100%;
     margin: 0%;
@@ -172,7 +172,7 @@
   }
 
   // 컬러 스크롤링 컬러셋
-  .photo-main-content {
+  .container {
     background-color: #2a2f38;
     scrollbar-color: #ff4081 #2a2f38;
     scrollbar-width: thin;
@@ -192,7 +192,7 @@
   }
 
   @media screen and (max-width: 768px) {
-    .photo-main-content {
+    .container {
       width: calc(100% - 10px);
       height: 100%;
       margin: 0%;

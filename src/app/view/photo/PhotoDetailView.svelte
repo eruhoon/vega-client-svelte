@@ -15,9 +15,11 @@
   let container: HTMLDivElement;
   let editTagMode = false;
   let tagValue = '';
+  let adult: boolean = false;
 
   onMount(() => {
     tagValue = photo.tags.join(',');
+    adult = photo.isForAdult;
   });
 
   const getMimeType = (raw: string) => {
@@ -61,6 +63,7 @@
     const result = await adultFilter.execute(photo.hash, nextAdult);
     if (result) {
       adult = nextAdult;
+      photo.isForAdult = nextAdult;
     }
   }
 
@@ -77,7 +80,6 @@
   $: mimeType = getMimeType(photo.mimeType);
   $: dateText = getDateText(photo.regDate);
   $: timeText = getTimeText(photo.regDate);
-  $: adult = photo.isForAdult;
 
   onMount(() => {
     container.focus();

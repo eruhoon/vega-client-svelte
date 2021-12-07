@@ -56,7 +56,6 @@
       console.error('null image');
       return;
     }
-    console.log('url ', imageFile);
     const photo = await PhotoUploadService.uploadByFile(imageFile);
     PhotoService.addPhoto(photo);
   }

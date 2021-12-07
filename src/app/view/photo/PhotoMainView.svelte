@@ -78,7 +78,8 @@
   class="photo-main-content"
   on:scroll={onScroll}
   on:paste={onPaste}
-  on:drop={onDrop}
+  on:dragover|preventDefault
+  on:drop|preventDefault={onDrop}
 >
   <div class="ph-navbar">
     <div class="ph-search">

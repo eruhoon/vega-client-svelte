@@ -99,24 +99,5 @@
         color: #616161;
       }
     }
-    .photo-state {
-      width: 50px;
-      height: 50px;
-      text-align: center;
-      float: left;
-
-      img {
-        max-width: 100%;
-        max-height: 100%;
-
-        // display: none;
-      }
-      i {
-        font-size: 32px;
-        line-height: 50px;
-
-        color: #43a047;
-      }
-    }
   }
 </style>

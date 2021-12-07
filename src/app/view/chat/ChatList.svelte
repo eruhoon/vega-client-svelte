@@ -72,7 +72,7 @@
     scrollbar-width: thin;
 
     &::-webkit-scrollbar {
-      width: 5px;
+      width: 10px;
       height: 5px;
       border: 3px solid;
     }

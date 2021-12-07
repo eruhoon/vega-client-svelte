@@ -1,5 +1,6 @@
 import { get, Readable, writable } from 'svelte/store';
 import { PhotoUploadCommand } from '../../model/photo/command/PhotoUploadCommand';
+import type { Photo } from '../../model/photo/Photo';
 
 class PhotoUploadServiceInit {
   #uploading = writable(false);
@@ -14,17 +15,30 @@ class PhotoUploadServiceInit {
     return this.#uploadingFile;
   }
 
-  async addPhotoByFile(imageFile: File) {
+  async uploadByFile(imageFile: File): Promise<Photo> {
     if (get(this.#uploading)) {
       console.error("it's already uploading");
       return;
     }
     this.#uploading.set(true);
     this.#uploadingFile.set(imageFile);
-    const result = await this.#uploadCommand.execute(imageFile);
-    console.log(result);
-    this.#uploading.set(false);
-    this.#uploadingFile.set(null);
+    try {
+      const result = await this.#uploadCommand.execute(imageFile);
+      return {
+        hash: result.hash,
+        height: result.height,
+        isForAdult: result.adult,
+        mimeType: result.mimeType,
+        regDate: new Date(result.regDate),
+        tags: result.tag,
+        url: result.url,
+        viewer: 0,
+        width: result.width,
+      };
+    } finally {
+      this.#uploading.set(false);
+      this.#uploadingFile.set(null);
+    }
   }
 }
 

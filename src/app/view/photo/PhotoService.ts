@@ -45,6 +45,10 @@ class PhotoServiceInit {
 
     this.#loading = false;
   }
+
+  addPhoto(photo: Photo) {
+    this.#photos.update((it) => [photo, ...it]);
+  }
 }
 
 export const PhotoService = new PhotoServiceInit();

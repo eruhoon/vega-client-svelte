@@ -62,13 +62,14 @@
     uploadImageFile(imageFile);
   }
 
-  function uploadImageFile(imageFile: File | null): void {
+  async function uploadImageFile(imageFile: File | null) {
     if (!imageFile) {
       console.error('null image');
       return;
     }
     console.log('url ', imageFile);
-    PhotoUploadService.addPhotoByFile(imageFile);
+    const photo = await PhotoUploadService.uploadByFile(imageFile);
+    PhotoService.addPhoto(photo);
   }
 </script>
 

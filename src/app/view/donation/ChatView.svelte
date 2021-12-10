@@ -110,10 +110,11 @@
             </div>
           </div>
           <hr />
+          <!--
           <div class="color-group">
             <h3 class="color-title">배경 색상</h3>
             <label class="color-selecter">
-              <!--<input bind:value={backColor.rgba} />
+              <input bind:value={backColor.rgba} />
               <a
                 on:click={() => colorSelectAcitve("back")}
                 style="background-color:{backColor.rgba}"
@@ -127,25 +128,27 @@
                     startColor={"#202225"}
                   />
                 </div>
-              {/if}-->
+              {/if}
             </label>
           </div>
-          <hr />
+          <hr />-->
+          <!--
           <div class="select-group">
             <h3 class="select-title">글자 폰트</h3>
             <div class="selecter">
-              <!--<Select
+              <Select
                 items={fontItems}
                 selectedValue={fontSelected}
                 {groupBy}
-              />-->
+              />
             </div>
           </div>
-          <hr />
+          <hr />-->
+          <!--
           <div class="color-group">
             <h3 class="color-title">타이틀 폰트 색상</h3>
             <label class="color-selecter">
-              <!--<input bind:value={titleFontColor.rgba} />
+              <input bind:value={titleFontColor.rgba} />
               <a
                 on:click={() => colorSelectAcitve("title")}
                 style="background-color:{titleFontColor.rgba}"
@@ -159,10 +162,11 @@
                     startColor={"#202225"}
                   />
                 </div>
-              {/if}-->
+              {/if}
             </label>
           </div>
-          <hr />
+          <hr />-->
+          <!--
           <div class="input-group">
             <h3 class="input-title">타이틀 폰트 크기</h3>
             <div class="input-box">
@@ -173,7 +177,7 @@
           <div class="color-group">
             <h3 class="color-title">내용 폰트 색상</h3>
             <label class="color-selecter">
-              <!--<input bind:value={textFontColor.rgba} />
+              <input bind:value={textFontColor.rgba} />
               <a
                 on:click={() => colorSelectAcitve("text")}
                 style="background-color:{textFontColor.rgba}"
@@ -187,7 +191,7 @@
                     startColor={"#202225"}
                   />
                 </div>
-              {/if}-->
+              {/if}
             </label>
           </div>
           <hr />
@@ -196,7 +200,7 @@
             <div class="input-box">
               <input bind:value={chatSet.styleTextSize} />
             </div>
-          </div>
+          </div>-->
         </div>
       </div>
     </div>

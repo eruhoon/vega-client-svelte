@@ -31,6 +31,7 @@
             <span class="slider round" />
           </label>
         </div>
+        <!--
         <hr />
         <div class="btn-group">
           <h3>마캐코인 사용하기</h3>
@@ -38,7 +39,7 @@
             <input type="checkbox" bind:checked={videoSet.CoinUse} />
             <span class="slider round" />
           </label>
-        </div>
+        </div>-->
       </div>
     </div>
     <div class="components">
@@ -46,6 +47,13 @@
         <h1>후원 영상 설정 / <small> Support Video System</small></h1>
       </div>
       <div class="card">
+        <div class="input-group">
+          <h3 class="input-title">영상 길이 제한</h3>
+          <div class="input-box">
+            <input bind:value={videoSet.ttsTextCount} />
+          </div>
+        </div>
+        <hr />
         <!--<div class="input-group">
             <h3 class="input-title">알림 효과</h3>
             <input
@@ -96,17 +104,19 @@
           </div>
         </div>
         <hr />
+        <!--
         <div class="select-group">
           <h3 class="select-title">알림 효과음</h3>
           <div class="selecter">
-            <!--<Select
+            <Select
                 items={alarmItems}
                 selectedValue={videoSet.allim_sound}
                 on:select={allimSoundSelect}
-              />-->
+              />
           </div>
-        </div>
+        </div>-->
       </div>
+      <!--
       <div class="components">
         <div class="title">
           <h1>시스템 텍스트 / <small> System Text</small></h1>
@@ -122,15 +132,15 @@
           <div class="select-group">
             <h3 class="select-title">글자 폰트</h3>
             <div class="selecter">
-              <!--<Select
+              <Select
                   items={fontItems}
                   selectedValue={fontSelected}
                   {groupBy}
-                />-->
+                />
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>
 </article>

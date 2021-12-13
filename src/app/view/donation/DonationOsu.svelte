@@ -25,6 +25,7 @@
             <span class="slider round" />
           </label>
         </div>
+        <!--
         <hr />
         <div class="btn-group">
           <h3>마캐코인 사용하기</h3>
@@ -32,7 +33,7 @@
             <input type="checkbox" bind:checked={osuMapSet.CoinUse} />
             <span class="slider round" />
           </label>
-        </div>
+        </div>-->
       </div>
     </div>
     <div class="components">
@@ -52,16 +53,17 @@
           <input bind:value={osuMapSet.allim_effect} />
         </div>
         <hr />-->
+        <!--
         <div class="select-group">
           <h3 class="select-title">알림 효과음</h3>
           <div class="selecter">
-            <!--<Select
+            <Select
               items={alarmItems}
               selectedValue={osuMapSet.allim_sound}
               on:select={allimSoundSelect}
-            />-->
+            />
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>

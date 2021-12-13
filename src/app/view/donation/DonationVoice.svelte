@@ -35,6 +35,7 @@
             <span class="slider round" />
           </label>
         </div>
+        <!--
         <hr />
         <div class="btn-group">
           <h3>마캐코인 사용하기</h3>
@@ -50,7 +51,7 @@
             <input type="checkbox" bind:checked={voiceSet.customImgUse} />
             <span class="slider round" />
           </label>
-        </div>
+        </div>-->
       </div>
     </div>
     <div class="components">
@@ -151,19 +152,21 @@
             -->
           </div>
         </div>
+        <!--
         <hr />
         <div class="select-group">
           <h3 class="select-title">알림 효과음</h3>
           <div class="selecter">
-            <!--<Select
+            <Select
               items={alarmItems}
               selectedValue={voiceSet.allim_sound}
               on:select={allimSoundSelect}
-            />-->
+            />
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
+    <!--
     <div class="components">
       <div class="title">
         <h1>시스템 텍스트 / <small> System Text</small></h1>
@@ -187,7 +190,7 @@
         <div class="select-group">
           <h3 class="select-title">글자 폰트</h3>
           <div class="selecter">
-            <!--<Select items={fontItems} selectedValue={fontSelected} {groupBy} />-->
+            <Select items={fontItems} selectedValue={fontSelected} {groupBy} />
           </div>
         </div>
         <hr />
@@ -201,7 +204,7 @@
         <div class="color-group">
           <h3 class="color-title">시스템 텍스트 색상</h3>
           <label class="color-selecter">
-            <!--<input bind:value={sysTextColor.rgba} />
+            <input bind:value={sysTextColor.rgba} />
             <a
               on:click={() => colorSelectAcitve('sys')}
               style="background-color:{sysTextColor.rgba}"
@@ -215,10 +218,10 @@
                   startColor={'#202225'}
                 />
               </div>
-            {/if}-->
+            {/if}
           </label>
         </div>
-        <!--<hr />
+        <hr />
         <div class="color-group">
           <h3 class="color-title">닉네임, 금액 색상</h3>
           <label class="color-selecter">
@@ -238,9 +241,9 @@
               </div>
             {/if}
           </label>
-        </div>-->
+        </div>
       </div>
-    </div>
+    </div>-->
   </div>
 </article>
 

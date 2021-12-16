@@ -1,11 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-
-  import { ChatClipboardService } from '../../../model/chat/clipboard/ChatClipboardService';
   import { SessionService } from '../../../model/session/SessionService';
   import { SocketService } from '../../../model/socket/SocketService';
-
   import { WindowService } from '../../../model/window/WindowService';
+  import { ChatClipboardService } from '../../../service/ChatClipboardService';
 
   let root: HTMLElement;
   let currentImage: string;

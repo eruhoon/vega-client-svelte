@@ -1,6 +1,5 @@
 <script lang="ts">
   import { ChatService } from '../../model/chat/ChatService';
-  import { ChatClipboardService } from '../../model/chat/clipboard/ChatClipboardService';
   import { ClipboardManager } from '../../model/clipboard/ClipboardManager';
   import { SessionService } from '../../model/session/SessionService';
   import { SocketService } from '../../model/socket/SocketService';

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { ChatHistoryManager } from '../../model/chat/history/ChatHistoryList';
   import { ClipboardManager } from '../../model/clipboard/ClipboardManager';
   import { ChatClipboardService } from '../../service/ChatClipboardService';
   import { ChatService } from '../../service/ChatService';
@@ -7,6 +8,7 @@
   import { WindowService } from '../../service/WindowService';
 
   const clipboardManager = new ClipboardManager();
+  const chatHistories = new ChatHistoryManager();
   let imageInput: HTMLInputElement;
   let message: string = '';
   let userListShow = false;
@@ -47,14 +49,35 @@
 
   function onKeyPress(e: KeyboardEvent) {
     const { key } = e;
+    console.log(key);
     if (key === 'Enter' && message.trim().length !== 0) {
       const privateKey = SessionService.getPrivateKey();
       if (!privateKey) {
         return;
       }
       SocketService.chat?.execute(privateKey, 'chat', message);
+      chatHistories.addHistory(message);
       message = '';
       ChatService.requestScrollDown(true);
+      chatHistories.resetIndex();
+    }
+  }
+
+  function onKeyDown(e: KeyboardEvent) {
+    const { key } = e;
+    switch (key) {
+      case 'ArrowUp':
+        e.preventDefault();
+        message = chatHistories.getPrev();
+        console.log(key);
+        return false;
+      case 'ArrowDown':
+        e.preventDefault();
+        message = chatHistories.getNext();
+        console.log(key);
+        return false;
+      default:
+        return true;
     }
   }
 </script>
@@ -93,6 +116,7 @@
     class="input-box"
     bind:value={message}
     on:keypress={onKeyPress}
+    on:keydown={onKeyDown}
   />
   <input
     type="file"

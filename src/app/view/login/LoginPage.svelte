@@ -65,9 +65,11 @@
       </div>
       <hr />
       <div class="add-btn">
+        <!-- svelte-ignore a11y-missing-attribute -->
         <a on:click={(_) => (modal = 'join')}>
           <p>회원가입</p>
         </a>
+        <!-- svelte-ignore a11y-invalid-attribute -->
         <a href="#">
           <p>비밀번호찾기</p>
         </a>

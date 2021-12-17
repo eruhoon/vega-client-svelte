@@ -3,7 +3,7 @@ export class ChatSender {
   readonly nickname: string;
   readonly type: ChatSenderType;
 
-  constructor(icon: string, nickname: string, type) {
+  constructor(icon: string, nickname: string, type: ChatSenderType) {
     this.icon = icon;
     this.nickname = nickname;
     this.type = type;

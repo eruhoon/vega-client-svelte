@@ -1,11 +1,11 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { FavoriteService } from '../../../../model/favorite/FavoriteService';
   import { SocketShareStreamCommand } from '../../../../model/socket/command/SocketShareStreamCommand';
   import { StreamEmbedLinkUtils } from '../../../../model/stream/StreamEmbedLinkUtils';
   import type { StreamInfo } from '../../../../model/stream/StreamInfo';
-  import { ToastService } from '../../../../model/toast/ToastService';
-  import { WindowService } from '../../../../model/window/WindowService';
+  import { FavoriteService } from '../../../../service/FavoriteService';
+  import { ToastService } from '../../../../service/ToastService';
+  import { WindowService } from '../../../../service/WindowService';
   import { MobileUtils } from '../../../../util/mobile/MobileUtils';
   import { ContentFactory } from '../../content/ContentFactory';
   import DropDownEntry from './entry/DropDownEntry.svelte';

@@ -2,7 +2,7 @@
   import { SocketShareStreamCommand } from '../../model/socket/command/SocketShareStreamCommand';
   import { StreamEmbedLinkUtils } from '../../model/stream/StreamEmbedLinkUtils';
   import type { StreamInfo } from '../../model/stream/StreamInfo';
-  import { WindowService } from '../../model/window/WindowService';
+  import { WindowService } from '../../service/WindowService';
   import { ContentFactory } from '../main/content/ContentFactory';
 
   export let stream: StreamInfo = {

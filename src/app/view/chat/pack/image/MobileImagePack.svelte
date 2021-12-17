@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { ChatService } from '../../../../model/chat/ChatService';
-  import { OptionService } from '../../../../model/option/OptionService';
-  import { WindowService } from '../../../../model/window/WindowService';
+  import { ChatService } from '../../../../service/ChatService';
+  import { OptionService } from '../../../../service/OptionService';
+  import { WindowService } from '../../../../service/WindowService';
 
   export let body = '';
   let dataSaveMode = false;

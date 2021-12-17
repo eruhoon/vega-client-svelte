@@ -1,4 +1,3 @@
-import { ChatService } from '../model/chat/ChatService';
 import { ChatAdapter } from '../model/network/chat/ChatAdapter';
 import { SocketChatCommand } from '../model/socket/command/SocketChatCommand';
 import { SocketLoginCommand } from '../model/socket/command/SocketLoginCommand';
@@ -9,10 +8,11 @@ import type {
   SocketCommand,
   SocketModel,
 } from '../model/socket/common/SocketModel';
-import { SocketService } from '../model/socket/SocketService';
+import { SocketService } from './SocketService';
 import { WebSocketModel } from '../model/socket/websocket/WebSocketModel';
 import { HashGenerator } from '../util/hash/HashGenerator';
 import { PushListService } from '../view/main/push/PushListService';
+import { ChatService } from './ChatService';
 import { ProfileService } from './ProfileService';
 import { SoundService } from './SoundService';
 import { UserListService } from './UserListService';

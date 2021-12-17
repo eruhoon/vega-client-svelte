@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { Photo } from '../../model/photo/Photo';
-  import { PhotoContentService } from '../../model/photo/PhotoContentService';
-
+  import { PhotoContentService } from '../../service/PhotoContentService';
   import PhotoDetailView from './PhotoDetailView.svelte';
   import PhotoMainView from './PhotoMainView.svelte';
 

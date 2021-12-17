@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onDestroy, onMount } from 'svelte';
-  import { OptionService } from '../../../model/option/OptionService';
+  import { OptionService } from '../../../service/OptionService';
   import type FlvJs from './flv';
   import VideoInterface from './video/VideoInterface.svelte';
 

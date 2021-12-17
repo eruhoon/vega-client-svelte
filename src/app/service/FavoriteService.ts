@@ -1,6 +1,6 @@
 import { get, Readable, Writable, writable } from 'svelte/store';
-import { LocalStorageManager } from '../storage/LocalStorageManager';
-import type { FavoriteStream } from './FavoriteStream';
+import { LocalStorageManager } from '../model/storage/LocalStorageManager';
+import type { FavoriteStream } from '../model/favorite/FavoriteStream';
 
 class FavoriteServiceInit {
   readonly #favorites: Writable<FavoriteStream[]> = writable([]);

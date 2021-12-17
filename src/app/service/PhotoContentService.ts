@@ -1,5 +1,5 @@
 import { Readable, writable, Writable } from 'svelte/store';
-import type { Photo } from './Photo';
+import type { Photo } from '../model/photo/Photo';
 
 class PhotoContentManager {
   #currentPhoto: Writable<Photo | null> = writable(null);

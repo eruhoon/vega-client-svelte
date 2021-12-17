@@ -1,10 +1,10 @@
 <script>
-  import { get } from 'svelte/store';
-  import { FavoriteService } from '../../../model/favorite/FavoriteService';
-  import { StreamService } from '../../../model/stream/StreamService';
-  import { WindowService } from '../../../model/window/WindowService';
-  import SideBarStreamList from './stream/SideBarStreamList.svelte';
   import { createEventDispatcher } from 'svelte';
+  import { get } from 'svelte/store';
+  import { FavoriteService } from '../../../service/FavoriteService';
+  import { StreamService } from '../../../service/StreamService';
+  import { WindowService } from '../../../service/WindowService';
+  import SideBarStreamList from './stream/SideBarStreamList.svelte';
 
   const dispatch = createEventDispatcher();
 

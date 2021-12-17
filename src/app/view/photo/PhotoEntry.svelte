@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Photo } from '../../model/photo/Photo';
-  import { PhotoContentService } from '../../model/photo/PhotoContentService';
+  import { PhotoContentService } from '../../service/PhotoContentService';
   import { PhotoAdultFilterCommand } from './PhotoAdultFilterCommand';
   import { PhotoShareCommand } from './PhotoShareCommand';
 

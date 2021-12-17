@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { OptionService } from '../../../../model/option/OptionService';
-  import { WindowService } from '../../../../model/window/WindowService';
+  import { OptionService } from '../../../../service/OptionService';
+  import { WindowService } from '../../../../service/WindowService';
   import { PopupContentService } from '../../../popup/PopupContentService';
 
   export let body: string;

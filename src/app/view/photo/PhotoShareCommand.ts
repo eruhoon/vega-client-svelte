@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SessionService } from '../../model/session/SessionService';
+import { SessionService } from '../../service/SessionService';
 
 export class PhotoShareCommand {
   execute(photoUrl: string) {

@@ -1,8 +1,7 @@
 <script lang="ts">
-  import { FavoriteService } from '../../model/favorite/FavoriteService';
-
   import type { StreamInfo } from '../../model/stream/StreamInfo';
-  import { StreamService } from '../../model/stream/StreamService';
+  import { FavoriteService } from '../../service/FavoriteService';
+  import { StreamService } from '../../service/StreamService';
   import StreamEntry from './StreamEntry.svelte';
 
   let entries: StreamInfo[] = [];

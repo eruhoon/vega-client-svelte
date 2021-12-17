@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { SessionService } from '../../session/SessionService';
+import { SessionService } from '../../../service/SessionService';
 import type { StreamInfo } from '../../stream/StreamInfo';
 
 export class SocketShareStreamCommand {

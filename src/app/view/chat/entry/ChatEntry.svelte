@@ -1,8 +1,9 @@
 <script lang="ts">
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
-  import { ChatService } from '../../../model/chat/ChatService';
-  import { SessionService } from '../../../model/session/SessionService';
-  import { SocketService } from '../../../model/socket/SocketService';
+  import { ChatService } from '../../../service/ChatService';
+
+  import { SessionService } from '../../../service/SessionService';
+  import { SocketService } from '../../../service/SocketService';
   import type { ChatEntryProp } from './ChatEntryProp';
   import ChatMessageEntry from './ChatMessageEntry.svelte';
 

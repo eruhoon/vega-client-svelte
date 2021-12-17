@@ -1,7 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
   import { get } from 'svelte/store';
-  import { OptionService } from '../../../../model/option/OptionService';
+  import { OptionService } from '../../../../service/OptionService';
 
   export let title: string;
   export let icon: string;

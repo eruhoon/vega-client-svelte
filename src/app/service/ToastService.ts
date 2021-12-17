@@ -1,6 +1,6 @@
 import { Readable, Writable, writable } from 'svelte/store';
-import { HashGenerator } from '../../util/hash/HashGenerator';
-import type { Toast } from './Toast';
+import type { Toast } from '../model/toast/Toast';
+import { HashGenerator } from '../util/hash/HashGenerator';
 
 class ToastServiceInit {
   #toasts: Writable<Toast[]> = writable([]);

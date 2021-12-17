@@ -2,10 +2,10 @@
   import { get } from 'svelte/store';
   import type { NotificationTarget } from '../../model/notification/NotificationTarget';
   import { NotifyUserService } from '../../model/notification/NotifyUserService';
-  import { SessionService } from '../../model/session/SessionService';
-  import { SocketService } from '../../model/socket/SocketService';
-  import { ToastService } from '../../model/toast/ToastService';
-  import { WindowService } from '../../model/window/WindowService';
+  import { SessionService } from '../../service/SessionService';
+  import { SocketService } from '../../service/SocketService';
+  import { ToastService } from '../../service/ToastService';
+  import { WindowService } from '../../service/WindowService';
 
   let target: NotificationTarget | null = get(NotifyUserService.target);
   $: hash = target?.hash;

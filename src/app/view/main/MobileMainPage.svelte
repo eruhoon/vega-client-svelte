@@ -1,9 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { SocketService } from '../../model/socket/SocketService';
-  import { WindowService } from '../../model/window/WindowService';
   import { ChatNetworkService } from '../../service/ChatNetworkService';
   import { CheckerNetworkService } from '../../service/CheckerNetworkService';
+  import { SocketService } from '../../service/SocketService';
+  import { WindowService } from '../../service/WindowService';
   import ChatPage from '../chat/ChatPage.svelte';
   import DonationPage from '../donation/DonationPage.svelte';
   import MemoPage from '../memo/MemoPage.svelte';

@@ -1,6 +1,5 @@
 import axios from 'axios';
-import type { Photo } from '../../model/photo/Photo';
-import { SessionService } from '../../model/session/SessionService';
+import { SessionService } from '../../service/SessionService';
 
 export class PhotoAdultFilterCommand {
   async execute(photoHash: string, adult: boolean): Promise<boolean> {

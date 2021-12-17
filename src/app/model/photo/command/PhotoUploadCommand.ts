@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SessionService } from '../../session/SessionService';
+import { SessionService } from '../../../service/SessionService';
 
 export class PhotoUploadCommand {
   async execute(file: File): Promise<PhotoDto | null> {

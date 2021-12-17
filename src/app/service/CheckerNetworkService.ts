@@ -3,7 +3,7 @@ import type {
   RefreshStream,
 } from '../model/socket/checker/CheckerSocketModel';
 import { SocketIoCheckerSocketModel } from '../model/socket/checker/SocketIoCheckerSocketModel';
-import { StreamService } from '../model/stream/StreamService';
+import { StreamService } from './StreamService';
 
 class CheckerNetworkServiceInit {
   #socket: CheckerSocketModel | null = null;

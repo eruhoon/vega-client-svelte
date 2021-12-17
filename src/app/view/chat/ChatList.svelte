@@ -2,8 +2,8 @@
   import { onMount } from 'svelte';
   import { get } from 'svelte/store';
   import type { ChatProperty } from '../../model/chat/ChatProperty';
-  import { ChatService } from '../../model/chat/ChatService';
-  import { OptionService } from '../../model/option/OptionService';
+  import { ChatService } from '../../service/ChatService';
+  import { OptionService } from '../../service/OptionService';
   import { HashGenerator } from '../../util/hash/HashGenerator';
   import ChatEntry from './entry/ChatEntry.svelte';
   import type { ChatEntryProp } from './entry/ChatEntryProp';

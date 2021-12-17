@@ -1,8 +1,8 @@
 <script lang="ts">
   import { get } from 'svelte/store';
-  import { ChatService } from '../../../../model/chat/ChatService';
-  import { OptionService } from '../../../../model/option/OptionService';
-  import { WindowService } from '../../../../model/window/WindowService';
+  import { ChatService } from '../../../../service/ChatService';
+  import { OptionService } from '../../../../service/OptionService';
+  import { WindowService } from '../../../../service/WindowService';
 
   export let body = '';
   let show = !get(OptionService.enableDataSave);

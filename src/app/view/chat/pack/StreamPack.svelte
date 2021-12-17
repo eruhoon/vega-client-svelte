@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { OptionService } from '../../../model/option/OptionService';
   import type { Content } from '../../../model/window/Content';
-  import { WindowService } from '../../../model/window/WindowService';
+  import { OptionService } from '../../../service/OptionService';
+  import { WindowService } from '../../../service/WindowService';
 
   export let body: string;
   let isDataSave: boolean;

@@ -1,6 +1,6 @@
 import { Readable, Writable, writable } from 'svelte/store';
-import type { Content } from './Content';
-import type { ModalType } from './ModalType';
+import type { Content } from '../model/window/Content';
+import type { ModalType } from '../model/window/ModalType';
 
 class WindowServiceInit {
   userListShow = writable(false);

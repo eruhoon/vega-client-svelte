@@ -1,7 +1,7 @@
 <script lang="ts">
   import { get } from 'svelte/store';
-  import { OptionService } from '../../../model/option/OptionService';
-  import { WindowService } from '../../../model/window/WindowService';
+  import { OptionService } from '../../../service/OptionService';
+  import { WindowService } from '../../../service/WindowService';
   import { MobileUtils } from '../../../util/mobile/MobileUtils';
   import { PopupContentService } from '../../popup/PopupContentService';
 

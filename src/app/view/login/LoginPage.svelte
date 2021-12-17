@@ -1,6 +1,6 @@
 <script lang="ts">
   import { LoginCommand } from '../../model/login/LoginCommand';
-  import { SessionService } from '../../model/session/SessionService';
+  import { SessionService } from '../../service/SessionService';
   import BackgroundSlider from './BackgroundSlider.svelte';
 
   let id = '';

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { WindowService } from '../../../model/window/WindowService';
+  import { WindowService } from '../../../service/WindowService';
   import ExternalStreamPack from './ExternalStreamPack.svelte';
 
   export let body: string;

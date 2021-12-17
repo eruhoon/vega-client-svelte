@@ -1,6 +1,6 @@
 <script lang="ts">
   import { get } from 'svelte/store';
-  import { OptionService } from '../../model/option/OptionService';
+  import { OptionService } from '../../service/OptionService';
   import SettingModal from './SettingModal.svelte';
   import PreferenceView from './site/SiteSettingPreferenceView.svelte';
 

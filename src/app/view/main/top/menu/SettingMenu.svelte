@@ -1,10 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { SessionService } from '../../../../model/session/SessionService';
   import type { ModalType } from '../../../../model/window/ModalType';
-  import { WindowService } from '../../../../model/window/WindowService';
   import { ProfileService } from '../../../../service/ProfileService';
+  import { SessionService } from '../../../../service/SessionService';
   import { ThemeService } from '../../../../service/ThemeService';
+  import { WindowService } from '../../../../service/WindowService';
   import DefaultMenuItem from './DefaultSettingMenuItem.svelte';
   import SettingMenuPlatformIcon from './SettingMenuPlatformIcon.svelte';
   import SettingSwitch from './SettingSwitch.svelte';

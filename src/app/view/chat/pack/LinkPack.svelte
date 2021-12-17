@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { WindowService } from '../../../model/window/WindowService';
+  import { WindowService } from '../../../service/WindowService';
 
   export let body: string;
   let thumbnail: string = '';

@@ -2,7 +2,7 @@
   import { onMount } from 'svelte/internal';
   import { PhotoTagCommand } from '../../model/photo/command/PhotoTagCommand';
   import type { Photo } from '../../model/photo/Photo';
-  import { PhotoContentService } from '../../model/photo/PhotoContentService';
+  import { PhotoContentService } from '../../service/PhotoContentService';
   import { DateUtils } from '../../util/date/DateUtils';
   import { PhotoAdultFilterCommand } from './PhotoAdultFilterCommand';
   import { PhotoShareCommand } from './PhotoShareCommand';

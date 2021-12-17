@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { WindowService } from '../../../model/window/WindowService';
   import { ProfileService } from '../../../service/ProfileService';
+  import { WindowService } from '../../../service/WindowService';
   import PushList from '../push/PushList.svelte';
   import { PushListService } from '../push/PushListService';
   import SettingMenu from './menu/SettingMenu.svelte';

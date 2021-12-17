@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { ChatService } from '../../model/chat/ChatService';
   import { ClipboardManager } from '../../model/clipboard/ClipboardManager';
-  import { SessionService } from '../../model/session/SessionService';
-  import { SocketService } from '../../model/socket/SocketService';
-  import { WindowService } from '../../model/window/WindowService';
+  import { ChatClipboardService } from '../../service/ChatClipboardService';
+  import { ChatService } from '../../service/ChatService';
+  import { SessionService } from '../../service/SessionService';
+  import { SocketService } from '../../service/SocketService';
+  import { WindowService } from '../../service/WindowService';
 
   const clipboardManager = new ClipboardManager();
   let imageInput: HTMLInputElement;

@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { SessionService } from '../../model/session/SessionService';
-  import { SocketService } from '../../model/socket/SocketService';
-  import { WindowService } from '../../model/window/WindowService';
   import { ProfileService } from '../../service/ProfileService';
+  import { SessionService } from '../../service/SessionService';
+  import { SocketService } from '../../service/SocketService';
+  import { WindowService } from '../../service/WindowService';
   import SettingModal from './SettingModal.svelte';
   import TextSettingInput from './stream/TextSettingInput.svelte';
 

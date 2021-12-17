@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Readable, writable, Writable } from 'svelte/store';
 import { VegaMemoLoader } from '../model/memo/loader/VegaMemoLoader';
 import type { Memo } from '../model/memo/Memo';
-import { SessionService } from '../model/session/SessionService';
+import { SessionService } from './SessionService';
 
 class MemoServiceInit {
   #memos: Writable<Memo[]> = writable([]);

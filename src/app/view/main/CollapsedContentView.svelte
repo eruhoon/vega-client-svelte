@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { WindowService } from '../../model/window/WindowService';
+  import { WindowService } from '../../service/WindowService';
   import ContentView from './content/ContentView.svelte';
 
   export let subViewActivated = false;

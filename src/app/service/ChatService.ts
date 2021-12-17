@@ -1,6 +1,6 @@
 import { get, Readable, writable, Writable } from 'svelte/store';
-import type { ChatProperty } from './ChatProperty';
-import type { ChatReaction } from './ChatReaction';
+import type { ChatProperty } from '../model/chat/ChatProperty';
+import type { ChatReaction } from '../model/chat/ChatReaction';
 
 class ChatServiceInit {
   readonly chats: Writable<ChatProperty[]> = writable([]);

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { ClipboardManager } from '../../model/clipboard/ClipboardManager';
-  import { WindowService } from '../../model/window/WindowService';
+  import { WindowService } from '../../service/WindowService';
   import { ChatClipboardService } from '../../service/ChatClipboardService';
   import ChatInterface from './ChatInterface.svelte';
   import ChatList from './ChatList.svelte';

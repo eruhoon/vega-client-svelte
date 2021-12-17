@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Toast } from '../../model/toast/Toast';
-  import { ToastService } from '../../model/toast/ToastService';
+  import { ToastService } from '../../service/ToastService';
 
   let toasts: Toast[] = [];
   ToastService.toasts.subscribe((it) => (toasts = it));

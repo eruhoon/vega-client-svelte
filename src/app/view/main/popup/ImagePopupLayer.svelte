@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { WindowService } from '../../../model/window/WindowService';
+  import { WindowService } from '../../../service/WindowService';
   import ImageViewerPopup from './ImageViewerPopup.svelte';
 
   let currentImage: string = '';

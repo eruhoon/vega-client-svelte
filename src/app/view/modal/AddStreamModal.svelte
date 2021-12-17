@@ -2,8 +2,8 @@
   import InlineSVG from 'svelte-inline-svg';
   import { RegisterStreamCommand } from '../../model/stream/RegisterStreamCommand';
   import { StageStreamCommand } from '../../model/stream/StageStreamCommand';
-  import { ToastService } from '../../model/toast/ToastService';
-  import { WindowService } from '../../model/window/WindowService';
+  import { ToastService } from '../../service/ToastService';
+  import { WindowService } from '../../service/WindowService';
 
   const platforms = [
     {

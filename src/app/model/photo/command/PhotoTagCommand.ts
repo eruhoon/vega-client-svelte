@@ -1,6 +1,5 @@
 import Axios from 'axios';
-import { SessionService } from '../../session/SessionService';
-import type { Photo } from '../Photo';
+import { SessionService } from '../../../service/SessionService';
 
 export class PhotoTagCommand {
   execute(photoHash: string, tags: string) {

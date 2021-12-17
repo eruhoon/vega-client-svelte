@@ -1,6 +1,6 @@
 <script lang="ts">
   import { NotifyUserService } from '../../../model/notification/NotifyUserService';
-  import { WindowService } from '../../../model/window/WindowService';
+  import { WindowService } from '../../../service/WindowService';
 
   export let hash: string = '';
   export let nickname: string = '';

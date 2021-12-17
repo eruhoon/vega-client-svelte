@@ -2,10 +2,10 @@
   import { onMount, SvelteComponent } from 'svelte';
   import { get } from 'svelte/store';
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
-  import { ChatService } from '../../../model/chat/ChatService';
-  import { OptionService } from '../../../model/option/OptionService';
-  import { SessionService } from '../../../model/session/SessionService';
-  import { SocketService } from '../../../model/socket/SocketService';
+  import { ChatService } from '../../../service/ChatService';
+  import { OptionService } from '../../../service/OptionService';
+  import { SessionService } from '../../../service/SessionService';
+  import { SocketService } from '../../../service/SocketService';
   import { MobileUtils } from '../../../util/mobile/MobileUtils';
   import AfreecaPack from '../pack/AfreecaPack.svelte';
   import AnimationPack from '../pack/AnimationPack.svelte';

@@ -1,9 +1,9 @@
 <script lang="ts">
   import InlineSVG from 'svelte-inline-svg';
   import { get } from 'svelte/store';
-  import { SessionService } from '../../model/session/SessionService';
+  import { SessionService } from '../../service/SessionService';
   import { ModifyStreamCommand } from '../../model/stream/ModifyStreamCommand';
-  import { WindowService } from '../../model/window/WindowService';
+  import { WindowService } from '../../service/WindowService';
   import { ProfileService } from '../../service/ProfileService';
   import SettingModal from './SettingModal.svelte';
   import ExternalStreamSettingForm from './stream/ExternalStreamSettingForm.svelte';

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { WindowService } from '../../model/window/WindowService';
+  import { WindowService } from '../../service/WindowService';
   import NotifyUserModal from '../notification/NotifyUserModal.svelte';
   import ChatWidgetSettingModal from '../setting/ChatWidgetSettingModal.svelte';
   import DonationSettingModal from '../setting/DonationSettingModal.svelte';

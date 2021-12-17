@@ -1,10 +1,10 @@
 <script lang="ts">
   import { get } from 'svelte/store';
   import type { Content } from '../../../model/window/Content';
-  import { WindowService } from '../../../model/window/WindowService';
+  import { WindowService } from '../../../service/WindowService';
+  import DonationPage from '../../donation/DonationPage.svelte';
   import MemoContentView from '../../memo/MemoContentView.svelte';
   import PhotoContentView from '../../photo/PhotoContentView.svelte';
-  import DonationPage from '../../donation/DonationPage.svelte';
   import IframeContentView from './IframeContentView.svelte';
   import LocalStreamContentView from './LocalStreamContentView.svelte';
   import TotoroStreamContentView from './TotoroStreamContentView.svelte';

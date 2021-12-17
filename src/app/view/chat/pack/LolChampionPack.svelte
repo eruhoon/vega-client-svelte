@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { OptionService } from '../../../model/option/OptionService';
+  import { OptionService } from '../../../service/OptionService';
   import { PopupContentService } from '../../popup/PopupContentService';
 
   export let body: string;

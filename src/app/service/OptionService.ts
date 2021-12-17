@@ -1,5 +1,5 @@
 import { Readable, writable } from 'svelte/store';
-import { LocalStorageManager } from '../storage/LocalStorageManager';
+import { LocalStorageManager } from '../model/storage/LocalStorageManager';
 
 class OptionManager {
   readonly #timestamp = writable(false);

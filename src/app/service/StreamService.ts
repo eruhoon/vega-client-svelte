@@ -1,5 +1,5 @@
 import { Readable, Writable, writable } from 'svelte/store';
-import type { StreamInfo } from './StreamInfo';
+import type { StreamInfo } from '../model/stream/StreamInfo';
 
 class StreamServiceInit {
   readonly #locals: Writable<StreamInfo[]> = writable([]);

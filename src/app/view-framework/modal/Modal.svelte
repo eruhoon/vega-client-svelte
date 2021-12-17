@@ -26,12 +26,10 @@
 </div>
 
 <style lang="scss">
-  // 모달 박스 시작
   .modal {
     position: relative;
     width: 500px;
     height: auto;
-    //height: 725px;
     max-width: 100%;
     max-height: calc(100% - 100px);
     background: #2a2f38;
@@ -39,8 +37,6 @@
     border-radius: 2px;
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08), 0 0 15px 0 rgba(0, 0, 0, 0.02),
       0 0 20px 4px rgba(0, 0, 0, 0.06);
-
-    z-index: 100;
 
     .title {
       width: calc(100% - 30px);

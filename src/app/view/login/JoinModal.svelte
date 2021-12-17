@@ -2,9 +2,8 @@
   import { createEventDispatcher } from 'svelte';
   import { LoginCommand } from '../../model/login/LoginCommand';
   import { ToastService } from '../../service/ToastService';
+  import ModalTextInput from '../../view-framework/modal/input/ModalTextInput.svelte';
   import Modal from '../../view-framework/modal/Modal.svelte';
-  import ModalPasswordInput from '../../view-framework/modal/ModalPasswordInput.svelte';
-  import ModalTextInput from '../../view-framework/modal/ModalTextInput.svelte';
 
   const dispatch = createEventDispatcher<{ oncloseclick: void }>();
   let id: string;
@@ -41,17 +40,19 @@
   <div slot="body" class="modal-body">
     <ModalTextInput title="아이디" bind:value={id} name="아이디" />
     <ModalTextInput title="닉네임" bind:value={nickname} name="닉네임" />
-    <ModalPasswordInput
+    <ModalTextInput
       title="비밀번호"
       name="비밀번호"
       placeholder="비밀번호"
       bind:value={password}
+      type="password"
     />
-    <ModalPasswordInput
+    <ModalTextInput
       title="비밀번호 확인"
       name="비밀번호 확인"
       placeholder="비밀번호 확인"
       bind:value={passwordConfirm}
+      type="password"
     />
   </div>
   <div slot="footer">

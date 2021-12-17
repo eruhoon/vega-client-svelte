@@ -2,10 +2,13 @@
   import { LoginCommand } from '../../model/login/LoginCommand';
   import { SessionService } from '../../service/SessionService';
   import BackgroundSlider from './BackgroundSlider.svelte';
+  import JoinModal from './JoinModal.svelte';
+  import LoginPageModalLayer from './LoginPageModalLayer.svelte';
 
   let id = '';
   let pw = '';
   let passInput: HTMLInputElement;
+  let modal = null;
 
   const requestLogin = async () => {
     try {
@@ -62,7 +65,7 @@
       </div>
       <hr />
       <div class="add-btn">
-        <a>
+        <a on:click={(_) => (modal = 'join')}>
           <p>회원가입</p>
         </a>
         <a href="#">
@@ -75,9 +78,15 @@
   <div class="background-slider">
     <BackgroundSlider />
   </div>
-
-  <!-- <toast-list></toast-list>       -->
 </main>
+
+{#if modal}
+  <LoginPageModalLayer on:onbackgroundclick={() => (modal = null)}>
+    {#if modal === 'join'}
+      <JoinModal on:oncloseclick={() => (modal = null)} />
+    {/if}
+  </LoginPageModalLayer>
+{/if}
 
 <style lang="scss">
   @font-face {

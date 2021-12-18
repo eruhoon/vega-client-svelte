@@ -90,11 +90,11 @@ class ChatNetworkServiceInit {
   #createWebSocketModel(privateKey: string): SocketModel {
     const socket = new WebSocketModel();
     socket.setOnOpen(() => {
-      SocketService.isConnected.set(true);
+      SocketService.connect();
       SocketService.login?.execute(privateKey);
     });
     socket.setOnClose(() => {
-      SocketService.isConnected.set(false);
+      SocketService.disconnect();
       ChatService.chats.set([]);
     });
     return socket;

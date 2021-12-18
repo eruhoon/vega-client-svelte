@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { ToastService } from '../../../service/ToastService';
   import { WindowService } from '../../../service/WindowService';
 
   export let body: string;
@@ -18,6 +19,20 @@
 
   const openContent = () =>
     WindowService.openContent({ type: 'iframe', src: link });
+
+  function onCopyClick() {
+    copyLink();
+    ToastService.toastText('복사완료');
+  }
+
+  function copyLink() {
+    const t = document.createElement('textarea');
+    document.body.appendChild(t);
+    t.value = link;
+    t.select();
+    document.execCommand('copy', false);
+    document.body.removeChild(t);
+  }
 </script>
 
 <div class="root" class:thumbnail-attched={thumbnail} on:click={openWindow}>
@@ -25,7 +40,14 @@
     <img class="thumbnail" alt="thumbnail" src={thumbnail} />
   {/if}
   <div class="info">
-    <div class="title">{title}</div>
+    <div class="info-header">
+      <span class="title">{title}</span>
+      <div class="menu">
+        <button on:click|stopPropagation={onCopyClick}>
+          <i class="fas fa-copy" />
+        </button>
+      </div>
+    </div>
     <div class="link">{link}</div>
   </div>
 </div>
@@ -65,7 +87,7 @@
         0 1px 2px 0 rgba(0, 0, 0, 0.06);
     }
 
-    .title {
+    .info-header {
       position: absolute;
       bottom: 35px;
       left: 10px;
@@ -77,6 +99,27 @@
       line-height: 20px;
       color: #ffffff;
       @include truncate;
+
+      .menu {
+        float: inline-end;
+
+        button {
+          width: 20px;
+          height: 20px;
+          padding: 0;
+          margin: 0;
+          border: none;
+          border-radius: 10px;
+          outline: none;
+
+          background: #1c2027;
+          color: #ffffff;
+
+          &:hover {
+            color: #ff4081;
+          }
+        }
+      }
     }
 
     .link {

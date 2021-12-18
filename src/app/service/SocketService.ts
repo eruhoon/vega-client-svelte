@@ -5,20 +5,13 @@ import type { ModifyProfileCommand } from '../model/socket/command/SocketModifyP
 import type { NotifyUserCommand } from '../model/socket/command/SocketNotifyUserCommand';
 import type { SocketReactionCommand } from '../model/socket/command/SocketReactionCommand';
 
-export const SocketService: SocketServiceInit = {
-  login: null,
-  chat: null,
-  modifyProfile: null,
-  notifyUser: null,
-  reaction: null,
-  isConnected: writable(false),
-};
+class SocketServiceInit {
+  login: SocketLoginCommand | null = null;
+  chat: SocketChatCommand | null = null;
+  notifyUser: NotifyUserCommand | null = null;
+  modifyProfile: ModifyProfileCommand | null = null;
+  reaction: SocketReactionCommand | null = null;
+  isConnected: Writable<boolean> = writable(false);
+}
 
-type SocketServiceInit = {
-  login: SocketLoginCommand | null;
-  chat: SocketChatCommand | null;
-  notifyUser: NotifyUserCommand | null;
-  modifyProfile: ModifyProfileCommand | null;
-  reaction: SocketReactionCommand | null;
-  isConnected: Writable<boolean>;
-};
+export const SocketService = new SocketServiceInit();

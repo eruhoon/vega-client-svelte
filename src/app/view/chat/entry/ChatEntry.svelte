@@ -1,13 +1,13 @@
 <script lang="ts">
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
   import { ChatService } from '../../../service/ChatService';
-
   import { SessionService } from '../../../service/SessionService';
   import { SocketService } from '../../../service/SocketService';
   import type { ChatEntryProp } from './ChatEntryProp';
   import ChatMessageEntry from './ChatMessageEntry.svelte';
 
   export let prop: ChatEntryProp = {
+    hash: '',
     icon: '',
     nickname: 'untitled',
     senderType: 'PC',

@@ -33,7 +33,6 @@
   ChatService.scrollLock.subscribe((v) => (isScrollLock = v));
 
   function onImageChange() {
-    console.log('on');
     const elm = imageInput;
     const file = elm?.files?.item(0);
     if (!file) {
@@ -49,7 +48,6 @@
 
   function onKeyPress(e: KeyboardEvent) {
     const { key } = e;
-    console.log(key);
     if (key === 'Enter' && message.trim().length !== 0) {
       const privateKey = SessionService.getPrivateKey();
       if (!privateKey) {
@@ -69,12 +67,10 @@
       case 'ArrowUp':
         e.preventDefault();
         message = chatHistories.getPrev();
-        console.log(key);
         return false;
       case 'ArrowDown':
         e.preventDefault();
         message = chatHistories.getNext();
-        console.log(key);
         return false;
       default:
         return true;

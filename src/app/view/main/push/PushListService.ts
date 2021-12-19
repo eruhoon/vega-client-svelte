@@ -3,7 +3,7 @@ import { HashGenerator } from '../../../util/hash/HashGenerator';
 import type { PushEntryParam } from './PushEntryParam';
 
 class PushListServiceInit {
-  readonly #MAX_PUSH_LENGTH = 10;
+  readonly #MAX_PUSH_LENGTH = 5;
   readonly #params: Writable<PushEntryParam[]> = writable([]);
   readonly #hashGenerator = new HashGenerator();
 

@@ -2,24 +2,23 @@
   import { onMount } from 'svelte';
   import type { Memo } from '../../model/memo/Memo';
   import { MemoService } from '../../service/MemoService';
+  import { WindowService } from '../../service/WindowService';
+  import UploadMemoModal from '../modal/memo/UploadMemoModal.svelte';
   import MemoDetailView from './MemoDetailView.svelte';
-  import MemoUploadView from './MemoUploadView.svelte';
   import MobileMemoEntry from './MobileMemoEntry.svelte';
 
-  let uploadMode = false;
   let memos: Memo[] = [];
   let currentMemo: Memo = null;
 
   onMount(async () => {
     MemoService.memos.subscribe((it) => (memos = it));
     MemoService.currentMemo.subscribe((it) => (currentMemo = it));
-    MemoService.uploadMode.subscribe((it) => (uploadMode = it));
 
     MemoService.refresh();
   });
 
   function onAddClick() {
-    MemoService.setUploadMode(true);
+    WindowService.openModal('upload-memo');
   }
 </script>
 
@@ -45,9 +44,6 @@
 
 {#if currentMemo !== null}
   <MemoDetailView memo={currentMemo} />
-{/if}
-{#if uploadMode}
-  <MemoUploadView />
 {/if}
 
 <style lang="scss">

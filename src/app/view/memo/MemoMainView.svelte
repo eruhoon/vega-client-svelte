@@ -1,12 +1,11 @@
 <script lang="ts">
-  import { MemoService } from '../../service/MemoService';
-
+  import { WindowService } from '../../service/WindowService';
   import MemoEntry from './MemoEntry.svelte';
 
   export let memos = [];
 
   function onUploadClick() {
-    MemoService.setUploadMode(true);
+    WindowService.openModal('upload-memo');
   }
 </script>
 

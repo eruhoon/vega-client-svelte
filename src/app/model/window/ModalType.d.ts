@@ -6,4 +6,5 @@ export type ModalType =
   | 'donation'
   | 'notify-user'
   | 'upload-image-chat'
-  | 'add-stream';
+  | 'add-stream'
+  | 'upload-memo';

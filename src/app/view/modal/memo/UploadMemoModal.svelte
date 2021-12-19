@@ -1,7 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { MemoService } from '../../service/MemoService';
-  import { ProfileService } from '../../service/ProfileService';
+  import { MemoService } from '../../../service/MemoService';
+  import { ProfileService } from '../../../service/ProfileService';
+  import { WindowService } from '../../../service/WindowService';
 
   let name = 'name';
   let icon = '';
@@ -14,12 +15,12 @@
   });
 
   function close() {
-    MemoService.setUploadMode(false);
+    WindowService.closeModal();
   }
 
   async function upload() {
     await MemoService.uploadMemo(memo);
-    MemoService.setUploadMode(false);
+    WindowService.closeModal();
   }
 </script>
 

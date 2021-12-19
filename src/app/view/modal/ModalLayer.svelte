@@ -9,6 +9,7 @@
   import StreamSettingModal from '../setting/StreamSettingModal.svelte';
   import AddStreamModal from './AddStreamModal.svelte';
   import UploadImageChatModal from './image/UploadImageChatModal.svelte';
+  import UploadMemoModal from './memo/UploadMemoModal.svelte';
 
   let modalWrapper: HTMLElement;
   let modal = null;
@@ -38,6 +39,9 @@
         break;
       case 'add-stream':
         modal = AddStreamModal;
+        break;
+      case 'upload-memo':
+        modal = UploadMemoModal;
         break;
       default:
         modal = null;

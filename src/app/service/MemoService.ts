@@ -7,7 +7,6 @@ import { SessionService } from './SessionService';
 class MemoServiceInit {
   #memos: Writable<Memo[]> = writable([]);
   #currentMemo: Writable<Memo> = writable(null);
-  #uploadMode: Writable<boolean> = writable(false);
 
   #loader = new VegaMemoLoader();
 
@@ -19,16 +18,8 @@ class MemoServiceInit {
     return this.#currentMemo;
   }
 
-  get uploadMode(): Readable<boolean> {
-    return this.#uploadMode;
-  }
-
   setCurrentMemo(memo: Memo | null) {
     this.#currentMemo.set(memo);
-  }
-
-  setUploadMode(mode: boolean) {
-    this.#uploadMode.set(mode);
   }
 
   async uploadMemo(memo: string): Promise<void> {

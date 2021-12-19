@@ -2,9 +2,9 @@
   import { onMount } from 'svelte';
   import type { Memo } from '../../model/memo/Memo';
   import { MemoService } from '../../service/MemoService';
+  import MemoUploadView from '../modal/memo/UploadMemoModal.svelte';
   import MemoDetailView from './MemoDetailView.svelte';
   import MemoMainView from './MemoMainView.svelte';
-  import MemoUploadView from './MemoUploadView.svelte';
 
   let uploadMode = false;
   let memos = [];
@@ -13,7 +13,6 @@
   onMount(() => {
     MemoService.memos.subscribe((it) => (memos = it));
     MemoService.currentMemo.subscribe((it) => (currentMemo = it));
-    MemoService.uploadMode.subscribe((it) => (uploadMode = it));
 
     MemoService.refresh();
   });

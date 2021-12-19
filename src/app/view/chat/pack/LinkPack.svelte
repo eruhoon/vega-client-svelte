@@ -41,7 +41,7 @@
   {/if}
   <div class="info">
     <div class="info-header">
-      <span class="title">{title}</span>
+      <div class="title">{title}</div>
       <div class="menu">
         <button on:click|stopPropagation={onCopyClick}>
           <i class="fas fa-copy" />
@@ -88,6 +88,7 @@
     }
 
     .info-header {
+      display: flex;
       position: absolute;
       bottom: 35px;
       left: 10px;
@@ -98,10 +99,15 @@
       font-size: 15px;
       line-height: 20px;
       color: #ffffff;
-      @include truncate;
+
+      .title {
+        flex-grow: 1;
+        @include truncate;
+      }
 
       .menu {
-        float: inline-end;
+        flex-shrink: 0;
+        width: auto;
 
         button {
           width: 20px;

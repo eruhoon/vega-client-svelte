@@ -1,5 +1,6 @@
 <script lang="ts">
   import { WindowService } from '../../service/WindowService';
+  import Layer from '../../view-framework/layer/Layer.svelte';
   import NotifyUserModal from '../notification/NotifyUserModal.svelte';
   import ChatWidgetSettingModal from '../setting/ChatWidgetSettingModal.svelte';
   import DonationSettingModal from '../setting/DonationSettingModal.svelte';
@@ -51,22 +52,15 @@
 </script>
 
 {#if modal}
-  <div class="modal-layer">
+  <Layer zIndex={60}>
     <div class="click-blocker" />
     <div class="modal-wrapper" on:click={onClick} bind:this={modalWrapper}>
       <svelte:component this={modal} />
     </div>
-  </div>
+  </Layer>
 {/if}
 
 <style lang="scss">
-  .modal-layer {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 60;
-  }
-
   .click-blocker {
     position: absolute;
     width: 100%;
@@ -82,6 +76,5 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    z-index: 100;
   }
 </style>

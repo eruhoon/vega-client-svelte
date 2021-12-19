@@ -180,5 +180,9 @@
   }
 
   @media screen and (max-width: 768px) {
+    .push-list {
+      width: 100%;
+      right: 0px;
+    }
   }
 </style>

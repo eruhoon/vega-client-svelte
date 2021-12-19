@@ -10,10 +10,6 @@
   let memos = [];
   let currentMemo: Memo = null;
 
-  function onUploadClick() {
-    MemoService.setUploadMode(true);
-  }
-
   onMount(() => {
     MemoService.memos.subscribe((it) => (memos = it));
     MemoService.currentMemo.subscribe((it) => (currentMemo = it));

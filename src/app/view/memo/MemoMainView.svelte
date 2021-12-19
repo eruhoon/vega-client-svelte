@@ -1,7 +1,13 @@
 <script lang="ts">
+  import { MemoService } from '../../service/MemoService';
+
   import MemoEntry from './MemoEntry.svelte';
 
   export let memos = [];
+
+  function onUploadClick() {
+    MemoService.setUploadMode(true);
+  }
 </script>
 
 <div class="memo-main-content">
@@ -17,7 +23,7 @@
       </div>
     </div>
     <div class="mm-upload">
-      <button class="upload-btn">
+      <button class="upload-btn" on:click={onUploadClick}>
         <div class="icon">
           <i class="fas fa-file-upload" />
         </div>

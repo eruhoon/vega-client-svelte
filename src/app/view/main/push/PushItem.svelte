@@ -1,7 +1,37 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import type { PushEntryParam } from './PushEntryParam';
 
   export let param: PushEntryParam;
+
+  let time: number;
+
+  onMount(() => {
+    setInterval(() => {
+      time = new Date().getTime();
+    }, 10000);
+  });
+
+  $: timeText = createTimeText(time, param.timestamp);
+
+  function createTimeText(now: number, timestamp: number): string {
+    const ago = now - timestamp;
+    const agoSecond = Math.round(ago / 1000);
+    const agoMinute = Math.floor(agoSecond / 60);
+    const agoHour = Math.floor(agoMinute / 60);
+    const agoDate = Math.floor(agoHour / 24);
+    let timeText: string;
+    if (agoDate > 0) {
+      timeText = `${agoDate}일 전`;
+    } else if (agoHour > 0) {
+      timeText = `${agoHour}시간 전`;
+    } else if (agoMinute > 0) {
+      timeText = `${agoMinute}분 전`;
+    } else {
+      timeText = '방금';
+    }
+    return timeText;
+  }
 </script>
 
 <div class="nt-entry" class:read={param.notification.read}>
@@ -11,7 +41,7 @@
   <div class="nt-info-txt">
     <div class="title">
       <h4>{param.notification.title}</h4>
-      <p>{param.timeText}</p>
+      <p>{timeText}</p>
     </div>
     <div class="nt-alert">
       <p>{param.notification.body}</p>

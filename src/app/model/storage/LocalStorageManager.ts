@@ -7,6 +7,7 @@ export class LocalStorageManager {
   #KEY_TIMESTAMP = 'vega.timestamp';
   #KEY_ENABLE_BOT = 'vega.enable_bot';
   #KEY_ENABLE_CHECKER_BAR = 'vega.enable_checker_bar';
+  #KEY_ENABLE_CHECKER_RIGHT_ALIGN = 'vega.enable_checker_right_align';
   #KEY_ENABLE_DATASAVE = 'vega.enable_datasave';
   #KEY_FAVORITE_STREAMS = 'vega.favorite_stream';
   #KEY_CHAT_VIEW_OFFSET = 'vega.chat_view_offset';
@@ -34,6 +35,17 @@ export class LocalStorageManager {
 
   set enableCheckerBar(value: boolean) {
     localStorage.setItem(this.#KEY_ENABLE_CHECKER_BAR, value ? TRUE : FALSE);
+  }
+
+  get enableCheckerRightAlign(): boolean {
+    return localStorage.getItem(this.#KEY_ENABLE_CHECKER_RIGHT_ALIGN) === TRUE;
+  }
+
+  set enableCheckerRightAlign(value: boolean) {
+    localStorage.setItem(
+      this.#KEY_ENABLE_CHECKER_RIGHT_ALIGN,
+      value ? TRUE : FALSE
+    );
   }
 
   get enableDataSave(): boolean {

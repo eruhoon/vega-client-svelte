@@ -1,10 +1,11 @@
 import { Readable, writable } from 'svelte/store';
 import { LocalStorageManager } from '../model/storage/LocalStorageManager';
 
-class OptionManager {
+class OptionServiceInit {
   readonly #timestamp = writable(false);
   readonly #enableBot = writable(true);
   readonly #enableCheckerBar = writable(true);
+  readonly #enableCheckerRightAlign = writable(false);
   readonly #enableDataSave = writable(false);
   readonly #chatViewOffset = writable<number>(300);
   readonly #volume = writable(50);
@@ -15,6 +16,9 @@ class OptionManager {
     this.#timestamp.set(this.#localStorage.timestamp);
     this.#enableBot.set(this.#localStorage.enableBot);
     this.#enableCheckerBar.set(this.#localStorage.enableCheckerBar);
+    this.#enableCheckerRightAlign.set(
+      this.#localStorage.enableCheckerRightAlign
+    );
     this.#enableDataSave.set(this.#localStorage.enableDataSave);
     this.#chatViewOffset.set(this.#localStorage.chatViewOffset);
     this.#volume.set(this.#localStorage.volume);
@@ -30,6 +34,10 @@ class OptionManager {
 
   get enableCheckerBar(): Readable<boolean> {
     return this.#enableCheckerBar;
+  }
+
+  get enableCheckerRightAlign(): Readable<boolean> {
+    return this.#enableCheckerRightAlign;
   }
 
   get enableDataSave(): Readable<boolean> {
@@ -59,6 +67,11 @@ class OptionManager {
     this.#localStorage.enableCheckerBar = value;
   }
 
+  setEnableCheckerRightAlign(value: boolean) {
+    this.#enableCheckerRightAlign.set(value);
+    this.#localStorage.enableCheckerRightAlign = value;
+  }
+
   setEnableDataSave(value: boolean) {
     this.#enableDataSave.set(value);
     this.#localStorage.enableDataSave = value;
@@ -75,4 +88,4 @@ class OptionManager {
   }
 }
 
-export const OptionService = new OptionManager();
+export const OptionService = new OptionServiceInit();

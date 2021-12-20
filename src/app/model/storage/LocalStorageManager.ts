@@ -12,6 +12,7 @@ export class LocalStorageManager {
   #KEY_FAVORITE_STREAMS = 'vega.favorite_stream';
   #KEY_CHAT_VIEW_OFFSET = 'vega.chat_view_offset';
   #KEY_VOLUME = 'vega.volume';
+  #KEY_THEME_DARK_MODE = 'vega.theme_dark_mode';
 
   get timestamp(): boolean {
     return localStorage.getItem(this.#KEY_TIMESTAMP) === TRUE;
@@ -80,5 +81,13 @@ export class LocalStorageManager {
 
   set volume(value: number) {
     localStorage.setItem(this.#KEY_VOLUME, value.toString());
+  }
+
+  get isDarkMode(): boolean {
+    return localStorage.getItem(this.#KEY_THEME_DARK_MODE) !== FALSE;
+  }
+
+  set isDarkMode(value: boolean) {
+    localStorage.setItem(this.#KEY_THEME_DARK_MODE, value ? TRUE : FALSE);
   }
 }

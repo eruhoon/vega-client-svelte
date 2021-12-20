@@ -11,7 +11,7 @@
   import UserSettingMenuItem from './UserSettingMenuItem.svelte';
 
   let platformId = 'local';
-  let darkModeChecked = false;
+  let darkMode = false;
 
   const logout = () => {
     SessionService.setPrivateKey('');
@@ -23,7 +23,7 @@
 
   onMount(() => {
     ProfileService.platform.subscribe((it) => (platformId = it));
-    ThemeService.theme.subscribe((it) => (darkModeChecked = it === 'dark'));
+    ThemeService.theme.subscribe((it) => (darkMode = it === 'dark'));
   });
 
   function onThemeValueChange({ detail: darkMode }: CustomEvent<boolean>) {
@@ -58,7 +58,7 @@
   <DefaultMenuItem name="테마" icon="fas fa-adjust">
     <SettingSwitch
       slot="extra"
-      checked={darkModeChecked}
+      checked={!darkMode}
       on:valuechange={onThemeValueChange}
     />
   </DefaultMenuItem>

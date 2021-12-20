@@ -7,12 +7,15 @@
   export let stream: StreamInfo;
   export let supportFavorite = true;
   export let isFavorite = false;
+  let active = false;
+  let thumbnailError = false;
 
   $: icon = stream.icon;
   $: title = stream.title;
+  $: thumbnail = stream.thumbnail;
 </script>
 
-<div class="container">
+<div class="container" on:contextmenu|preventDefault={() => (active = !active)}>
   <img src={icon} alt={title} />
   <span>{title}</span>
 
@@ -34,6 +37,16 @@
     <i class="fas fa-external-link-alt" />
   </button>
 </div>
+{#if active}
+  <div class="thumbnail-section">
+    <img
+      src={thumbnail}
+      on:error={() => (thumbnailError = true)}
+      alt="{title} thumbnail"
+      style="visibility:{thumbnailError ? 'hidden' : 'visible'}"
+    />
+  </div>
+{/if}
 
 <style lang="scss">
   .container {
@@ -89,6 +102,20 @@
   .container:hover {
     button {
       display: block;
+    }
+  }
+
+  .thumbnail-section {
+    display: flex;
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    border-color: #000000;
+
+    img {
+      width: calc(100% - 10px);
+      height: auto;
+      margin: 5px;
     }
   }
 </style>

@@ -20,7 +20,7 @@
   p {
     margin: 0%;
     padding: 0%;
-    color: #ffffff;
+    color: var(--primary-foreground-color);
     padding: 14px 10px;
     padding-right: 0px;
   }
@@ -28,7 +28,7 @@
   .icon {
     width: 32px;
     height: 46px;
-    color: #ffffff;
+    color: var(--primary-foreground-color);
     margin: 0%;
     text-align: center;
     i {

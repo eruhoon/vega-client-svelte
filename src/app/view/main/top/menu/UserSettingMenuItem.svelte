@@ -49,7 +49,7 @@
       position: absolute;
       top: 12px;
       right: 15px;
-      color: #ffffff;
+      color: var(--primary-foreground-color);
       font-size: 24px;
       line-height: 20px;
     }
@@ -65,7 +65,7 @@
       }*/
       .name {
         font-family: 'ChosunBg';
-        color: #ffffff;
+        color: var(--primary-foreground-color);
         font-size: 18px;
         padding: 0%;
         padding-top: 3px;
@@ -78,7 +78,7 @@
 
     p {
       width: 75%;
-      color: #ffffff;
+      color: var(--primary-foreground-color);
     }
 
     button {

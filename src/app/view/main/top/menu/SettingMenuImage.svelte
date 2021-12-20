@@ -19,6 +19,6 @@
     top: 0;
     right: 0;
     border-left: 1px solid #1f2226;
-    fill: #ffffff;
+    fill: var(--primary-foreground-color);
   }
 </style>

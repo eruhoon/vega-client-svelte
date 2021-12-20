@@ -26,8 +26,8 @@
     ThemeService.theme.subscribe((it) => (darkMode = it === 'dark'));
   });
 
-  function onThemeValueChange({ detail: darkMode }: CustomEvent<boolean>) {
-    ThemeService.setTheme(darkMode ? 'dark' : 'default');
+  function onThemeValueChange({ detail: checked }: CustomEvent<boolean>) {
+    ThemeService.setTheme(checked ? 'default' : 'dark');
   }
 </script>
 
@@ -76,7 +76,7 @@
     position: relative;
 
     border-radius: 0 0 5px 5px;
-    background: #2a2f38;
+    background: var(--primary-background-color);
   }
 
   // 로그아웃 부분

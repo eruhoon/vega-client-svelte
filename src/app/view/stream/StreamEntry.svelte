@@ -1,7 +1,10 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+
   import { SocketShareStreamCommand } from '../../model/socket/command/SocketShareStreamCommand';
   import { StreamEmbedLinkUtils } from '../../model/stream/StreamEmbedLinkUtils';
   import type { StreamInfo } from '../../model/stream/StreamInfo';
+  import { OptionService } from '../../service/OptionService';
   import { WindowService } from '../../service/WindowService';
   import { ContentFactory } from '../main/content/ContentFactory';
 
@@ -16,6 +19,7 @@
     thumbnail: '',
   };
   let factory = new ContentFactory();
+  let rightAlign = false;
 
   $: icon = stream.icon;
   $: title = stream.title;
@@ -24,6 +28,10 @@
   $: description = stream.description;
   $: content = factory.createFromStream(stream);
   $: link = StreamEmbedLinkUtils.getLink(stream);
+
+  onMount(() => {
+    OptionService.enableCheckerRightAlign.subscribe((it) => (rightAlign = it));
+  });
 
   const onIconClick = () => {
     WindowService.openContent(content);
@@ -48,7 +56,7 @@
 
 <div class="root">
   <img alt={title} class="icon" src={icon} on:click={onIconClick} />
-  <div class="detail" class:thumbnail>
+  <div class="detail" class:thumbnail class:right-align={rightAlign}>
     {#if thumbnail}
       <img
         class="thumbnail"
@@ -104,6 +112,7 @@
       display: none;
       align-items: center;
       left: 5px;
+      right: auto;
       bottom: $menu-icon-size + 0px;
       width: $width;
       height: 120px;
@@ -119,6 +128,11 @@
 
       &.thumbnail {
         height: 195px;
+      }
+
+      &.right-align {
+        left: auto;
+        right: 5px;
       }
 
       .thumbnail {

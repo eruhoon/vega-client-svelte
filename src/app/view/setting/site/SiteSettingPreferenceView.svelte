@@ -32,7 +32,7 @@
       p {
         font-size: 18px;
         padding: 12px;
-        color: #ffffff;
+        color: var(--primary-foreground-color);
       }
     }
 
@@ -58,7 +58,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: #1f2226;
+        background-color: var(--primary-hoverground-color);
 
         -webkit-transition: 0.4s;
         transition: 0.4s;
@@ -72,14 +72,17 @@
         width: 28px;
         left: 5px;
         bottom: 3px;
-        background-color: #ffffff;
+        background-color: var(--primary-foreground-color);
         -webkit-transition: 0.4s;
         transition: 0.4s;
         border-radius: 50%;
       }
 
       .active .slider {
-        background-color: #ff4081;
+        background-color: var(--primary-activeground-color);
+        &:before {
+          background-color: var(--primary-activeground-font-color);
+        }
       }
 
       .active .slider:before {

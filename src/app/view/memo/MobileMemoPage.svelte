@@ -75,16 +75,16 @@
         width: 50px;
         height: 50px;
         padding: 0;
-        color: #ffffff;
-        border: 1px solid #1c2027;
-        background-color: #1c2027;
+        color: var(--primary-foreground-color);
+        border: 1px solid var(--primary-hoverground-color);
+        background-color: var(--primary-hoverground-color);
 
         -webkit-transition: 0.4s;
         transition: 0.4s;
 
         &:hover {
-          border-color: #ff4081;
-          color: #ff4081;
+          border-color: var(--primary-activeground-color);
+          color: var(--primary-activeground-color);
         }
 
         i {
@@ -110,10 +110,10 @@
 
         padding: 7px 15px;
         padding-right: 40px;
-        border-radius: 2px;
-        border: 1px solid #1c2027;
+        border-radius: 0px;
+        border: 1px solid var(--primary-hoverground-color);
         outline: none;
-        background-color: #2a2f38;
+        background-color: var(--primary-background-color);
       }
 
       .icon {
@@ -128,8 +128,8 @@
 
         text-align: center;
         line-height: 36px;
-        border-left: 1px solid #ffffff;
-        color: #ffffff;
+        border-left: 1px solid var(--primary-foreground-color);
+        color: var(--primary-foreground-color);
 
         i {
           font-size: 20px;
@@ -144,10 +144,10 @@
   }
 
   .memo-main-content {
-    color: #ffffff;
+    color: var(--primary-foreground-color);
     .mm-search {
       input {
-        color: #ffffff;
+        color: var(--primary-foreground-color);
       }
     }
   }

@@ -59,7 +59,7 @@
     display: flex;
     width: 100%;
     height: auto;
-    border-bottom: 1px solid #1c2027;
+    border-bottom: 1px solid var(--primary-hoverground-color);
     padding-bottom: 2px;
     &:last-child {
       padding-bottom: 0px;
@@ -84,7 +84,7 @@
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        border: 2px solid #333943;
+        border: 2px solid var(--primary-background-color);
       }
     }
   }
@@ -112,13 +112,13 @@
         font-size: 14px;
         line-height: 20px;
         font-weight: 300;
-        color: #ffffff;
+        color: var(--primary-foreground-color);
         padding-top: 0px;
         flex: 1;
 
         span {
           padding-top: 2px;
-          color: #ffffff;
+          color: var(--primary-foreground-color);
         }
 
         span.type {

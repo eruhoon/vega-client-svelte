@@ -121,7 +121,7 @@
       overflow: hidden;
       margin: 5px;
       float: left;
-      border: 1px solid #2c3548;
+      border: 1px solid var(--primary-hoverground-color);
       position: relative;
 
       img {
@@ -136,7 +136,7 @@
         color: #eabd56;
         text-align: center;
         font-size: 10px;
-        background-color: #2c3548;
+        background-color: var(--primary-hoverground-color);
         p {
           margin: 0%;
         }
@@ -150,11 +150,12 @@
       margin-top: 5px;
 
       * {
-        color: #ffffff;
+        color: var(--primary-foreground-color);
         text-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
       }
 
       .title {
+        color: var(--primary-foreground-color);
         font-size: 16px;
         font-weight: bolder;
         margin: 0%;
@@ -164,6 +165,7 @@
         width: 100%;
         height: auto;
         p {
+          color: var(--primary-foreground-color);
           margin: 0%;
           padding: 0%;
           font-size: 12px;
@@ -179,7 +181,7 @@
         width: 20px;
         height: 20px;
         margin-right: 2px;
-        border: solid 1px #2c3548;
+        border: solid 1px var(--primary-hoverground-color);
       }
     }
   }

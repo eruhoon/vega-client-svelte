@@ -34,17 +34,18 @@
     width: 100%;
     max-height: 204px;
     border-radius: 3px;
-    border: 1px solid #1f2226;
+    border: 1px solid var(--primary-borderground-color);
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
     border-radius: 3px;
     overflow: hidden;
+    color: var(--primary-foreground-color);
 
     .img {
       width: 80px;
       height: 80px;
       overflow: hidden;
-      border-right: 1px solid #1f2226;
-      background-color: #2a2f38;
+      border-right: 1px solid var(--primary-borderground-color);
+      background-color: var(--primary-background-color);
       margin: 0px auto;
       img {
         width: 100%;
@@ -80,7 +81,7 @@
         width: 80px;
         height: 80px;
         float: left;
-        border-right: 1px solid #1f2226;
+        border-right: 1px solid var(--primary-borderground-color);
       }
       .info {
         width: calc(100% - 101px);
@@ -120,7 +121,7 @@
       .img {
         width: 150px;
         height: 150px;
-        border-bottom: 1px solid #1f2226;
+        border-bottom: 1px solid var(--primary-borderground-color);
       }
       .info {
         width: calc(100% - 6px);

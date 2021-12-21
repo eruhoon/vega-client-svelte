@@ -110,7 +110,7 @@
       width: 100%;
       height: 140px;
       display: flex;
-      border-bottom: 1px solid #1f2226;
+      border-bottom: 1px solid var(--primary-hoverground-color);
       margin-bottom: 15px;
 
       .live-select {
@@ -122,14 +122,18 @@
         border: 0px;
         border-radius: 0px;
 
-        background-color: #2a2f38;
-        color: #fff;
+        background-color: var(--primary-background-color);
+        color: var(--primary-foreground-color);
 
         &:hover {
-          background-color: #1f2226;
+          background-color: var(--primary-hoverground-color);
         }
         &.active {
-          background-color: #ff4081;
+          background-color: var(--primary-activeground-color);
+          color: var(--primary-activeground-font-color);
+          .icon {
+            fill: var(--primary-activeground-font-color);
+          }
         }
 
         .icon {
@@ -137,7 +141,7 @@
           height: 60px;
           margin: 12px 22px;
           margin-bottom: 15px;
-          fill: #ffffff;
+          fill: var(--primary-foreground-color);
         }
         h3 {
           font-size: 18px;
@@ -158,8 +162,8 @@
       border-top-left-radius: 0px;
       border-top-right-radius: 0px;
       padding: 20px 15px;
-      background-color: #ff4081;
-      color: #ffffff;
+      background-color: var(--primary-activeground-color);
+      color: var(--primary-activeground-font-color);
 
       position: absolute;
       bottom: 0px;

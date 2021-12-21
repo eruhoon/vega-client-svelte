@@ -107,7 +107,7 @@
       width: calc(100% - 10px);
       height: 50px;
       padding: 10px 5px;
-      background-color: rgba($color: #000000, $alpha: 0.75);
+      background-color: var(--primary-hoverground-color);
       position: absolute;
       bottom: 0px;
       left: 0px;
@@ -118,7 +118,7 @@
         border-radius: 50px;
         overflow: hidden;
         float: left;
-        border: 1px solid #ffffff;
+        border: 1px solid var(--primary-hoverground-color);
 
         img {
           width: 50px;
@@ -134,8 +134,8 @@
         * {
           padding: 0%;
           margin: 0%;
-          color: #ffffff;
-          text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+          color: var(--primary-foreground-color);
+          //text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
         }
         h3 {
           font-size: 18px;
@@ -156,7 +156,7 @@
           img {
             width: 20px;
             height: 20px;
-            background-color: #424242;
+            background-color: var(--primary-background-color);
             border-radius: 3px;
             overflow: hidden;
           }

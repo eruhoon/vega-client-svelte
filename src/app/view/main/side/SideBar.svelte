@@ -84,8 +84,7 @@
     z-index: 10;
     height: 100%;
 
-    box-shadow: 2px 0px 2px 1px rgb(0 0 0 / 20%),
-      2px 0px 3px 1px rgb(0 0 0 / 20%), 2px 0px 3px 0px rgb(0 0 0 / 20%);
+    box-shadow: var(--primary-box-shadow);
 
     &::-webkit-scrollbar {
       width: 5px;
@@ -110,22 +109,23 @@
   }
   // 컬러 스크롤링 컬러셋
   .side-bar {
-    background-color: #2a2f38;
-    color: #ffffff;
-    scrollbar-color: #ff4081 #2a2f38;
+    background-color: var(--primary-background-color);
+    color: var(--primary-foreground-color);
+    scrollbar-color: var(--primary-activeground-color)
+      var(--primary-background-color);
     scrollbar-width: thin;
     &::-webkit-scrollbar {
       border-color: #2a2f38;
     }
     &::-webkit-scrollbar-button:start:decrement,
     &::-webkit-scrollbar-button:end:increment {
-      background: #2a2f38;
+      background: var(--primary-background-color);
     }
     &::-webkit-scrollbar-track {
-      background: #2a2f38;
+      background: var(--primary-background-color);
     }
     &::-webkit-scrollbar-thumb {
-      background: #ff4081;
+      background: var(--primary-activeground-color);
     }
   }
 
@@ -151,7 +151,7 @@
     }
   }
   hr {
-    border-color: #36393f;
+    border-color: var(--primary-hoverground-color);
     margin: 5px 0px;
   }
 </style>

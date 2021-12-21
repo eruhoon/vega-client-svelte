@@ -55,6 +55,6 @@
     width: calc(100% - 20px);
     //height: 40px;
     padding: 5px 10px;
-    border-bottom: 1px solid #1f2226;
+    border-bottom: 1px solid var(--primary-hoverground-color);
   }
 </style>

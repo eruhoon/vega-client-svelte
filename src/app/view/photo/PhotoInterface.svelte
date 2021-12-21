@@ -54,7 +54,7 @@
 
       font-size: 18px;
       line-height: 36px;
-      color: #ffffff;
+      color: var(--primary-foreground-color);
     }
 
     .ph-search-input {
@@ -71,9 +71,9 @@
         border-radius: 2px;
 
         outline: none;
-        color: #ffffff;
-        border: 1px solid #1c2027;
-        background-color: #1c2027;
+        color: var(--primary-foreground-color);
+        border: 1px solid var(--primary-hoverground-color);
+        background-color: var(--primary-hoverground-color);
 
         line-height: 20px;
         font-size: 14px;
@@ -90,8 +90,8 @@
 
         text-align: center;
         line-height: 36px;
-        border-left: 1px solid #ffffff;
-        color: #ffffff;
+        border-left: 1px solid var(--primary-foreground-color);
+        color: var(--primary-foreground-color);
 
         i {
           font-size: 20px;
@@ -115,9 +115,9 @@
 
       float: right;
       outline: none;
-      color: #ffffff;
-      border: 1px solid #1c2027;
-      background-color: #1c2027;
+      color: var(--primary-foreground-color);
+      border: 1px solid var(--primary-hoverground-color);
+      background-color: var(--primary-hoverground-color);
 
       line-height: 20px;
       font-size: 14px;
@@ -128,8 +128,8 @@
       transition: 0.4s;
 
       &:hover {
-        border-color: #ff4081;
-        color: #ff4081;
+        border-color: var(--primary-activeground-color);
+        color: var(--primary-activeground-color);
       }
 
       .icon {
@@ -175,9 +175,9 @@
           padding: 7px 15px;
           padding-right: 40px;
           border-radius: 2px;
-          border: 1px solid #1c2027;
+          border: 1px solid var(--primary-hoverground-color);
           outline: none;
-          background-color: #2a2f38;
+          background-color: var(--primary-hoverground-color);
         }
 
         .icon {
@@ -191,8 +191,8 @@
 
           text-align: center;
           line-height: 36px;
-          border-left: 1px solid #ffffff;
-          color: #ffffff;
+          border-left: 1px solid var(--primary-foreground-color);
+          color: var(--primary-foreground-color);
 
           i {
             font-size: 20px;

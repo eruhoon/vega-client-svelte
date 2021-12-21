@@ -27,10 +27,10 @@
 
     input {
       width: 100%;
-      background: #1f2226;
+      background: var(--primary-hoverground-color);
       border: 0px;
       border-radius: 0%;
-      color: #ffffff;
+      color: var(--primary-foreground-color);
       padding: 15px 10px;
     }
   }

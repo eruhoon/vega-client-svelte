@@ -130,7 +130,7 @@
     height: 100%;
     // 좌우측 채팅 부분에 대한 border의 1px 처리로
     margin-left: -1px;
-    background-color: #2a2f38;
+    background-color: var(--primary-background-color);
   }
 
   // 스티커 & 채팅 클리어 & 채팅 인원 안내
@@ -138,15 +138,15 @@
     display: block;
     width: 100%;
     height: 30px;
-    background-color: #1f2226;
-    border-top: 1px solid #1d1f21;
-    border-bottom: 1px solid #1d1f21;
+    background-color: var(--primary-hoverground-color);
+    border-top: 1px solid var(--primary-hoverground-color);
+    border-bottom: 1px solid var(--primary-hoverground-color);
 
     div {
       width: auto;
       height: auto;
       display: inline-block;
-      color: #ffffff;
+      color: var(--primary-foreground-color);
       user-select: none;
 
       i {
@@ -163,7 +163,7 @@
       }
 
       &:hover {
-        color: #ff4081;
+        color: var(--primary-activeground-color);
       }
     }
 
@@ -181,9 +181,9 @@
     padding: 10px;
     margin: 0%;
 
-    background: #2a2f38;
+    background: var(--primary-background-color);
     font-size: 16px;
-    color: #ffffff;
+    color: var(--primary-foreground-color);
     border: none;
     outline: none;
   }

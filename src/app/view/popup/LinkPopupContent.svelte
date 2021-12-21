@@ -80,7 +80,7 @@
       width: 100%;
       height: calc(100% - 30px);
       border: 0px;
-      background: #1f2226;
+      background: var(--primary-hoverground-color);
     }
   }
 
@@ -102,8 +102,8 @@
     align-items: center;
     cursor: default;
     opacity: 0;
-    background: #1f2226;
-    color: #ffffff;
+    background: var(--primary-background-color);
+    color: var(--primary-foreground-color);
     i {
       padding: 0 10px 0 15px;
     }
@@ -120,8 +120,8 @@
       margin: 0;
       padding: 0;
       border-radius: 0%;
-      background: #000000;
-      color: #ffffff;
+      background: var(--primary-hoverground-color);
+      color: var(--primary-foreground-color);
       border: none;
       outline: none;
       i {
@@ -130,8 +130,8 @@
         padding: 7px 6px;
       }
       &:hover {
-        background: #ff4081;
-        color: #ffffff;
+        background: var(--primary-activeground-color);
+        color: var(--primary-activeground-font-color);
       }
     }
   }

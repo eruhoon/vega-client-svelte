@@ -24,8 +24,8 @@
   }
   .toast {
     min-width: 250px;
-    background-color: #333;
-    color: #fff;
+    background-color: var(--primary-hoverground-color);
+    color: var(--primary-foreground-color);
     text-align: center;
     border-radius: 2px;
     padding: 16px;

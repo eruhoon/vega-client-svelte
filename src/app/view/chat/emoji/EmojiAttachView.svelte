@@ -109,36 +109,37 @@
 
   // 컬러 스크롤링 컬러셋
   .container {
-    background: #2a2f38;
-    color: #ffffff;
+    background: var(--primary-background-color);
+    color: var(--primary-foreground-color);
 
     .title {
-      background-color: #1f2226;
+      background-color: var(--primary-hoverground-color);
     }
     .emoji-list {
-      scrollbar-color: #ff4081 #2a2f38;
+      scrollbar-color: var(--primary-activeground-color)
+        var(--primary-background-color);
       scrollbar-width: thin;
       &::-webkit-scrollbar {
-        border-color: #2a2f38;
+        border-color: var(--primary-background-color);
       }
       &::-webkit-scrollbar-button:start:decrement,
       &::-webkit-scrollbar-button:end:increment {
-        background: #2a2f38;
+        background: var(--primary-background-color);
       }
       &::-webkit-scrollbar-track {
-        background: #2a2f38;
+        background: var(--primary-background-color);
       }
       &::-webkit-scrollbar-thumb {
-        background: #ff4081;
+        background: var(--primary-activeground-color);
       }
       .def-emoji-list {
-        background-color: #2a2f38;
+        background-color: var(--primary-background-color);
         span {
           &:hover {
-            background: #ff4081;
+            background: var(--primary-activeground-color);
           }
           &:active {
-            background: #ff4081;
+            background: var(--primary-activeground-color);
           }
         }
       }

@@ -113,9 +113,8 @@
     height: $top-bar-height;
     margin: 0;
     z-index: 2;
-    background: #2a2f38;
-    box-shadow: 2px 0px 5px 1px rgb(0 0 0 / 40%),
-      1px 0px 5px 0px rgb(0 0 0 / 30%), 1px 0px 5px 0px rgb(0 0 0 / 30%);
+    background: var(--primary-background-color);
+    box-shadow: var(--primary-box-shadow);
   }
 
   .main-section {
@@ -126,7 +125,7 @@
     flex-direction: column;
     width: 100%;
     height: calc(100% - #{$top-bar-height});
-    background-color: #2a2f38;
+    background-color: var(--primary-background-color);
 
     .bottom-section {
       width: 100%;
@@ -153,7 +152,7 @@
     width: 100%;
     height: 100%;
     display: flex;
-    color: #e8e8e8;
+    color: var(--primary-foreground-color);
     align-items: center;
 
     .container {

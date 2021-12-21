@@ -128,10 +128,11 @@
         padding: 0;
         border: 0px;
         border-radius: 15px;
-        color: #ffffff;
-        background-color: #2a2f38;
+        color: var(--primary-foreground-color);
+        background-color: var(--primary-hoverground-color);
         &:hover {
-          background-color: #ff4081;
+          background-color: var(--primary-activeground-color);
+          color: var(--primary-activeground-font-color);
         }
         i {
           font-size: 12px;

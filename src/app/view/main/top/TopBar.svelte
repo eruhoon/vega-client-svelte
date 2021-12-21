@@ -83,15 +83,15 @@
       cursor: pointer;
       margin: 0;
       padding: 0;
-      color: #ffffff;
-      background-color: #2a2f38;
+      color: var(--primary-foreground-color);
+      background-color: var(--primary-background-color);
 
       &:hover {
-        background-color: #1f2226;
+        background-color: var(--primary-hoverground-color);
       }
 
       &:active {
-        background-color: #1f2226;
+        background-color: var(--primary-hoverground-color);
       }
       &.alert-btn {
         margin-right: 10px;
@@ -110,8 +110,8 @@
           border-radius: 15px;
           text-align: center;
           line-height: 18px;
-          background: #ec407a;
-          color: white;
+          background: var(--primary-activeground-color);
+          color: var(--primary-activeground-font-color);
         }
       }
       &.menu-btn {
@@ -147,8 +147,7 @@
     width: 250px;
     height: auto;
     overflow: hidden;
-    box-shadow: 0px 2px 10px 6px rgb(0 0 0 / 20%),
-      0px 2px 0px 0px rgb(0 0 0 / 14%), 0px 0px 2px 0px rgb(0 0 0 / 12%);
+    box-shadow: var(--primary-setting-shadow);
     transition: transform 0.25s ease-in-out;
 
     &.active {

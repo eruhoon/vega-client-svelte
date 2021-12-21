@@ -81,7 +81,7 @@
     width: 100%;
     flex-grow: 1;
     overflow: hidden;
-    background: #2a2f38;
+    background: var(--primary-background-color);
     box-shadow: 0 0 8px 0 rgb(0 0 0 / 40%), 0 0 15px 0 rgb(0 0 0 / 30%),
       0 0 20px 4px rgb(0 0 0 / 30%);
   }

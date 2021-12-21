@@ -37,17 +37,17 @@
     width: 100%;
     height: 100%;
     overflow-y: scroll;
-    background: #2a2f38;
+    background: var(--primary-background-color);
     overflow: hidden;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    color: #ffffff;
+    color: var(--primary-foreground-color);
   }
 
   .cu-list-title {
     width: 100%;
     height: $title-container-height;
-    background-color: #1f2226;
+    background-color: var(--primary-hoverground-color);
 
     * {
       margin: 0%;
@@ -117,20 +117,21 @@
 
   // 스크롤
   .cu-entry {
-    scrollbar-color: #ff4081 #2a2f38;
+    scrollbar-color: var(--primary-activeground-color)
+      var(--primary-background-color);
     scrollbar-width: thin;
     &::-webkit-scrollbar {
-      border-color: #2a2f38;
+      border-color: var(--primary-background-color);
     }
     &::-webkit-scrollbar-button:start:decrement,
     &::-webkit-scrollbar-button:end:increment {
-      background: #2a2f38;
+      background: var(--primary-background-color);
     }
     &::-webkit-scrollbar-track {
-      background: #2a2f38;
+      background: var(--primary-background-color);
     }
     &::-webkit-scrollbar-thumb {
-      background: #ff4081;
+      background: var(--primary-activeground-color);
     }
   }
 </style>

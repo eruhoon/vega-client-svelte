@@ -104,7 +104,7 @@
       margin-top: 5px;
 
       * {
-        color: #ffffff;
+        color: var(--primary-foreground-color);
         text-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
       }
 
@@ -132,7 +132,7 @@
           width: 20px;
           height: 20px;
           margin-right: 2px;
-          border: solid 1px #2c3548;
+          border: solid 1px var(--primary-hoverground-color);
         }
       }
     }

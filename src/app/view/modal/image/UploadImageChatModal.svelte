@@ -56,7 +56,7 @@
   }
   .container {
     &:focus-visible {
-      outline: 1px solid #1f2226;
+      outline: 1px solid var(--primary-hoverground-color);
     }
   }
   .image-wrapper {
@@ -65,27 +65,27 @@
     max-height: 865px;
     opacity: 1;
     position: relative;
-    background: #2a2f38;
+    background: var(--primary-background-color);
     border-radius: 2px;
-    border: 5px solid #2a2f38;
+    border: 5px solid var(--primary-background-color);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 
     .title {
       width: 100%;
       height: 40px;
-      background: #2a2f38;
+      background: var(--primary-background-color);
 
       span.icon {
         float: left;
         padding: 7px;
         font-size: 16px;
         line-height: 24px;
-        color: #ffffff;
+        color: var(--primary-foreground-color);
       }
 
       p {
         padding: 10px;
-        color: #ffffff;
+        color: var(--primary-foreground-color);
         margin: 0%;
       }
     }
@@ -94,7 +94,7 @@
       width: 100%;
       max-height: calc(860px - 100px);
 
-      background: #ffffff;
+      background: var(--primary-background-color);
       border-radius: 5px;
     }
 
@@ -102,13 +102,12 @@
       width: calc(100% + 10px);
       height: 60px;
       margin: -5px;
-      background-color: #ff4081;
-      border: 0px solid #f5f5f5;
+      background-color: var(--primary-activeground-color);
 
       font-size: 24px;
       font-weight: bolder;
       line-height: 24px;
-      color: #ffffff;
+      color: var(--primary-activeground-font-color);
 
       border-bottom-left-radius: 2px;
       border-bottom-right-radius: 2px;

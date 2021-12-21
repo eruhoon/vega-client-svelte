@@ -8,11 +8,16 @@
 
   onMount(() => {
     setInterval(() => {
-      time = new Date().getTime();
+      refreshTime();
     }, 10000);
+    refreshTime();
   });
 
   $: timeText = createTimeText(time, param.timestamp);
+
+  function refreshTime() {
+    time = new Date().getTime();
+  }
 
   function createTimeText(now: number, timestamp: number): string {
     const ago = now - timestamp;

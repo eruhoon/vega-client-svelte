@@ -191,7 +191,7 @@
     padding: 0%;
     margin: 0%;
 
-    background: #1c2027;
+    background: var(--primary-hoverground-color);
 
     .mob-clear {
       display: none;
@@ -200,9 +200,9 @@
     .photo-info {
       width: 300px;
       height: 100%;
-      background-color: #2a2f38;
-      border-right: 1px solid #1c2027;
-      border-left: 1px solid #1c2027;
+      background-color: var(--primary-background-color);
+      border-right: 1px solid var(--primary-hoverground-color);
+      border-left: 1px solid var(--primary-hoverground-color);
       padding: 10px;
       float: left;
 
@@ -211,14 +211,14 @@
         height: auto;
         padding: 10px 5px;
         padding-bottom: 15px;
-        border-bottom: 1px solid #1c2027;
+        border-bottom: 1px solid var(--primary-hoverground-color);
         margin-bottom: 10px;
         position: relative;
 
         h3 {
           font-size: 24px;
           line-height: 28px;
-          color: #ffffff;
+          color: var(--primary-foreground-color);
         }
 
         span {
@@ -226,14 +226,14 @@
           height: 28px;
           font-size: 28px;
           line-height: 28px;
-          color: #ffffff;
+          color: var(--primary-foreground-color);
           cursor: pointer;
 
           position: absolute;
           top: 9px;
           right: 5px;
           &:hover {
-            color: #ff4081;
+            color: var(--primary-activeground-color);
           }
         }
       }
@@ -249,14 +249,14 @@
 
         p.lab {
           font-size: 14px;
-          color: #eeeeee;
+          color: var(--primary-foreground-color);
           padding: 0%;
           margin: 0%;
         }
 
         p.info-txt {
           font-size: 36px;
-          color: #ffffff;
+          color: var(--primary-foreground-color);
           padding: 0%;
           margin: 0%;
         }
@@ -264,7 +264,7 @@
         .add-tag {
           width: auto;
           width: 24px;
-          color: #eeeeee;
+          color: var(--primary-foreground-color);
           font-size: 14px;
           display: block;
           position: absolute;
@@ -288,13 +288,13 @@
             height: 100%;
             line-height: 20px;
             font-size: 14px;
-            color: #ffffff;
+            color: var(--primary-foreground-color);
 
             padding: 7px 15px;
             padding-right: 50px;
             border-radius: 2px;
-            border: 1px solid #1c2027;
-            background-color: #1c2027;
+            border: 1px solid var(--primary-hoverground-color);
+            background-color: var(--primary-hoverground-color);
             outline: none;
           }
           span {
@@ -305,12 +305,12 @@
             right: 9px;
             top: 1px;
 
-            color: #ffffff;
+            color: var(--primary-foreground-color);
             text-align: center;
             line-height: 36px;
 
             &:hover {
-              color: #ff4081;
+              color: var(--primary-activeground-color);
             }
           }
         }
@@ -326,8 +326,8 @@
             width: auto;
             height: auto;
 
-            background-color: #ff4081;
-            color: #ffffff;
+            background-color: var(--primary-activeground-color);
+            color: var(--primary-activeground-font-color);
             border-radius: 2px;
             margin: 0%;
             margin-right: 10px;
@@ -353,12 +353,12 @@
             cursor: pointer;
           }
           &.attention-limit.active {
-            color: #ff4081;
+            color: var(--primary-activeground-color);
             span {
-              color: #ff4081;
+              color: var(--primary-activeground-color);
             }
             .in-txt-list > p.see-txt {
-              color: #ff4081;
+              color: var(--primary-activeground-color);
             }
           }
 
@@ -367,7 +367,7 @@
             height: auto;
 
             font-size: 36px;
-            color: #ffffff;
+            color: var(--primary-foreground-color);
             float: left;
           }
 
@@ -383,13 +383,13 @@
 
             p.ma-title {
               font-size: 20px;
-              color: #ffffff;
+              color: var(--primary-foreground-color);
               line-height: 20px;
             }
 
             p.sub-text {
               font-size: 14px;
-              color: #eeeeee;
+              color: var(--primary-foreground-color);
               line-height: 16px;
             }
 
@@ -439,7 +439,7 @@
       overflow-x: hidden;
       overflow-y: scroll;
 
-      background-color: #212121 !important;
+      background-color: var(--primary-hoverground-color) !important;
 
       span.mob-clear {
         width: 28px;
@@ -454,8 +454,8 @@
 
         font-size: 28px;
         line-height: 28px;
-        color: #ffffff;
-        background: #ff4081;
+        color: var(--primary-activeground-font-color);
+        background: var(--primary-activeground-color);
         border-radius: 2px;
         cursor: pointer;
 
@@ -481,7 +481,7 @@
           h3 {
             font-size: 24px;
             line-height: 28px;
-            color: #ffffff;
+            color: var(--primary-foreground-color);
             margin: 10px 0px;
           }
 
@@ -500,7 +500,7 @@
         min-height: 320px;
         max-height: calc(100% - 90px);
         overflow: hidden;
-        background-color: #212121;
+        background-color: var(--primary-hoverground-color);
         margin: 15px 0px;
 
         img {

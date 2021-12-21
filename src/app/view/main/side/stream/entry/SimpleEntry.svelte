@@ -84,10 +84,11 @@
       border-radius: 15px;
       margin: 2px;
       padding: 2px 10px;
-      color: #ffffff;
-      background-color: #2a2f38;
+      color: var(--primary-foreground-color);
+      background-color: var(--primary-hoverground-color);
       &:hover {
-        background-color: #ff4081;
+        background-color: var(--primary-activeground-color);
+        color: var(--primary-activeground-font-color);
       }
       i {
         font-size: 12px;

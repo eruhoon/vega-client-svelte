@@ -13,7 +13,7 @@
     justify-items: center;
     position: relative;
     width: 100%;
-    border-bottom: 1px solid #1f2226;
+    border-bottom: 1px solid var(--primary-hoverground-color);
     min-height: 45px;
 
     &:last-child {
@@ -21,7 +21,7 @@
     }
 
     &.hover:hover {
-      background-color: #1f2226;
+      background-color: var(--primary-hoverground-color);
     }
 
     &.hover {

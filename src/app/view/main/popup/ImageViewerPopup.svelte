@@ -69,7 +69,7 @@
             height: auto;
             max-height: 100%;
             max-width: 100%;
-            background: #1f2226;
+            background: var(--primary-background-color);
             border: 1px solid rgb(10, 12, 14);
             border-radius: 2px;
             box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),

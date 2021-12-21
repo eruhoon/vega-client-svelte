@@ -101,7 +101,7 @@
 
   * {
     //font-family: "Spoqa Han Sans Neo", "sans-serif";
-    color: #fff;
+    color: var(--primary-foreground-color);
     user-select: none;
     margin: 0%;
     &:focus {
@@ -109,7 +109,7 @@
     }
   }
   main {
-    background-color: #2a2f38;
+    background-color: var(--primary-background-color);
     width: 100%;
     height: 100%;
     display: flex;
@@ -118,12 +118,11 @@
       height: 100%;
       padding: 0px 30px;
       padding-top: 10%;
-      background-color: #1c2027;
+      background-color: var(--primary-hoverground-color);
       display: inline-block;
 
       // 그림자 영역
-      box-shadow: 2px 0px 1px -1px rgb(0 0 0 / 40%),
-        1px 0px 1px 0px rgb(0 0 0 / 30%), 1px 0px 3px 0px rgb(0 0 0 / 30%);
+      box-shadow: var(--primary-box-shadow);
 
       // 로그인, 회원가입, 비밀번호 찾기 css 분기 시작지점
       .login {
@@ -143,8 +142,8 @@
             position: relative;
             width: 100%;
             height: 50px;
-            color: #fff;
-            background-color: #2a2f38;
+            color: var(--primary-foreground-color);
+            background-color: var(--primary-background-color);
             border-radius: 5px;
             border: 0px;
             padding: 10px;
@@ -154,12 +153,12 @@
           .login-sub-btn {
             width: calc(100% - 0px);
             height: 70px;
-            color: #fff;
+            color: var(--primary-activeground-font-color);
             border-radius: 5px;
             border: 0px;
             font-size: 32px;
             margin-bottom: 15px;
-            background-color: #ff4081;
+            background-color: var(--primary-activeground-color);
             padding: 10px;
             font-family: 'BMJUA', 'NEXON Lv2 Gothic Bold', sans-serif;
             text-align: center;
@@ -167,7 +166,7 @@
           }
         }
         hr {
-          border-color: #36393f;
+          border-color: var(--primary-hoverground-color);
           margin: 30px 0px;
         }
         .add-btn {
@@ -181,11 +180,11 @@
             margin-left: 15px;
             text-decoration: none;
             p {
-              color: #484e58;
+              color: var(--primary-borderground-color);
             }
             &:hover {
               p {
-                color: #ff4081;
+                color: var(--primary-activeground-color);
               }
             }
           }
@@ -226,17 +225,17 @@
 
       // 컬러셋
       &::-webkit-scrollbar {
-        border-color: #2a2f38;
+        border-color: var(--primary-background-color);
       }
       &::-webkit-scrollbar-button:start:decrement,
       &::-webkit-scrollbar-button:end:increment {
-        background: #2a2f38;
+        background: var(--primary-background-color);
       }
       &::-webkit-scrollbar-track {
-        background: #2a2f38;
+        background: var(--primary-background-color);
       }
       &::-webkit-scrollbar-thumb {
-        background: #ff4081;
+        background: var(--primary-activeground-color);
       }
     }
   }
@@ -244,13 +243,4 @@
   // 일반적 환경 (PC환경 접속시 처리 되는 SCSS)
   @media all and (min-width: 768px) {
   }
-
-  /*
-  toast-list {
-    position: fixed;
-    left: 50%;
-    bottom: 30px;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-  }*/
 </style>

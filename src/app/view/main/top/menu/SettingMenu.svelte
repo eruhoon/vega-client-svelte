@@ -82,8 +82,8 @@
   // 로그아웃 부분
   .logout {
     min-height: 45px;
-    color: #ffffff;
-    background-color: #ff4081;
+    color: var(--primary-activeground-font-color);
+    background-color: var(--primary-activeground-color);
     text-align: center;
     border-radius: 0px 0px 3px 3px;
 

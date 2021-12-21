@@ -52,10 +52,10 @@
   .memo-entry {
     display: flex;
     height: 50px;
-    color: #fff;
+    color: var(--primary-foreground-color);
     padding: 5px 0px;
     padding-top: 10px;
-    border-bottom: 1px solid #1c2027;
+    border-bottom: 1px solid var(--primary-borderground-color);
 
     &:first-child {
       padding-top: 5px;
@@ -81,14 +81,14 @@
       .header {
         font-size: 12px;
         line-height: 20px;
-        color: #e0e0e0;
+        color: var(--primary-foreground-color);
         padding-top: 0px;
       }
 
       .body {
         width: 100%;
         max-lines: 1;
-        color: #eee;
+        color: var(--primary-foreground-color);
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
@@ -104,16 +104,16 @@
       button {
         width: 30px;
         height: 30px;
-        color: #ffffff;
-        border: 1px solid #1c2027;
-        background-color: #1c2027;
+        color: var(--primary-foreground-color);
+        border: 1px solid var(--primary-hoverground-color);
+        background-color: var(--primary-hoverground-color);
 
         -webkit-transition: 0.4s;
         transition: 0.4s;
 
         &:hover {
-          border-color: #ff4081;
-          color: #ff4081;
+          border-color: var(--primary-activeground-color);
+          color: var(--primary-activeground-color);
         }
         .icon {
           width: 16px;

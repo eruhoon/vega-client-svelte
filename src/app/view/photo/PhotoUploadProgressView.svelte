@@ -52,7 +52,7 @@
     position: absolute;
     bottom: 10px;
     right: 10px;
-    background-color: #1f2226;
+    background-color: var(--primary-hoverground-color);
     border-radius: 3px;
     overflow: hidden;
     box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
@@ -88,7 +88,7 @@
         font-size: 14px;
         line-height: 16px;
         font-weight: normal;
-        color: #ffffff;
+        color: var(--primary-foreground-color);
       }
       p {
         width: 100%;
@@ -96,7 +96,7 @@
         font-size: 12px;
         line-height: 14px;
         font-weight: lighter;
-        color: #ffffff;
+        color: var(--primary-foreground-color);
       }
     }
     .photo-state {

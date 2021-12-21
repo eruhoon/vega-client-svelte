@@ -41,7 +41,7 @@
     padding: 5px;
     font-size: 14px;
     line-height: 20px;
-    border-bottom: 1px solid #1f2226;
+    border-bottom: 1px solid var(--primary-hoverground-color);
 
     &:last-child {
       border-bottom: 0px;
@@ -91,11 +91,11 @@
         font-size: 16px;
         padding: 7px 0px 7px 5px;
         float: right;
-        color: #1f2226;
+        color: var(--primary-hoverground-color);
       }
 
       & > i.active {
-        color: #ffffff;
+        color: var(--primary-foreground-color);
       }
     }
   }

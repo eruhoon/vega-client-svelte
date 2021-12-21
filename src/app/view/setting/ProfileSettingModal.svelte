@@ -92,8 +92,8 @@
       border-top-left-radius: 0px;
       border-top-right-radius: 0px;
       padding: 20px 15px;
-      background-color: #ff4081;
-      color: #ffffff;
+      background-color: var(--primary-activeground-color);
+      color: var(--primary-activeground-font-color);
     }
   }
   // 모바일 처리

@@ -72,11 +72,11 @@
     width: 100%;
     height: auto;
     border: 0px;
-    background-color: #ff4081;
-    color: #ffffff;
+    background-color: var(--primary-activeground-color);
+    color: var(--primary-activeground-font-color);
 
     &:disabled {
-      background-color: #a8a8a8;
+      background-color: var(--primary-hoverground-color);
     }
   }
 </style>

@@ -55,10 +55,10 @@
     width: 370px;
     height: 50px;
 
-    border: 1px solid #1f2226;
-    border-bottom-color: #1f2226;
+    border: 1px solid var(--primary-hoverground-color);
+    border-bottom-color: var(--primary-hoverground-color);
 
-    background: #ff4081;
+    background: var(--primary-activeground-color);
     box-shadow: 0 1px 1px 0 rgba(60, 64, 67, 0.08),
       0 1px 3px 1px rgba(60, 64, 67, 0.16);
 
@@ -72,11 +72,26 @@
     &:last-child {
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
-      border-bottom-color: #1f2226;
+      border-bottom-color: var(--primary-hoverground-color);
     }
 
     &.read {
-      background: #1f2226;
+      background: var(--primary-background-color);
+      .nt-info-txt {
+        .title {
+          h4 {
+            color: var(--primary-foreground-color);
+          }
+          p {
+            color: var(--primary-foreground-color);
+          }
+        }
+        .nt-alert {
+          p {
+            color: var(--primary-foreground-color);
+          }
+        }
+      }
     }
 
     .entry {
@@ -115,12 +130,12 @@
         h4 {
           line-height: 20px;
           font-weight: bold;
-          color: #ffffff;
+          color: var(--primary-activeground-font-color);
         }
 
         p {
           padding-left: 5px;
-          color: #ffffff;
+          color: var(--primary-activeground-font-color);
           font-size: 12px;
           line-height: 20px;
         }
@@ -135,7 +150,7 @@
           font-size: 14px;
           line-height: 16px;
           text-align: left;
-          color: #ffffff;
+          color: var(--primary-activeground-font-color);
 
           // 한줄 표기
           white-space: nowrap;

@@ -170,13 +170,12 @@
 </div>
 
 <style lang="scss">
-  $foreground-color: #ffffff;
   .container {
     .body {
       position: relative;
       width: 100%;
       word-wrap: break-word;
-      color: $foreground-color;
+      color: var(--primary-foreground-color);
       padding-bottom: 4px;
       .menu {
         display: flex;
@@ -185,7 +184,7 @@
         bottom: -0px;
         width: auto;
         padding: 5px;
-        background-color: #1c2027;
+        background-color: var(--primary-hoverground-color);
         border-radius: 3px;
         justify-content: flex-end;
         visibility: collapse;
@@ -202,11 +201,11 @@
           outline: none;
           margin-left: 5px;
 
-          background: #1c2027;
-          color: #ffffff;
+          background: var(--primary-hoverground-color);
+          color: var(--primary-foreground-color);
 
           &:hover {
-            color: #ff4081;
+            color: var(--primary-activeground-color);
           }
 
           &:first-child {

@@ -42,11 +42,10 @@
     justify-content: flex-start;
     height: 100%;
     width: 100%;
-    background: #2a2f38;
-    border: 1px solid #1f2226;
+    background: var(--primary-background-color);
+    border: 1px solid var(--primary-hoverground-color);
 
-    box-shadow: 2px 0px 5px 1px rgb(0 0 0 / 40%),
-      1px 0px 5px 0px rgb(0 0 0 / 30%), 1px 0px 5px 0px rgb(0 0 0 / 30%);
+    box-shadow: var(--primary-box-shadow);
 
     &.right-align {
       justify-content: flex-end;

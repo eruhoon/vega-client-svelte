@@ -88,8 +88,8 @@
     max-width: 90%;
     height: auto;
     max-height: 300px;
-    background: #1f2226;
-    border: 1px solid rgb(10, 12, 14);
+    background: var(--primary-hoverground-color);
+    border: 1px solid var(--primary-hoverground-color);
     border-radius: 2px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   }
@@ -108,7 +108,7 @@
       width: 100%;
       height: 100%;
       content: '';
-      background: black;
+      background: var(--primary-hoverground-color);
       opacity: 0.3;
     }
 

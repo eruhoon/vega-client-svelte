@@ -80,8 +80,8 @@
       margin: auto;
       border-radius: 10px;
 
-      background-color: #2a2f38;
-      color: #ffffff;
+      background-color: var(--primary-background-color);
+      color: var(--primary-foreground-color);
 
       box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
         0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
@@ -143,8 +143,8 @@
           line-height: 20px;
           resize: none;
 
-          background-color: #2a2f38;
-          color: #ffffff;
+          background-color: var(--primary-background-color);
+          color: var(--primary-foreground-color);
         }
         .sub-btn {
           width: 100%;
@@ -155,10 +155,10 @@
           letter-spacing: 3px;
           margin-top: 25px;
 
-          background-color: #ff4081;
-          border: 1px solid #ff4081;
+          background-color: var(--primary-activeground-color);
+          border: 1px solid var(--primary-activeground-color);
 
-          color: #ffffff;
+          color: var(--primary-activeground-font-color);
         }
       }
 
@@ -169,8 +169,8 @@
         top: 0%;
         right: 0%;
 
-        background-color: #1f2226;
-        border: 1px solid #1f2226;
+        background-color: var(--primary-hoverground-color);
+        border: 1px solid var(--primary-hoverground-color);
         border-radius: 0%;
         text-align: center;
 
@@ -178,24 +178,24 @@
           font-size: 24px;
           line-height: 42px;
           padding-left: 2px;
-          color: #ffffff;
+          color: var(--primary-foreground-color);
         }
 
         &:hover {
-          background-color: #ff4081;
-          border: 1px solid #ff4081;
+          background-color: var(--primary-activeground-color);
+          border: 1px solid var(--primary-activeground-color);
 
           i {
-            color: #ffffff;
+            color: var(--primary-activeground-font-color);
           }
         }
 
         &:active {
-          background-color: #e91e63;
-          border-color: #e91e63;
+          background-color: var(--primary-activeground-color);
+          border-color: var(--primary-activeground-color);
 
           i {
-            color: #ffffff;
+            color: var(--primary-activeground-font-color);
           }
         }
       }

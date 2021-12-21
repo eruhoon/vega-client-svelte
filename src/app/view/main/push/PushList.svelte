@@ -32,10 +32,10 @@
     width: 370px;
     height: 50px;
 
-    border: 1px solid #000000;
+    border: 1px solid var(--primary-hoverground-color);
     border-radius: 5px;
 
-    background: #1f2226;
+    background: var(--primary-background-color);
     box-shadow: 0 1px 1px 0 rgba(60, 64, 67, 0.08),
       0 1px 3px 1px rgba(60, 64, 67, 0.16);
 
@@ -47,7 +47,7 @@
       font-size: 28px;
       text-align: center;
       line-height: 50px;
-      color: #ffffff;
+      color: var(--primary-foreground-color);
       float: left;
     }
 
@@ -59,7 +59,7 @@
       padding: 0%;
       margin: 0%;
 
-      color: #ffffff;
+      color: var(--primary-foreground-color);
 
       font-size: 14px;
       line-height: 46px;

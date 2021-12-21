@@ -106,9 +106,9 @@
   $top-bar-height: 50px;
   $side-bar-width: 250px;
   $default-chat-width: 300px;
-  $dark-mode-bg-color: #2a2f38;
-  $dark-mode-font-color: #ffffff;
-  $dark-mode-active-color: #1f2226;
+  $dark-mode-bg-color: var(--primary-background-color);
+  $dark-mode-font-color: var(--primary-foreground-color);
+  $dark-mode-active-color: var(--primary-hoverground-color);
 
   .top-bar {
     position: absolute;
@@ -118,9 +118,8 @@
     height: $top-bar-height;
     margin: 0;
     z-index: 2;
-    background: #2a2f38;
-    box-shadow: 2px 0px 5px 1px rgb(0 0 0 / 40%),
-      1px 0px 5px 0px rgb(0 0 0 / 30%), 1px 0px 5px 0px rgb(0 0 0 / 30%);
+    background: var(--primary-background-color);
+    box-shadow: var(--primary-box-shadow);
   }
 
   .main-section {
@@ -130,14 +129,13 @@
     display: block;
     width: 100%;
     height: calc(100% - #{$top-bar-height});
-    background-color: #2a2f38;
+    background-color: var(--primary-hoverground-color);
 
     .chat-section {
       width: 100%;
       height: 100%;
-      background: #2a2f38;
-      box-shadow: 0 0 8px 0 rgb(0 0 0 / 40%), 0 0 15px 0 rgb(0 0 0 / 30%),
-        0 0 20px 4px rgb(0 0 0 / 30%);
+      background: var(--primary-background-color);
+      box-shadow: var(--primary-chat-shadow);
     }
 
     .content-section {
@@ -145,7 +143,7 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      background: #2a2f38;
+      background: var(--primary-hoverground-color);
 
       .content {
         position: absolute;
@@ -196,7 +194,7 @@
     width: 100%;
     height: 100%;
     display: flex;
-    color: #e8e8e8;
+    color: var(--primary-foreground-color);
     align-items: center;
 
     .container {

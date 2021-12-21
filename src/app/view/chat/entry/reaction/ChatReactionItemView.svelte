@@ -38,12 +38,12 @@
       min-height: 20px;
 
       span {
-        color: white;
+        color: var(--primary-foreground-color);
         padding: 5px;
         border-radius: 2px;
         font-size: 12px;
         line-height: 20px;
-        background: #1c2027;
+        background: var(--primary-hoverground-color);
       }
     }
     &:hover {

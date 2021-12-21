@@ -156,7 +156,7 @@
         font-size: 16px;
         line-height: 20px;
         margin-left: 10px;
-        color: #ffffff;
+        color: var(--primary-foreground-color);
       }
 
       .ph-list {
@@ -172,21 +172,22 @@
 
   // 컬러 스크롤링 컬러셋
   .container {
-    background-color: #2a2f38;
-    scrollbar-color: #ff4081 #2a2f38;
+    background-color: var(--primary-background-color);
+    scrollbar-color: var(--primary-activeground-color)
+      var(--primary-background-color);
     scrollbar-width: thin;
     &::-webkit-scrollbar {
-      border-color: #2a2f38;
+      border-color: var(--primary-background-color);
     }
     &::-webkit-scrollbar-button:start:decrement,
     &::-webkit-scrollbar-button:end:increment {
-      background: #2a2f38;
+      background: var(--primary-background-color);
     }
     &::-webkit-scrollbar-track {
-      background: #2a2f38;
+      background: var(--primary-background-color);
     }
     &::-webkit-scrollbar-thumb {
-      background: #ff4081;
+      background: var(--primary-activeground-color);
     }
   }
 

@@ -114,4 +114,15 @@
       margin-top: 4px;
     }
   }
+  /*  
+    ImageHeight : (screenHeight - 200px)
+  */
+  @media (max-width: 860px) {
+    .image-wrapper {
+      width: 80vw;
+      img {
+        height: calc(100vh - 200px);
+      }
+    }
+  }
 </style>

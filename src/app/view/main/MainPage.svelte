@@ -9,7 +9,7 @@
   import ChatPage from '../chat/ChatPage.svelte';
   import ModalLayer from '../modal/ModalLayer.svelte';
   import PopupContentLayer from '../popup/PopupContentLayer.svelte';
-  import StreamList from '../stream/StreamList.svelte';
+  import BottomBar from './bottom/BottomBar.svelte';
   import ContentView from './content/ContentView.svelte';
   import ImagePopupLayer from './popup/ImagePopupLayer.svelte';
   import SideBar from './side/SideBar.svelte';
@@ -82,7 +82,7 @@
       class:checker-attached={isCheckerBarEnable}
     >
       <div class="content"><ContentView /></div>
-      <div class="bottom-bar"><StreamList /></div>
+      <div class="bottom-bar"><BottomBar /></div>
     </div>
   </VerticalSplitView>
   <div class="side-bar" class:show={sideBarVisible}>

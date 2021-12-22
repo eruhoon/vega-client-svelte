@@ -1,4 +1,6 @@
 <script lang="ts">
+  import GeneralPurposeCard from './gpc/GeneralPurposeCard.svelte';
+
   export let body: string;
   let icon: string;
   let nickname: string;
@@ -11,22 +13,9 @@
   }
 </script>
 
-<div class="root">
-  <img class="icon" src={icon} alt="{nickname} 아이콘" />
-  <div class="content">
-    <div>{nickname}</div>
-    <div>{content}</div>
-  </div>
-</div>
-
-<style lang="scss">
-  .root {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    .icon {
-      width: 50px;
-      height: 50px;
-    }
-  }
-</style>
+<GeneralPurposeCard
+  {icon}
+  title={nickname}
+  subtitle={content}
+  orientation="horizontal"
+/>

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { MobileUtils } from '../../../../util/mobile/MobileUtils';
   import VideoButton from './VideoButton.svelte';
 
   export let volume: number;
@@ -22,22 +23,24 @@
 <div class="volume-btn">
   <VideoButton icon="fas fa-volume-{volumeIcon}" onClick={onMuteClick} />
 </div>
-{#if !muted}
-  <div class="range">
-    <input
-      id="rangeBar"
-      type="range"
-      min="0"
-      max="100"
-      style="background: linear-gradient(to right,
+{#if !MobileUtils.isMobile()}
+  {#if !muted}
+    <div class="range">
+      <input
+        id="rangeBar"
+        type="range"
+        min="0"
+        max="100"
+        style="background: linear-gradient(to right,
       #ff4081 10%,
       #ff4081 {volume + 10}%,
       #ffffff {volume + 10}%,
       #ffffff 100%
     );"
-      bind:value={volume}
-    />
-  </div>
+        bind:value={volume}
+      />
+    </div>
+  {/if}
 {/if}
 
 <style lang="scss">

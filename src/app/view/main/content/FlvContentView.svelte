@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onDestroy, onMount } from 'svelte';
   import { OptionService } from '../../../service/OptionService';
+  import { MobileUtils } from '../../../util/mobile/MobileUtils';
   import type FlvJs from './flv';
   import VideoInterface from './video/VideoInterface.svelte';
 
@@ -10,8 +11,8 @@
   let flvPlayer: FlvJs.FlvPlayer | null;
   let videoElement: HTMLMediaElement;
   let interfaceShow = false;
-  let volume: number = 50;
-  $: videoVolume = volume / 100;
+  let volume: number = 100;
+  $: videoVolume = MobileUtils.isMobile() ? 1 : volume / 100;
 
   const mountPlayer = (element: HTMLMediaElement, url: string): any | null => {
     // @ts-ignore

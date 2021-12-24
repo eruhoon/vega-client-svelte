@@ -3,6 +3,8 @@
   import { FavoriteService } from '../../service/FavoriteService';
   import { OptionService } from '../../service/OptionService';
   import { StreamService } from '../../service/StreamService';
+  import BottomBarItem from '../main/bottom/BottomBarItem.svelte';
+  import ChristmasEventItem from '../main/bottom/ChristmasEventItem.svelte';
   import StreamEntry from './StreamEntry.svelte';
 
   let entries: StreamInfo[] = [];
@@ -34,6 +36,9 @@
       <StreamEntry stream={favorite} />
     </div>
   {/each}
+  <div class="stream-item">
+    <ChristmasEventItem />
+  </div>
 </div>
 
 <style lang="scss">

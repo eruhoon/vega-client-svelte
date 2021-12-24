@@ -3,7 +3,6 @@
   import { FavoriteService } from '../../service/FavoriteService';
   import { OptionService } from '../../service/OptionService';
   import { StreamService } from '../../service/StreamService';
-  import BottomBarItem from '../main/bottom/BottomBarItem.svelte';
   import ChristmasEventItem from '../main/bottom/ChristmasEventItem.svelte';
   import StreamEntry from './StreamEntry.svelte';
 
@@ -36,9 +35,7 @@
       <StreamEntry stream={favorite} />
     </div>
   {/each}
-  <div class="stream-item">
-    <ChristmasEventItem />
-  </div>
+  <ChristmasEventItem />
 </div>
 
 <style lang="scss">
@@ -56,6 +53,7 @@
       justify-content: flex-end;
     }
   }
+
   .stream-item {
     display: inline-block;
     margin: 0;

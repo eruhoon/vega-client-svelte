@@ -121,7 +121,7 @@
     .image-wrapper {
       width: 80vw;
       img {
-        height: calc(100vh - 200px);
+        max-height: calc(100vh - 200px);
       }
     }
   }

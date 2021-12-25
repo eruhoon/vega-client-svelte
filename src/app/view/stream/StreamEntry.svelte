@@ -96,10 +96,7 @@
     width: $width;
     height: 120px;
     border-radius: 2px;
-    background: dark($background-color, 10%);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;
+    background: $background-color;
     border-radius: 0px;
     overflow: hidden;
     box-shadow: var(--primary-box-shadow);

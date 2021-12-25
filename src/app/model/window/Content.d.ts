@@ -26,15 +26,21 @@ type DonationContent = {
 
 type LocalStreamContent = {
   type: 'local-stream';
-  src: string;
+  src: LocalStreamSource;
 };
 
 type TotoroStreamContent = {
   type: 'totoro-stream';
-  src: string;
+  src: LocalStreamSource;
 };
 
 type TwitchStreamContent = {
   type: 'twitch-stream';
   src: string;
+};
+
+export type LocalStreamSource = {
+  icon: string;
+  url: string;
+  title: string;
 };

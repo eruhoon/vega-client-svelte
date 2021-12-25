@@ -7,12 +7,20 @@ export class ContentFactory {
       case 'local':
         return {
           type: 'local-stream',
-          src: stream.keyid,
+          src: {
+            icon: stream.icon,
+            url: stream.keyid,
+            title: stream.title,
+          },
         };
       case 'totoro':
         return {
           type: 'totoro-stream',
-          src: stream.keyid,
+          src: {
+            icon: stream.icon,
+            url: stream.keyid,
+            title: stream.title,
+          },
         };
       case 'kakaotv':
         return {

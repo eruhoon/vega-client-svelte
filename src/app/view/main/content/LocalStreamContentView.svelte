@@ -1,8 +1,13 @@
 <script lang="ts">
+  import type { LocalStreamSource } from '../../../model/window/Content';
+
   import FlvContentView from './FlvContentView.svelte';
 
-  export let src: string = '';
-  $: url = `https://mycast.xyz:8087/live/${src}.flv`;
+  export let src: LocalStreamSource = { icon: '', url: '', title: '' };
+
+  $: url = `https://mycast.xyz:8087/live/${src?.url}.flv`;
+  $: icon = src?.icon;
+  $: title = src?.title;
 </script>
 
-<FlvContentView {url} />
+<FlvContentView {icon} {url} {title} />

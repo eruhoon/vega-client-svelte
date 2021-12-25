@@ -24,12 +24,20 @@
       case 'local':
         return {
           type: 'local-stream',
-          src: keyId,
+          src: {
+            url: keyId,
+            icon,
+            title: json.name,
+          },
         };
       case 'totoro':
         return {
           type: 'totoro-stream',
-          src: keyId,
+          src: {
+            url: keyId,
+            icon,
+            title: json.name,
+          },
         };
       case 'kakaotv':
         return {

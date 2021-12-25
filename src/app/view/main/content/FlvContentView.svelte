@@ -3,9 +3,13 @@
   import { OptionService } from '../../../service/OptionService';
   import { MobileUtils } from '../../../util/mobile/MobileUtils';
   import type FlvJs from './flv';
+  import VideoInfoHeader from './video/VideoInfoHeader.svelte';
   import VideoInterface from './video/VideoInterface.svelte';
 
+  export let icon: string = '';
   export let url: string;
+  export let title: string;
+
   let paused: boolean;
   let muted: boolean;
   let flvPlayer: FlvJs.FlvPlayer | null;
@@ -96,6 +100,7 @@
   />
 
   {#if interfaceShow}
+    <VideoInfoHeader {icon} {title} />
     <VideoInterface
       bind:volume
       {muted}

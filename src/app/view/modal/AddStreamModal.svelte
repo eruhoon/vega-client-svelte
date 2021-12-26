@@ -152,17 +152,6 @@
 </div>
 
 <style lang="scss">
-  .modal-wrapper {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-    top: 0;
-    left: 0;
-  }
   .modal {
     position: relative;
     width: 480px;
@@ -346,30 +335,6 @@
         border-top: 0px;
       }
 
-      .error-search {
-        width: 100%;
-        height: 110px;
-        padding: 15px 0px;
-        display: none;
-
-        text-align: center;
-
-        span {
-          font-size: 60px;
-          line-height: 60px;
-          color: var(--primary-foreground-color);
-          padding-bottom: 10px;
-        }
-        h3 {
-          font-size: 20px;
-          color: var(--primary-foreground-color);
-          padding-bottom: 5px;
-        }
-        p {
-          font-size: 14px;
-          color: var(--primary-foreground-color);
-        }
-      }
       .live-stream {
         width: 100%;
         height: 80px;
@@ -467,16 +432,5 @@
         }
       }
     }
-  }
-
-  .click-blocker {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: black;
-    opacity: 0.8;
-    z-index: 100;
-    top: 0;
-    left: 0;
   }
 </style>

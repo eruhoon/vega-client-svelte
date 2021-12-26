@@ -140,37 +140,6 @@
           }
         }
       }
-      .favorite {
-        width: auto;
-        height: auto;
-        position: absolute;
-        top: 33px;
-        right: 20px;
-        border-radius: 5px;
-
-        i {
-          font-size: 24px;
-          float: left;
-
-          padding: 10px;
-        }
-        p {
-          font-size: 14px;
-          float: left;
-          padding: 12px;
-          margin: 0px;
-          padding-left: 0px;
-        }
-
-        &:hover {
-          background-color: var(--primary-hoverground-color);
-          color: var(--primary-foreground-color);
-        }
-        &:active {
-          background-color: var(--primary-activeground-color);
-          color: var(--primary-activeground-font-color);
-        }
-      }
       .content {
         width: 100%;
 
@@ -228,15 +197,6 @@
       }
     }
 
-    // 상단, 좌우 버튼
-    i.clear {
-      font-size: 40px;
-      z-index: 120;
-      position: absolute;
-      right: 0px;
-      top: 10px;
-      cursor: pointer;
-    }
     a.btn {
       position: absolute;
       top: calc(50% - 20px);

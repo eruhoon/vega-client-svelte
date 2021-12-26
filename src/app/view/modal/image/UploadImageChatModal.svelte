@@ -52,8 +52,6 @@
 </div>
 
 <style lang="scss">
-  :focus-visible {
-  }
   .container {
     &:focus-visible {
       outline: 1px solid var(--primary-hoverground-color);

@@ -35,7 +35,7 @@
   };
 
   const startPlay = () => {
-    interval = setInterval(() => {
+    interval = window.setInterval(() => {
       index = getRandomNumber(images.length, index);
     }, 4000);
   };

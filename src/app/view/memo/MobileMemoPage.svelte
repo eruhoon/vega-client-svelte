@@ -3,7 +3,6 @@
   import type { Memo } from '../../model/memo/Memo';
   import { MemoService } from '../../service/MemoService';
   import { WindowService } from '../../service/WindowService';
-  import UploadMemoModal from '../modal/memo/UploadMemoModal.svelte';
   import MemoDetailView from './MemoDetailView.svelte';
   import MobileMemoEntry from './MobileMemoEntry.svelte';
 

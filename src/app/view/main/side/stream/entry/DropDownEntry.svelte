@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createEventDispatcher, onMount } from 'svelte';
+  import { createEventDispatcher } from 'svelte';
   import type { StreamInfo } from '../../../../../model/stream/StreamInfo';
 
   const dispatch = createEventDispatcher();

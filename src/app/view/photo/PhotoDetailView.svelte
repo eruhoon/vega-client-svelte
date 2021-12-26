@@ -396,9 +396,6 @@
             p.ma-title.see-txt {
               padding-top: 9px;
             }
-
-            &.active {
-            }
           }
         }
       }

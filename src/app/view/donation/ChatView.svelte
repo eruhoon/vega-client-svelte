@@ -26,6 +26,7 @@
                 <input type="radio" value="def" bind:group={chatSet.Qset} />
                 <span class="radio-box">
                   <span class="img">
+                    <!-- svelte-ignore a11y-missing-attribute -->
                     <img src="https://i.imgur.com/qcN7fpp.gif" />
                   </span>
                   <h3>기본</h3>
@@ -35,6 +36,7 @@
                 <input type="radio" value="def2" bind:group={chatSet.Qset} />
                 <span class="radio-box">
                   <span class="img">
+                    <!-- svelte-ignore a11y-missing-attribute -->
                     <img src="https://i.imgur.com/qcN7fpp.gif" />
                   </span>
                   <h3>기본2</h3>
@@ -44,6 +46,7 @@
                 <input type="radio" value="dc" bind:group={chatSet.Qset} />
                 <span class="radio-box">
                   <span class="img">
+                    <!-- svelte-ignore a11y-missing-attribute -->
                     <img src="https://i.imgur.com/qcN7fpp.gif" />
                   </span>
                   <h3>DC스타일</h3>
@@ -53,6 +56,7 @@
                 <input type="radio" value="kakao" bind:group={chatSet.Qset} />
                 <span class="radio-box">
                   <span class="img">
+                    <!-- svelte-ignore a11y-missing-attribute -->
                     <img src="https://i.imgur.com/qcN7fpp.gif" />
                   </span>
                   <h3>카카오스타일</h3>
@@ -66,6 +70,7 @@
                 />
                 <span class="radio-box">
                   <span class="img">
+                    <!-- svelte-ignore a11y-missing-attribute -->
                     <img src="https://i.imgur.com/qcN7fpp.gif" />
                   </span>
                   <h3>머테리얼</h3>
@@ -75,6 +80,7 @@
                 <input type="radio" value="simple" bind:group={chatSet.Qset} />
                 <span class="radio-box">
                   <span class="img">
+                    <!-- svelte-ignore a11y-missing-attribute -->
                     <img src="https://i.imgur.com/qcN7fpp.gif" />
                   </span>
                   <h3>심플</h3>
@@ -84,6 +90,7 @@
                 <input type="radio" value="simple2" bind:group={chatSet.Qset} />
                 <span class="radio-box">
                   <span class="img">
+                    <!-- svelte-ignore a11y-missing-attribute -->
                     <img src="https://i.imgur.com/qcN7fpp.gif" />
                   </span>
                   <h3>심플2</h3>
@@ -93,6 +100,7 @@
                 <input type="radio" value="mycast" bind:group={chatSet.Qset} />
                 <span class="radio-box">
                   <span class="img">
+                    <!-- svelte-ignore a11y-missing-attribute -->
                     <img src="https://i.imgur.com/qcN7fpp.gif" />
                   </span>
                   <h3>마캐2</h3>
@@ -102,6 +110,7 @@
                 <input type="radio" value="mycast" bind:group={chatSet.Qset} />
                 <span class="radio-box">
                   <span class="img">
+                    <!-- svelte-ignore a11y-missing-attribute -->
                     <img src="https://i.imgur.com/qcN7fpp.gif" />
                   </span>
                   <h3>커스텀CSS</h3>
@@ -375,13 +384,11 @@
                 width: calc(100% - 220px);
                 position: relative;
                 display: inline-block;
-                float: left;
 
                 .thumbnail {
                   width: 158px;
                   height: 138px;
                   display: inline-block;
-                  float: left;
                   padding: 0%;
                   margin: 0%;
                   margin-bottom: 15px;

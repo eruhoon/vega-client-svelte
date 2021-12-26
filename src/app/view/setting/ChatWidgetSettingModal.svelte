@@ -299,7 +299,6 @@
           width: 30%;
           height: 130px;
           display: inline-block;
-          float: left;
           padding: 0%;
           margin: 0%;
           margin-bottom: 15px;
@@ -348,10 +347,10 @@
             }
 
             &.nLayout-center {
-              .icon {
-                opacity: 0.1;
-                padding-top: 15px;
-              }
+              // .icon {
+              //   opacity: 0.1;
+              //   padding-top: 15px;
+              // }
               h3 {
                 position: absolute;
                 top: 26px;
@@ -444,9 +443,9 @@
           background-color: #ff4081;
         }
 
-        input:focus + .slider {
-          box-shadow: 0 0 1px #ff4081;
-        }
+        // input:focus + .slider {
+        //   box-shadow: 0 0 1px #ff4081;
+        // }
 
         .active .slider:before {
           -webkit-transform: translateX(24px);

@@ -15,8 +15,9 @@
   };
   let donationSelected = 'dashboard';
 
-  const onDonationBtnClick = (e) => {
-    const donationViewBtn = e.target.closest('button');
+  const onDonationBtnClick = (e: MouseEvent) => {
+    const target = e.target as HTMLButtonElement;
+    const donationViewBtn = target.closest('button');
     switch (donationViewBtn.value) {
       case 'dashboard':
         donationPage.View = 'dashboard';

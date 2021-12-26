@@ -26,13 +26,6 @@
     };
   });
 
-  const onScroll = () => {
-    const { scrollTop, scrollHeight, clientHeight } = rootView;
-    const threashold = 500 + clientHeight;
-    const diff = scrollHeight - scrollTop;
-    ChatService.scrollLock.set(diff > threashold);
-  };
-
   const scrollDown = (force: boolean) => {
     if (!force) {
       if (scrollLock) {
@@ -52,9 +45,16 @@
       ChatService.requestScrollDown();
     });
   });
+
+  function onScroll() {
+    const { scrollTop, scrollHeight, clientHeight } = rootView;
+    const threashold = 500 + clientHeight;
+    const diff = scrollHeight - scrollTop;
+    ChatService.scrollLock.set(diff > threashold);
+  }
 </script>
 
-<div class="chat-list" bind:this={rootView} on:scroll={(e) => onScroll(e)}>
+<div class="chat-list" bind:this={rootView} on:scroll={onScroll}>
   {#each props as prop}
     {#if !(!enableBot && prop.senderType === 'BOT')}
       <ChatEntry {prop} messages={prop.messages} />

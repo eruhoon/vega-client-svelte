@@ -14,9 +14,7 @@
       title = json.title;
       subtitle = json.pubDate;
       link = json.link;
-    } catch {
-      isError = true;
-    }
+    } catch {}
   }
 
   function onClick() {

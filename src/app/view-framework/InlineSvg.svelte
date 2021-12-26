@@ -12,18 +12,7 @@
   let isLoaded = false;
   let svgAttrs = {};
   let svgContent;
-  function filterAttrs(attrs) {
-    return Object.keys(attrs).reduce((result, key) => {
-      if (
-        attrs[key] !== false &&
-        attrs[key] !== null &&
-        attrs[key] !== undefined
-      ) {
-        result[key] = attrs[key];
-      }
-      return result;
-    }, {});
-  }
+
   function download(url) {
     return new Promise((resolve, reject) => {
       const request = new XMLHttpRequest();

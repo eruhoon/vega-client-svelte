@@ -282,7 +282,6 @@
             width: auto;
             height: auto;
 
-            float: right;
             display: inline-block;
             margin-right: 10px;
 
@@ -341,7 +340,6 @@
             height: 34px;
             position: relative;
             display: inline-block;
-            float: right;
             margin-right: 15px;
             input {
               opacity: 0;
@@ -394,7 +392,6 @@
             width: auto;
             height: auto;
 
-            float: right;
             display: inline-block;
             margin-right: 10px;
 
@@ -514,7 +511,6 @@
               width: auto;
               height: auto;
 
-              float: right;
               display: inline-block;
               margin-right: 10px;
 
@@ -559,7 +555,6 @@
               height: 34px;
               position: relative;
               display: inline-block;
-              float: right;
               margin-right: 15px;
               input {
                 opacity: 0;
@@ -612,7 +607,6 @@
               width: auto;
               height: auto;
 
-              float: right;
               display: inline-block;
               margin-right: 10px;
 

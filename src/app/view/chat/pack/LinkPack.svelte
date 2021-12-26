@@ -35,7 +35,12 @@
   }
 </script>
 
-<div class="root" class:thumbnail-attched={thumbnail} on:click={openWindow}>
+<div
+  class="root"
+  class:thumbnail-attched={thumbnail}
+  on:click={openWindow}
+  on:contextmenu|preventDefault={openContent}
+>
   {#if thumbnail}
     <img class="thumbnail" alt="thumbnail" src={thumbnail} />
   {/if}

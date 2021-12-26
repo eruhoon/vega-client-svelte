@@ -3,7 +3,6 @@
   import GeneralPurposeCard from './gpc/GeneralPurposeCard.svelte';
 
   export let body: string;
-  let isError: boolean = false;
   let icon: string;
   let title: string;
   let subtitle: string;

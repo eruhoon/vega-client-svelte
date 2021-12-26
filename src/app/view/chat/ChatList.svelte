@@ -26,7 +26,7 @@
     };
   });
 
-  const onScroll = (e: any) => {
+  const onScroll = () => {
     const { scrollTop, scrollHeight, clientHeight } = rootView;
     const threashold = 500 + clientHeight;
     const diff = scrollHeight - scrollTop;

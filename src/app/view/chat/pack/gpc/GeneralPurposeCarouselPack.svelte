@@ -33,7 +33,7 @@
 {:else}
   <div class="card-container">
     {#each props as prop}
-      <div class="card-info {prop.orientation}" on:click={(e) => onClick(prop)}>
+      <div class="card-info {prop.orientation}" on:click={() => onClick(prop)}>
         <div class="img">
           <img src={prop.icon} alt="{prop.title} 이미지" />
         </div>

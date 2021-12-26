@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Router, Link, Route } from 'svelte-routing';
+  import { Route, Router } from 'svelte-routing';
   import EmbedRoute from './app/view/route/EmbedRoute.svelte';
   import MainRoute from './app/view/route/MainRoute.svelte';
   export let url = '';

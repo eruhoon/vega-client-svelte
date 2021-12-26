@@ -1,5 +1,4 @@
 <script lang="ts">
-  import PopupContentLayer from '../../popup/PopupContentLayer.svelte';
   import { PopupContentService } from '../../popup/PopupContentService';
 
   export let body: string;

@@ -3,15 +3,12 @@
 
   let enableBotChatstamp = 1;
 
-  // OptionService.timestamp.subscribe((v) => (enableTimestamp = v));
-
   const toggleBotChatstamp = () => {
     if (enableBotChatstamp == 1) {
       enableBotChatstamp = 0;
     } else {
       enableBotChatstamp = 1;
     }
-    //OptionService.setTimestamp(!enableTimestamp);
   };
 </script>
 
@@ -54,6 +51,7 @@
             <input type="radio" value="def" name="chat-style" />
             <span class="radio-box">
               <span class="img">
+                <!-- svelte-ignore a11y-missing-attribute -->
                 <img src="https://i.imgur.com/qcN7fpp.gif" />
               </span>
               <h3>기본</h3>
@@ -63,6 +61,7 @@
             <input type="radio" value="def2" name="chat-style" />
             <span class="radio-box">
               <span class="img">
+                <!-- svelte-ignore a11y-missing-attribute -->
                 <img src="https://i.imgur.com/qcN7fpp.gif" />
               </span>
               <h3>기본2</h3>
@@ -72,6 +71,7 @@
             <input type="radio" value="dc" name="chat-style" />
             <span class="radio-box">
               <span class="img">
+                <!-- svelte-ignore a11y-missing-attribute -->
                 <img src="https://i.imgur.com/qcN7fpp.gif" />
               </span>
               <h3>DC스타일</h3>
@@ -81,6 +81,7 @@
             <input type="radio" value="kakao" name="chat-style" />
             <span class="radio-box">
               <span class="img">
+                <!-- svelte-ignore a11y-missing-attribute -->
                 <img src="https://i.imgur.com/qcN7fpp.gif" />
               </span>
               <h3>카카오스타일</h3>
@@ -90,6 +91,7 @@
             <input type="radio" value="material" name="chat-style" />
             <span class="radio-box">
               <span class="img">
+                <!-- svelte-ignore a11y-missing-attribute -->
                 <img src="https://i.imgur.com/qcN7fpp.gif" />
               </span>
               <h3>머테리얼</h3>
@@ -99,6 +101,7 @@
             <input type="radio" value="simple" name="chat-style" />
             <span class="radio-box">
               <span class="img">
+                <!-- svelte-ignore a11y-missing-attribute -->
                 <img src="https://i.imgur.com/qcN7fpp.gif" />
               </span>
               <h3>심플</h3>
@@ -108,6 +111,7 @@
             <input type="radio" value="simple2" name="chat-style" />
             <span class="radio-box">
               <span class="img">
+                <!-- svelte-ignore a11y-missing-attribute -->
                 <img src="https://i.imgur.com/qcN7fpp.gif" />
               </span>
               <h3>심플2</h3>
@@ -117,6 +121,7 @@
             <input type="radio" value="mycast" name="chat-style" />
             <span class="radio-box">
               <span class="img">
+                <!-- svelte-ignore a11y-missing-attribute -->
                 <img src="https://i.imgur.com/qcN7fpp.gif" />
               </span>
               <h3>마캐2</h3>
@@ -126,6 +131,7 @@
             <input type="radio" value="mycast" name="chat-style" />
             <span class="radio-box">
               <span class="img">
+                <!-- svelte-ignore a11y-missing-attribute -->
                 <img src="https://i.imgur.com/qcN7fpp.gif" />
               </span>
               <h3>커스텀CSS</h3>
@@ -135,6 +141,7 @@
             <input type="radio" value="simple2" name="chat-style" />
             <span class="radio-box">
               <span class="img">
+                <!-- svelte-ignore a11y-missing-attribute -->
                 <img src="https://i.imgur.com/qcN7fpp.gif" />
               </span>
               <h3>심플2</h3>
@@ -144,6 +151,7 @@
             <input type="radio" value="mycast" name="chat-style" />
             <span class="radio-box">
               <span class="img">
+                <!-- svelte-ignore a11y-missing-attribute -->
                 <img src="https://i.imgur.com/qcN7fpp.gif" />
               </span>
               <h3>마캐2</h3>
@@ -153,6 +161,7 @@
             <input type="radio" value="mycast" name="chat-style" />
             <span class="radio-box">
               <span class="img">
+                <!-- svelte-ignore a11y-missing-attribute -->
                 <img src="https://i.imgur.com/qcN7fpp.gif" />
               </span>
               <h3>커스텀CSS</h3>

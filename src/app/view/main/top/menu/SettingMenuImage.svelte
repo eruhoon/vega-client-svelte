@@ -1,5 +1,5 @@
 <script lang="ts">
-  import InlineSVG from 'svelte-inline-svg';
+  import InlineSvg from '../../../../view-framework/InlineSvg.svelte';
 
   export let imageSrc: string;
 </script>
@@ -7,7 +7,7 @@
 <!-- svelte-ignore a11y-missing-attribute -->
 
 <div>
-  <InlineSVG src={imageSrc} />
+  <InlineSvg src={imageSrc} />
 </div>
 
 <style lang="scss">

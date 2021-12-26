@@ -1,9 +1,9 @@
 <script lang="ts">
-  import InlineSVG from 'svelte-inline-svg';
   import { RegisterStreamCommand } from '../../model/stream/RegisterStreamCommand';
   import { StageStreamCommand } from '../../model/stream/StageStreamCommand';
   import { ToastService } from '../../service/ToastService';
   import { WindowService } from '../../service/WindowService';
+  import InlineSvg from '../../view-framework/InlineSvg.svelte';
 
   const platforms = [
     {
@@ -93,7 +93,7 @@
                   checked={platform === currentPlatform}
                 />
                 <div class="icon">
-                  <InlineSVG src="/assets/image/stream/{platform.icon}.svg" />
+                  <InlineSvg src="/assets/image/stream/{platform.icon}.svg" />
                 </div>
               </div>
             </div>

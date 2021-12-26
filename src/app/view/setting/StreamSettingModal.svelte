@@ -1,5 +1,4 @@
 <script lang="ts">
-  import InlineSVG from 'svelte-inline-svg';
   import { get } from 'svelte/store';
   import { SessionService } from '../../service/SessionService';
   import { ModifyStreamCommand } from '../../model/stream/ModifyStreamCommand';
@@ -8,6 +7,7 @@
   import SettingModal from './SettingModal.svelte';
   import ExternalStreamSettingForm from './stream/ExternalStreamSettingForm.svelte';
   import LocalStreamSettingForm from './stream/LocalStreamSettingForm.svelte';
+  import InlineSvg from '../../view-framework/InlineSvg.svelte';
 
   const platforms = [
     {
@@ -69,7 +69,7 @@
         >
           <!-- SVG 변경 필수 -->
           <div class="icon">
-            <InlineSVG src="/assets/image/stream/{p.icon}.svg" />
+            <InlineSvg src="/assets/image/stream/{p.icon}.svg" />
           </div>
           <h3>{p.title}</h3>
         </button>

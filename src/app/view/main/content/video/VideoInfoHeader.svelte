@@ -6,8 +6,10 @@
 </script>
 
 <header transition:fade={{ delay: 150, duration: 400 }}>
-  <!-- svelte-ignore a11y-missing-attribute -->
-  <img class="icon" src={icon} />
+  {#if icon}
+    <!-- svelte-ignore a11y-missing-attribute -->
+    <img class="icon" src={icon} />
+  {/if}
   <div class="title">{title}</div>
 </header>
 

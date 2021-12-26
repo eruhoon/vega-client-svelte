@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+  import type { LocalStreamSource } from '../../model/window/Content';
   import LocalStreamContentView from '../main/content/LocalStreamContentView.svelte';
   import TotoroStreamContentView from '../main/content/TotoroStreamContentView.svelte';
 
@@ -7,13 +8,19 @@
   const id = urlParams.get('id');
   const platform = urlParams.get('p');
   console.log(hasId, id, platform);
+
+  let src: LocalStreamSource = {
+    icon: '',
+    url: id,
+    title: '',
+  };
 </script>
 
 {#if hasId}
   {#if platform === 'local'}
-    <LocalStreamContentView src={id} />
+    <LocalStreamContentView {src} />
   {:else if platform === 'totoro'}
-    <TotoroStreamContentView src={id} />
+    <TotoroStreamContentView {src} />
   {:else}
     <p>error</p>
   {/if}

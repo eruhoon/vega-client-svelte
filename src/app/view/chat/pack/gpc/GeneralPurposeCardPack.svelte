@@ -1,8 +1,6 @@
 <script>
   import { WindowService } from '../../../../service/WindowService';
-
   import { MobileUtils } from '../../../../util/mobile/MobileUtils';
-
   import { PopupContentService } from '../../../popup/PopupContentService';
   import GeneralPurposeCard from './GeneralPurposeCard.svelte';
 

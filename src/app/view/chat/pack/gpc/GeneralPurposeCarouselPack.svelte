@@ -1,6 +1,6 @@
 <script lang="ts">
+  import { WindowService } from '../../../../service/WindowService';
   import { PopupContentService } from '../../../popup/PopupContentService';
-
   import type { GeneralPurposeProperty } from '../GeneralPurposeProperty';
 
   export let body: string = '[]';
@@ -22,6 +22,16 @@
           },
           type: 'iframe',
         });
+        break;
+      case 'new-window':
+        window.open(prop.link);
+        break;
+      case 'content-viewer':
+        WindowService.openContent({
+          type: 'iframe',
+          src: prop.link,
+        });
+        break;
     }
   }
 </script>

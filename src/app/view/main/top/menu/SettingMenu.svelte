@@ -62,7 +62,11 @@
       on:valuechange={onThemeValueChange}
     />
   </DefaultMenuItem>
-  <DefaultMenuItem name="모바일 모드" icon="fas fa-mobile" />
+  <DefaultMenuItem
+    name="모바일 모드"
+    icon="fas fa-mobile"
+    menuClick={() => window.open('/chat', '_blank', 'width=300,height=720')}
+  />
   <DefaultMenuItem name="후원리스트" icon="fas fa-clipboard-list" />
   <div class="logout" on:click={logout}>
     <h4>로그아웃</h4>

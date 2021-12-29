@@ -1,4 +1,6 @@
 <script>
+  import { WindowService } from '../../../../service/WindowService';
+
   import { MobileUtils } from '../../../../util/mobile/MobileUtils';
 
   import { PopupContentService } from '../../../popup/PopupContentService';
@@ -6,7 +8,6 @@
 
   export let body;
   $: json = JSON.parse(body);
-
   $: icon = json.icon;
   $: title = json.title;
   $: link = json.link;
@@ -31,6 +32,12 @@
         break;
       case 'new-window':
         window.open(link);
+        break;
+      case 'content-viewer':
+        WindowService.openContent({
+          type: 'iframe',
+          src: link,
+        });
         break;
     }
   }

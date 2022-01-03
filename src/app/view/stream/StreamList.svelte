@@ -4,6 +4,7 @@
   import { OptionService } from '../../service/OptionService';
   import { StreamService } from '../../service/StreamService';
   import ChristmasEventItem from '../main/bottom/ChristmasEventItem.svelte';
+  import HappyNewYearEventItem from '../main/bottom/HappyNewYearEventItem.svelte';
   import StreamEntry from './StreamEntry.svelte';
 
   let entries: StreamInfo[] = [];
@@ -36,6 +37,7 @@
     </div>
   {/each}
   <ChristmasEventItem />
+  <HappyNewYearEventItem />
 </div>
 
 <style lang="scss">

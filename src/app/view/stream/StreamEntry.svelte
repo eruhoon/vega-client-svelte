@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-
   import { SocketShareStreamCommand } from '../../model/socket/command/SocketShareStreamCommand';
   import { StreamEmbedLinkUtils } from '../../model/stream/StreamEmbedLinkUtils';
   import type { StreamInfo } from '../../model/stream/StreamInfo';

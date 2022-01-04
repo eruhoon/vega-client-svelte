@@ -1,14 +1,21 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+
   import { WindowService } from '../../service/WindowService';
   import ContentView from './content/ContentView.svelte';
+
+  const closeModeThreashold = 80;
 
   export let subViewActivated = false;
   let height = 200;
   let offset = -1;
+  let closing = false;
 
-  function onContentCloseClick() {
-    WindowService.closeContent();
-  }
+  onMount(() => {
+    height = 200;
+    offset = -1;
+    closing = false;
+  });
 
   function onTouchStart(e: TouchEvent) {
     const touches = e.changedTouches;
@@ -24,7 +31,15 @@
       const diff = offset - y;
       height = height - diff;
       offset = y;
+      closing = height < closeModeThreashold;
     }
+  }
+
+  function onTouchEnd() {
+    if (closing) {
+      WindowService.closeContent();
+    }
+    closing = false;
   }
 </script>
 
@@ -32,14 +47,15 @@
   {#if subViewActivated}
     <div class="sub-division" style="height: {height}px">
       <ContentView />
-      <button class="fab" on:click={onContentCloseClick}>
-        <i class="fas fa-times" />
-      </button>
+      {#if closing}
+        <div class="closing-guide" />
+      {/if}
     </div>
     <div
       class="divider"
       on:touchstart={onTouchStart}
       on:touchmove={onTouchMove}
+      on:touchend={onTouchEnd}
     />
   {/if}
   <div class="main-division">
@@ -63,16 +79,14 @@
     max-height: 300px;
     flex-shrink: 0;
 
-    .fab {
+    .closing-guide {
       position: absolute;
-      right: 10px;
-      bottom: -15px;
-      width: 30px;
-      height: 30px;
-      margin: 0;
-      z-index: 2;
-      border: none;
-      border-radius: 15px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.7;
+      background-color: black;
     }
   }
 

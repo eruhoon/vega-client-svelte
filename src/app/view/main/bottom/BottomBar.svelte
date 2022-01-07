@@ -1,9 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { OptionService } from '../../../service/OptionService';
-
   import StreamList from '../../stream/StreamList.svelte';
-  import ChristmasEventItem from './ChristmasEventItem.svelte';
   import HappyNewYearEventItem from './HappyNewYearEventItem.svelte';
 
   let rightAlign: boolean = false;
@@ -17,7 +15,6 @@
 
 <div class="bottom-bar" class:right-align={rightAlign}>
   <StreamList />
-  <ChristmasEventItem />
   <HappyNewYearEventItem />
 </div>
 

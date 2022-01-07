@@ -1,4 +1,20 @@
 <script lang="ts">
+  import axios from 'axios';
+  import { onMount } from 'svelte';
+  import { SessionService } from '../../service/SessionService';
+
+  let secretKey = '';
+
+  onMount(async () => {
+    secretKey = await getSecretKey();
+  });
+
+  async function getSecretKey(): Promise<string> {
+    const privateKey = SessionService.getPrivateKey();
+    const uri = `https://mycast.xyz:9011/user/${privateKey}/secret`;
+    const { data: secretKey } = await axios.get(uri);
+    return secretKey;
+  }
 </script>
 
 <article>
@@ -140,7 +156,7 @@
       </div>
       <div class="content">
         <div class="link-group">
-          <h3 class="link-text">a7dd72998c42bb735905e62b1b992f9d</h3>
+          <h3 class="link-text">{secretKey}</h3>
           <div class="btn-group">
             <button class="icon-btn">
               <span class="icon">

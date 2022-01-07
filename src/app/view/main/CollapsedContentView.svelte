@@ -5,17 +5,22 @@
   import ContentView from './content/ContentView.svelte';
 
   const closeModeThreashold = 80;
+  const defaultHeight = 200;
+  const defaultOffset = -1;
 
   export let subViewActivated = false;
-  let height = 200;
-  let offset = -1;
+  let height = defaultHeight;
+  let offset = defaultOffset;
   let closing = false;
 
-  onMount(() => {
-    height = 200;
-    offset = -1;
-    closing = false;
-  });
+  $: {
+    if (subViewActivated) {
+      console.log('activated');
+      height = defaultHeight;
+      offset = defaultOffset;
+      closing = false;
+    }
+  }
 
   function onTouchStart(e: TouchEvent) {
     const touches = e.changedTouches;

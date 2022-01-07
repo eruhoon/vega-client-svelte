@@ -15,7 +15,6 @@
 
   $: {
     if (subViewActivated) {
-      console.log('activated');
       height = defaultHeight;
       offset = defaultOffset;
       closing = false;

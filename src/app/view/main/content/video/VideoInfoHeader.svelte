@@ -60,4 +60,41 @@
       color: #ffffff;
     }
   }
+
+  // 모바일 세로
+  @media (min-width: 320px) and (max-width: 480px) {
+    //CSS
+    header {
+      $icon-size: 40px;
+
+      .icon {
+        width: $icon-size;
+        height: $icon-size;
+      }
+
+      .title {
+        left: calc(20px + #{$icon-size});
+        width: calc(100% - #{$icon-size} - 30px);
+        font-size: 16px;
+      }
+    }
+  }
+  // 저세상 해상도 태블릿
+  @media (min-width: 481px) {
+    //CSS
+    header {
+      $icon-size: 70px;
+
+      .icon {
+        width: $icon-size;
+        height: $icon-size;
+      }
+
+      .title {
+        left: calc(20px + #{$icon-size});
+        width: calc(100% - #{$icon-size} - 30px);
+        font-size: 17px;
+      }
+    }
+  }
 </style>

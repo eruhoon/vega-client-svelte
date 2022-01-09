@@ -33,8 +33,8 @@
         max="100"
         style="background: linear-gradient(to right,
       #ff4081 10%,
-      #ff4081 {volume + 10}%,
-      #ffffff {volume + 10}%,
+      #ff4081 {volume + 0}%,
+      #ffffff {volume + 0}%,
       #ffffff 100%
     );"
         bind:value={volume}
@@ -46,7 +46,7 @@
 <style lang="scss">
   .range {
     width: 4vw;
-    padding: 14px 0px;
+    padding: 9px 0px;
     input[type='range'] {
       margin-left: 10px;
       -webkit-appearance: none;

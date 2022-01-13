@@ -1,9 +1,9 @@
 import { get, Readable, writable, Writable } from 'svelte/store';
-import type { ChatProperty } from '../model/chat/ChatProperty';
+import type { Chat } from '../model/chat/Chat';
 import type { ChatReaction } from '../model/chat/ChatReaction';
 
 class ChatServiceInit {
-  readonly chats: Writable<ChatProperty[]> = writable([]);
+  readonly chats: Writable<Chat[]> = writable([]);
   readonly scrollLock: Writable<boolean> = writable(false);
   readonly #scrollDown: Writable<ScrollDownCommand> = writable(
     (force: boolean) => {}
@@ -30,12 +30,9 @@ class ChatServiceInit {
   updateReaction(chatMessageHash: string, reactions: ChatReaction[]) {
     this.chats.update((it) =>
       it.map((chat) => {
-        chat.messages = chat.messages.map((msg) => {
-          if (msg.hash === chatMessageHash) {
-            msg.reactions = reactions;
-          }
-          return msg;
-        });
+        if (chat.message.hash === chatMessageHash) {
+          chat.message.reactions = reactions;
+        }
         return chat;
       })
     );
@@ -44,15 +41,12 @@ class ChatServiceInit {
   updateLink(chatMessageHash: string, title: string, thumbnail: string) {
     this.chats.update((it) =>
       it.map((chat) => {
-        chat.messages = chat.messages.map((msg) => {
-          if (msg.hash === chatMessageHash) {
-            const json = JSON.parse(msg.body);
-            json.info.title = title;
-            json.info.thumbnail = thumbnail;
-            msg.body = JSON.stringify(json);
-          }
-          return msg;
-        });
+        if (chat.message.hash === chatMessageHash) {
+          const json = JSON.parse(chat.message.body);
+          json.info.title = title;
+          json.info.thumbnail = thumbnail;
+          chat.message.body = JSON.stringify(json);
+        }
         return chat;
       })
     );

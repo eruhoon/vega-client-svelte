@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { get } from 'svelte/store';
-  import type { ChatProperty } from '../../model/chat/ChatProperty';
+  import type { Chat } from '../../model/chat/Chat';
   import { ChatService } from '../../service/ChatService';
   import { OptionService } from '../../service/OptionService';
   import { HashGenerator } from '../../util/hash/HashGenerator';
@@ -11,20 +11,40 @@
   const hashGenerator = new HashGenerator();
   let enableBot: boolean = get(OptionService.enableBot);
   let scrollLock: boolean = false;
-  let chats: ChatProperty[] = [];
+  let chats: Chat[] = [];
   let rootView: Element;
 
   OptionService.enableBot.subscribe((v) => (enableBot = v));
 
-  $: props = chats.map<ChatEntryProp>((c) => {
-    return {
-      hash: hashGenerator.generate('chat'),
-      icon: c.sender.icon,
-      nickname: c.sender.nickname,
-      senderType: c.sender.type,
-      messages: c.messages,
-    };
-  });
+  $: props = toProps(chats);
+
+  function toProps(chats: Chat[]): ChatEntryProp[] {
+    const props: ChatEntryProp[] = [];
+    chats.forEach((chat) => {
+      const length = props.length;
+      const lastChat = props[length - 1];
+      let last: ChatEntryProp;
+      if (
+        lastChat &&
+        lastChat.icon === chat.sender.icon &&
+        lastChat.nickname === chat.sender.nickname &&
+        lastChat.senderType === chat.sender.type
+      ) {
+        last = lastChat;
+      } else {
+        last = {
+          hash: hashGenerator.generate('chat'),
+          icon: chat.sender.icon,
+          nickname: chat.sender.nickname,
+          senderType: chat.sender.type,
+          messages: [],
+        };
+        props.push(last);
+      }
+      last.messages.push(chat.message);
+    });
+    return props;
+  }
 
   const scrollDown = (force: boolean) => {
     if (!force) {

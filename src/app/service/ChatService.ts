@@ -5,7 +5,7 @@ import type { ChatReaction } from '../model/chat/ChatReaction';
 class ChatServiceInit {
   readonly chats: Writable<ChatProperty[]> = writable([]);
   readonly scrollLock: Writable<boolean> = writable(false);
-  readonly scrollDown: Writable<ScrollDownCommand> = writable(
+  readonly #scrollDown: Writable<ScrollDownCommand> = writable(
     (force: boolean) => {}
   );
   readonly #activeChatMessage: Writable<string | null> = writable(null);
@@ -14,8 +14,16 @@ class ChatServiceInit {
     return this.#activeChatMessage;
   }
 
+  get scrollDown(): Readable<ScrollDownCommand> {
+    return this.#scrollDown;
+  }
+
+  registerScrollDownComamnd(command: ScrollDownCommand) {
+    this.#scrollDown.set(command);
+  }
+
   requestScrollDown(force: boolean = false) {
-    const scrollDown = get(this.scrollDown);
+    const scrollDown = get(this.#scrollDown);
     scrollDown(force);
   }
 

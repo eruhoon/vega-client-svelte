@@ -37,7 +37,7 @@
     });
   };
   ChatService.scrollLock.subscribe((it) => (scrollLock = it));
-  ChatService.scrollDown.set(scrollDown);
+  ChatService.registerScrollDownComamnd(scrollDown);
 
   onMount(() => {
     ChatService.chats.subscribe((c) => {

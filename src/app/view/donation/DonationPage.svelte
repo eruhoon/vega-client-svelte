@@ -118,7 +118,8 @@
     position: relative;
     overflow-y: scroll;
 
-    color: #fff;
+    color: var(--primary-foreground-color);
+    background-color: var(--primary-hoverground-color);
 
     scrollbar-width: thin;
 
@@ -130,13 +131,13 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: #ff4081;
+      background-color: var(--primary-activeground-color);
       border-radius: 10px;
       background-clip: padding-box;
       border: 4px solid transparent;
     }
     &::-webkit-scrollbar-track {
-      background-color: #2a2f38;
+      background-color: var(--primary-hoverground-color);
       border-radius: 10px;
       box-shadow: inset 0px 0px 0px white;
     }
@@ -147,7 +148,7 @@
       padding: 15px 0px;
       display: flex;
       margin-bottom: 20px;
-      border-bottom: 1px solid #1c2027;
+      border-bottom: 1px solid var(--primary-background-color);
 
       .donation-title {
         width: 50%;
@@ -174,21 +175,21 @@
           width: auto;
           height: auto;
           margin-right: 15px;
-          background-color: #2a2f38;
-          border: 1px solid #1c2027;
-          color: #ffffff;
+          background-color: var(--primary-hoverground-color);
+          border: 1px solid var(--primary-background-color);
+          color: var(--primary-foreground-color);
           padding: 10px 15px;
 
           -webkit-transition: 0.4s;
           transition: 0.4s;
           &.selected {
-            background: #ff4081;
-            border-color: #ff4081;
-            color: #ffffff !important;
+            background: var(--primary-activeground-color);
+            border-color: var(--primary-activeground-color);
+            color: var(--primary-activeground-font-color) !important;
           }
           &:hover {
-            border-color: #ff4081;
-            color: #ff4081;
+            border-color: var(--primary-activeground-color);
+            color: var(--primary-activeground-color);
           }
         }
       }

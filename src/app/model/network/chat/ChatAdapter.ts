@@ -1,34 +1,30 @@
+import type { Chat } from '../../chat/Chat';
 import type { ChatMessage } from '../../chat/ChatMessage';
 import type { ChatProperty } from '../../chat/ChatProperty';
 import { ChatSender } from '../../chat/ChatSender';
 import type { SocketCurrentChat } from '../../socket/common/SocketModel';
 
 export class ChatAdapter {
-  toChats(socketChats: SocketCurrentChat[]): ChatProperty[] {
-    let chats: ChatProperty[] = [];
-    socketChats.forEach((socketChat) => {
+  static #MAX_SIZE = 50;
+
+  toChats(socketChats: SocketCurrentChat[]): Chat[] {
+    let chats: Chat[] = [];
+    const sliced = this.#sliceLastChat(socketChats);
+    sliced.forEach((socketChat) => {
       chats = this.addChat(chats, socketChat);
     });
     return chats;
   }
 
-  addChat(
-    chats: ChatProperty[],
-    socketChat: SocketCurrentChat
-  ): ChatProperty[] {
-    const nextChats = chats.map((e) => e);
-    const sender = this.#createChatSender(socketChat);
-    const message = this.#createChatMessage(socketChat);
-    const lastChat = nextChats[chats.length - 1];
-    let chat: ChatProperty;
-    if (lastChat && ChatSender.equals(lastChat.sender, sender)) {
-      chat = lastChat;
-    } else {
-      chat = this.#createEmptyChat(sender);
-      nextChats.push(chat);
-    }
-    chat.messages.push(message);
-    return nextChats;
+  addChat(chats: Chat[], socketChat: SocketCurrentChat): Chat[] {
+    const nextChats = chats.slice(Math.max(0, chats.length - 50));
+    return [
+      ...nextChats,
+      {
+        sender: this.#createChatSender(socketChat),
+        message: this.#createChatMessage(socketChat),
+      },
+    ];
   }
 
   #createChatSender(socketChat: SocketCurrentChat): ChatSender {
@@ -50,13 +46,6 @@ export class ChatAdapter {
     };
   }
 
-  #createEmptyChat(sender: ChatSender): ChatProperty {
-    return {
-      sender,
-      messages: [],
-    };
-  }
-
   toChat(socketChat: SocketCurrentChat): ChatProperty {
     const senderType = socketChat.isMobile
       ? 'MOBILE'
@@ -71,5 +60,11 @@ export class ChatAdapter {
       },
       messages: [],
     };
+  }
+
+  #sliceLastChat(raws: SocketCurrentChat[]): SocketCurrentChat[] {
+    const length = raws.length;
+    const start = Math.max(length - ChatAdapter.#MAX_SIZE, 0);
+    return raws.slice(start);
   }
 }

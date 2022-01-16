@@ -8,12 +8,12 @@ import type {
   SocketCommand,
   SocketModel,
 } from '../model/socket/common/SocketModel';
-import { SocketService } from './SocketService';
 import { WebSocketModel } from '../model/socket/websocket/WebSocketModel';
 import { HashGenerator } from '../util/hash/HashGenerator';
 import { PushListService } from '../view/main/push/PushListService';
 import { ChatService } from './ChatService';
 import { ProfileService } from './ProfileService';
+import { SocketService } from './SocketService';
 import { SoundService } from './SoundService';
 import { UserListService } from './UserListService';
 

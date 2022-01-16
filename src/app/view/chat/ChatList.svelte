@@ -75,7 +75,7 @@
 </script>
 
 <div class="chat-list" bind:this={rootView} on:scroll={onScroll}>
-  {#each props as prop}
+  {#each props as prop (prop.hash)}
     {#if !(!enableBot && prop.senderType === 'BOT')}
       <ChatEntry {prop} messages={prop.messages} />
     {/if}

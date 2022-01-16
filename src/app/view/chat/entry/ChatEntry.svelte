@@ -1,10 +1,8 @@
 <script lang="ts">
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
-  import { ChatService } from '../../../service/ChatService';
-  import { SessionService } from '../../../service/SessionService';
-  import { SocketService } from '../../../service/SocketService';
   import type { ChatEntryProp } from './ChatEntryProp';
   import ChatMessageEntry from './ChatMessageEntry.svelte';
+  import ChatEntryIcon from './icon/ChatEntryIcon.svelte';
 
   export let prop: ChatEntryProp = {
     hash: '',
@@ -14,22 +12,12 @@
     messages: [],
   };
   export let messages: ChatMessage[] = [];
-
-  const sendIcon = () => {
-    const privateKey = SessionService.getPrivateKey();
-    SocketService.chat?.execute(privateKey, 'chat', prop.icon);
-    ChatService.requestScrollDown(true);
-  };
 </script>
 
 <div class="chat-entry">
   <div class="icon-section">
     <div class="icon">
-      <img
-        src={prop.icon}
-        alt="프로필"
-        on:contextmenu|preventDefault={sendIcon}
-      />
+      <ChatEntryIcon src={prop.icon} />
     </div>
   </div>
   <div class="message-section">
@@ -74,19 +62,6 @@
     width: 50px;
     height: 50px;
     padding: 5px 0px;
-
-    .icon {
-      width: 44px;
-      height: 44px;
-      object-fit: cover;
-
-      img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        border: 2px solid var(--primary-background-color);
-      }
-    }
   }
 
   .message-section {

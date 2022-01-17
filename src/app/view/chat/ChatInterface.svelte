@@ -26,7 +26,7 @@
   };
 
   const clearChats = () => {
-    ChatService.chats.set([]);
+    ChatService.updateChats([]);
   };
 
   SocketService.isConnected.subscribe((v) => (isConnected = v));

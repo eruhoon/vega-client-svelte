@@ -27,6 +27,13 @@ export class ChatAdapter {
     ];
   }
 
+  toChat(socketChat: SocketCurrentChat): Chat {
+    return {
+      sender: this.#createChatSender(socketChat),
+      message: this.#createChatMessage(socketChat),
+    };
+  }
+
   #createChatSender(socketChat: SocketCurrentChat): ChatSender {
     const senderType = socketChat.isMobile
       ? 'MOBILE'
@@ -43,22 +50,6 @@ export class ChatAdapter {
       timestamp: socketChat.timestamp,
       body: socketChat.msg.response,
       reactions: socketChat.reactions,
-    };
-  }
-
-  toChat(socketChat: SocketCurrentChat): ChatProperty {
-    const senderType = socketChat.isMobile
-      ? 'MOBILE'
-      : socketChat.level === 100
-      ? 'BOT'
-      : 'PC';
-    return {
-      sender: {
-        icon: socketChat.icon,
-        nickname: socketChat.nickname,
-        type: senderType,
-      },
-      messages: [],
     };
   }
 

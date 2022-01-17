@@ -44,14 +44,14 @@ class ChatNetworkServiceInit {
           UserListService.users.set(command.response);
           break;
         case 'applyCurrentChatList':
-          ChatService.chats.set([]);
-          ChatService.chats.set(this.#chatAdapter.toChats(command.response));
+          ChatService.updateChats([]);
+          ChatService.updateChats(this.#chatAdapter.toChats(command.response));
           break;
         case 'applyNotifyTo':
           console.log(command);
           break;
         case 'reaction':
-          ChatService.updateReaction(
+          ChatService.updateReactions(
             command.response.chatHash,
             command.response.reactions
           );
@@ -70,9 +70,7 @@ class ChatNetworkServiceInit {
           SoundService.playNotificationSound();
           break;
         case 'chat':
-          ChatService.chats.update((prev) =>
-            this.#chatAdapter.addChat(prev, command.response)
-          );
+          ChatService.addChat(this.#chatAdapter.toChat(command.response));
           break;
         case 'link-update':
           ChatService.updateLink(
@@ -95,7 +93,7 @@ class ChatNetworkServiceInit {
     });
     socket.setOnClose(() => {
       SocketService.disconnect();
-      ChatService.chats.set([]);
+      ChatService.updateChats([]);
     });
     return socket;
   }

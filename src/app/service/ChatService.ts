@@ -3,12 +3,33 @@ import type { Chat } from '../model/chat/Chat';
 import type { ChatReaction } from '../model/chat/ChatReaction';
 
 class ChatServiceInit {
-  readonly chats: Writable<Chat[]> = writable([]);
+  readonly #updateChatsEvent: Writable<Chat[]> = writable([]);
+  readonly #addChatEvent: Writable<Chat | null> = writable(null);
+  readonly #updateReactionsEvent: Writable<UpdateReactions | null> =
+    writable(null);
+  readonly #updateLinkEvent: Writable<UpdateLink | null> = writable(null);
+
   readonly scrollLock: Writable<boolean> = writable(false);
   readonly #scrollDown: Writable<ScrollDownCommand> = writable(
     (force: boolean) => {}
   );
   readonly #activeChatMessage: Writable<string | null> = writable(null);
+
+  get updateChatsEvent(): Readable<Chat[]> {
+    return this.#updateChatsEvent;
+  }
+
+  get addChatEvent(): Readable<Chat> {
+    return this.#addChatEvent;
+  }
+
+  get updateReactionsEvent(): Readable<UpdateReactions | null> {
+    return this.#updateReactionsEvent;
+  }
+
+  get updateLinkEvent(): Readable<UpdateLink | null> {
+    return this.#updateLinkEvent;
+  }
 
   get activeChatMessage(): Readable<string | null> {
     return this.#activeChatMessage;
@@ -27,29 +48,20 @@ class ChatServiceInit {
     scrollDown(force);
   }
 
-  updateReaction(chatMessageHash: string, reactions: ChatReaction[]) {
-    this.chats.update((it) =>
-      it.map((chat) => {
-        if (chat.message.hash === chatMessageHash) {
-          chat.message.reactions = reactions;
-        }
-        return chat;
-      })
-    );
+  updateChats(chats: Chat[]) {
+    this.#updateChatsEvent.set(chats);
   }
 
-  updateLink(chatMessageHash: string, title: string, thumbnail: string) {
-    this.chats.update((it) =>
-      it.map((chat) => {
-        if (chat.message.hash === chatMessageHash) {
-          const json = JSON.parse(chat.message.body);
-          json.info.title = title;
-          json.info.thumbnail = thumbnail;
-          chat.message.body = JSON.stringify(json);
-        }
-        return chat;
-      })
-    );
+  addChat(chat: Chat) {
+    this.#addChatEvent.set(chat);
+  }
+
+  updateReactions(chatHash: string, reactions: ChatReaction[]) {
+    this.#updateReactionsEvent.set({ chatHash, reactions });
+  }
+
+  updateLink(chatHash: string, title: string, thumbnail: string) {
+    this.#updateLinkEvent.set({ chatHash, thumbnail, title });
   }
 
   setActive(chatMessageHash: string) {
@@ -60,3 +72,16 @@ class ChatServiceInit {
 export const ChatService = new ChatServiceInit();
 
 type ScrollDownCommand = (force: boolean) => void;
+
+type OnChatCallback = (chat: Chat) => void;
+
+type UpdateReactions = {
+  readonly chatHash: string;
+  readonly reactions: ChatReaction[];
+};
+
+type UpdateLink = {
+  readonly chatHash: string;
+  readonly title: string;
+  readonly thumbnail: string;
+};

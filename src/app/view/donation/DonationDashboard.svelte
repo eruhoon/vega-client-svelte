@@ -233,7 +233,8 @@
     .donation-card {
       width: calc(50% - 10px);
       height: auto;
-      background-color: #3a3f47;
+      background-color: var(--primary-background-color);
+      color: var(--primary-foreground-color);
       //padding: 10px;
       border-radius: 2px;
       margin-left: 0%;
@@ -242,7 +243,8 @@
       .title {
         width: calc(100% - 30px);
         height: 32px;
-        background-color: #1c2027;
+        background-color: var(--primary-background-color);
+        border-bottom: 1px solid var(--primary-foreground-color);
         padding: 15px;
         margin-bottom: 20px;
         h1 {
@@ -250,7 +252,7 @@
           font-weight: bolder;
 
           small {
-            color: #ff4081;
+            color: var(--primary-activeground-color);
             font-size: 20px;
             font-weight: normal;
           }
@@ -262,7 +264,7 @@
         padding: 15px 0px;
         padding-left: 10px;
 
-        background-color: #454b54;
+        background-color: var(--primary-background-color);
 
         p {
           font-size: 14px;
@@ -272,7 +274,9 @@
       }
 
       hr {
-        border-color: #36393f;
+        border: 0px;
+        border-bottom: 1px solid var(--primary-hoverground-color);
+        border-color: var(--primary-foreground-color);
       }
       // 좌측 링크 박스형
       .link-group {
@@ -287,12 +291,14 @@
           line-height: 40px;
           padding-left: 10px;
           display: inline-block;
+          margin-left: 0px;
         }
 
         .btn-group {
           width: auto;
           height: 40px;
-          flex: auto;
+          margin-left: auto;
+          margin-right: 0px;
 
           button {
             width: auto;
@@ -301,10 +307,10 @@
             display: inline-block;
             margin-right: 10px;
 
-            color: #fff;
+            color: var(--primary-foreground-color);
             text-align: center;
 
-            background-color: #1f2226;
+            background-color: var(--primary-hoverground-color);
             border: 0px;
             border-radius: 2px;
             box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
@@ -312,7 +318,8 @@
 
             transition: background-color 0.15s ease-in-out;
             &:hover {
-              background-color: #ff4081;
+              background-color: var(--primary-activeground-color);
+              color: var(--primary-activeground-font-color);
             }
 
             &.icon-btn {
@@ -340,6 +347,7 @@
           min-height: 40px;
           height: auto;
           padding: 15px 0px;
+          display: flex;
           &:first-child {
             padding-top: 0px;
           }
@@ -349,11 +357,14 @@
             line-height: 40px;
             padding-left: 10px;
             display: inline-block;
+            margin-left: 0px;
           }
 
           .switch {
             width: 60px;
             height: 34px;
+            margin-left: auto;
+            margin-right: 0px;
             position: relative;
             display: inline-block;
             margin-right: 15px;
@@ -369,7 +380,7 @@
               left: 0;
               right: 0;
               bottom: 0;
-              background-color: #1c2027;
+              background-color: var(--primary-hoverground-color);
               -webkit-transition: 0.4s;
               transition: 0.4s;
             }
@@ -386,10 +397,10 @@
               transition: 0.4s;
             }
             input:checked + .slider {
-              background-color: #ff4081;
+              background-color: var(--primary-activeground-color);
             }
             input:focus + .slider {
-              box-shadow: 0 0 1px #ff4081;
+              box-shadow: 0 0 1px var(--primary-activeground-color);
             }
             input:checked + .slider:before {
               -webkit-transform: translateX(26px);
@@ -478,7 +489,6 @@
         .title {
           width: calc(100% - 30px);
           height: 32px;
-          background-color: #1c2027;
           padding: 15px;
           margin-bottom: 20px;
           h1 {
@@ -486,7 +496,6 @@
             font-weight: bolder;
 
             small {
-              color: #ff4081;
               font-size: 16px;
               font-weight: normal;
             }
@@ -499,10 +508,6 @@
           p {
             font-size: 12px;
           }
-        }
-
-        hr {
-          border-color: #36393f;
         }
         // 좌측 링크 박스형
         .link-group {
@@ -522,6 +527,8 @@
           .btn-group {
             width: 100%;
             height: 40px;
+            display: flex;
+            justify-content: flex-end;
 
             button {
               width: auto;
@@ -529,112 +536,6 @@
 
               display: inline-block;
               margin-right: 10px;
-
-              &.icon-btn {
-                width: 40px;
-                height: 40px;
-                padding: 3px;
-              }
-              &.text-btn {
-                width: auto;
-                height: 40px;
-
-                p {
-                  font-size: 16px;
-                  padding: 0px 10px;
-                }
-              }
-            }
-          }
-        }
-
-        // 버튼형 박스
-        .btn-list {
-          .set-btn-group {
-            width: 100%;
-            min-height: 40px;
-            height: auto;
-            padding: 15px 0px;
-            &:first-child {
-              padding-top: 0px;
-            }
-            h3 {
-              font-size: 18px;
-              font-weight: bolder;
-              line-height: 40px;
-              padding-left: 10px;
-              display: inline-block;
-            }
-
-            .switch {
-              width: 60px;
-              height: 34px;
-              position: relative;
-              display: inline-block;
-              margin-right: 15px;
-              input {
-                opacity: 0;
-                width: 0;
-                height: 0;
-              }
-              .slider {
-                position: absolute;
-                cursor: pointer;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-color: #1c2027;
-                -webkit-transition: 0.4s;
-                transition: 0.4s;
-              }
-
-              .slider:before {
-                position: absolute;
-                content: '';
-                height: 26px;
-                width: 26px;
-                left: 4px;
-                bottom: 4px;
-                background-color: white;
-                -webkit-transition: 0.4s;
-                transition: 0.4s;
-              }
-              input:checked + .slider {
-                background-color: #ff4081;
-              }
-              input:focus + .slider {
-                box-shadow: 0 0 1px #ff4081;
-              }
-              input:checked + .slider:before {
-                -webkit-transform: translateX(26px);
-                -ms-transform: translateX(26px);
-                transform: translateX(26px);
-              }
-              .slider.round {
-                border-radius: 34px;
-              }
-              .slider.round:before {
-                border-radius: 50%;
-              }
-            }
-
-            button {
-              width: auto;
-              height: auto;
-
-              display: inline-block;
-              margin-right: 10px;
-
-              color: #fff;
-              text-align: center;
-
-              background-color: #ff4081;
-              border: 0px;
-              border-radius: 40px;
-              box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
-                0px 1px 1px 0px rgb(0 0 0 / 14%),
-                0px 1px 3px 0px rgb(0 0 0 / 12%);
 
               &.icon-btn {
                 width: 40px;

@@ -259,11 +259,14 @@
       .components {
         width: 100%;
         margin-top: 20px;
+        background-color: var(--primary-background-color);
+        color: var(--primary-foreground-color);
 
         .title {
           width: calc(100% - 20px);
           height: 32px;
-          background-color: #1c2027;
+          background-color: var(--primary-background-color);
+          border-bottom: 1px solid var(--primary-foreground-color);
           padding: 10px;
           border-top-left-radius: 5px;
           border-top-right-radius: 5px;
@@ -272,7 +275,7 @@
             font-weight: bolder;
 
             small {
-              color: #ff4081;
+              color: var(--primary-activeground-color);
               font-size: 20px;
               font-weight: normal;
             }
@@ -281,7 +284,8 @@
         .card {
           width: calc(100% - 20px);
           height: auto;
-          background-color: #3a3f47;
+          background-color: var(--primary-background-color);
+          color: var(--primary-foreground-color);
           padding: 10px;
           padding-top: 15px;
 
@@ -306,7 +310,9 @@
           // }
 
           hr {
-            border-color: #36393f;
+            border: 0px;
+            border-bottom: 1px solid var(--primary-background-color);
+            border-color: var(--primary-foreground-color);
             margin-bottom: 15px;
           }
           // 좌측 링크 박스형
@@ -371,32 +377,17 @@
             display: flex;
             padding-bottom: 10px;
 
-            // 이전 input 처리기 - 삭제 필요
-            input {
-              width: 80%;
-              color: #fff;
-              float: left;
-              background-color: #202225;
-
-              border-radius: 5px;
-              border: 0px;
-              padding: 10px;
-              font-size: 18px;
-            }
-            // 이전 input 처리기 - 삭제 필요
-
             // 현재 처리기
             .input-box {
               width: 80%;
-              float: left;
               height: 60px;
               position: relative;
+              margin-left: auto;
+              margin-right: 0px;
               input {
                 width: 100%;
-                color: #fff;
-                float: left;
-                background-color: #202225;
-
+                color: var(--primary-foreground-color);
+                background-color: var(--primary-hoverground-color);
                 border-radius: 5px;
                 border: 0px;
                 padding: 10px;
@@ -414,11 +405,11 @@
             .input-title {
               width: 200px;
               height: 30px;
-              color: #fff;
-              float: left;
+              color: var(--primary-foreground-color);
               font-size: 18px;
               line-height: 20px;
               padding: 10px;
+              margin-left: 0px;
             }
           }
           // 버튼형 박스
@@ -427,27 +418,33 @@
             min-height: 40px;
             height: auto;
             padding-bottom: 10px;
+            display: flex;
             h3 {
               font-size: 18px;
               font-weight: bolder;
               line-height: 40px;
               padding-left: 10px;
               display: inline-block;
+              margin-left: 0px;
             }
 
             /* The switch - the box around the slider */
             .switch {
               width: 60px;
               height: 34px;
+              margin-left: auto;
+              margin-right: 0px;
               position: relative;
               display: inline-block;
-              margin-right: 20px;
+              margin-right: 15px;
+              margin-left: auto;
+              margin-right: 0px;
+
               input {
                 opacity: 0;
                 width: 0;
                 height: 0;
               }
-              /* The slider */
               .slider {
                 position: absolute;
                 cursor: pointer;
@@ -455,7 +452,7 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background-color: #1c2027;
+                background-color: var(--primary-hoverground-color);
                 -webkit-transition: 0.4s;
                 transition: 0.4s;
               }
@@ -472,17 +469,16 @@
                 transition: 0.4s;
               }
               input:checked + .slider {
-                background-color: #ff4081;
+                background-color: var(--primary-activeground-color);
               }
               input:focus + .slider {
-                box-shadow: 0 0 1px #ff4081;
+                box-shadow: 0 0 1px var(--primary-activeground-color);
               }
               input:checked + .slider:before {
                 -webkit-transform: translateX(26px);
                 -ms-transform: translateX(26px);
                 transform: translateX(26px);
               }
-              /* Rounded sliders */
               .slider.round {
                 border-radius: 34px;
               }
@@ -533,18 +529,19 @@
             .thumbnail-title {
               width: 200px;
               height: inherit;
-              color: #fff;
-              float: left;
+              color: var(--primary-foreground-color);
               font-size: 18px;
               line-height: 20px;
               padding: 10px;
+              margin-left: 0px;
             }
 
             .thumbnail-btn {
-              width: 60%;
+              width: 80%;
               position: relative;
               display: flex;
-              margin-left: 20px;
+              margin-left: auto;
+              margin-right: 0px;
 
               .thumbnail {
                 width: 158px;
@@ -569,7 +566,7 @@
                   position: relative;
                   display: inline-block;
 
-                  background-color: #1c2027;
+                  background-color: var(--primary-hoverground-color);
                   border-radius: 10px;
 
                   text-align: center;
@@ -580,6 +577,7 @@
                     display: block;
                     padding: 0px 50px;
                     padding-top: 10px;
+                    color: var(--primary-foreground-color);
                     i {
                       font-size: 50px;
                     }
@@ -608,10 +606,14 @@
                   }
                 }
                 input:checked + .radio-box {
-                  background-color: #ff4081;
+                  background-color: var(--primary-activeground-color);
+                  color: var(--primary-activeground-font-color);
+                  .icon {
+                    color: var(--primary-activeground-font-color);
+                  }
                 }
                 input:focus + .radio-box {
-                  box-shadow: 0 0 1px #ff4081;
+                  box-shadow: 0 0 1px var(--primary-activeground-color);
                 }
               }
             }
@@ -719,15 +721,17 @@
     .imgUpload-title {
       width: 200px;
       height: inherit;
-      color: #fff;
-      float: left;
+      color: var(--primary-foreground-color);
       font-size: 18px;
       line-height: 20px;
       padding: 10px;
+      margin-left: 0px;
     }
     .imgUpload-box {
       width: 80%;
       position: relative;
+      margin-left: auto;
+      margin-right: 0px;
 
       .imgUpload-btn {
         width: 100%;
@@ -737,7 +741,7 @@
         overflow: hidden;
         float: none;
 
-        background-color: #1c2027;
+        background-color: var(--primary-hoverground-color);
         border-radius: 10px;
         margin-right: 15px;
         margin-bottom: 15px;

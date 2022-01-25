@@ -1,21 +1,33 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import type { Bookmark } from '../../../model/bookmark/Bookmark';
+  import { BookmarkService } from '../../../service/BookmarkService';
   import { OptionService } from '../../../service/OptionService';
   import StreamList from '../../stream/StreamList.svelte';
+  import BookmarkItem from './bookmark/BookmarkBottomBarItem.svelte';
   import HappyNewYearEventItem from './HappyNewYearEventItem.svelte';
 
   let rightAlign: boolean = false;
+  let bookmarks: Bookmark[] = [];
 
   onMount(() => {
     OptionService.enableCheckerRightAlign.subscribe((it) => {
       rightAlign = it;
     });
+    BookmarkService.bookmarks.subscribe((it) => (bookmarks = it));
   });
 </script>
 
 <div class="bottom-bar" class:right-align={rightAlign}>
   <StreamList />
   <HappyNewYearEventItem />
+  {#each bookmarks as bookmark}
+    <BookmarkItem
+      title={bookmark.title}
+      icon={bookmark.icon}
+      link={bookmark.link}
+    />
+  {/each}
 </div>
 
 <style lang="scss">

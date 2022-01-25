@@ -50,11 +50,6 @@
     name="채팅위젯 설정"
     icon="fas fa-comment"
   />
-  <DefaultMenuItem
-    menuClick={() => openModal('donation')}
-    name="후원 설정"
-    icon="fas fa-donate"
-  />
   <DefaultMenuItem name="테마" icon="fas fa-adjust">
     <SettingSwitch
       slot="extra"

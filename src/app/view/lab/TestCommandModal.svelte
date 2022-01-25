@@ -1,5 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher, onMount } from 'svelte';
+  import { BookmarkService } from '../../service/BookmarkService';
   import ModalTextInput from '../../view-framework/modal/input/ModalTextInput.svelte';
 
   import Modal from '../../view-framework/modal/Modal.svelte';
@@ -15,8 +16,15 @@
     }
   }
 
+  const regexAddBookmark = /\/addbookmark (.*) (.*) (.*)/;
+
   function execute(commandText: string) {
-    console.log(commandText);
+    const bookmarkMatch = regexAddBookmark.exec(commandText);
+    if (bookmarkMatch) {
+      const [_, title, icon, link] = bookmarkMatch;
+      BookmarkService.addBookmark({ title, icon, link });
+      return;
+    }
   }
 </script>
 

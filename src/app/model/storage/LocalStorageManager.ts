@@ -10,6 +10,7 @@ export class LocalStorageManager {
   #KEY_ENABLE_CHECKER_RIGHT_ALIGN = 'vega.enable_checker_right_align';
   #KEY_ENABLE_DATASAVE = 'vega.enable_datasave';
   #KEY_FAVORITE_STREAMS = 'vega.favorite_stream';
+  #KEY_BOOKMARKS = 'vega.bookmarks';
   #KEY_CHAT_VIEW_OFFSET = 'vega.chat_view_offset';
   #KEY_VOLUME = 'vega.volume';
   #KEY_THEME_DARK_MODE = 'vega.theme_dark_mode';
@@ -63,6 +64,14 @@ export class LocalStorageManager {
 
   set favoriteStreams(value: string) {
     localStorage.setItem(this.#KEY_FAVORITE_STREAMS, value ? value : '[]');
+  }
+
+  get bookmarks(): string {
+    return localStorage.getItem(this.#KEY_BOOKMARKS) || '[]';
+  }
+
+  set bookmarks(value: string) {
+    localStorage.setItem(this.#KEY_BOOKMARKS, value ? value : '[]');
   }
 
   get chatViewOffset(): number {

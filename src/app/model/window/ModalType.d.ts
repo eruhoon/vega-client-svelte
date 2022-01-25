@@ -7,4 +7,5 @@ export type ModalType =
   | 'notify-user'
   | 'upload-image-chat'
   | 'add-stream'
-  | 'upload-memo';
+  | 'upload-memo'
+  | 'test-command';

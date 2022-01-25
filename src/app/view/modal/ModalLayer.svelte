@@ -1,6 +1,7 @@
 <script lang="ts">
   import { WindowService } from '../../service/WindowService';
   import Layer from '../../view-framework/layer/Layer.svelte';
+  import TestCommandModal from '../lab/TestCommandModal.svelte';
   import NotifyUserModal from '../notification/NotifyUserModal.svelte';
   import ChatWidgetSettingModal from '../setting/ChatWidgetSettingModal.svelte';
   import DonationSettingModal from '../setting/DonationSettingModal.svelte';
@@ -42,6 +43,9 @@
         break;
       case 'upload-memo':
         modal = UploadMemoModal;
+        break;
+      case 'test-command':
+        modal = TestCommandModal;
         break;
       default:
         modal = null;

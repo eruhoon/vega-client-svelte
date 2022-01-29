@@ -10,7 +10,7 @@
   let keyCount = 0;
   const MaxKeyCount = 3;
 
-  document.onkeydown = function (e: KeyboardEvent) {
+  document.onkeyup = (e: KeyboardEvent) => {
     if (e.code === 'ShiftRight') {
       keyCount++;
       if (keyCount === MaxKeyCount) {

@@ -1,6 +1,6 @@
 import type { ChatMessage } from '../../../model/chat/ChatMessage';
 
-export type ChatEntryProp = {
+export type ChatGroup = {
   hash: string;
   nickname: string;
   icon: string;

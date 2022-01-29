@@ -1,10 +1,10 @@
 <script lang="ts">
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
-  import type { ChatEntryProp } from './ChatEntryProp';
+  import type { ChatGroup } from './ChatGroup';
   import ChatMessageEntry from './ChatMessageEntry.svelte';
   import ChatEntryIcon from './icon/ChatEntryIcon.svelte';
 
-  export let prop: ChatEntryProp = {
+  export let prop: ChatGroup = {
     hash: '',
     icon: '',
     nickname: 'untitled',

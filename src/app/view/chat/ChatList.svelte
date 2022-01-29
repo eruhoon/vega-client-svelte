@@ -7,7 +7,7 @@
   import { OptionService } from '../../service/OptionService';
   import { HashGenerator } from '../../util/hash/HashGenerator';
   import ChatEntry from './entry/ChatEntry.svelte';
-  import type { ChatEntryProp } from './entry/ChatEntryProp';
+  import type { ChatGroup } from './entry/ChatGroup';
 
   const hashGenerator = new HashGenerator();
   let enableBot: boolean = get(OptionService.enableBot);
@@ -16,37 +16,8 @@
 
   OptionService.enableBot.subscribe((v) => (enableBot = v));
 
-  let groups: ChatEntryProp[] = [];
-
-  function toProps(chats: Chat[]): ChatEntryProp[] {
-    const props: ChatEntryProp[] = [];
-    chats.forEach((chat) => addChat(props, chat));
-    return props;
-  }
-
-  function addChat(prev: ChatEntryProp[], chat: Chat) {
-    const length = prev.length;
-    const lastChatGroup = prev[length - 1];
-    let last: ChatEntryProp;
-    if (
-      lastChatGroup &&
-      lastChatGroup.icon === chat.sender.icon &&
-      lastChatGroup.nickname === chat.sender.nickname &&
-      lastChatGroup.senderType === chat.sender.type
-    ) {
-      last = lastChatGroup;
-    } else {
-      last = {
-        hash: hashGenerator.generate('chat'),
-        icon: chat.sender.icon,
-        nickname: chat.sender.nickname,
-        senderType: chat.sender.type,
-        messages: [],
-      };
-      prev.push(last);
-    }
-    last.messages.push(chat.message);
-  }
+  let length: number = 0;
+  let groups: ChatGroup[] = [];
 
   const scrollDown = (force: boolean) => {
     if (!force) {
@@ -81,16 +52,61 @@
   });
 
   function onChatsUpdated(chats: Chat[]) {
-    groups = toProps(chats);
+    groups = [...updateChats(chats)];
     ChatService.requestScrollDown();
   }
 
   function onChatAdded(chat: Chat | null) {
     if (chat) {
-      addChat(groups, chat);
-      groups = [...groups];
+      groups = [...addChat(groups, chat)];
     }
     scrollDown(false);
+  }
+
+  function updateChats(chats: Chat[]): ChatGroup[] {
+    const props: ChatGroup[] = [];
+    chats.forEach((chat) => addChat(props, chat));
+    return props;
+  }
+
+  function removePrevChat(prev: ChatGroup[]) {
+    const first = prev[0];
+    const messages = first.messages;
+    messages.shift();
+    if (messages.length === 0) {
+      prev.shift();
+    }
+    length--;
+    return [...prev];
+  }
+
+  function addChat(prev: ChatGroup[], chat: Chat): ChatGroup[] {
+    if (length > 50) {
+      prev = removePrevChat(prev);
+    }
+
+    const lastChatGroup = prev[prev.length - 1];
+    let last: ChatGroup;
+    if (
+      lastChatGroup &&
+      lastChatGroup.icon === chat.sender.icon &&
+      lastChatGroup.nickname === chat.sender.nickname &&
+      lastChatGroup.senderType === chat.sender.type
+    ) {
+      last = lastChatGroup;
+    } else {
+      last = {
+        hash: hashGenerator.generate('chat'),
+        icon: chat.sender.icon,
+        nickname: chat.sender.nickname,
+        senderType: chat.sender.type,
+        messages: [],
+      };
+      prev.push(last);
+    }
+    last.messages.push(chat.message);
+    length++;
+    return [...prev];
   }
 
   function updateReactions(chatHash: string, reactions: ChatReaction[]) {

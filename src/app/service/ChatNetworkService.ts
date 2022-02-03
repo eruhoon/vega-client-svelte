@@ -44,7 +44,6 @@ class ChatNetworkServiceInit {
           UserListService.users.set(command.response);
           break;
         case 'applyCurrentChatList':
-          ChatService.updateChats([]);
           ChatService.updateChats(this.#chatAdapter.toChats(command.response));
           break;
         case 'applyNotifyTo':

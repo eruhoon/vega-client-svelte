@@ -44,7 +44,6 @@
 <GeneralPurposeCard
   {icon}
   {title}
-  {link}
   {subtitle}
   {orientation}
   on:click={onClick}

@@ -1,6 +1,5 @@
 import type { Chat } from '../../chat/Chat';
 import type { ChatMessage } from '../../chat/ChatMessage';
-import type { ChatProperty } from '../../chat/ChatProperty';
 import { ChatSender } from '../../chat/ChatSender';
 import type { SocketCurrentChat } from '../../socket/common/SocketModel';
 
@@ -8,23 +7,8 @@ export class ChatAdapter {
   static #MAX_SIZE = 50;
 
   toChats(socketChats: SocketCurrentChat[]): Chat[] {
-    let chats: Chat[] = [];
     const sliced = this.#sliceLastChat(socketChats);
-    sliced.forEach((socketChat) => {
-      chats = this.addChat(chats, socketChat);
-    });
-    return chats;
-  }
-
-  addChat(chats: Chat[], socketChat: SocketCurrentChat): Chat[] {
-    const nextChats = chats.slice(Math.max(0, chats.length - 50));
-    return [
-      ...nextChats,
-      {
-        sender: this.#createChatSender(socketChat),
-        message: this.#createChatMessage(socketChat),
-      },
-    ];
+    return sliced.map((socketChat) => this.toChat(socketChat));
   }
 
   toChat(socketChat: SocketCurrentChat): Chat {

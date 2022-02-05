@@ -7,6 +7,7 @@ import { NotifyUserCommand } from '../model/socket/command/SocketNotifyUserComma
 import { SocketReactionCommand } from '../model/socket/command/SocketReactionCommand';
 import type {
   SocketCommand,
+  SocketCurrentUser,
   SocketModel,
   SocketMyStatus,
 } from '../model/socket/common/SocketModel';
@@ -16,13 +17,13 @@ import { PushListService } from '../view/main/push/PushListService';
 import { ChatService } from './ChatService';
 import { SocketService } from './SocketService';
 import { SoundService } from './SoundService';
-import { UserListService } from './UserListService';
 
 class ChatNetworkServiceInit {
   #socket: SocketModel | null = null;
   #chatAdapter = new ChatAdapter();
   #isConnected: Writable<boolean> = writable(false);
   #applyMyStatusEvent: Writable<SocketMyStatus> = writable();
+  #applyUsersEvent: Writable<SocketCurrentUser[]> = writable([]);
 
   get isConnected(): Readable<boolean> {
     return this.#isConnected;
@@ -30,6 +31,10 @@ class ChatNetworkServiceInit {
 
   get applyMyStatusEvent(): Readable<SocketMyStatus> {
     return this.#applyMyStatusEvent;
+  }
+
+  get applyUsersEvent(): Readable<SocketCurrentUser[]> {
+    return this.#applyUsersEvent;
   }
 
   init(privateKey: string): void {
@@ -50,7 +55,7 @@ class ChatNetworkServiceInit {
           this.#applyMyStatusEvent.set(command.response);
           break;
         case 'applyCurrentUserList':
-          UserListService.users.set(command.response);
+          this.#applyUsersEvent.set(command.response);
           break;
         case 'applyCurrentChatList':
           ChatService.updateChats(this.#chatAdapter.toChats(command.response));

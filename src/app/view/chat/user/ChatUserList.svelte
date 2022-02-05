@@ -1,11 +1,11 @@
 <script lang="ts">
   import type { User } from '../../../model/user/User';
-  import { UserListService } from '../../../service/UserListService';
+  import { ChatNetworkService } from '../../../service/ChatNetworkService';
   import ChatUserEntry from './ChatUserEntry.svelte';
 
   let users: User[] = [];
 
-  UserListService.users.subscribe((u) => (users = u));
+  ChatNetworkService.applyUsersEvent.subscribe((it) => (users = it));
 </script>
 
 <div class="chat-user-list">

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+
   import { get } from 'svelte/store';
   import { ChatNetworkService } from '../../service/ChatNetworkService';
   import { CheckerNetworkService } from '../../service/CheckerNetworkService';
@@ -31,6 +33,14 @@
   ChatNetworkService.isConnected.subscribe((it) => (chatConnected = it));
 
   ProfileService.loadStreamProfile(privateKey);
+
+  onMount(() => {
+    ChatNetworkService.applyMyStatusEvent.subscribe((it) => {
+      ProfileService.statusMessage.set(it.statusMessage);
+      ProfileService.profileIcon.set(it.icon);
+      ProfileService.nickname.set(it.nickname);
+    });
+  });
 
   function onOffsetChanged(e: CustomEvent<number>) {
     OptionService.setChatViewOffset(e.detail);

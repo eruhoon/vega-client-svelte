@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { ChatNetworkService } from '../../service/ChatNetworkService';
   import { CheckerNetworkService } from '../../service/CheckerNetworkService';
-  import { SocketService } from '../../service/SocketService';
+  import { ProfileService } from '../../service/ProfileService';
   import { WindowService } from '../../service/WindowService';
   import ChatPage from '../chat/ChatPage.svelte';
   import DonationPage from '../donation/DonationPage.svelte';
@@ -30,6 +30,14 @@
     CheckerNetworkService.init(privateKey);
     WindowService.sideBarShow.subscribe((it) => (sideBarVisible = it));
     WindowService.content.subscribe((it) => (currentContent = it));
+
+    ChatNetworkService.applyMyStatusEvent.subscribe((it) => {
+      if (it) {
+        ProfileService.statusMessage.set(it.statusMessage);
+        ProfileService.profileIcon.set(it.icon);
+        ProfileService.nickname.set(it.nickname);
+      }
+    });
   });
 
   function onDonationClick() {

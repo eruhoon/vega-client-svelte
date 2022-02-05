@@ -90,7 +90,11 @@ type SocketMyStatus = {
   statusMessage: string;
 };
 
-type SocketLinkUpdateCommand = BaseSocketCommand<'link-update', null>;
+type SocketLinkUpdateCommand = BaseSocketCommand<
+  'link-update',
+  null,
+  SocketLinkUpdateResponse
+>;
 
 type SocketLinkUpdateResponse = {
   chatHash: string;
@@ -163,7 +167,7 @@ type SocketNotificationToResponse = {
   to: string;
 };
 
-type SocketNotificationFromCommand = BaseSocketCommand<
+type SocketNotificationToCommand = BaseSocketCommand<
   'applyNotifyTo',
   null,
   SocketNotificationToResponse

@@ -3,6 +3,7 @@
   import { get } from 'svelte/store';
   import type { Chat } from '../../model/chat/Chat';
   import type { ChatReaction } from '../../model/chat/ChatReaction';
+  import type { ScrollDownEvent } from '../../service/chat/ScrollDownEvent';
   import { ChatService } from '../../service/ChatService';
   import { OptionService } from '../../service/OptionService';
   import { HashGenerator } from '../../util/hash/HashGenerator';
@@ -29,13 +30,12 @@
       rootView.scrollTop = rootView.scrollHeight;
     });
   };
-  ChatService.scrollLock.subscribe((it) => (scrollLock = it));
-  ChatService.registerScrollDownComamnd(scrollDown);
 
   onMount(() => {
+    ChatService.scrollLock.subscribe((it) => (scrollLock = it));
     ChatService.updateChatsEvent.subscribe(onChatsUpdated);
     ChatService.addChatEvent.subscribe(onChatAdded);
-
+    ChatService.scrollDownEvent.subscribe((it) => it && onScrollDownEvent(it));
     ChatService.updateReactionsEvent.subscribe((it) => {
       if (it) {
         const { chatHash, reactions } = it;
@@ -140,6 +140,10 @@
     const threashold = 500 + clientHeight;
     const diff = scrollHeight - scrollTop;
     ChatService.setScrollLock(diff > threashold);
+  }
+
+  function onScrollDownEvent(event: ScrollDownEvent) {
+    scrollDown(event.force);
   }
 </script>
 

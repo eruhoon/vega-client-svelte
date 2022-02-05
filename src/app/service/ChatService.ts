@@ -1,6 +1,7 @@
 import { get, Readable, writable, Writable } from 'svelte/store';
 import type { Chat } from '../model/chat/Chat';
 import type { ChatReaction } from '../model/chat/ChatReaction';
+import type { ScrollDownEvent } from './chat/ScrollDownEvent';
 
 class ChatServiceInit {
   readonly #updateChatsEvent: Writable<Chat[]> = writable([]);
@@ -9,9 +10,7 @@ class ChatServiceInit {
     writable(null);
   readonly #updateLinkEvent: Writable<UpdateLink | null> = writable(null);
   readonly #scrollLock: Writable<boolean> = writable(false);
-  readonly #scrollDown: Writable<ScrollDownCommand> = writable(
-    (force: boolean) => {}
-  );
+  readonly #scrollDownEvent: Writable<ScrollDownEvent | null> = writable(null);
   readonly #activeChatMessage: Writable<string | null> = writable(null);
 
   get scrollLock(): Readable<boolean> {
@@ -38,17 +37,12 @@ class ChatServiceInit {
     return this.#activeChatMessage;
   }
 
-  get scrollDown(): Readable<ScrollDownCommand> {
-    return this.#scrollDown;
-  }
-
-  registerScrollDownComamnd(command: ScrollDownCommand) {
-    this.#scrollDown.set(command);
+  get scrollDownEvent(): Readable<ScrollDownEvent | null> {
+    return this.#scrollDownEvent;
   }
 
   requestScrollDown(force: boolean = false) {
-    const scrollDown = get(this.#scrollDown);
-    scrollDown(force);
+    this.#scrollDownEvent.set({ force });
   }
 
   updateChats(chats: Chat[]) {
@@ -77,8 +71,6 @@ class ChatServiceInit {
 }
 
 export const ChatService = new ChatServiceInit();
-
-type ScrollDownCommand = (force: boolean) => void;
 
 type OnChatCallback = (chat: Chat) => void;
 

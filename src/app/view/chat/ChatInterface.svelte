@@ -82,6 +82,10 @@
         return true;
     }
   }
+
+  function onScrollDownClick() {
+    ChatService.requestScrollDown(true);
+  }
 </script>
 
 <div class="chat-interface" on:click={(_) => ChatService.setActive(null)}>
@@ -93,10 +97,7 @@
       <div on:click={clearChats}>
         <i class="fas fa-remove-format" />
       </div>
-      <div
-        class:hide={!isScrollLock}
-        on:click={(_) => ChatService.requestScrollDown(true)}
-      >
+      <div class:hide={!isScrollLock} on:click={onScrollDownClick}>
         <i class="fas fa-arrow-down" />
       </div>
     </div>

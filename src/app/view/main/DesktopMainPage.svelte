@@ -1,12 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-
   import { get } from 'svelte/store';
   import { ChatNetworkService } from '../../service/ChatNetworkService';
   import { CheckerNetworkService } from '../../service/CheckerNetworkService';
   import { OptionService } from '../../service/OptionService';
   import { ProfileService } from '../../service/ProfileService';
-  import { SocketService } from '../../service/SocketService';
   import { WindowService } from '../../service/WindowService';
   import ChatPage from '../chat/ChatPage.svelte';
   import ModalLayer from '../modal/ModalLayer.svelte';

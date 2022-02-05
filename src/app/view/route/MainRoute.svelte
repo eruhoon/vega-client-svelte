@@ -3,7 +3,7 @@
   import { MobileUtils } from '../../util/mobile/MobileUtils';
   import ToastList from '../common/ToastList.svelte';
   import LoginPage from '../login/LoginPage.svelte';
-  import MainPage from '../main/MainPage.svelte';
+  import DesktopMainPage from '../main/DesktopMainPage.svelte';
   import MobileMainPage from '../main/MobileMainPage.svelte';
 
   let userHash: string | null = null;
@@ -16,7 +16,7 @@
     {#if MobileUtils.isMobile()}
       <MobileMainPage privateKey={userHash} />
     {:else}
-      <MainPage privateKey={userHash} />
+      <DesktopMainPage privateKey={userHash} />
     {/if}
   {:else}
     <LoginPage />

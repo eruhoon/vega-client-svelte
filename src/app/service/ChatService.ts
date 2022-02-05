@@ -8,12 +8,15 @@ class ChatServiceInit {
   readonly #updateReactionsEvent: Writable<UpdateReactions | null> =
     writable(null);
   readonly #updateLinkEvent: Writable<UpdateLink | null> = writable(null);
-
-  readonly scrollLock: Writable<boolean> = writable(false);
+  readonly #scrollLock: Writable<boolean> = writable(false);
   readonly #scrollDown: Writable<ScrollDownCommand> = writable(
     (force: boolean) => {}
   );
   readonly #activeChatMessage: Writable<string | null> = writable(null);
+
+  get scrollLock(): Readable<boolean> {
+    return this.#scrollLock;
+  }
 
   get updateChatsEvent(): Readable<Chat[]> {
     return this.#updateChatsEvent;
@@ -66,6 +69,10 @@ class ChatServiceInit {
 
   setActive(chatMessageHash: string) {
     this.#activeChatMessage.set(chatMessageHash);
+  }
+
+  setScrollLock(value: boolean) {
+    this.#scrollLock.set(value);
   }
 }
 

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+
   import { ChatHistoryManager } from '../../model/chat/history/ChatHistoryList';
   import { ClipboardManager } from '../../model/clipboard/ClipboardManager';
   import { ChatClipboardService } from '../../service/ChatClipboardService';
@@ -31,7 +33,10 @@
   };
 
   ChatNetworkService.isConnected.subscribe((v) => (isConnected = v));
-  ChatService.scrollLock.subscribe((v) => (isScrollLock = v));
+
+  onMount(() => {
+    ChatService.scrollLock.subscribe((v) => (isScrollLock = v));
+  });
 
   function onImageChange() {
     const elm = imageInput;

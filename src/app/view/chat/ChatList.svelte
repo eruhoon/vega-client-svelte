@@ -139,7 +139,7 @@
     const { scrollTop, scrollHeight, clientHeight } = rootView;
     const threashold = 500 + clientHeight;
     const diff = scrollHeight - scrollTop;
-    ChatService.scrollLock.set(diff > threashold);
+    ChatService.setScrollLock(diff > threashold);
   }
 </script>
 

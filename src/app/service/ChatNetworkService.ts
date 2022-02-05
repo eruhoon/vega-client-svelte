@@ -70,7 +70,7 @@ class ChatNetworkServiceInit {
             channel: 'alarm',
             mute: false,
             read: false,
-            timestamp: command.response.timestamp,
+            timestamp: Number.parseInt(command.response.timestamp),
             icon: command.response.from.icon,
             title: command.response.from.nickname,
             body: `"${command.response.from.nickname}"로 부터 알림이 왔어요.`,

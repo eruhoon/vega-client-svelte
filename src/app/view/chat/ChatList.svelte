@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { prevent_default } from 'svelte/internal';
   import { get } from 'svelte/store';
   import type { Chat } from '../../model/chat/Chat';
   import type { ChatReaction } from '../../model/chat/ChatReaction';
@@ -17,7 +18,6 @@
 
   OptionService.enableBot.subscribe((v) => (enableBot = v));
 
-  let length: number = 0;
   let groups: ChatGroup[] = [];
 
   const scrollDown = (force: boolean) => {
@@ -65,7 +65,6 @@
   }
 
   function updateChats(chats: Chat[]): ChatGroup[] {
-    length = 0;
     const props: ChatGroup[] = [];
     chats.forEach((chat) => addChat(props, chat));
     return props;
@@ -78,12 +77,17 @@
     if (messages.length === 0) {
       prev.shift();
     }
-    length--;
     return [...prev];
   }
 
+  function getMessageLength(groups: ChatGroup[]): number {
+    return groups.length === 0
+      ? 0
+      : groups.map((e) => e.messages.length).reduce((a, b) => a + b);
+  }
+
   function addChat(prev: ChatGroup[], chat: Chat): ChatGroup[] {
-    if (length > 50) {
+    if (getMessageLength(prev) > 50) {
       prev = removePrevChat(prev);
     }
 
@@ -107,7 +111,6 @@
       prev.push(last);
     }
     last.messages.push(chat.message);
-    length++;
     return [...prev];
   }
 

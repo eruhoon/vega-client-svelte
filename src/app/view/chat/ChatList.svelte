@@ -27,7 +27,7 @@
       }
     }
     setTimeout(() => {
-      rootView.scrollTop = rootView.scrollHeight;
+      rootView && (rootView.scrollTop = rootView.scrollHeight);
     });
   };
 
@@ -65,6 +65,7 @@
   }
 
   function updateChats(chats: Chat[]): ChatGroup[] {
+    length = 0;
     const props: ChatGroup[] = [];
     chats.forEach((chat) => addChat(props, chat));
     return props;

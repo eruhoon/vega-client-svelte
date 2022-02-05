@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { prevent_default } from 'svelte/internal';
   import { get } from 'svelte/store';
   import type { Chat } from '../../model/chat/Chat';
   import type { ChatReaction } from '../../model/chat/ChatReaction';

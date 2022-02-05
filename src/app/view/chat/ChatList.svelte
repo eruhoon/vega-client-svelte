@@ -52,6 +52,7 @@
   });
 
   function onChatsUpdated(chats: Chat[]) {
+    groups = [];
     groups = [...updateChats(chats)];
     ChatService.requestScrollDown();
   }

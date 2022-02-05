@@ -28,7 +28,7 @@
   CheckerNetworkService.init(privateKey);
   WindowService.sideBarShow.subscribe((v) => (sideBarVisible = v));
   OptionService.enableCheckerBar.subscribe((v) => (isCheckerBarEnable = v));
-  SocketService.isConnected.subscribe((it) => (chatConnected = it));
+  ChatNetworkService.isConnected.subscribe((it) => (chatConnected = it));
 
   ProfileService.loadStreamProfile(privateKey);
 

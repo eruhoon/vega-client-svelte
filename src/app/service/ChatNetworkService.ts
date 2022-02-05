@@ -1,3 +1,4 @@
+import { Readable, writable, Writable } from 'svelte/store';
 import { ChatAdapter } from '../model/network/chat/ChatAdapter';
 import { SocketChatCommand } from '../model/socket/command/SocketChatCommand';
 import { SocketLoginCommand } from '../model/socket/command/SocketLoginCommand';
@@ -20,6 +21,11 @@ import { UserListService } from './UserListService';
 class ChatNetworkServiceInit {
   #socket: SocketModel | null = null;
   #chatAdapter = new ChatAdapter();
+  #isConnected: Writable<boolean> = writable(false);
+
+  get isConnected(): Readable<boolean> {
+    return this.#isConnected;
+  }
 
   init(privateKey: string): void {
     if (this.#socket) {
@@ -87,11 +93,11 @@ class ChatNetworkServiceInit {
   #createWebSocketModel(privateKey: string): SocketModel {
     const socket = new WebSocketModel();
     socket.setOnOpen(() => {
-      SocketService.connect();
+      this.#isConnected.set(true);
       SocketService.login?.execute(privateKey);
     });
     socket.setOnClose(() => {
-      SocketService.disconnect();
+      this.#isConnected.set(false);
       ChatService.updateChats([]);
     });
     return socket;

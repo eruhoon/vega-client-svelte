@@ -11,19 +11,6 @@ class SocketServiceInit {
   notifyUser: NotifyUserCommand | null = null;
   modifyProfile: ModifyProfileCommand | null = null;
   reaction: SocketReactionCommand | null = null;
-  #isConnected: Writable<boolean> = writable(false);
-
-  get isConnected(): Readable<boolean> {
-    return this.#isConnected;
-  }
-
-  connect() {
-    this.#isConnected.set(true);
-  }
-
-  disconnect() {
-    this.#isConnected.set(false);
-  }
 }
 
 export const SocketService = new SocketServiceInit();

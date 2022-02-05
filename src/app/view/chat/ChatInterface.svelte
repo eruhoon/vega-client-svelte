@@ -2,6 +2,7 @@
   import { ChatHistoryManager } from '../../model/chat/history/ChatHistoryList';
   import { ClipboardManager } from '../../model/clipboard/ClipboardManager';
   import { ChatClipboardService } from '../../service/ChatClipboardService';
+  import { ChatNetworkService } from '../../service/ChatNetworkService';
   import { ChatService } from '../../service/ChatService';
   import { SessionService } from '../../service/SessionService';
   import { SocketService } from '../../service/SocketService';
@@ -29,7 +30,7 @@
     ChatService.updateChats([]);
   };
 
-  SocketService.isConnected.subscribe((v) => (isConnected = v));
+  ChatNetworkService.isConnected.subscribe((v) => (isConnected = v));
   ChatService.scrollLock.subscribe((v) => (isScrollLock = v));
 
   function onImageChange() {

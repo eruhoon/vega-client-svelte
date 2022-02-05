@@ -23,7 +23,7 @@
   let currentContent = null;
   let chatConnected = false;
 
-  SocketService.isConnected.subscribe((it) => (chatConnected = it));
+  ChatNetworkService.isConnected.subscribe((it) => (chatConnected = it));
 
   onMount(() => {
     ChatNetworkService.init(privateKey);

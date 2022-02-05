@@ -1,10 +1,8 @@
 <script lang="ts">
   import { SessionService } from '../../service/SessionService';
-  import { MobileUtils } from '../../util/mobile/MobileUtils';
   import ToastList from '../common/ToastList.svelte';
   import LoginPage from '../login/LoginPage.svelte';
-  import DesktopMainPage from '../main/DesktopMainPage.svelte';
-  import MobileMainPage from '../main/MobileMainPage.svelte';
+  import MainPage from '../main/MainPage.svelte';
 
   let userHash: string | null = null;
 
@@ -13,11 +11,7 @@
 
 <main>
   {#if userHash !== null && userHash.length > 0}
-    {#if MobileUtils.isMobile()}
-      <MobileMainPage privateKey={userHash} />
-    {:else}
-      <DesktopMainPage privateKey={userHash} />
-    {/if}
+    <MainPage privateKey={userHash} />
   {:else}
     <LoginPage />
   {/if}

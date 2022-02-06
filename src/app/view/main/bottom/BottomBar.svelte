@@ -5,7 +5,6 @@
   import { OptionService } from '../../../service/OptionService';
   import StreamList from '../../stream/StreamList.svelte';
   import BookmarkItem from './bookmark/BookmarkBottomBarItem.svelte';
-  import HappyNewYearEventItem from './HappyNewYearEventItem.svelte';
 
   let rightAlign: boolean = false;
   let bookmarks: Bookmark[] = [];
@@ -20,7 +19,6 @@
 
 <div class="bottom-bar" class:right-align={rightAlign}>
   <StreamList />
-  <HappyNewYearEventItem />
   {#each bookmarks as bookmark}
     <BookmarkItem
       title={bookmark.title}

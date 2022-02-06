@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { get } from 'svelte/store';
+  import type { SocketMyStatus } from '../../model/socket/common/SocketModel';
   import { ChatNetworkService } from '../../service/ChatNetworkService';
   import { CheckerNetworkService } from '../../service/CheckerNetworkService';
   import { OptionService } from '../../service/OptionService';
@@ -34,9 +35,7 @@
 
   onMount(() => {
     ChatNetworkService.applyMyStatusEvent.subscribe((it) => {
-      ProfileService.statusMessage.set(it.statusMessage);
-      ProfileService.profileIcon.set(it.icon);
-      ProfileService.nickname.set(it.nickname);
+      it && onApplyMyStatusEvent(it);
     });
   });
 
@@ -63,6 +62,12 @@
 
   function onConnectClick() {
     ChatNetworkService.init(privateKey);
+  }
+
+  function onApplyMyStatusEvent(e: SocketMyStatus) {
+    ProfileService.statusMessage.set(e.statusMessage);
+    ProfileService.profileIcon.set(e.icon);
+    ProfileService.nickname.set(e.nickname);
   }
 </script>
 

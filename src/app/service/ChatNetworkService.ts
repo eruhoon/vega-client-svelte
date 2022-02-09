@@ -14,6 +14,7 @@ import type {
 import { WebSocketModel } from '../model/socket/websocket/WebSocketModel';
 import { HashGenerator } from '../util/hash/HashGenerator';
 import { PushListService } from '../view/main/push/PushListService';
+import { GroupedChatService } from './chat/GroupedChatService';
 import { ChatService } from './ChatService';
 import { SocketService } from './SocketService';
 import { SoundService } from './SoundService';
@@ -58,13 +59,16 @@ class ChatNetworkServiceInit {
           this.#applyUsersEvent.set(command.response);
           break;
         case 'applyCurrentChatList':
-          ChatService.updateChats(this.#chatAdapter.toChats(command.response));
+          GroupedChatService.updateChats(
+            this.#chatAdapter.toChats(command.response)
+          );
+          ChatService.requestScrollDown(true);
           break;
         case 'applyNotifyTo':
           console.log(command);
           break;
         case 'reaction':
-          ChatService.updateReactions(
+          GroupedChatService.updateReactions(
             command.response.chatHash,
             command.response.reactions
           );
@@ -83,14 +87,18 @@ class ChatNetworkServiceInit {
           SoundService.playNotificationSound();
           break;
         case 'chat':
-          ChatService.addChat(this.#chatAdapter.toChat(command.response));
+          GroupedChatService.addChat(
+            this.#chatAdapter.toChat(command.response)
+          );
+          ChatService.requestScrollDown();
           break;
         case 'link-update':
-          ChatService.updateLink(
+          GroupedChatService.updateLink(
             command.response.chatHash,
             command.response.title,
             command.response.thumbnail
           );
+          ChatService.requestScrollDown();
           break;
       }
     });
@@ -106,7 +114,7 @@ class ChatNetworkServiceInit {
     });
     socket.setOnClose(() => {
       this.#isConnected.set(false);
-      ChatService.updateChats([]);
+      GroupedChatService.updateChats([]);
     });
     return socket;
   }

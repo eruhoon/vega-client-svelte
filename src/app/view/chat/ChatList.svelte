@@ -1,16 +1,13 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { get } from 'svelte/store';
-  import type { Chat } from '../../model/chat/Chat';
-  import type { ChatReaction } from '../../model/chat/ChatReaction';
+  import { GroupedChatService } from '../../service/chat/GroupedChatService';
   import type { ScrollDownEvent } from '../../service/chat/ScrollDownEvent';
   import { ChatService } from '../../service/ChatService';
   import { OptionService } from '../../service/OptionService';
-  import { HashGenerator } from '../../util/hash/HashGenerator';
   import ChatEntry from './entry/ChatEntry.svelte';
   import type { ChatGroup } from './entry/ChatGroup';
 
-  const hashGenerator = new HashGenerator();
   let enableBot: boolean = get(OptionService.enableBot);
   let scrollLock: boolean = false;
   let rootView: Element;
@@ -31,112 +28,10 @@
   };
 
   onMount(() => {
+    GroupedChatService.groupedChats.subscribe((it) => (groups = it));
     ChatService.scrollLock.subscribe((it) => (scrollLock = it));
-    ChatService.updateChatsEvent.subscribe(onChatsUpdated);
-    ChatService.addChatEvent.subscribe(onChatAdded);
     ChatService.scrollDownEvent.subscribe((it) => it && onScrollDownEvent(it));
-    ChatService.updateReactionsEvent.subscribe((it) => {
-      if (it) {
-        const { chatHash, reactions } = it;
-        updateReactions(chatHash, reactions);
-      }
-    });
-
-    ChatService.updateLinkEvent.subscribe((it) => {
-      if (it) {
-        const { chatHash, title, thumbnail } = it;
-        updateLink(chatHash, title, thumbnail);
-      }
-    });
   });
-
-  function onChatsUpdated(chats: Chat[]) {
-    groups = [];
-    groups = [...updateChats(chats)];
-    ChatService.requestScrollDown();
-  }
-
-  function onChatAdded(chat: Chat | null) {
-    if (chat) {
-      groups = [...addChat(groups, chat)];
-    }
-    scrollDown(false);
-  }
-
-  function updateChats(chats: Chat[]): ChatGroup[] {
-    const props: ChatGroup[] = [];
-    chats.forEach((chat) => addChat(props, chat));
-    return props;
-  }
-
-  function removePrevChat(prev: ChatGroup[]) {
-    const first = prev[0];
-    const messages = first.messages;
-    messages.shift();
-    if (messages.length === 0) {
-      prev.shift();
-    }
-    return [...prev];
-  }
-
-  function getMessageLength(groups: ChatGroup[]): number {
-    return groups.length === 0
-      ? 0
-      : groups.map((e) => e.messages.length).reduce((a, b) => a + b);
-  }
-
-  function addChat(prev: ChatGroup[], chat: Chat): ChatGroup[] {
-    if (getMessageLength(prev) > 50) {
-      prev = removePrevChat(prev);
-    }
-
-    const lastChatGroup = prev[prev.length - 1];
-    let last: ChatGroup;
-    if (
-      lastChatGroup &&
-      lastChatGroup.icon === chat.sender.icon &&
-      lastChatGroup.nickname === chat.sender.nickname &&
-      lastChatGroup.senderType === chat.sender.type
-    ) {
-      last = lastChatGroup;
-    } else {
-      last = {
-        hash: hashGenerator.generate('chat'),
-        icon: chat.sender.icon,
-        nickname: chat.sender.nickname,
-        senderType: chat.sender.type,
-        messages: [],
-      };
-      prev.push(last);
-    }
-    last.messages.push(chat.message);
-    return [...prev];
-  }
-
-  function updateReactions(chatHash: string, reactions: ChatReaction[]) {
-    groups.forEach((group) => {
-      const found = group.messages.find((m) => m.hash === chatHash);
-      if (found) {
-        found.reactions = reactions;
-      }
-    });
-    groups = [...groups];
-  }
-
-  function updateLink(chatHash: string, title: string, thumbnail: string) {
-    groups.forEach((group) => {
-      const found = group.messages.find((m) => m.hash === chatHash);
-      if (found) {
-        const json = JSON.parse(found.body);
-        json.info.title = title;
-        json.info.thumbnail = thumbnail;
-        found.body = JSON.stringify(json);
-      }
-    });
-    groups = [...groups];
-
-    scrollDown(false);
-  }
 
   function onScroll() {
     const { scrollTop, scrollHeight, clientHeight } = rootView;

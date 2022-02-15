@@ -13,7 +13,7 @@ class CheckerNetworkServiceInit {
   }
 
   #createSocketIoCheckerSocket(privateKey: string): CheckerSocketModel {
-    const host = 'mycast.xyz:9000';
+    const host = 'mycast.xyz:9001';
     const socket = new SocketIoCheckerSocketModel(host, privateKey);
     socket.onRefreshStream((s) => this.#onRefreshStream(s));
     return socket;

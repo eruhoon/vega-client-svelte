@@ -2,6 +2,7 @@
   import { OptionService } from '../../../service/OptionService';
   import { WindowService } from '../../../service/WindowService';
   import { LinkUtils } from '../../../util/link/LinkUtils';
+  import { MobileUtils } from '../../../util/mobile/MobileUtils';
   import { PopupContentService } from '../../popup/PopupContentService';
 
   export let body: string;
@@ -16,10 +17,14 @@
   OptionService.enableDataSave.subscribe((it) => (isDataSaveMode = it));
 
   function onClick() {
-    PopupContentService.addContent({
-      type: 'iframe',
-      src: { title: 'Twitch Clip', link },
-    });
+    if (MobileUtils.isMobile()) {
+      WindowService.openContent({ type: 'iframe', src: link });
+    } else {
+      PopupContentService.addContent({
+        type: 'iframe',
+        src: { title: 'Twitch Clip', link },
+      });
+    }
   }
 
   function onContextMenu() {

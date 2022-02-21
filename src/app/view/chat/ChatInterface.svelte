@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-
   import { ChatHistoryManager } from '../../model/chat/history/ChatHistoryList';
   import { ClipboardManager } from '../../model/clipboard/ClipboardManager';
+  import { GroupedChatService } from '../../service/chat/GroupedChatService';
   import { ChatClipboardService } from '../../service/ChatClipboardService';
   import { ChatNetworkService } from '../../service/ChatNetworkService';
   import { ChatService } from '../../service/ChatService';
@@ -29,7 +29,7 @@
   };
 
   const clearChats = () => {
-    ChatService.updateChats([]);
+    GroupedChatService.updateChats([]);
   };
 
   ChatNetworkService.isConnected.subscribe((v) => (isConnected = v));

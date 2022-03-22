@@ -1,6 +1,7 @@
 <script lang="ts">
   import { OptionService } from '../../../../service/OptionService';
   import { WindowService } from '../../../../service/WindowService';
+  import { MobileUtils } from '../../../../util/mobile/MobileUtils';
   import { PopupContentService } from '../../../popup/PopupContentService';
 
   export let body: string;
@@ -14,10 +15,14 @@
   OptionService.enableDataSave.subscribe((it) => (isDataSaveMode = it));
 
   function onClick() {
-    PopupContentService.addContent({
-      type: 'iframe',
-      src: { title: 'Twitch Video', link },
-    });
+    if (MobileUtils.isMobile()) {
+      WindowService.openContent({ type: 'iframe', src: link });
+    } else {
+      PopupContentService.addContent({
+        type: 'iframe',
+        src: { title: 'Twitch Video', link },
+      });
+    }
   }
 
   function onContextMenu() {

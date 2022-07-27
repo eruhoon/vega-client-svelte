@@ -8,7 +8,7 @@
   export let url = '';
 
   let keyCount = 0;
-  const MaxKeyCount = 3;
+  const MaxKeyCount = 10;
 
   document.onkeyup = (e: KeyboardEvent) => {
     if (e.code === 'ShiftRight') {

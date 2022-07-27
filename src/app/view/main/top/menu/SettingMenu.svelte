@@ -46,6 +46,11 @@
     icon="fas fa-tools"
   />
   <DefaultMenuItem
+    menuClick={() => openModal('bookmark')}
+    name="북마크 설정"
+    icon="fas fa-bookmark"
+  />
+  <DefaultMenuItem
     menuClick={() => openModal('chat-widget')}
     name="채팅위젯 설정"
     icon="fas fa-comment"

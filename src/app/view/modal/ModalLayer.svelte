@@ -3,6 +3,7 @@
   import Layer from '../../view-framework/layer/Layer.svelte';
   import TestCommandModal from '../lab/TestCommandModal.svelte';
   import NotifyUserModal from '../notification/NotifyUserModal.svelte';
+  import BookmarkSettingModal from '../setting/bookmark/BookmarkSettingModal.svelte';
   import ChatWidgetSettingModal from '../setting/ChatWidgetSettingModal.svelte';
   import DonationSettingModal from '../setting/DonationSettingModal.svelte';
   import ProfileSettingModal from '../setting/ProfileSettingModal.svelte';
@@ -25,6 +26,9 @@
         break;
       case 'stream':
         modal = StreamSettingModal;
+        break;
+      case 'bookmark':
+        modal = BookmarkSettingModal;
         break;
       case 'chat-widget':
         modal = ChatWidgetSettingModal;

@@ -38,6 +38,7 @@
 
   onMount(() => {
     ChatService.scrollLock.subscribe((v) => (isScrollLock = v));
+    EmojiService.appendEmojiChat.subscribe((it) => it && onAppendEmojiChat(it));
   });
 
   function onImageChange() {
@@ -67,6 +68,7 @@
         EmojiService.registerRecent(message);
       }
       message = '';
+      WindowService.closeEmojiAttachView();
       ChatService.requestScrollDown(true);
       chatHistories.resetIndex();
     }
@@ -90,6 +92,10 @@
 
   function onScrollDownClick() {
     ChatService.requestScrollDown(true);
+  }
+
+  function onAppendEmojiChat(emoji: string) {
+    message += emoji;
   }
 </script>
 

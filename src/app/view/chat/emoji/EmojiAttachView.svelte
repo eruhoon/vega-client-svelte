@@ -24,6 +24,10 @@
     EmojiService.registerRecent(emoji);
     WindowService.closeEmojiAttachView();
   }
+
+  function onEmojiContextMenu(emoji: string) {
+    EmojiService.appendEmoji(emoji);
+  }
 </script>
 
 <div class="container">
@@ -35,14 +39,22 @@
       <h5>Recent</h5>
       <div class="def-emoji-list">
         {#each recentEmojies as emoji}
-          <span on:click={(_) => onEmojiClick(emoji)}>{emoji}</span>
+          <span
+            on:click={(_) => onEmojiClick(emoji)}
+            on:contextmenu|preventDefault={(_) => onEmojiContextMenu(emoji)}
+            >{emoji}</span
+          >
         {/each}
       </div>
       <hr />
     {/if}
     <div class="def-emoji-list">
       {#each emojies as emoji}
-        <span on:click={(_) => onEmojiClick(emoji)}>{emoji}</span>
+        <span
+          on:click={(_) => onEmojiClick(emoji)}
+          on:contextmenu|preventDefault={(_) => onEmojiContextMenu(emoji)}
+          >{emoji}</span
+        >
       {/each}
     </div>
   </div>

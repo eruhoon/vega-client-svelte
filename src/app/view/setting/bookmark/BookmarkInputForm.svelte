@@ -1,6 +1,4 @@
 <script lang="ts">
-    import type { Bookmark } from '../../../model/bookmark/Bookmark';
-
     import { BookmarkService } from '../../../service/BookmarkService';
 
     import BookmarkTextInput from './BookmarkTextInput.svelte';

@@ -1,8 +1,12 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+  import { EmojiService } from '../../../service/EmojiService';
+
   import { SessionService } from '../../../service/SessionService';
   import { SocketService } from '../../../service/SocketService';
   import { WindowService } from '../../../service/WindowService';
 
+  let recentEmojies: string[] = [];
   const emojiStream: string =
     '😒 😊 😂 🤣 ❤ 😍 👌 😘 🤷‍♂️ 🤷‍♀️ 🤦‍♂️ 🤦‍♀️ 🙌 👍 😁 💕 ✌ 🤞 😉 😎 🎶 😢 💖 😜 🤳 🎂 🎉 🌹 💋 👏 ✔ 👀 😃 ✨ 😆 🤔 🤢 🎁';
   const emojies: string[] = emojiStream.split(' ');
@@ -11,8 +15,13 @@
     SocketService.chat?.execute(privateKey, 'chat', emoji);
   };
 
+  onMount(() => {
+    EmojiService.recents.subscribe((it) => (recentEmojies = it));
+  });
+
   function onEmojiClick(emoji: string) {
     sendEmoji(emoji);
+    EmojiService.registerRecent(emoji);
     WindowService.closeEmojiAttachView();
   }
 </script>
@@ -22,6 +31,15 @@
     <h4>이모티콘</h4>
   </div>
   <div class="emoji-list">
+    {#if recentEmojies.length > 0}
+      <h5>Recent</h5>
+      <div class="def-emoji-list">
+        {#each recentEmojies as emoji}
+          <span on:click={(_) => onEmojiClick(emoji)}>{emoji}</span>
+        {/each}
+      </div>
+      <hr />
+    {/if}
     <div class="def-emoji-list">
       {#each emojies as emoji}
         <span on:click={(_) => onEmojiClick(emoji)}>{emoji}</span>

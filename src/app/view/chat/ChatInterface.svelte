@@ -1,11 +1,13 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { EmojiUtils } from '../../model/chat/emoji/EmojiUtils';
   import { ChatHistoryManager } from '../../model/chat/history/ChatHistoryList';
   import { ClipboardManager } from '../../model/clipboard/ClipboardManager';
   import { GroupedChatService } from '../../service/chat/GroupedChatService';
   import { ChatClipboardService } from '../../service/ChatClipboardService';
   import { ChatNetworkService } from '../../service/ChatNetworkService';
   import { ChatService } from '../../service/ChatService';
+  import { EmojiService } from '../../service/EmojiService';
   import { SessionService } from '../../service/SessionService';
   import { SocketService } from '../../service/SocketService';
   import { WindowService } from '../../service/WindowService';
@@ -61,6 +63,9 @@
       }
       SocketService.chat?.execute(privateKey, 'chat', message);
       chatHistories.addHistory(message);
+      if (EmojiUtils.isEmoji(message)) {
+        EmojiService.registerRecent(message);
+      }
       message = '';
       ChatService.requestScrollDown(true);
       chatHistories.resetIndex();

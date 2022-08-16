@@ -36,7 +36,9 @@
   </div>
   <div class="emoji-list">
     {#if recentEmojies.length > 0}
-      <h5>Recent</h5>
+      <div class="recent-title">
+        <h5>타임라인</h5>
+      </div>
       <div class="def-emoji-list">
         {#each recentEmojies as emoji}
           <span
@@ -112,6 +114,16 @@
         -webkit-border-radius: 8px;
         border-radius: 8px;
       }
+      .recent-title {
+        width: calc(100% - 10px);
+        height: 20px;
+        padding: 5px;
+        border-bottom: 1px solid;
+        h5 {
+          padding-top: 2px;
+          font-size: 12px;
+        }
+      }
       .def-emoji-list {
         width: 100%;
         height: auto;
@@ -161,6 +173,12 @@
       }
       &::-webkit-scrollbar-thumb {
         background: var(--primary-activeground-color);
+      }
+      .recent-title {
+        border-bottom-color: var(--primary-hoverground-color);
+      }
+      hr {
+        border-color: var(--primary-hoverground-color);
       }
       .def-emoji-list {
         background-color: var(--primary-background-color);

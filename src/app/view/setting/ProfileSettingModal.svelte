@@ -51,7 +51,7 @@
         bind:value={icon}
       />
       <button class="stream-sub" on:click={onSubmitClick}>
-        <h2>방송 설정 저장</h2>
+        <h2>프로필 저장</h2>
       </button>
     </div>
   </div>

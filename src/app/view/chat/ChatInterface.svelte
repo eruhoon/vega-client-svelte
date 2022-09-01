@@ -154,11 +154,12 @@
   // 스티커 & 채팅 클리어 & 채팅 인원 안내
   .input-sticker {
     display: block;
-    width: 100%;
+    width: calc(100% - 10px);
     height: 30px;
     background-color: var(--primary-hoverground-color);
     border-top: 1px solid var(--primary-hoverground-color);
     border-bottom: 1px solid var(--primary-hoverground-color);
+    padding: 0% 5px;
 
     div {
       width: auto;

@@ -1,19 +1,24 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import type { Bookmark } from '../../../model/bookmark/Bookmark';
-  import { BookmarkService } from '../../../service/BookmarkService';
-  import { OptionService } from '../../../service/OptionService';
-  import StreamList from '../../stream/StreamList.svelte';
-  import BookmarkItem from './bookmark/BookmarkBottomBarItem.svelte';
+  import { onMount } from "svelte";
+  import type { Bookmark } from "../../../model/bookmark/Bookmark";
+  import type { ContentHistory } from "../../../model/history/ContentHistory";
+  import { BookmarkService } from "../../../service/BookmarkService";
+  import { ContentHistoryService } from "../../../service/ContentHistoryService";
+  import { OptionService } from "../../../service/OptionService";
+  import StreamList from "../../stream/StreamList.svelte";
+  import BookmarkItem from "./bookmark/BookmarkBottomBarItem.svelte";
+  import ContentHistoryItem from "./ContentHistoryItem.svelte";
 
   let rightAlign: boolean = false;
   let bookmarks: Bookmark[] = [];
+  let histories: ContentHistory[] = [];
 
   onMount(() => {
     OptionService.enableCheckerRightAlign.subscribe((it) => {
       rightAlign = it;
     });
     BookmarkService.bookmarks.subscribe((it) => (bookmarks = it));
+    ContentHistoryService.histories.subscribe((it) => (histories = it));
   });
 </script>
 
@@ -25,6 +30,9 @@
       icon={bookmark.icon}
       link={bookmark.link}
     />
+  {/each}
+  {#each histories as history}
+    <ContentHistoryItem {history} />
   {/each}
 </div>
 

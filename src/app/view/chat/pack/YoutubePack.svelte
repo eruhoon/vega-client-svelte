@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { get } from 'svelte/store';
-  import { OptionService } from '../../../service/OptionService';
-  import { WindowService } from '../../../service/WindowService';
-  import { MobileUtils } from '../../../util/mobile/MobileUtils';
-  import { PopupContentService } from '../../popup/PopupContentService';
+  import { get } from "svelte/store";
+  import { ContentHistoryService } from "../../../service/ContentHistoryService";
+  import { OptionService } from "../../../service/OptionService";
+  import { WindowService } from "../../../service/WindowService";
+  import { MobileUtils } from "../../../util/mobile/MobileUtils";
+  import { PopupContentService } from "../../popup/PopupContentService";
 
   export let body: string;
   let isDataSave = !get(OptionService.enableDataSave);
@@ -26,28 +27,35 @@
 
   function onClick() {
     if (MobileUtils.isMobile()) {
-      WindowService.openContent({ type: 'iframe', src: link });
+      WindowService.openContent({ type: "iframe", src: link });
     } else {
       PopupContentService.addContent({
-        type: 'iframe',
+        type: "iframe",
         src: {
           link,
-          title: 'YoutubePack',
+          title: "YoutubePack",
         },
       });
     }
   }
 
   function onContextMenu() {
-    WindowService.openContent({ type: 'iframe', src: link });
+    WindowService.openContent({ type: "iframe", src: link });
+    ContentHistoryService.addHistory({
+      icon: thumbnail,
+      thumbnail,
+      description,
+      title,
+      link,
+    });
   }
 
   function getTimeText(time: number): string {
     const h = Math.floor(time / 3600);
     const m = Math.floor((time % 3600) / 60);
     const s = time % 60;
-    const hStr = h > 0 ? `${h}h` : '';
-    const mStr = h > 0 || m > 0 ? `${m}m` : '';
+    const hStr = h > 0 ? `${h}h` : "";
+    const mStr = h > 0 || m > 0 ? `${m}m` : "";
     const sStr = `${s}s`;
     return `${hStr} ${mStr} ${sStr}`;
   }
@@ -111,7 +119,7 @@
       width: 100%;
       height: 100%;
       border-radius: 5px;
-      content: '';
+      content: "";
       background: #000;
       opacity: 0.9;
     }

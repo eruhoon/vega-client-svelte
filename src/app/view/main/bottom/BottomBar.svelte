@@ -8,6 +8,7 @@
   import StreamList from "../../stream/StreamList.svelte";
   import BookmarkItem from "./bookmark/BookmarkBottomBarItem.svelte";
   import ContentHistoryItem from "./ContentHistoryItem.svelte";
+  import CristmasTreeEventItem from "./CristmasTreeEventItem.svelte";
 
   let rightAlign: boolean = false;
   let bookmarks: Bookmark[] = [];
@@ -34,6 +35,7 @@
   {#each histories as history}
     <ContentHistoryItem {history} />
   {/each}
+  <CristmasTreeEventItem />
 </div>
 
 <style lang="scss">

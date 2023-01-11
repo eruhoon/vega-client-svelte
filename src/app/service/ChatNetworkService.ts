@@ -7,6 +7,7 @@ import { NotifyUserCommand } from '../model/socket/command/SocketNotifyUserComma
 import { SocketReactionCommand } from '../model/socket/command/SocketReactionCommand';
 import type {
   SocketCommand,
+  SocketCurrentBot,
   SocketCurrentUser,
   SocketModel,
   SocketMyStatus,
@@ -25,6 +26,7 @@ class ChatNetworkServiceInit {
   #isConnected: Writable<boolean> = writable(false);
   #applyMyStatusEvent: Writable<SocketMyStatus> = writable();
   #applyUsersEvent: Writable<SocketCurrentUser[]> = writable([]);
+  #applyBotEvent: Writable<SocketCurrentBot[]> = writable([]);
 
   get isConnected(): Readable<boolean> {
     return this.#isConnected;
@@ -36,6 +38,10 @@ class ChatNetworkServiceInit {
 
   get applyUsersEvent(): Readable<SocketCurrentUser[]> {
     return this.#applyUsersEvent;
+  }
+
+  get applyBotsEvent(): Readable<SocketCurrentBot[]> {
+    return this.#applyBotEvent;
   }
 
   init(privateKey: string): void {
@@ -57,6 +63,9 @@ class ChatNetworkServiceInit {
           break;
         case 'applyCurrentUserList':
           this.#applyUsersEvent.set(command.response);
+          break;
+        case 'applyCurrentBotList':
+          this.#applyBotEvent.set(command.response);
           break;
         case 'applyCurrentChatList':
           GroupedChatService.updateChats(

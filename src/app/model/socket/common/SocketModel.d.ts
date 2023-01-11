@@ -66,6 +66,7 @@ export type SocketCommand =
   | SocketApplyMyStatusCommand
   | SocketCurrentChatsCommand
   | SocketCurrentUsersCommand
+  | SocketCurrentBotsCommand
   | SocketNotificationFromCommand
   | SocketNotificationToCommand
   | SocketReactionCommand;
@@ -149,6 +150,18 @@ type SocketCurrentUsersCommand = BaseSocketCommand<
   'applyCurrentUserList',
   null,
   SocketCurrentUser[]
+>;
+
+type SocketCurrentBot = {
+  hash: string;
+  icon: string;
+  nickname: string;
+}
+
+type SocketCurrentBotsCommand = BaseSocketCommand<
+  'applyCurrentBotList',
+  null,
+  SocketCurrentBot[]
 >;
 
 type SocketNotificationFromResponse = {

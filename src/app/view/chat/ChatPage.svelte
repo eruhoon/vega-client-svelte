@@ -6,16 +6,23 @@
   import ChatList from './ChatList.svelte';
   import EmojiAttachView from './emoji/EmojiAttachView.svelte';
   import ChatUserList from './user/ChatUserList.svelte';
+  import { onMount } from 'svelte';
+  import ChatBotList from './user/ChatBotList.svelte';
 
   const clipboard = new ClipboardManager();
 
   let userListShow = false;
+  let botListShow = false;
   let emojiAttachViewShow = false;
 
   WindowService.userListShow.subscribe((show) => (userListShow = show));
   WindowService.emojiAttachViewShow.subscribe(
     (show) => (emojiAttachViewShow = show)
   );
+
+  onMount(() => {
+    WindowService.botListShow.subscribe((it) => (botListShow = it));
+  });
 
   function onPaste(e: ClipboardEvent) {
     if (!e.clipboardData) {
@@ -55,6 +62,9 @@
   </div>
   <div class="chat-user-list" class:hide={!userListShow}>
     <ChatUserList />
+  </div>
+  <div class="chat-user-list" class:hide={!botListShow}>
+    <ChatBotList />
   </div>
   <div class="emoji-attach" class:hide={!emojiAttachViewShow}>
     <EmojiAttachView />

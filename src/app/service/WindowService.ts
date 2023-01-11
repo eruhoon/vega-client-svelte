@@ -4,12 +4,17 @@ import type { ModalType } from '../model/window/ModalType';
 
 class WindowServiceInit {
   userListShow = writable(false);
+  readonly #botListShow = writable(false);
   #isEmojiAttachViewShow = writable(false);
   #sideBarShow = writable(false);
   settingMenuShow = writable(false);
   #content: Writable<Content | null> = writable(null);
   #modal: Writable<ModalType | null> = writable(null);
   #currentImage: Writable<string | null> = writable(null);
+
+  get botListShow(): Readable<boolean> {
+    return this.#botListShow;
+  }
 
   get content(): Readable<Content> {
     return this.#content;
@@ -41,6 +46,10 @@ class WindowServiceInit {
 
   get emojiAttachViewShow(): Readable<boolean> {
     return this.#isEmojiAttachViewShow;
+  }
+
+  toggleBotListView() {
+    this.#botListShow.update(show => !show);
   }
 
   toggleEmojiAttachView() {

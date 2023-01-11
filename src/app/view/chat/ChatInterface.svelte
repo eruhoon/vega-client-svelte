@@ -17,6 +17,7 @@
   let imageInput: HTMLInputElement;
   let message: string = '';
   let userListShow = false;
+  let botListShow = false;
   let isConnected = false;
   let isScrollLock = false;
 
@@ -39,6 +40,7 @@
   onMount(() => {
     ChatService.scrollLock.subscribe((v) => (isScrollLock = v));
     EmojiService.appendEmojiChat.subscribe((it) => it && onAppendEmojiChat(it));
+    WindowService.botListShow.subscribe((it) => (botListShow = it));
   });
 
   function onImageChange() {
@@ -97,6 +99,14 @@
   function onAppendEmojiChat(emoji: string) {
     message += emoji;
   }
+
+  function onToggleBotClick() {
+    toggleBotList();
+  }
+
+  function toggleBotList() {
+    WindowService.toggleBotListView();
+  }
 </script>
 
 <div class="chat-interface" on:click={(_) => ChatService.setActive(null)}>
@@ -104,6 +114,9 @@
     <div class="sticker-section">
       <div on:click={toggleUserList}>
         <i class="fas fa-address-book" />
+      </div>
+      <div on:click={onToggleBotClick}>
+        <i class="fas fa-robot" />
       </div>
       <div on:click={clearChats}>
         <i class="fas fa-remove-format" />

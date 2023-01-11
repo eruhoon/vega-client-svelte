@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import type { Bookmark } from "../../../model/bookmark/Bookmark";
-  import type { ContentHistory } from "../../../model/history/ContentHistory";
-  import { BookmarkService } from "../../../service/BookmarkService";
-  import { ContentHistoryService } from "../../../service/ContentHistoryService";
-  import { OptionService } from "../../../service/OptionService";
-  import StreamList from "../../stream/StreamList.svelte";
-  import BookmarkItem from "./bookmark/BookmarkBottomBarItem.svelte";
-  import ContentHistoryItem from "./ContentHistoryItem.svelte";
-  import HappyNewYearEventItem from "./HappyNewYearEventItem.svelte";
+  import { onMount } from 'svelte';
+  import type { Bookmark } from '../../../model/bookmark/Bookmark';
+  import type { ContentHistory } from '../../../model/history/ContentHistory';
+  import { BookmarkService } from '../../../service/BookmarkService';
+  import { ContentHistoryService } from '../../../service/ContentHistoryService';
+  import { OptionService } from '../../../service/OptionService';
+  import StreamList from '../../stream/StreamList.svelte';
+  import BookmarkItem from './bookmark/BookmarkBottomBarItem.svelte';
+  import ContentHistoryItem from './ContentHistoryItem.svelte';
+  import HappyNewYearEventItem from './HappyNewYearEventItem.svelte';
 
   let rightAlign: boolean = false;
   let bookmarks: Bookmark[] = [];

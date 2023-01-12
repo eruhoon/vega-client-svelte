@@ -1,6 +1,6 @@
 <script lang="ts">
   import { ChatNetworkService } from '../../../service/ChatNetworkService';
-  import ChatSenderEntry from './ChatSenderEntry.svelte';
+  import ChatBotEntry from './ChatBotEntry.svelte';
   import ChatSenderList from './ChatSenderList.svelte';
 
   let bots: {
@@ -14,6 +14,6 @@
 
 <ChatSenderList title="봇 리스트" length={bots.length}>
   {#each bots as { hash, icon, nickname }}
-    <ChatSenderEntry {hash} {icon} {nickname} />
+    <ChatBotEntry {hash} {icon} {nickname} />
   {/each}
 </ChatSenderList>

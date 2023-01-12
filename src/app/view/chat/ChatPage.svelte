@@ -97,7 +97,7 @@
     left: 0;
     bottom: $chat-interface-height;
     width: 100%;
-    max-height: 300px;
+    height: 300px;
 
     &.hide {
       display: none;

@@ -1,8 +1,12 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { get } from 'svelte/store';
+  import type { BotMuteSetting } from '../../model/chat/ChatBotMuteSetting';
+  import type { ChatBotProfile } from '../../model/chat/ChatBotProfile';
   import { GroupedChatService } from '../../service/chat/GroupedChatService';
   import type { ScrollDownEvent } from '../../service/chat/ScrollDownEvent';
+  import { ChatBotService } from '../../service/ChatBotService';
+  import { ChatNetworkService } from '../../service/ChatNetworkService';
   import { ChatService } from '../../service/ChatService';
   import { OptionService } from '../../service/OptionService';
   import ChatEntry from './entry/ChatEntry.svelte';
@@ -11,6 +15,8 @@
   let enableBot: boolean = get(OptionService.enableBot);
   let scrollLock: boolean = false;
   let rootView: Element;
+  let botMuteSettings: BotMuteSetting[] = [];
+  let bots: ChatBotProfile[] = [];
 
   OptionService.enableBot.subscribe((v) => (enableBot = v));
 
@@ -31,6 +37,8 @@
     GroupedChatService.groupedChats.subscribe((it) => (groups = it));
     ChatService.scrollLock.subscribe((it) => (scrollLock = it));
     ChatService.scrollDownEvent.subscribe((it) => it && onScrollDownEvent(it));
+    ChatBotService.muteBotSettings.subscribe((it) => (botMuteSettings = it));
+    ChatNetworkService.applyBotsEvent.subscribe((it) => (bots = it));
   });
 
   function onScroll() {
@@ -43,11 +51,52 @@
   function onScrollDownEvent(event: ScrollDownEvent) {
     scrollDown(event.force);
   }
+
+  function isMute(
+    group: ChatGroup,
+    bots: ChatBotProfile[],
+    settings: BotMuteSetting[]
+  ) {
+    if (!enableBot && group.senderType === 'BOT') {
+      return true;
+    }
+
+    if (isMuteBot(group, bots, settings)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  function isMuteBot(
+    group: ChatGroup,
+    bots: ChatBotProfile[],
+    settings: BotMuteSetting[]
+  ) {
+    if (group.senderType !== 'BOT') {
+      return false;
+    }
+
+    // TODO: hashBind
+    const foundBotByName = bots.find((b) => b.nickname === group.nickname);
+    if (!foundBotByName) {
+      return false;
+    }
+
+    const botHash = foundBotByName.hash;
+    const foundSetting = settings.find((setting) => setting.hash === botHash);
+
+    if (foundSetting) {
+      return foundSetting.mute;
+    } else {
+      return foundBotByName.defaultMute;
+    }
+  }
 </script>
 
 <div class="chat-list" bind:this={rootView} on:scroll={onScroll}>
   {#each groups as prop (prop.hash)}
-    {#if !(!enableBot && prop.senderType === 'BOT')}
+    {#if !isMute(prop, bots, botMuteSettings)}
       <ChatEntry {prop} messages={prop.messages} />
     {/if}
   {/each}

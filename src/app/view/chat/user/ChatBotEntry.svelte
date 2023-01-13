@@ -4,10 +4,15 @@
   export let hash: string;
   export let icon: string;
   export let nickname: string;
+  export let mute: boolean;
 </script>
 
 <ChatSenderEntry {hash} {icon} {nickname}>
-  <i class="fas fa-bell active" />
+  {#if mute}
+    <i class="fas fa-bell-slash" />
+  {:else}
+    <i class="fas fa-bell active" />
+  {/if}
   <i class="fas fa-question active" />
 </ChatSenderEntry>
 

@@ -156,6 +156,7 @@ type SocketCurrentBot = {
   hash: string;
   icon: string;
   nickname: string;
+  defaultMute: boolean;
 }
 
 type SocketCurrentBotsCommand = BaseSocketCommand<

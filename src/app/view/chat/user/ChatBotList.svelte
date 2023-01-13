@@ -7,13 +7,14 @@
     hash: string;
     icon: string;
     nickname: string;
+    defaultMute: boolean;
   }[] = [];
 
   ChatNetworkService.applyBotsEvent.subscribe((it) => (bots = it));
 </script>
 
 <ChatSenderList title="봇 리스트" length={bots.length}>
-  {#each bots as { hash, icon, nickname }}
-    <ChatBotEntry {hash} {icon} {nickname} />
+  {#each bots as { hash, icon, nickname, defaultMute }}
+    <ChatBotEntry {hash} {icon} {nickname} mute={defaultMute} />
   {/each}
 </ChatSenderList>

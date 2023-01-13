@@ -14,6 +14,7 @@ export class LocalStorageManager {
   #KEY_CHAT_VIEW_OFFSET = 'vega.chat_view_offset';
   #KEY_VOLUME = 'vega.volume';
   #KEY_THEME_DARK_MODE = 'vega.theme_dark_mode';
+  #KEY_MUTE_BOT_SETTINGS = 'vega.mute_bot_settings';
 
   get timestamp(): boolean {
     return localStorage.getItem(this.#KEY_TIMESTAMP) === TRUE;
@@ -98,5 +99,13 @@ export class LocalStorageManager {
 
   set isDarkMode(value: boolean) {
     localStorage.setItem(this.#KEY_THEME_DARK_MODE, value ? TRUE : FALSE);
+  }
+
+  get muteBotSettings(): string {
+    return localStorage.getItem(this.#KEY_MUTE_BOT_SETTINGS) || '[]';
+  }
+
+  set muteBotSettings(value: string) {
+    localStorage.setItem(this.#KEY_MUTE_BOT_SETTINGS, value ? value : '[]');
   }
 }

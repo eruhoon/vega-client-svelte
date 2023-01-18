@@ -14,7 +14,11 @@
   }
 
   const openWindow = () => {
-    window.open(link);
+    if (link.endsWith('.m3u8')) {
+      WindowService.openContent({ type: 'hls', src: link });
+    } else {
+      window.open(link);
+    }
   };
 
   const openContent = () =>

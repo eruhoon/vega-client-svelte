@@ -5,6 +5,7 @@
   import DonationPage from '../../donation/DonationPage.svelte';
   import MemoContentView from '../../memo/MemoContentView.svelte';
   import PhotoContentView from '../../photo/PhotoContentView.svelte';
+  import HlsContentView from './HlsContentView.svelte';
   import IframeContentView from './IframeContentView.svelte';
   import LocalStreamContentView from './LocalStreamContentView.svelte';
   import TotoroStreamContentView from './TotoroStreamContentView.svelte';
@@ -31,6 +32,8 @@
       <MemoContentView />
     {:else if content.type === 'donation'}
       <DonationPage />
+    {:else if content.type === 'hls'}
+      <HlsContentView title="HLS Viewer" url={content.src} />
     {/if}
   {/if}
 </div>

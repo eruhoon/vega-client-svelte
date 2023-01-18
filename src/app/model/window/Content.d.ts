@@ -5,6 +5,7 @@ export type Content =
   | DonationContent
   | LocalStreamContent
   | TotoroStreamContent
+  | HlsStreamContent
   | TwitchStreamContent;
 
 type IframeContent = {
@@ -32,6 +33,11 @@ type LocalStreamContent = {
 type TotoroStreamContent = {
   type: 'totoro-stream';
   src: LocalStreamSource;
+};
+
+type HlsStreamContent = {
+  type: 'hls';
+  src: string;
 };
 
 type TwitchStreamContent = {

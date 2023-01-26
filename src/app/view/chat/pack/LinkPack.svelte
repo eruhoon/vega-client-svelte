@@ -14,7 +14,7 @@
   }
 
   const openWindow = () => {
-    if (link.endsWith('.m3u8')) {
+    if (link.includes('.m3u8')) {
       WindowService.openContent({ type: 'hls', src: link });
     } else {
       window.open(link);

@@ -4,6 +4,11 @@ import type { Content } from '../../../model/window/Content';
 export class ContentFactory {
   createFromStream(stream: StreamInfo): Content {
     switch (stream.platform) {
+      case 'lck':
+        return {
+          type: 'hls',
+          src: stream.url,
+        }
       case 'local':
         return {
           type: 'local-stream',

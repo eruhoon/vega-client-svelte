@@ -13,7 +13,7 @@
     const { platform, keyid: keyId } = it;
     return FavoriteService.isFavorite(platform, keyId);
   });
-
+  $: lck = externals.find((it) => it.platform === 'lck');
   $: locals = entries.filter((it) => it.platform === 'local');
   $: notLocals = entries.filter((it) => it.platform !== 'local');
 
@@ -32,3 +32,6 @@
 {#each favorites as favorite}
   <StreamEntry stream={favorite} />
 {/each}
+{#if lck}
+  <StreamEntry stream={lck} />
+{/if}

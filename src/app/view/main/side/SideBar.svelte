@@ -12,6 +12,7 @@
   let locals = get(StreamService.locals);
   let externals = get(StreamService.externals);
 
+  $: lcks = externals.filter((s) => s.platform === 'lck');
   $: twitches = externals.filter((s) => s.platform === 'twitch');
   $: afreecas = externals.filter((s) => s.platform === 'afreeca');
   $: kakaotvs = externals.filter((s) => s.platform === 'kakaotv');
@@ -64,6 +65,8 @@
       streams={locals}
       supportFavorite={false}
     />
+    <hr />
+    <SideBarStreamList title="LCK" streams={lcks} />
     <hr />
     <SideBarStreamList title="즐겨찾기" streams={favorites} />
     <hr />

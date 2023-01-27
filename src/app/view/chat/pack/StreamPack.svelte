@@ -59,6 +59,11 @@
           type: 'iframe',
           src: link,
         };
+      case 'lck':
+        return {
+          type: 'hls',
+          src: link,
+        };
       default:
         return {
           type: 'iframe',

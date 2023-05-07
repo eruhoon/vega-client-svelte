@@ -16,6 +16,11 @@
       name: '아프리카',
       icon: 'afreecatv',
     },
+    {
+      id: 'youtube',
+      name: '유튜브',
+      icon: 'youtube',
+    },
   ];
   let currentPlatform: Platform;
   let stagedStream = null;
@@ -84,6 +89,7 @@
     <div class="live-stream-chk">
       <div class="live-corp-list">
         {#each platforms as platform}
+          <!-- svelte-ignore a11y-click-events-have-key-events -->
           <div class="live-corp" on:click={(_) => onPlatformClick(platform)}>
             <div class="live-corp-img">
               <div class="checks">
@@ -108,7 +114,7 @@
         </label>
         <input
           id="name"
-          maxlength="15"
+          maxlength="60"
           type="text"
           bind:value={searchKeyword}
         />

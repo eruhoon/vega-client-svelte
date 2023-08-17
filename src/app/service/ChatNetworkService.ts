@@ -19,6 +19,7 @@ import { GroupedChatService } from './chat/GroupedChatService';
 import { ChatService } from './ChatService';
 import { SocketService } from './SocketService';
 import { SoundService } from './SoundService';
+import { ChatClipService } from './ChatClipService';
 
 class ChatNetworkServiceInit {
   #socket: SocketModel | null = null;
@@ -72,6 +73,10 @@ class ChatNetworkServiceInit {
             this.#chatAdapter.toChats(command.response)
           );
           ChatService.requestScrollDown(true);
+          break;
+        case 'drawer-update':
+          ChatClipService.updateClips(command.response);
+          console.log(command);
           break;
         case 'applyNotifyTo':
           console.log(command);

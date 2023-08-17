@@ -5,6 +5,7 @@ import type { ModalType } from '../model/window/ModalType';
 class WindowServiceInit {
   userListShow = writable(false);
   readonly #botListShow = writable(false);
+  readonly #clipListShow = writable(false);
   #isEmojiAttachViewShow = writable(false);
   #sideBarShow = writable(false);
   settingMenuShow = writable(false);
@@ -14,6 +15,10 @@ class WindowServiceInit {
 
   get botListShow(): Readable<boolean> {
     return this.#botListShow;
+  }
+
+  get clipListShow(): Readable<boolean> {
+    return this.#clipListShow;
   }
 
   get content(): Readable<Content> {
@@ -50,6 +55,10 @@ class WindowServiceInit {
 
   toggleBotListView() {
     this.#botListShow.update(show => !show);
+  }
+
+  toggleClipListView() {
+    this.#clipListShow.update(show => !show);
   }
 
   toggleEmojiAttachView() {

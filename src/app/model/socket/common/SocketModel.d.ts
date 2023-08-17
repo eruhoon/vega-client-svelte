@@ -1,3 +1,5 @@
+import type { ChatClip } from '../../chat/clip/ChatClip';
+
 export interface SocketModel {
   send(request: SocketRequest): void;
   onReceived(callback: SocketCallback): void;
@@ -63,6 +65,7 @@ export type SocketCallback = (response: SocketCommand) => void;
 export type SocketCommand =
   | SocketChatCommand
   | SocketLinkUpdateCommand
+  | SocketUpdateClipsCommand
   | SocketApplyMyStatusCommand
   | SocketCurrentChatsCommand
   | SocketCurrentUsersCommand
@@ -102,6 +105,18 @@ type SocketLinkUpdateResponse = {
   thumbnail: string;
   title: string;
 };
+
+type SocketUpdateClipsCommand = BaseSocketCommand<
+  'drawer-update',
+  null,
+  SocketCurrentLinkClip[]
+>
+
+type SocketCurrentLinkClip = {
+  data: { link: string, title: string },
+  hash: string;
+  type: 'link'
+}
 
 type SocketApplyMyStatusCommand = BaseSocketCommand<
   'applyMyStatus',

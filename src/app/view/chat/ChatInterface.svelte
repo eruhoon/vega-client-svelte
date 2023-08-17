@@ -104,6 +104,10 @@
     toggleBotList();
   }
 
+  function onToggleClipClick() {
+    WindowService.toggleClipListView();
+  }
+
   function toggleBotList() {
     WindowService.toggleBotListView();
   }
@@ -117,6 +121,9 @@
       </div>
       <div on:click={onToggleBotClick}>
         <i class="fas fa-robot" />
+      </div>
+      <div on:click={onToggleClipClick}>
+        <i class="fas fa-paperclip" />
       </div>
       <div on:click={clearChats}>
         <i class="fas fa-remove-format" />

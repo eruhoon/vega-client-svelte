@@ -14,10 +14,6 @@
 
 <ChatInterfaceMenu title="클립 목록">
   {#each generatedClips as clip}
-    <ClipEntry
-      hash={clip.hash}
-      nickname={clip.data.title}
-      link={clip.data.link}
-    />
+    <ClipEntry {clip} />
   {/each}
 </ChatInterfaceMenu>

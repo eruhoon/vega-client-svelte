@@ -11,18 +11,28 @@
 
   let isError: boolean = false;
   $: json = parseJson(body);
-  $: title = json?.title ?? '';
-  $: thumbnail = json?.thumbnail ?? '';
-  $: description = json?.description ?? '';
-  $: link = json?.link ?? '';
-  $: timeText = (json?.time ?? 0) > 0 ? getTimeText(json.time) : null;
+  $: title = json.title;
+  $: thumbnail = json.thumbnail;
+  $: description = json.description;
+  $: link = json.link;
+  $: timeText = json.time > 0 ? getTimeText(json.time) : null;
 
   function parseJson(body: string) {
-    if (!body) {
+    try {
+      if (!body) {
+        isError = true;
+        return {};
+      }
+      const json = JSON.parse(body);
+      if (!json) {
+        isError = true;
+        return {};
+      }
+      return json;
+    } catch {
       isError = true;
       return {};
     }
-    return JSON.parse(body);
   }
 
   function onClick() {

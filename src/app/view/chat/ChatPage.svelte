@@ -9,22 +9,16 @@
   import { onMount } from 'svelte';
   import ChatBotList from './user/ChatBotList.svelte';
   import ClipList from './clip/ClipList.svelte';
+  import type { ActiveInterfaceMenu } from '../../service/window/ActiveInterfaceMenu';
 
   const clipboard = new ClipboardManager();
 
-  let userListShow = false;
-  let botListShow = false;
-  let clipListShow = false;
-  let emojiAttachViewShow = false;
-
-  WindowService.userListShow.subscribe((show) => (userListShow = show));
-  WindowService.emojiAttachViewShow.subscribe(
-    (show) => (emojiAttachViewShow = show)
-  );
+  let activeInterfaceMenu: ActiveInterfaceMenu | null = null;
 
   onMount(() => {
-    WindowService.botListShow.subscribe((it) => (botListShow = it));
-    WindowService.clipListShow.subscribe((it) => (clipListShow = it));
+    WindowService.activeInterfaceMenu.subscribe((menu) => {
+      activeInterfaceMenu = menu;
+    });
   });
 
   function onPaste(e: ClipboardEvent) {
@@ -63,16 +57,16 @@
   <div class="chat-list">
     <ChatList />
   </div>
-  <div class="chat-user-list" class:hide={!userListShow}>
+  <div class="chat-user-list" class:hide={activeInterfaceMenu !== 'user'}>
     <ChatUserList />
   </div>
-  <div class="chat-user-list" class:hide={!botListShow}>
+  <div class="chat-user-list" class:hide={activeInterfaceMenu !== 'bot'}>
     <ChatBotList />
   </div>
-  <div class="chat-user-list" class:hide={!clipListShow}>
+  <div class="chat-user-list" class:hide={activeInterfaceMenu !== 'clip'}>
     <ClipList />
   </div>
-  <div class="emoji-attach" class:hide={!emojiAttachViewShow}>
+  <div class="emoji-attach" class:hide={activeInterfaceMenu !== 'emoji'}>
     <EmojiAttachView />
   </div>
   <div class="chat-interface"><ChatInterface /></div>

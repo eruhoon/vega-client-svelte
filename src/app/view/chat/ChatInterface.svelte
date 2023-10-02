@@ -16,19 +16,15 @@
   const chatHistories = new ChatHistoryManager();
   let imageInput: HTMLInputElement;
   let message: string = '';
-  let userListShow = false;
-  let botListShow = false;
   let isConnected = false;
   let isScrollLock = false;
 
   const toggleUserList = () => {
-    const next = !userListShow;
-    userListShow = next;
-    WindowService.userListShow.set(next);
+    WindowService.toggleChatInterfaceMenu('user');
   };
 
   const toggleEmojiAttachView = () => {
-    WindowService.toggleEmojiAttachView();
+    WindowService.toggleChatInterfaceMenu('emoji');
   };
 
   const clearChats = () => {
@@ -40,7 +36,6 @@
   onMount(() => {
     ChatService.scrollLock.subscribe((v) => (isScrollLock = v));
     EmojiService.appendEmojiChat.subscribe((it) => it && onAppendEmojiChat(it));
-    WindowService.botListShow.subscribe((it) => (botListShow = it));
   });
 
   function onImageChange() {
@@ -105,14 +100,15 @@
   }
 
   function onToggleClipClick() {
-    WindowService.toggleClipListView();
+    WindowService.toggleChatInterfaceMenu('clip');
   }
 
   function toggleBotList() {
-    WindowService.toggleBotListView();
+    WindowService.toggleChatInterfaceMenu('bot');
   }
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="chat-interface" on:click={(_) => ChatService.setActive(null)}>
   <div class="input-sticker">
     <div class="sticker-section">

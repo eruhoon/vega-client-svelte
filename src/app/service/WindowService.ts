@@ -1,24 +1,19 @@
 import { Readable, Writable, writable } from 'svelte/store';
 import type { Content } from '../model/window/Content';
 import type { ModalType } from '../model/window/ModalType';
+import type { ActiveInterfaceMenu } from './window/ActiveInterfaceMenu';
 
 class WindowServiceInit {
-  userListShow = writable(false);
-  readonly #botListShow = writable(false);
-  readonly #clipListShow = writable(false);
-  #isEmojiAttachViewShow = writable(false);
+  readonly #activeInterfaceMenu: Writable<ActiveInterfaceMenu | null> =
+    writable(null);
   #sideBarShow = writable(false);
   settingMenuShow = writable(false);
   #content: Writable<Content | null> = writable(null);
   #modal: Writable<ModalType | null> = writable(null);
   #currentImage: Writable<string | null> = writable(null);
 
-  get botListShow(): Readable<boolean> {
-    return this.#botListShow;
-  }
-
-  get clipListShow(): Readable<boolean> {
-    return this.#clipListShow;
+  get activeInterfaceMenu(): Readable<ActiveInterfaceMenu> {
+    return this.#activeInterfaceMenu;
   }
 
   get content(): Readable<Content> {
@@ -49,24 +44,16 @@ class WindowServiceInit {
     this.#currentImage.set(null);
   }
 
-  get emojiAttachViewShow(): Readable<boolean> {
-    return this.#isEmojiAttachViewShow;
-  }
-
-  toggleBotListView() {
-    this.#botListShow.update(show => !show);
-  }
-
-  toggleClipListView() {
-    this.#clipListShow.update(show => !show);
-  }
-
-  toggleEmojiAttachView() {
-    this.#isEmojiAttachViewShow.update((show) => !show);
+  toggleChatInterfaceMenu(menu: ActiveInterfaceMenu) {
+    this.#activeInterfaceMenu.update(prev => {
+      return prev !== menu ? menu : null;
+    });
   }
 
   closeEmojiAttachView() {
-    this.#isEmojiAttachViewShow.set(false);
+    this.#activeInterfaceMenu.update(prev => {
+      return prev !== 'emoji' ? prev : null;
+    });
   }
 
   get sideBarShow(): Readable<boolean> {

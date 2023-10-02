@@ -76,10 +76,8 @@ class ChatNetworkServiceInit {
           break;
         case 'drawer-update':
           ChatClipService.updateClips(command.response);
-          console.log(command);
           break;
         case 'applyNotifyTo':
-          console.log(command);
           break;
         case 'reaction':
           GroupedChatService.updateReactions(

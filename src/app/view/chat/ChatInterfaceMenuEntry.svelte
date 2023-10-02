@@ -1,10 +1,12 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
   import type { ChatInterfaceMenuEntryIcon } from './ChatInterfaceMenuEntryIcon';
+  import type { ChatInterfaceMenuEntryButton } from './ChatInterfaceMenuEntryButton';
 
   export let hash: string = '';
   export let nickname: string = '';
   export let icon: ChatInterfaceMenuEntryIcon | null = null;
+  export let buttons: ChatInterfaceMenuEntryButton[] = [];
 
   const dispatch = createEventDispatcher<{ onentryclick: string }>();
 
@@ -30,13 +32,16 @@
     </div>
   </div>
   <div class="icon-slot">
+    {#each buttons as button}
+      <i class={button.icon} on:click|stopPropagation={button.callback} />
+    {/each}
     <slot />
   </div>
 </div>
 
 <style lang="scss">
   .entry {
-    display: block;
+    display: flex;
     width: calc(100% - 10px);
     height: 30px;
     padding: 5px;
@@ -55,6 +60,7 @@
       float: left;
       border-radius: 30px;
       text-align: center;
+      flex-shrink: 0;
 
       img {
         width: 30px;
@@ -73,28 +79,36 @@
       width: calc(100% - 90px);
       height: 30px;
       float: left;
-      padding-left: 8px;
+      flex-grow: 1;
 
       div {
         width: 100%;
+        height: 30px;
         float: left;
-        padding-top: 8px;
 
         p {
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          line-height: 30px;
         }
       }
     }
 
     .icon-slot {
-      width: 50px;
+      flex-shrink: 0;
+      width: auto;
       height: 30px;
       float: right;
-      text-align: center;
-      display: flex;
-      justify-content: flex-end;
+      text-align: right;
+
+      i {
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+      }
     }
   }
 </style>

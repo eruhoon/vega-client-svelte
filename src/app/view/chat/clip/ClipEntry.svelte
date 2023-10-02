@@ -34,13 +34,14 @@
   icon={{ type: 'fa', src: getClipIcon(clip.type) }}
   hash={clip.hash}
   nickname={clip.data.title}
+  buttons={[{ icon: 'fas fa-arrow-circle-right', callback: onNavigateClick }]}
   on:onentryclick={onEntryClick}
 >
   <!-- svelte-ignore a11y-click-events-have-key-events -->
-  <i
+  <!-- <i
     class="fas fa-arrow-circle-right"
     on:click|stopPropagation={onNavigateClick}
-  />
+  /> -->
 </ChatInterfaceMenuEntry>
 
 <style lang="scss">

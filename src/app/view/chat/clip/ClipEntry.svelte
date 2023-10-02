@@ -19,9 +19,19 @@
         });
     }
   }
+
+  function getClipIcon(clipType: string) {
+    switch (clipType) {
+      case 'youtube':
+        return 'fab fa-youtube';
+      case 'link':
+        return 'fas fa-link';
+    }
+  }
 </script>
 
 <ChatInterfaceMenuEntry
+  icon={{ type: 'fa', src: getClipIcon(clip.type) }}
   hash={clip.hash}
   nickname={clip.data.title}
   on:onentryclick={onEntryClick}
@@ -36,5 +46,10 @@
 <style lang="scss">
   i {
     cursor: pointer;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    float: right;
   }
 </style>

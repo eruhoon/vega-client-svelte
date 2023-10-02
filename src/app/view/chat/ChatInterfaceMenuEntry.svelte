@@ -1,9 +1,10 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
+  import type { ChatInterfaceMenuEntryIcon } from './ChatInterfaceMenuEntryIcon';
 
   export let hash: string = '';
   export let nickname: string = '';
-  export let icon: string | null = null;
+  export let icon: ChatInterfaceMenuEntryIcon | null = null;
 
   const dispatch = createEventDispatcher<{ onentryclick: string }>();
 
@@ -12,10 +13,15 @@
   }
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="entry" on:click={onEntryClick}>
   {#if icon}
     <div class="icon">
-      <img src={icon} alt={nickname} />
+      {#if icon.type === 'image'}
+        <img src={icon.src} alt={nickname} />
+      {:else if icon.type === 'fa'}
+        <i class={icon.src} />
+      {/if}
     </div>
   {/if}
   <div class="info">
@@ -48,11 +54,18 @@
       overflow: hidden;
       float: left;
       border-radius: 30px;
+      text-align: center;
 
       img {
         width: 30px;
         height: 30px;
         object-fit: cover;
+      }
+
+      i {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
       }
     }
 
@@ -79,6 +92,9 @@
       width: 50px;
       height: 30px;
       float: right;
+      text-align: center;
+      display: flex;
+      justify-content: flex-end;
     }
   }
 </style>

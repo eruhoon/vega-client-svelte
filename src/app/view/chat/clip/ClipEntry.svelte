@@ -26,6 +26,7 @@
   nickname={clip.data.title}
   on:onentryclick={onEntryClick}
 >
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
   <i
     class="fas fa-arrow-circle-right"
     on:click|stopPropagation={onNavigateClick}

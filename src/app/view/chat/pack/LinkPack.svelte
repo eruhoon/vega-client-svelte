@@ -1,8 +1,12 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+  import { OptionService } from '../../../service/OptionService';
   import { ToastService } from '../../../service/ToastService';
   import { WindowService } from '../../../service/WindowService';
 
   export let body: string;
+
+  let isDataSave = true;
   let thumbnail: string = '';
   let title: string = '';
   let link: string = '';
@@ -12,6 +16,10 @@
     thumbnail = json.info.thumbnail;
     link = json.uri;
   }
+
+  onMount(() => {
+    OptionService.enableDataSave.subscribe((value) => (isDataSave = value));
+  });
 
   const openWindow = () => {
     if (link.includes('.m3u8')) {
@@ -39,27 +47,41 @@
   }
 </script>
 
-<div
-  class="root"
-  class:thumbnail-attched={thumbnail}
-  on:click={openWindow}
-  on:contextmenu|preventDefault={openContent}
->
-  {#if thumbnail}
-    <img class="thumbnail" alt="thumbnail" src={thumbnail} />
-  {/if}
-  <div class="info">
-    <div class="info-header">
-      <div class="title">{title}</div>
-      <div class="menu">
-        <button on:click|stopPropagation={onCopyClick}>
-          <i class="fas fa-copy" />
-        </button>
-      </div>
-    </div>
-    <div class="link">{link}</div>
+{#if isDataSave}
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <div on:click={openWindow}>
+    <strong>
+      {#if title}
+        [Link: {title}]
+      {:else}
+        [Link: {link}]
+      {/if}
+    </strong>
   </div>
-</div>
+{:else}
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <div
+    class="root"
+    class:thumbnail-attched={thumbnail}
+    on:click={openWindow}
+    on:contextmenu|preventDefault={openContent}
+  >
+    {#if thumbnail}
+      <img class="thumbnail" alt="thumbnail" src={thumbnail} />
+    {/if}
+    <div class="info">
+      <div class="info-header">
+        <div class="title">{title}</div>
+        <div class="menu">
+          <button on:click|stopPropagation={onCopyClick}>
+            <i class="fas fa-copy" />
+          </button>
+        </div>
+      </div>
+      <div class="link">{link}</div>
+    </div>
+  </div>
+{/if}
 
 <style lang="scss">
   @mixin truncate {
